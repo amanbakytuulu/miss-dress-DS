@@ -7,7 +7,8 @@ const CATEGORIES_PAGE = "/categories";
 const DELIVERY_PAGE = "/delivery";
 const CART_PAGE = "/cart";
 const PRODUCT_PAGE = "/product";
-const ABOUT_PAGE = "/ABOUT";
+const ABOUT_PAGE = "/about";
+const CONTACTS_PAGE = "/contacts";
 
 export {
   MAIN_PAGE,
@@ -20,4 +21,5 @@ export {
   PRODUCT_PAGE,
   ABOUT_PAGE,
   ADMIN_PAGE,
+  CONTACTS_PAGE,
 };

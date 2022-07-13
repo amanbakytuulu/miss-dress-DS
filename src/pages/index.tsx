@@ -16,6 +16,6 @@ export {
   DeliveryPage,
   CategoriesPage,
   ProductInfo,
-    MainPage,
+  MainPage,
   ProfilePage,
 };
