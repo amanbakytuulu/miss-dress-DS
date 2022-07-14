@@ -1,0 +1,41 @@
+.wrapper__news{
+    text-align: center;
+}
+
+.link{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.main{
+    color:white;
+    text-shadow: 0px 0px 0.2px black;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+}
+
+.date__news{
+    font-size: 15px;
+}
+.desc__news{
+    display: flex;
+    position: absolute;
+    top:80%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.link{
+    color: aliceblue;
+}
+
+.header__news{
+    color: #F1DAC5;
+    font-weight: 900;
+    font-size: 42px;
+}
+
+
