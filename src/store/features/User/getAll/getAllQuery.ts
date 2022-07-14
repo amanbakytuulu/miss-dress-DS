@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+
 import { API } from "../../../../hooks/api";
 
 export const getAllApi = createApi({

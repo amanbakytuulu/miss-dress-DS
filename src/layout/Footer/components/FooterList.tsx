@@ -1,8 +1,9 @@
-import { Grid } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { IFooterItems } from "../../../types/FooterTypes/FooterTypes";
 import classes from '../style.module.css'
+
 const FooterList = () => {
   const liElements1: IFooterItems[] = [
     {

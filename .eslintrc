@@ -1,6 +1,24 @@
 {
-  "extends": [
-    "react-app",
-    "react-app/jest"
-  ]
+  "extends": ["react-app", "react-app/jest"],
+  "rules": {
+    "no-console": "warn",
+    "prefer-const": "error",
+    "jsx-quotes": ["error", "prefer-double"],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "newlines-between": "always-and-inside-groups"
+      }
+    ]
+  }
 }

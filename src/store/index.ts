@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
+
 import { categoryApi } from "./features/Category/category/categoryQuery";
 import { categoryMainApi } from "./features/Category/categoryMain/categoryMainQuery";
 import { notificationApi } from "./features/Notification/notificationQuery";

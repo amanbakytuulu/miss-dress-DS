@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
+
 import { IFooterIcons } from "../../../types/FooterTypes/FooterTypes";
 import whatsAppIcon from "../../../assets/Footer/Whatsapp.svg";
 import telegramIcon from "../../../assets/Footer/telegram.svg";
 import instagramIcon from "../../../assets/Footer/instagram.svg";
 import facebookIcon from "../../../assets/Footer/facebook.svg";
 import classes from '../style.module.css'
+
+
 const IconsFooter = () => {
   const [icons, setIcons] = useState<IFooterIcons[]>([]);
 
