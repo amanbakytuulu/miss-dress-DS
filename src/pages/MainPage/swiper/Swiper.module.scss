@@ -1,0 +1,60 @@
+.swiperDiv {
+  :global(.swiper-pagination-bullet) {
+    background: #523726;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 0.5rem;
+    opacity: 1;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background-color: #fff;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 0.5rem;
+  }
+
+  .swiper {
+    .swiperSlide {
+      z-index: 0;
+
+      img {
+        max-width: 100%;
+      }
+
+      p {
+        position: absolute;
+        bottom: 30%;
+        color: #f1dac5;
+        font-size: 2em;
+        margin: 0 30px 3% 5%;
+      }
+    }
+
+    .btn {
+      width: 200px;
+      height: 60px;
+      position: absolute;
+      bottom: 20%;
+      margin-left: 5%;
+      z-index: 1;
+      border-radius: 30px;
+      background-color: #f1dac5;
+      color: #372e24;
+      border: none;
+      font-size: 18px;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .swiper {
+    .swiperSlide {
+      p {
+        display: none;
+      }
+    }
+    .btn {
+    }
+  }
+}
