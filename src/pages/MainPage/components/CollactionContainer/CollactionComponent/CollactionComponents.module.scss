@@ -1,0 +1,30 @@
+.spring {
+  display: flex;
+  justify-content: center;
+
+  &__flex__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    width: 1680px;
+    height: 850px;
+  }
+
+  &__h1 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 4rem;
+    line-height: 4.875rem;
+    color: #372e24;
+    position: absolute;
+    margin-left: 357px;
+  }
+}
+.reverse {
+  margin-left: 1200px;
+}
+.spring__image:hover {
+  background: rgba(55, 46, 36, 0.5);
+}
