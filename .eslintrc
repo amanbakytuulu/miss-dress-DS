@@ -1,6 +1,17 @@
 {
-  "extends": ["react-app", "react-app/jest"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "react-app",
+    "react-app/jest",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "require-jsdoc": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": "off",
     "no-console": "warn",
     "prefer-const": "error",
     "jsx-quotes": ["error", "prefer-double"],
