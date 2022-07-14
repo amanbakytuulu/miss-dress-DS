@@ -1,6 +1,25 @@
 @import "src/index";
 
-.headerLogo {
+.header {
+  height: 70px;
+  background-color: $primary-beige;
 
-
+  .headerInner {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  .headerLogo {
+    cursor: pointer;
+    width: 100px;
+    height: 100%;
+  }
+  .headerLogo i {
+    height: 100%;
+    position: absolute;
+    top: -30px;
+  }
 }

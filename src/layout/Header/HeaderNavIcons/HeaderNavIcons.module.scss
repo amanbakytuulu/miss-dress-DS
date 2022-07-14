@@ -1,0 +1,33 @@
+.headerNavIcons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  .headerSearch,
+  .headerFav,
+  .headerAcc,
+  .headerCart {
+    cursor: pointer;
+  }
+
+  .headerSearch {
+  }
+  .headerFav {
+  }
+  .headerAcc {
+  }
+  .headerCart {
+  }
+  .headerSearch i {
+  }
+  .headerFav i {
+  }
+  .headerAcc i {
+  }
+  .headerCart i {
+  }
+}
+
+.headerNavIcons *:hover {
+
+}

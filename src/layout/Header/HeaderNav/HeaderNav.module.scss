@@ -1,0 +1,13 @@
+@import "src/styles/vars";
+
+.headerNav {
+}
+.headerNavInner {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.headerNavInner li a {
+  color: $black-text;
+}

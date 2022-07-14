@@ -8,6 +8,7 @@ import {
   DELIVERY_PAGE,
   CATEGORIES_PAGE,
   PRODUCT_PAGE,
+  ERROR_PAGE,
 } from "../utils/path";
 
 import {
@@ -21,6 +22,7 @@ import {
   CartPage,
   MainPage,
 } from "../pages";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -62,6 +64,10 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductInfo />,
+  },
+  {
+    path: ERROR_PAGE,
+    Component: <ErrorPage />,
   },
 ];
 
