@@ -14,12 +14,15 @@
   }
   .headerLogo {
     cursor: pointer;
-    width: 100px;
+    width: 150px;
     height: 100%;
   }
   .headerLogo i {
     height: 100%;
     position: absolute;
-    top: -30px;
+    top: 10px;
+  }
+  .headerLogo svg {
+    height: 100%;
   }
 }

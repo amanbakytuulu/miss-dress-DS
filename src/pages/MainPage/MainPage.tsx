@@ -1,7 +1,13 @@
-import React from "react";
+import { MainSwiper } from "./swiper/Swiper";
+
+import styles from "./MainPage.module.scss";
 
 const MainPage = () => {
-  return <div>MAIN</div>;
+  return (
+    <div className={styles.container}>
+      <MainSwiper />
+    </div>
+  );
 };
 
 export default MainPage;

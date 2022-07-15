@@ -2,7 +2,6 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
-
 import {
   ABOUT_PAGE,
   CONTACTS_PAGE,
