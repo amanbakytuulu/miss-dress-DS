@@ -1,6 +1,6 @@
-
 import { IAdvantagesItems } from "../../../../types/AdvantagesTypes/AdvantagesTypes";
-import styles from './Advantages.module.scss'
+
+import styles from "./Advantages.module.scss";
 
 const AdvantageList = () => {
   const liElements: IAdvantagesItems[] = [
@@ -21,19 +21,16 @@ const AdvantageList = () => {
       text: "Возможность оплаты наложенным платежем",
     },
   ];
-  
 
-  
   return (
-      <div className={styles.list}>
-        {liElements.map((item) => (
-            <div className={styles.block}>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-            </div>
-        ))}
-      </div>
-   
+    <div className={styles.list}>
+      {liElements.map((item) => (
+        <div className={styles.block}>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 

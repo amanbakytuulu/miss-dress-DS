@@ -1,4 +1,4 @@
-export interface IAdvantagesItems{
-    title: string,
-    text: string
+export interface IAdvantagesItems {
+  title: string;
+  text: string;
 }
