@@ -1,7 +1,10 @@
 import React from "react";
-import classes from "./style.module.scss";
+
 import errorImage from "../../assets/errorPage/error.png";
 import logo from "../../assets/errorPage/logo.png";
+
+import classes from "./style.module.scss";
+
 const ErrorPage = () => {
   return (
     <div className={classes.mainDiv}>

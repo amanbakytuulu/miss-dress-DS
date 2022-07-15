@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
+
 import { IFooterIcons } from "../../../types/FooterTypes/FooterTypes";
 import whatsAppIcon from "../../../assets/Footer/Whatsapp.svg";
 import telegramIcon from "../../../assets/Footer/telegram.svg";
 import instagramIcon from "../../../assets/Footer/instagram.svg";
 import facebookIcon from "../../../assets/Footer/facebook.svg";
-import classes from '../style.module.scss'
+
+import classes from "../style.module.scss";
+
 const IconsFooter = () => {
   const [icons, setIcons] = useState<IFooterIcons[]>([]);
 
@@ -33,7 +36,7 @@ const IconsFooter = () => {
   return (
     <div className={classes.iconsMin}>
       {icons.map((item, index) => (
-        <a target="_blank" key={index} href={item.path}>
+        <a target="_blank" key={index} href={item.path} rel="noreferrer">
           <img src={item.icon} alt="" />
         </a>
       ))}

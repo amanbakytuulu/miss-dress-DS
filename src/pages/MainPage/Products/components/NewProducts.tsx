@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { Container, Grid } from "@mui/material";
+
 import firstImg from "../../../../assets/mainPage/news/first.png";
 import secondImg from "../../../../assets/mainPage/news/second.png";
 import thirdImg from "../../../../assets/mainPage/news/third.png";
@@ -8,8 +10,9 @@ import sixImg from "../../../../assets/mainPage/news/fifth.png";
 import fillIcon from "../../../../assets/mainPage/icons/fill.svg";
 import start from "../../../../assets/mainPage/icons/Vector.svg";
 import heart from "../../../../assets/mainPage/icons/heart.svg";
-import { Container, Grid } from "@mui/material";
+
 import classes from "../style.module.scss";
+
 import ProductCard from "./ProductCard";
 
 const NewProducts = () => {

@@ -1,13 +1,14 @@
 import React from "react";
-import "./App.scss";
+
 import { AppRouter } from "./components";
-import Footer from "./layout/Footer/Footer";
+import { Footer, Header } from "./layout";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <AppRouter />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

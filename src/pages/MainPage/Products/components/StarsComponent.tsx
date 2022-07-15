@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import starFull from "../../../../assets/mainPage/icons/starfull.svg";
 
 const StarsComponent = ({ star, index }: any) => {

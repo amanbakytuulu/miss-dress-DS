@@ -1,7 +1,8 @@
-import React from 'react';
-import classes from './style.module.scss'
+import React from "react";
+
+import classes from "./style.module.scss";
 const CheckBtn = () => {
-    return <button className={classes.btn}>Смотреть</button>
+  return <button className={classes.btn}>Смотреть</button>;
 };
 
 export default CheckBtn;

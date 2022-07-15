@@ -1,8 +1,12 @@
-import { Grid } from "@mui/material";
 import React, { useState } from "react";
-import classes from "../style.module.scss";
+import { Grid } from "@mui/material";
+
 import heartFull from "../../../../assets/mainPage/icons/heartfull.svg";
+
+import classes from "../style.module.scss";
+
 import StarsComponent from "./StarsComponent";
+
 const ProductCard = ({ item }: any) => {
   const [changeColor, setChangeColor] = useState(false);
 

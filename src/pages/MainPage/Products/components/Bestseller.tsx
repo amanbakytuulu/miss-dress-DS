@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Container, Grid } from "@mui/material";
+
 import firstImg from "../../../../assets/mainPage/hits/first.png";
 import secondImg from "../../../../assets/mainPage/hits/second.png";
 import thirdImg from "../../../../assets/mainPage/hits/third.png";
@@ -8,9 +10,11 @@ import sixImg from "../../../../assets/mainPage/hits/six.png";
 import fillIcon from "../../../../assets/mainPage/icons/fill.svg";
 import start from "../../../../assets/mainPage/icons/Vector.svg";
 import heart from "../../../../assets/mainPage/icons/heart.svg";
-import { Container, Grid } from "@mui/material";
+
 import classes from "../style.module.scss";
+
 import ProductCard from "./ProductCard";
+
 const Bestseller = () => {
   const [changeColor, setChangeColor] = useState(false);
   const bestsellerItems = [
@@ -99,7 +103,7 @@ const Bestseller = () => {
         <Grid container spacing={4}>
           {bestsellerItems.map((item, index) => (
             <Grid key={index} item xs={6} md={4}>
-              <ProductCard item={item}/>
+              <ProductCard item={item} />
               {/* <Grid className={classes.bestsellerCard}>
                 <img className={classes.bestsellerImg} src={item.img} alt="" />
                 <div className={classes.priceDiv}>

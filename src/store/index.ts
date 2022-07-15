@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
+
 import { categoryApi } from "./features/Category/category/categoryQuery";
 import { categoryMainApi } from "./features/Category/categoryMain/categoryMainQuery";
 import { notificationApi } from "./features/Notification/notificationQuery";
@@ -19,17 +20,15 @@ const rootReducer = combineReducers({
 });
 
 export const store = configureStore({
-    reducer: rootReducer,
-    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(
-        categoryApi.middleware,
-        categoryMainApi.middleware,
-        notificationApi.middleware,
-        productFavoritesApi.middleware,
-        productGetAllApi.middleware,
-        getAllApi.middleware,
-        meApi.middleware,
-    )
-
-})
-
-
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      categoryApi.middleware,
+      categoryMainApi.middleware,
+      notificationApi.middleware,
+      productFavoritesApi.middleware,
+      productGetAllApi.middleware,
+      getAllApi.middleware,
+      meApi.middleware
+    ),
+});

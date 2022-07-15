@@ -1,7 +1,10 @@
-import { Container, Grid } from "@mui/material";
 import React from "react";
+import { Container, Grid } from "@mui/material";
+import { Link } from "react-router-dom";
+
 import FooterList from "./components/FooterList";
 import IconsFooter from "./components/IconsFooter";
+
 import classes from "./style.module.scss";
 
 const Footer = () => {
@@ -23,6 +26,7 @@ const Footer = () => {
       path: "https://2gis.kg/bishkek/firm/70000001036409659?m=74.592154%2C42.874231%2F16",
     },
   ];
+
   return (
     <div className={classes.mainDiv}>
       <Container>
