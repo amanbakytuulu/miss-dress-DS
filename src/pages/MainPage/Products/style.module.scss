@@ -1,6 +1,3 @@
-.categoryImg {
-  width: 100%;
-}
 .categoryDiv {
   display: flex !important;
   text-align: center;
@@ -18,16 +15,11 @@
   font-size: 28px;
   color: #372e24;
 }
-.btnDiv {
-  position: relative;
-  width: 90%;
-}
+
 .btnDiv h4 {
   font-size: 24px;
 }
-.bestsellerImg {
-  width: 100%;
-}
+
 .priceDiv {
   display: flex;
   justify-content: space-between;
@@ -61,6 +53,10 @@
   height: 40px;
   margin-top: 0;
 }
+.btnDiv {
+  width: 90%;
+}
+
 .sizeP {
   font-size: 20px;
   font-weight: lighter;
@@ -93,6 +89,24 @@
   margin-bottom: 50px;
 }
 
+.btn {
+  width: 60%;
+  border-radius: 25px;
+  height: 8%;
+  background: #f1dac5;
+  border: none;
+  position: absolute;
+  left: 20%;
+  top: 45%;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #372e24;
+}
+.categoryImg {
+  width: 100%;
+}
+
 @media (max-width: 1064px) {
   .iconsDiv img {
     width: 28px;
@@ -117,7 +131,7 @@
   .priceP p {
     font-size: 16px;
   }
-  .priceP p:nth-child(1){
+  .priceP p:nth-child(1) {
     font-size: 12px;
     display: flex;
     align-items: flex-end;

@@ -4,9 +4,9 @@ import { Container, Grid } from "@mui/material";
 import jeans from "../../../../assets/mainPage/categories/second.png";
 import dresses from "../../../../assets/mainPage/categories/first.png";
 import skirts from "../../../../assets/mainPage/categories/third.png";
-import CheckBtn from "../../../../components/CheckBtn/CheckBtn";
 
 import classes from "../style.module.scss";
+import ImagesCard from "../../../../components/CheckBtn/components/ImagesCard";
 
 const ProductsCategory = () => {
   const categoryItems = [
@@ -29,11 +29,10 @@ const ProductsCategory = () => {
       <Grid container spacing={2}>
         {categoryItems.map((item, index) => (
           <Grid key={index} className={classes.categoryDiv} item xs={6} md={4}>
-            <Grid className={classes.btnDiv}>
-              <img className={classes.categoryImg} src={item.img} alt="" />
+            <div className={classes.btnDiv}>
+              <ImagesCard item={item} />
               <h4>{item.category}</h4>
-              <CheckBtn />
-            </Grid>
+            </div>
           </Grid>
         ))}
       </Grid>

@@ -13,7 +13,7 @@ import heart from "../../../../assets/mainPage/icons/heart.svg";
 
 import classes from "../style.module.scss";
 
-import ProductCard from "./ProductCard";
+import ProductCard from "../../../../components/CheckBtn/ProductCard";
 
 const NewProducts = () => {
   const newProductItems = [
