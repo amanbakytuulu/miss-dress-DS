@@ -1,11 +1,7 @@
 import React from "react";
 
 const CategoriesPage = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return <div>CATEGORY</div>;
 };
 
 export default CategoriesPage;

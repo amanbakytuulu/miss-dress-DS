@@ -1,10 +1,12 @@
 import React from "react";
-import classes from "./CollactionContainer.module.scss";
-import CollactionSpring from "./CollactionComponent/CollactionComponents";
+
 import WinterImage from "../../../../assets/Main/Collaction/wintercollec.png";
 import SpringImage from "../../../../assets/Main/Collaction/spring.png";
 import SummerImage from "../../../../assets/Main/Collaction/summer.png";
 import AutumnImage from "../../../../assets/Main/Collaction/autumn.png";
+
+import CollactionSpring from "./CollactionComponent/CollactionComponents";
+import classes from "./CollactionContainer.module.scss";
 
 const collactions = [
   {

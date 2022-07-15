@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+
 import classes from "./CollactionComponents.module.scss";
 
 interface CollactionSpringProps {
@@ -25,4 +26,3 @@ const CollactionSpring: FC<CollactionSpringProps> = ({
 };
 
 export default CollactionSpring;
-

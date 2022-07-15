@@ -1,18 +1,19 @@
 import React from "react";
-import "./App.scss";
+
 import { AppRouter } from "./components";
-import Footer from "./layout/Footer/Footer";
+
 import ColactionContainer from "./pages/MainPage/components/CollactionContainer/CollactionContainer";
 import SubscrubeContainer from "./pages/MainPage/components/SubscrubeContainer/SubscrubeContainer";
+import { Footer, Header } from "./layout";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <AppRouter />
-
-      <ColactionContainer/>
-      <SubscrubeContainer/>
-      <Footer/>
+      <ColactionContainer />
+      <SubscrubeContainer />
+      <Footer />
     </div>
   );
 }

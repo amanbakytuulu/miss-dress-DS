@@ -6,7 +6,8 @@ import {
   CONTACTS_PAGE,
   ABOUT_PAGE,
   DELIVERY_PAGE,
-  CATEGORIES_PAGE, PRODUCT_PAGE
+  CATEGORIES_PAGE,
+  PRODUCT_PAGE,
 } from "../utils/path";
 
 import {
