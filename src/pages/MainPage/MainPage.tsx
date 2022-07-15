@@ -1,4 +1,4 @@
-import ProductPage from "../ProductPage/ProductPage";
+import ProductsPage from "./Products/ProductsPage";
 
 import { MainSwiper } from "./swiper/Swiper";
 
@@ -8,7 +8,7 @@ const MainPage = () => {
   return (
     <div className={styles.container}>
       <MainSwiper />
-      <ProductPage />
+      <ProductsPage />
     </div>
   );
 };
