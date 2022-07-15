@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import classes from "../style.module.scss";
+import classes from "../CategoryPage.module.scss";
 
 const SideBar = () => {
   const barItems = [
