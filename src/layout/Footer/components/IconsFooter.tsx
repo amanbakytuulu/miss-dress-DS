@@ -5,7 +5,7 @@ import whatsAppIcon from "../../../assets/Footer/Whatsapp.svg";
 import telegramIcon from "../../../assets/Footer/telegram.svg";
 import instagramIcon from "../../../assets/Footer/instagram.svg";
 import facebookIcon from "../../../assets/Footer/facebook.svg";
-import classes from '../style.module.css'
+import classes from '../style.module.scss'
 const IconsFooter = () => {
   const [icons, setIcons] = useState<IFooterIcons[]>([]);
 
