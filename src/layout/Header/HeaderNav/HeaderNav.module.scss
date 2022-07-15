@@ -1,6 +1,10 @@
+@import "src/styles/mixins";
 @import "src/styles/vars";
 
 .headerNav {
+  @include md {
+    display: none;
+  }
 }
 .headerNavInner {
   display: flex;

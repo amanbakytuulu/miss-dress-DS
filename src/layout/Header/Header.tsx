@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
@@ -11,6 +11,11 @@ import {
 } from "../../utils/path";
 import { MAIN_PAGE } from "../../utils/path";
 import { IHeaderNav } from "../../types/headerTypes/headerTypes";
+
+import { Modal } from "../../components";
+
+import SignInForm from "../../components/Modal/SignInForm/SignInForm";
+import LoginInForm from "../../components/Modal/LoginInForm/LoginInForm";
 
 import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderNavIcons from "./HeaderNavIcons/HeaderNavIcons";
@@ -41,21 +46,34 @@ const navItems: IHeaderNav[] = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isSignIn, setSignIn] = useState<boolean>(false);
 
   const handleClickLogo = () => navigate(MAIN_PAGE);
 
   return (
-    <header className={classes.header}>
-      <div className={`${classes.container} ${classes.headerInner}`}>
-        <div className={classes.headerLogo} onClick={handleClickLogo}>
-          <i>
-            <LogoIcon />
-          </i>
+    <>
+      <header className={classes.header}>
+        <div className={`${classes.container} ${classes.headerInner}`}>
+          <div className={classes.headerLogo} onClick={handleClickLogo}>
+            <i>
+              <LogoIcon />
+            </i>
+          </div>
+          <HeaderNav navItems={navItems} />
+          <HeaderNavIcons />
         </div>
-        <HeaderNav navItems={navItems} />
-        <HeaderNavIcons />
-      </div>
-    </header>
+      </header>
+
+      {!isSignIn ? (
+        <Modal>
+          <LoginInForm setSignIn={setSignIn} />
+        </Modal>
+      ) : (
+        <Modal>
+          <SignInForm />
+        </Modal>
+      )}
+    </>
   );
 };
 

@@ -1,7 +1,11 @@
+
+
 .headerNavIcons {
   display: flex;
   align-items: center;
   gap: 18px;
+
+
 
   .headerSearch,
   .headerFav,
@@ -28,6 +32,6 @@
   }
 }
 
-.headerNavIcons:hover i *svg{
-
+.headerNavIcons:hover i *svg {
+  fill: darkgreen;
 }
