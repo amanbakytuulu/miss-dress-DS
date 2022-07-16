@@ -18,6 +18,7 @@ import ProductCard from "../../components/CheckBtn/ProductCard";
 import SideBar from "../CategoriesPage/components/SideBar";
 
 import classes from "./CategoryPage.module.scss";
+import Select from "./components/Select";
 
 const CategoryPage = () => {
   const btnTitle = "Открыть";
@@ -105,7 +106,7 @@ const CategoryPage = () => {
   return (
     <div className={classes.mainDiv}>
       <Container sx={{ flexGrow: 1 }}>
-        <Grid sx={{ display: "flex" }} container spacing={2}>
+        <Grid className={classes.mainGrid} container spacing={2}>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
               <Link to="/#">Главная</Link>
@@ -113,10 +114,28 @@ const CategoryPage = () => {
               <Link to="/#">Товары</Link>
             </div>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
+            <div className={classes.selectBlock}>
+              <h2 className={classes.mediumH}>Все товары</h2>
+              <div className={classes.selectCatDiv}>
+                <SideBar />
+              </div>
+              <Select />
+            </div>
+          </Grid>
+          <div className={classes.responsiveH}>
+            <h2>Все товары</h2>
+          </div>
+          <Grid
+            sx={{ display: { xs: "none", sm: "block", md: "block" } }}
+            item
+            xs={6}
+            sm={4}
+            md={4}
+          >
             <SideBar />
           </Grid>
-          <Grid className={classes.productDiv} item xs={10} md={8}>
+          <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
             {items.map((item: any) => (
               <div className={classes.prod}>
                 <ProductCard btnTitle={btnTitle} item={item} />

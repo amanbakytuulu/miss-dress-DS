@@ -1,23 +1,34 @@
 .btn {
   width: 60%;
   border-radius: 25px;
-  height: 10%;
-  background: #f1dac5;
+  height: 13%;
   border: none;
   position: absolute;
   left: 20%;
   top: 75%;
   cursor: pointer;
+  opacity: 0;
 }
-.btn:hover {
-  background: #372e24;
-}
+
 .categoryImg {
   width: 100%;
+  cursor: pointer;
 }
+
 .btnDiv {
   position: relative;
   width: 100%;
+}
+.btnDiv::before {
+  opacity: 0;
+}
+.btnDiv:hover::before {
+  opacity: 1;
+}
+.btnDiv:hover .btn {
+  opacity: 1;
+  background: #372e24;
+  transition: all 0.2s linear;
 }
 
 .categoryDiv {
@@ -108,56 +119,56 @@
   margin-bottom: 50px;
 }
 @media (max-width: 1064px) {
-    .iconsDiv img {
-      width: 28px;
-    }
+  .iconsDiv img {
+    width: 28px;
   }
-  
-  @media (max-width: 624px) {
-    .titleP {
-      font-size: 20px;
-    }
+}
+
+@media (max-width: 624px) {
+  .titleP {
+    font-size: 20px;
   }
-  @media (max-width: 500px) {
-    .iconsDiv img {
-      width: 20px;
-    }
-    .colorDiv img {
-      width: 16px;
-    }
-    .colorDiv p {
-      font-size: 18px;
-    }
-    .priceP p {
-      font-size: 16px;
-    }
-    .priceP p:nth-child(1) {
-      font-size: 12px;
-      display: flex;
-      align-items: flex-end;
-    }
-    .titleP {
-      font-size: 16px;
-    }
-    .sizeP {
-      font-size: 16px;
-    }
-    .btnAll {
-      width: 220px;
-      height: 36px;
-    }
-    .btnDiv h4 {
-      font-size: 15px;
-      color: #372e24;
-      font-weight: lighter;
-    }
+}
+@media (max-width: 500px) {
+  .iconsDiv img {
+    width: 20px;
   }
-  
-  @media (max-width: 388px) {
-    .iconsDiv img {
-      width: 16px;
-    }
-    .titleP {
-      font-size: 14px;
-    }
+  .colorDiv img {
+    width: 16px;
   }
+  .colorDiv p {
+    font-size: 18px;
+  }
+  .priceP p {
+    font-size: 16px;
+  }
+  .priceP p:nth-child(1) {
+    font-size: 12px;
+    display: flex;
+    align-items: flex-end;
+  }
+  .titleP {
+    font-size: 16px;
+  }
+  .sizeP {
+    font-size: 16px;
+  }
+  .btnAll {
+    width: 220px;
+    height: 36px;
+  }
+  .btnDiv h4 {
+    font-size: 15px;
+    color: #372e24;
+    font-weight: lighter;
+  }
+}
+
+@media (max-width: 388px) {
+  .iconsDiv img {
+    width: 16px;
+  }
+  .titleP {
+    font-size: 14px;
+  }
+}
