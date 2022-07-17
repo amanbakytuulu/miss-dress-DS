@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { getPadTime } from "../utils/helpers/getPadTime";
 
@@ -8,7 +8,6 @@ export const useTimer = (time: number) => {
   const minutes = getPadTime(Math.floor(timeLeft / 60));
   // @ts-ignore
   const seconds = getPadTime(timeLeft - minutes * 60);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft((timeLeft) => (timeLeft >= 1 ? timeLeft - 1 : 0));
@@ -18,5 +17,14 @@ export const useTimer = (time: number) => {
       clearInterval(interval);
     };
   }, [timeLeft, isCounting]);
-  return { minutes, seconds };
+
+  const restart = useCallback((newTime: number) => {
+    setIsCounting(true);
+    setTimeLeft(newTime);
+  }, []);
+
+  return [{ minutes, seconds }, restart] as [
+    { minutes: string; seconds: string },
+    (value: number) => void
+  ];
 };
