@@ -7,12 +7,17 @@ import classes from "./Modal.module.scss";
 
 interface IModalProps {
   children: React.ReactNode;
+  isModalOpen: boolean;
+  setModalOpen: (value: boolean) => void;
 }
 
-const Modal: FC<IModalProps> = ({ children }) => {
+const Modal: FC<IModalProps> = ({ children, isModalOpen, setModalOpen }) => {
   return (
-    <div className={classes.modalOverlay}>
-      <div className={classes.modal}>
+    <div
+      className={`${classes.modalOverlay} ${isModalOpen && classes.active}`}
+      onClick={() => setModalOpen(false)}
+    >
+      <div className={classes.modal} onClick={(e) => e.stopPropagation()}>
         <div className={classes.modalLogo}>
           <i>
             <LogoIcon />
