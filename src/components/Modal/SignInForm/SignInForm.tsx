@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Button } from "@mui/material";
 
-import classes from "./SignInForm.module.scss";
-import SignInVerification from "./SignInVerification/SignInVerification";
+import VerificationForm from "../VerificationForm/VerificationForm";
 
-const SignInForm = () => {
+import classes from "./SignInForm.module.scss";
+
+interface SignInFormProps {
+  setUserEnter: (value: boolean) => void;
+}
+
+const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
   return (
     <>
@@ -36,7 +41,7 @@ const SignInForm = () => {
           </div>
         </form>
       ) : (
-        <SignInVerification />
+        <VerificationForm title="Регистрация" setUserEnter={setUserEnter} />
       )}
     </>
   );

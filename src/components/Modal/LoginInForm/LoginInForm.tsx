@@ -1,14 +1,16 @@
 import React, { FC, useState } from "react";
 import { Button } from "@mui/material";
 
+import VerificationForm from "../VerificationForm/VerificationForm";
+
 import classes from "./LoginInForm.module.scss";
-import LoginInVerification from "./LoginInVerification/LoginInVerification";
 
 interface LoginInFormProps {
   setSignIn: (value: boolean) => void;
+  setUserEnter: (value: boolean) => void;
 }
 
-const LoginInForm: FC<LoginInFormProps> = ({ setSignIn }) => {
+const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
 
   return (
@@ -30,7 +32,7 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn }) => {
           </div>
         </form>
       ) : (
-        <LoginInVerification />
+        <VerificationForm title="Вход" setUserEnter={setUserEnter} />
       )}
     </>
   );
