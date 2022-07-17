@@ -1,35 +1,45 @@
-
+@import "src/styles/vars";
 
 .headerNavIcons {
+  height: 100%;
+
   display: flex;
   align-items: center;
   gap: 18px;
 
-
-
   .headerSearch,
   .headerFav,
   .headerAcc,
+  .headerLogin,
   .headerCart {
     cursor: pointer;
+    position: relative;
+  }
+  .icon svg path {
+    transition: all 0.3s linear;
+  }
+  .icon:hover svg path,
+  .icon:active svg path,
+  .icon:focus svg path {
+    fill: $hover-green;
   }
 
-  .headerSearch {
-  }
-  .headerFav {
-  }
-  .headerAcc {
-  }
-  .headerCart {
-  }
-  .headerSearch i {
-  }
-  .headerFav i {
-  }
-  .headerAcc i {
-  }
-  .headerCart i {
-  }
+  //.headerSearch {
+  //}
+  //.headerFav {
+  //}
+  //.headerAcc {
+  //}
+  //.headerCart {
+  //}
+  //.headerSearch i {
+  //}
+  //.headerFav i {
+  //}
+  //.headerAcc i {
+  //}
+  //.headerCart i {
+  //}
 }
 
 .headerNavIcons:hover i *svg {

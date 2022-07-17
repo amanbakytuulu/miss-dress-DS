@@ -15,6 +15,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+
+    @include xsm {
+      padding: 0 5px;
+    }
   }
   .headerLogo {
     z-index: 10;
@@ -27,7 +31,31 @@
     position: absolute;
     top: 10px;
   }
-  .headerLogo svg {
+  .headerLogo i svg {
+    @include xsm-2 {
+      width: 130px;
+    }
     height: 100%;
+  }
+
+  .burgerMenuBtn {
+    width: 40px;
+    height: 40px;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @include md {
+      display: flex;
+    }
+  }
+
+  .leftSideBlock {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
   }
 }

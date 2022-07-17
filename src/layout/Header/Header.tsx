@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
+import { ReactComponent as BurgerIcon } from "../../assets/header/burgerIcon.svg";
 import {
   ABOUT_PAGE,
   CONTACTS_PAGE,
@@ -47,6 +48,10 @@ const navItems: IHeaderNav[] = [
 const Header = () => {
   const navigate = useNavigate();
   const [isSignIn, setSignIn] = useState<boolean>(false);
+  const [isUserEnter, setUserEnter] = useState<boolean>(false);
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [openBurger, setOpenBurger] = useState<boolean>(false);
+  // const [openProfileNav, setOpenProfileNav] = useState(false);
 
   const handleClickLogo = () => navigate(MAIN_PAGE);
 
@@ -54,23 +59,38 @@ const Header = () => {
     <>
       <header className={classes.header}>
         <div className={`${classes.container} ${classes.headerInner}`}>
-          <div className={classes.headerLogo} onClick={handleClickLogo}>
-            <i>
-              <LogoIcon />
-            </i>
+          <div className={classes.leftSideBlock}>
+            <div
+              className={classes.burgerMenuBtn}
+              onClick={() => setOpenBurger(!openBurger)}
+            >
+              <i>
+                <BurgerIcon />
+              </i>
+            </div>
+            <div className={classes.headerLogo} onClick={handleClickLogo}>
+              <i>
+                <LogoIcon />
+              </i>
+            </div>
           </div>
-          <HeaderNav navItems={navItems} />
-          <HeaderNavIcons />
+
+          <HeaderNav navItems={navItems} openBurger={openBurger} />
+          <HeaderNavIcons
+            isUserEnter={isUserEnter}
+            isModalOpen={isModalOpen}
+            setModalOpen={setModalOpen}
+          />
         </div>
       </header>
 
       {!isSignIn ? (
-        <Modal>
-          <LoginInForm setSignIn={setSignIn} />
+        <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen}>
+          <LoginInForm setSignIn={setSignIn} setUserEnter={setUserEnter} />
         </Modal>
       ) : (
-        <Modal>
-          <SignInForm />
+        <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen}>
+          <SignInForm setUserEnter={setUserEnter} />
         </Modal>
       )}
     </>

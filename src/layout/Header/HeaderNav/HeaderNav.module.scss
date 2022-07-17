@@ -4,12 +4,29 @@
 .headerNav {
   @include md {
     display: none;
+    //width: 200px;
+    position: absolute;
+    left: 0;
+    top: 70px;
+    background-color: $secondary-beige;
   }
+}
+.active {
+  display: flex;
+  width: 200px;
+  padding: 10px;
 }
 .headerNavInner {
   display: flex;
   align-items: center;
   gap: 25px;
+
+  @include md {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-left: 10px;
+  }
 }
 
 .headerNavInner li a {

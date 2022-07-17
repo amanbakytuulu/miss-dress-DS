@@ -7,11 +7,12 @@ import classes from "./HeaderNav.module.scss";
 
 interface NavItemsProps {
   navItems: IHeaderNav[];
+  openBurger: boolean;
 }
 
-const HeaderNav: FC<NavItemsProps> = ({ navItems }) => {
+const HeaderNav: FC<NavItemsProps> = ({ navItems, openBurger }) => {
   return (
-    <nav className={classes.headerNav}>
+    <nav className={`${classes.headerNav} ${openBurger && classes.active}`}>
       <ul className={classes.headerNavInner}>
         {navItems.map((nav) => (
           <li key={nav.path}>
