@@ -11,6 +11,7 @@ const ABOUT_PAGE = "/about";
 const CONTACTS_PAGE = "/contacts";
 const NEWS_PAGE = "/news";
 const ORDERS_PAGE = "/orders";
+const FAVORITES_PAGE = "/favorites";
 
 export {
   MAIN_PAGE,
@@ -26,4 +27,5 @@ export {
   CONTACTS_PAGE,
   NEWS_PAGE,
   ORDERS_PAGE,
+  FAVORITES_PAGE,
 };

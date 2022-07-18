@@ -1,4 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { FAVORITES_PAGE } from "../../../utils/path";
 
 import { ReactComponent as SearchIcon } from "../../../assets/header/searchIcon.svg";
 import { ReactComponent as FavIcon } from "../../../assets/header/favIcon.svg";
@@ -33,6 +36,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
 }) => {
   const [openProfileNav, setOpenProfileNav] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const [openCartList, setOpenCartList] = useState(false);
 
   return (
     <div className={classes.headerNavIcons}>
@@ -43,26 +47,35 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         {openSearch && <SearchInput />}
       </div>
       <div className={classes.headerFav}>
-        <i className={classes.icon}>
-          <FavIcon />
-        </i>
+        <Link to={FAVORITES_PAGE}>
+          <i className={classes.icon}>
+            <FavIcon />
+          </i>
+        </Link>
       </div>
       <div className={classes.headerCart}>
-        <i className={classes.icon}>
+        <i
+          className={classes.icon}
+          onClick={() => setOpenCartList(!openCartList)}
+        >
           <CartIcon />
         </i>
 
-        {arr.length ? (
-          <div className={classes.headerCartList}>
-            {arr.map((item: any) => {
-              return <CartItem />;
-            })}
-          </div>
-        ) : (
-          <EmptyCart />
+        {openCartList && (
+          <>
+            {arr.length ? (
+              <div className={classes.headerCartList}>
+                {arr.map((item: any) => {
+                  return <CartItem />;
+                })}
+              </div>
+            ) : (
+              <EmptyCart />
+            )}
+          </>
         )}
       </div>
-      {isUserEnter ? (
+      {!isUserEnter ? (
         <div
           className={classes.headerLogin}
           onClick={() => setModalOpen(!isModalOpen)}

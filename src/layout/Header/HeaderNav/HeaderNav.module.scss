@@ -30,11 +30,16 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding-left: 10px;
     gap: 18px;
 
     li {
       width: 100%;
+    }
+
+    li:hover {
+      @include hover {
+        background-color: #eccfb5;
+      }
     }
 
     li a {
