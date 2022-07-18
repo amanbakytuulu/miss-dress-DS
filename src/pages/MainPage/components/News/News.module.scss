@@ -4,6 +4,9 @@
 .wrapper__news{
     text-align: center;
     margin: 0 auto;
+    h1{
+        font-size: 25px;
+    }
 }
 
 .link{
@@ -32,7 +35,6 @@
 }
 .desc__news{
     display: flex;
-    /* position: absolute; */
     top:80%;
     align-items: center;
     justify-content: flex-start;
@@ -40,6 +42,7 @@
 
 .link{
     color: aliceblue;
+    cursor: pointer;
 }
 
 .header__news{

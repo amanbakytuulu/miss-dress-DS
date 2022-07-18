@@ -1,8 +1,10 @@
+import { FC } from "react";
+
 import { IAdvantagesItems } from "../../../../types/AdvantagesTypes/AdvantagesTypes";
 
 import styles from "./Advantages.module.scss";
 
-const AdvantageList = () => {
+const AdvantageList: FC = () => {
   const liElements: IAdvantagesItems[] = [
     {
       title: "Гарантия обмена и возврата товара",
@@ -24,7 +26,7 @@ const AdvantageList = () => {
 
   return (
     <div className={styles.list}>
-      {liElements.map((item) => (
+      {liElements.map((item: any) => (
         <div className={styles.block}>
           <h3>{item.title}</h3>
           <p>{item.text}</p>
