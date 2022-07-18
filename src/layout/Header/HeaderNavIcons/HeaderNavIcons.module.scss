@@ -7,12 +7,18 @@
   align-items: center;
   gap: 18px;
 
+  .headerSearch i,
+  .headerFav i,
+  .headerAcc i,
+  .headerLogin i,
+  .headerCart i {
+    cursor: pointer;
+  }
   .headerSearch,
   .headerFav,
   .headerAcc,
   .headerLogin,
   .headerCart {
-    cursor: pointer;
     position: relative;
   }
   .icon svg path {
@@ -22,6 +28,14 @@
   .icon:active svg path,
   .icon:focus svg path {
     fill: $hover-green;
+  }
+
+  .headerCartList {
+    position: absolute;
+    width: 500px;
+    top: 45px;
+    right: -60px;
+    background-color: $secondary-beige;
   }
 
   //.headerSearch {

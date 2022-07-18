@@ -25,7 +25,7 @@ const HeaderNavProfile = () => {
       <ul>
         {navs.map((nav) => {
           return (
-            <li>
+            <li key={nav.title}>
               {nav?.path ? (
                 <Link to={nav.path}>{nav.title}</Link>
               ) : (

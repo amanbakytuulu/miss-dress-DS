@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { ReactComponent as SearchIcon } from "../../../assets/header/searchIcon.svg";
 import { ReactComponent as FavIcon } from "../../../assets/header/favIcon.svg";
@@ -10,6 +10,10 @@ import HeaderNavProfile from "../HeaderNavProfile/HeaderNavProfile";
 
 import SearchInput from "../../../components/SearchInput/SearchInput";
 
+import CartItem from "../../../components/CartItem/CartItem";
+
+import EmptyCart from "../components/EmptyCart/EmptyCart";
+
 import classes from "./HeaderNavIcons.module.scss";
 
 interface HeaderNavIconsProps {
@@ -19,6 +23,8 @@ interface HeaderNavIconsProps {
   setModalOpen: (value: boolean) => void;
   // setOpenProfileNav: (value: boolean) => void;
 }
+
+const arr: any = [];
 
 const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   setModalOpen,
@@ -45,6 +51,16 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <i className={classes.icon}>
           <CartIcon />
         </i>
+
+        {arr.length ? (
+          <div className={classes.headerCartList}>
+            {arr.map((item: any) => {
+              return <CartItem />;
+            })}
+          </div>
+        ) : (
+          <EmptyCart />
+        )}
       </div>
       {isUserEnter ? (
         <div
