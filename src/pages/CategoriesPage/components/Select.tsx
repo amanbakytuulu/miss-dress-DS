@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+import vector from "../../../assets/categoriesPage/Vector.svg";
 
 import classes from "../CategoryPage.module.scss";
 
 const Select = () => {
+  const [show, setShow] = useState(false);
+
+  const sort = [
+    {
+      title: "По обновлению",
+      path: "/#",
+    },
+    {
+      title: "По цене",
+      path: "/#",
+    },
+    {
+      title: "По алфавиту",
+      path: "/#",
+    },
+    {
+      title: "По умолчанию",
+      path: "/#",
+    },
+  ];
   return (
-    <div>
-      <select className={classes.selectContainer}>
-        <option value="" selected disabled hidden>
-          Сортировать по
-        </option>
-        <option value="1">По обновлению</option>
-        <option value="2">По цене</option>
-        <option value="3">По алфавиту</option>
-        <option value="4">По умолчанию</option>
-      </select>
+    <div className={classes.sideBarSortDiv}>
+      <div className={show ? classes.showDiv : classes.mdDiv}>
+        <div onClick={() => setShow(!show)} className={classes.vectorSort}>
+          <h4>Сортировать по</h4>
+          <img src={vector} alt="" />
+        </div>
+        {sort.map((item) => (
+          <ul className={show ? classes.showSort : classes.hideSort}>
+            <Link to={item.path}>{item.title}</Link>
+          </ul>
+        ))}
+      </div>
     </div>
   );
 };

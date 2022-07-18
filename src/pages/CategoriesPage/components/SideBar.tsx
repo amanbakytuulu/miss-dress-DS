@@ -58,8 +58,11 @@ const SideBar = () => {
     },
   ];
   return (
-    <div className={classes.sideBarDiv}>
-      <h1 onClick={() => setShow(!show)}>Категория</h1>
+    <div onClick={() => setShow(!show)} className={classes.sideBarDiv}>
+      <div className={classes.vectorSortCategory}>
+        <h1>Категория</h1>
+        <img className={classes.miniVec} src={vector} alt="" />
+      </div>
       <ul
         style={{ display: show ? "block" : "none" }}
         className={classes.ulItems}

@@ -29,8 +29,8 @@
   color: #372e24;
   font-size: 28px;
 }
-.sideBarDiv ul{
-    margin-left: -40px;
+.sideBarDiv ul {
+  margin-left: -40px;
 }
 .selectDiv {
   display: flex;
@@ -85,32 +85,96 @@
   justify-content: space-between;
   width: 50%;
 }
+.vectorSort {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #f1dac5;
+  height: 100%;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.vectorSort img {
+  margin-right: 10px;
+}
+.vectorSort h4 {
+  margin-left: 70px;
+}
 .vectorDivSecond {
   display: flex;
   justify-content: space-between;
   width: 47%;
 }
+.hideSort {
+  display: none;
+}
+.showSort {
+  display: block;
+}
+.showDiv {
+  background-color: #f1dac5;
+  z-index: 1;
+}
+.showSort a {
+  color: #372e24;
+  text-decoration: none;
+}
+.vectorSortCategory{
+  display: flex;
+}
+.miniVec{
+  display: none;
+}
+.sideBarSortDiv{
+  z-index: 1;
+  position: relative;
+}
+.mdDiv{
+  // position: fixed;
+}
 
+
+@media (max-width: 1100px) {
+  .titleP {
+    font-size: 5px;
+  }
+}
 @media (max-width: 600px) {
-  .sideBarDiv{
+  .sideBarDiv {
     background: #f1dac5;
     z-index: 1000;
     position: absolute;
-    top: 15%;
-    width: 30%;
+    top: 11%;
+    left: 12%;
+    width: 37%;
   }
-  .sideBarDiv ul{
+  .sideBarSortDiv {
+    z-index: 1000;
+    position: absolute;
+    top: 11%;
+    width: 37%;
+    left: 55%;
+  }
+  .sideBarSortDiv ul {
     margin-left: -27px;
-}
-  .showFirst{
+    font-size: 12px;
+  }
+
+  .sideBarDiv ul {
+    margin-left: -27px;
+    font-size: 12px;
+    width: 100%;
+
+  }
+  .showFirst {
     margin-left: 0%;
   }
-  .showSecond{
+  .showSecond {
     margin-left: 0%;
   }
   .sideBarDiv h1 {
     font-size: 14px;
-    padding: 0px 15px;
+    padding: 0px 10px;
   }
   .selectBlock {
     display: flex;
@@ -135,15 +199,28 @@
     width: 100%;
     font-size: 10px;
   }
-  .selectContainer option {
-    width: 100% !important;
+  .vectorSort h4 {
+    font-size: 12px;
+    margin: 0;
+    padding: 10px;
+  }
+  .vectorSort {
+    width: 100%;
+    margin: 0;
+  }
+  .vectorSortCategory {
+    width: 110%;
+    margin: 0;
+  }
+  .miniVec{
+    display: block;
   }
 }
 
 @media (min-width: 600px) {
-    .sideBarDiv ul{
-        display: block !important;
-    }
+  .sideBarDiv ul {
+    display: block !important;
+  }
   .responsiveH {
     display: none;
   }
