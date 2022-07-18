@@ -1,64 +1,87 @@
 // Product Page Main
-.mainProduct {
+.product_container {
+  display: grid;
   width: 100%;
   height: 200vh;
   background-color: #fff2e3;
+  grid-template-columns: 23% 33% 43%;
+  // grid-template-rows: 1fr 1fr;
+  grid-template-areas: "swiper dress_photo dress_description";
 
-  .mainDress {
-    margin-top: 30%;
+  .swiper {
+    grid-area: "swiper";
   }
-
-  .text {
-    margin-top: 23%;
+  .dress_photo {
+    grid-area: "dress_photo";
   }
-
-  .colors {
-    display: flex;
+  .dress_description {
+    grid-area: "dress_description";
   }
+}
 
-  .color {
-    display: flex;
-    margin-top: -1%;
-  }
+// Other
 
-  .each_color {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    margin: 5px;
-  }
+.mainDress {
+  margin-top: 30%;
+}
 
-  .description {
-    width: 90%;
-    line-height: 25px;
-  }
+.text {
+  margin-top: 23%;
+}
 
-  h3,
-  p {
-    line-height: 30px;
-  }
+.colors {
+  display: flex;
+}
 
-  .btn {
-    width: 40%;
-    height: 50px;
-    background-color: #372e24;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    font-family: "Montserrat";
+.color {
+  display: flex;
+  margin-top: -1%;
+}
+
+.each_color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.description {
+  width: 90%;
+  line-height: 25px;
+}
+
+h3,
+p {
+  line-height: 30px;
+}
+
+.btn {
+  width: 40%;
+  height: 50px;
+  background-color: #372e24;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-family: "Montserrat";
+}
+
+@media only screen and (max-width: 800px) {
+  .product_container {
+    grid-template-columns: 50% 45%;
+    grid-template-rows: 50% 15%;
+    grid-template-areas:
+      "dress_description dress_description"
+      "dress_photo dress_photo";
   }
 }
 
 // Swiper
 .mySwiper {
   margin-top: 50%;
-  // width: 50%;
-  // margin: 50% 20%;
   height: 75vh;
 
   :global(.swiper-wrapper) {
     position: relative;
-    // margin-top: 30%;
     padding-left: 30%;
     height: 150vh;
   }

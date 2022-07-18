@@ -1,7 +1,5 @@
 import { FC, useState } from "react";
 
-import { Grid } from "@mui/material";
-
 import mainDress from "../../assets/ProductPage2/mainDress.png";
 
 import styles from "./ProductPage.module.scss";
@@ -24,59 +22,57 @@ const ProductPage: FC = () => {
   ]);
 
   return (
-    <div className={styles.mainProduct}>
-      <Grid container spacing={3} sx={{ px: "40px" }}>
-        <Grid item md={3}>
-          <SwiperVertical />
-        </Grid>
-        <Grid item md={4}>
-          <img
-            src={mainDress}
-            alt="main dress"
-            width="95%"
-            className={styles.mainDress}
-          />
-        </Grid>
-        <Grid item md={5}>
-          <div className={styles.text}>
-            <h3>Benito Kate Wrap Dress</h3>
-            <p>Артикул: Платья AD857</p>
-            <p>Количество в линейке: 5</p>
-            <p className={styles.colors}>
-              Цвет:
-              <span className={styles.color}>
-                {color.map((el) => (
-                  <p
-                    key={el.id}
-                    className={styles.each_color}
-                    style={{ backgroundColor: el.color }}
-                  ></p>
-                ))}
-              </span>
-            </p>
-            <h3>
-              5990 <span style={{ textDecoration: "line-through" }}>7500</span>
-            </h3>
-            <div>
-              <p>Размер: 29-49</p>
-              <p>Ткань: Полиэстер</p>
-            </div>
-            <div>
-              <p>Длина: 115</p>
-              <p>Фасон: А-Силуэт</p>
-            </div>
-            <h4>О товаре:</h4>
-            <p className={styles.description}>
-              В наши дни платья по-прежнему пользуются спросом и популярностью
-              среди молодежи, они занимают почетные места на презентациях мод.
-              Однако постепенно в моду входит повседневный стиль, который не
-              подразумевает использование красочных и ярких образов.Платье
-              Benito Kate Wrap Dress отличный пример этому.
-            </p>
-            <button className={styles.btn}>Добавить в корзину</button>
+    <div className={styles.product_container}>
+      <div className={styles.swiper}>
+        <SwiperVertical />
+      </div>
+      <div className={styles.dress_photo}>
+        <img
+          src={mainDress}
+          alt="main dress"
+          width="87%"
+          className={styles.mainDress}
+        />
+      </div>
+      <div className={styles.dress_description}>
+        <div className={styles.text}>
+          <h3>Benito Kate Wrap Dress</h3>
+          <p>Артикул: Платья AD857</p>
+          <p>Количество в линейке: 5</p>
+          <p className={styles.colors}>
+            Цвет:
+            <span className={styles.color}>
+              {color.map((el) => (
+                <p
+                  key={el.id}
+                  className={styles.each_color}
+                  style={{ backgroundColor: el.color }}
+                ></p>
+              ))}
+            </span>
+          </p>
+          <h3>
+            5990 <span style={{ textDecoration: "line-through" }}>7500</span>
+          </h3>
+          <div>
+            <p>Размер: 29-49</p>
+            <p>Ткань: Полиэстер</p>
           </div>
-        </Grid>
-      </Grid>
+          <div>
+            <p>Длина: 115</p>
+            <p>Фасон: А-Силуэт</p>
+          </div>
+          <h4>О товаре:</h4>
+          <p className={styles.description}>
+            В наши дни платья по-прежнему пользуются спросом и популярностью
+            среди молодежи, они занимают почетные места на презентациях мод.
+            Однако постепенно в моду входит повседневный стиль, который не
+            подразумевает использование красочных и ярких образов.Платье Benito
+            Kate Wrap Dress отличный пример этому.
+          </p>
+          <button className={styles.btn}>Добавить в корзину</button>
+        </div>
+      </div>
     </div>
   );
 };
