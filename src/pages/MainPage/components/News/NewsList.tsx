@@ -33,26 +33,28 @@ const NewsList = () => {
   ];
 
   return (
-    <div className={styles.wrapper__news}>
-      <h1>Новости</h1>
-      {liElements.map((item) => (
-        <div
-          style={{
-            backgroundImage: `url(${item.image})`,
-            backgroundRepeat: "no-repeat",
-            objectFit: "cover",
-          }}
-          className={styles.main}
-        >
-          <h5 className={styles.header__news}>{item.title}</h5>
-          <div className={styles.desc__news}>
-            <Link className={styles.link} to={item.path}>
-              Читать
-            </Link>
-            <p className={styles.date__news}>{item.date}</p>
+    <div className={styles.container}>
+      <div className={styles.wrapper__news}>
+        <h1>Новости</h1>
+        {liElements.map((item) => (
+          <div
+            style={{
+              backgroundImage: `url(${item.image})`,
+              backgroundRepeat: "no-repeat",
+              objectFit: "cover",
+            }}
+            className={styles.main}
+          >
+            <h5 className={styles.header__news}>{item.title}</h5>
+            <div className={styles.desc__news}>
+              <Link className={styles.link} to={item.path}>
+                Читать
+              </Link>
+              <p className={styles.date__news}>{item.date}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
