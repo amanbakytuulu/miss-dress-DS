@@ -1,23 +1,35 @@
 .btn {
   width: 60%;
   border-radius: 25px;
-  height: 10%;
-  background: #f1dac5;
+  height: 13%;
   border: none;
   position: absolute;
   left: 20%;
   top: 75%;
   cursor: pointer;
+  opacity: 0;
+  color: #f1dac5;
 }
-.btn:hover {
-  background: #372e24;
-}
+
 .categoryImg {
   width: 100%;
+  cursor: pointer;
 }
+
 .btnDiv {
   position: relative;
   width: 100%;
+}
+.btnDiv::before {
+  opacity: 0;
+}
+.btnDiv:hover::before {
+  opacity: 1;
+}
+.btnDiv:hover .btn {
+  opacity: 1;
+  background: #372e24;
+  transition: all 0.2s linear;
 }
 
 .categoryDiv {
@@ -67,7 +79,7 @@
   width: 20%;
 }
 .bestsellerCard {
-  width: 90%;
+  width: 100%;
 }
 .titleP {
   font-size: 24px;
@@ -107,57 +119,80 @@
 .mainBestseller {
   margin-bottom: 50px;
 }
-@media (max-width: 1064px) {
-    .iconsDiv img {
-      width: 28px;
-    }
+.startsDiv label span svg path {
+  width: 150px !important;
+  fill: #372e24;
+}
+.startsDiv label span svg path {
+  width: 150px !important;
+}
+@media (max-width: 1100px) {
+  .iconsDiv img {
+    width: 28px;
   }
-  
-  @media (max-width: 624px) {
-    .titleP {
-      font-size: 20px;
-    }
+  .titleP {
+    font-size: 15px;
   }
-  @media (max-width: 500px) {
-    .iconsDiv img {
-      width: 20px;
-    }
-    .colorDiv img {
-      width: 16px;
-    }
-    .colorDiv p {
-      font-size: 18px;
-    }
-    .priceP p {
-      font-size: 16px;
-    }
-    .priceP p:nth-child(1) {
-      font-size: 12px;
-      display: flex;
-      align-items: flex-end;
-    }
-    .titleP {
-      font-size: 16px;
-    }
-    .sizeP {
-      font-size: 16px;
-    }
-    .btnAll {
-      width: 220px;
-      height: 36px;
-    }
-    .btnDiv h4 {
-      font-size: 15px;
-      color: #372e24;
-      font-weight: lighter;
-    }
+  .priceP p {
+    font-size: 18px;
   }
-  
-  @media (max-width: 388px) {
-    .iconsDiv img {
-      width: 16px;
-    }
-    .titleP {
-      font-size: 14px;
-    }
+}
+@media (max-width: 788px) {
+  .priceP p {
+    font-size: 14px;
   }
+}
+@media (max-width: 715px) {
+  .iconsDiv img {
+    width: 20px;
+  }
+}
+
+@media (max-width: 624px) {
+  .titleP {
+    font-size: 12px;
+  }
+}
+@media (max-width: 500px) {
+  .iconsDiv img {
+    width: 20px;
+  }
+  .colorDiv img {
+    width: 16px;
+  }
+  .colorDiv p {
+    font-size: 18px;
+  }
+  .priceP p {
+    font-size: 16px;
+  }
+  .priceP p:nth-child(1) {
+    font-size: 12px;
+    display: flex;
+    align-items: flex-end;
+  }
+  .titleP {
+    font-size: 10px;
+  }
+  .sizeP {
+    font-size: 16px;
+  }
+  .btnAll {
+    width: 220px;
+    height: 36px;
+  }
+  .btnDiv h4 {
+    font-size: 15px;
+    color: #372e24;
+    font-weight: lighter;
+  }
+}
+
+@media (max-width: 392px) {
+  .iconsDiv img {
+    width: 16px;
+  }
+  .titleP {
+    font-size: 10px;
+  }
+}
