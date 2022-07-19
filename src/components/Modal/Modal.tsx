@@ -3,19 +3,21 @@ import { Button } from "@mui/material";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
 
+import { MODAL } from "../../utils/helpers/modalHelper";
+
 import classes from "./Modal.module.scss";
 
 interface IModalProps {
   children: React.ReactNode;
   isModalOpen: boolean;
-  setModalOpen: (value: boolean) => void;
+  closeModal: () => void;
 }
 
-const Modal: FC<IModalProps> = ({ children, isModalOpen, setModalOpen }) => {
+const Modal: FC<IModalProps> = ({ children, closeModal, isModalOpen }) => {
   return (
     <div
       className={`${classes.modalOverlay} ${isModalOpen && classes.active}`}
-      onClick={() => setModalOpen(false)}
+      onClick={closeModal}
     >
       <div className={classes.modal} onClick={(e) => e.stopPropagation()}>
         <div className={classes.modalLogo}>

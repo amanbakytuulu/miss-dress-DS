@@ -17,34 +17,36 @@ import CartItem from "../../../components/CartItem/CartItem";
 
 import EmptyCart from "../components/EmptyCart/EmptyCart";
 
+import { IOpen } from "../../../types/headerTypes/headerTypes";
+import {
+  CART_LIST,
+  MODAL,
+  PROFILE_NAV,
+  SEARCH,
+} from "../../../utils/helpers/modalHelper";
+
 import classes from "./HeaderNavIcons.module.scss";
 
 interface HeaderNavIconsProps {
-  isModalOpen: boolean;
   isUserEnter: boolean;
-  // openProfileNav: boolean;
-  setModalOpen: (value: boolean) => void;
-  // setOpenProfileNav: (value: boolean) => void;
+  currentOpen: string | null;
+  toggleCurrent: (value: string) => () => void;
 }
 
 const arr: any = [];
 
 const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
-  setModalOpen,
-  isModalOpen,
   isUserEnter,
+  toggleCurrent,
+  currentOpen,
 }) => {
-  const [openProfileNav, setOpenProfileNav] = useState(false);
-  const [openSearch, setOpenSearch] = useState(false);
-  const [openCartList, setOpenCartList] = useState(false);
-
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>
-        <i className={classes.icon} onClick={() => setOpenSearch(!openSearch)}>
+        <i className={classes.icon} onClick={toggleCurrent(SEARCH)}>
           <SearchIcon />
         </i>
-        {openSearch && <SearchInput />}
+        {currentOpen === SEARCH && <SearchInput />}
       </div>
       <div className={classes.headerFav}>
         <Link to={FAVORITES_PAGE}>
@@ -54,14 +56,11 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         </Link>
       </div>
       <div className={classes.headerCart}>
-        <i
-          className={classes.icon}
-          onClick={() => setOpenCartList(!openCartList)}
-        >
+        <i className={classes.icon} onClick={toggleCurrent(CART_LIST)}>
           <CartIcon />
         </i>
 
-        {openCartList && (
+        {currentOpen === CART_LIST && (
           <>
             {arr.length ? (
               <div className={classes.headerCartList}>
@@ -76,24 +75,18 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         )}
       </div>
       {!isUserEnter ? (
-        <div
-          className={classes.headerLogin}
-          onClick={() => setModalOpen(!isModalOpen)}
-        >
-          <i className={classes.icon}>
+        <div className={classes.headerLogin}>
+          <i className={classes.icon} onClick={toggleCurrent(MODAL)}>
             <LoginIcon />
           </i>
         </div>
       ) : (
-        <div
-          className={classes.headerAcc}
-          onClick={() => setOpenProfileNav(!openProfileNav)}
-        >
-          <i className={classes.icon}>
+        <div className={classes.headerAcc}>
+          <i className={classes.icon} onClick={toggleCurrent(PROFILE_NAV)}>
             <AccIcon />
           </i>
 
-          {openProfileNav && <HeaderNavProfile />}
+          {currentOpen === PROFILE_NAV && <HeaderNavProfile />}
         </div>
       )}
     </div>

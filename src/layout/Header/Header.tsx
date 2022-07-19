@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
@@ -11,12 +11,14 @@ import {
   PRODUCT_PAGE,
 } from "../../utils/path";
 import { MAIN_PAGE } from "../../utils/path";
-import { IHeaderNav } from "../../types/headerTypes/headerTypes";
+import { IHeaderNav, IOpen } from "../../types/headerTypes/headerTypes";
 
 import { Modal } from "../../components";
 
 import SignInForm from "../../components/Modal/SignInForm/SignInForm";
 import LoginInForm from "../../components/Modal/LoginInForm/LoginInForm";
+
+import { BURGER, MODAL } from "../../utils/helpers/modalHelper";
 
 import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderNavIcons from "./HeaderNavIcons/HeaderNavIcons";
@@ -49,11 +51,20 @@ const Header = () => {
   const navigate = useNavigate();
   const [isSignIn, setSignIn] = useState<boolean>(false);
   const [isUserEnter, setUserEnter] = useState<boolean>(false);
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [openBurger, setOpenBurger] = useState<boolean>(false);
-  // const [openProfileNav, setOpenProfileNav] = useState(false);
+  const [currentOpen, setCurrentOpen] = useState<string | null>(null);
 
   const handleClickLogo = () => navigate(MAIN_PAGE);
+  const closeCurrent = () => setCurrentOpen(null);
+
+  const toggleCurrent = (current: string) => {
+    return () => {
+      if (currentOpen === current) {
+        closeCurrent();
+        return;
+      }
+      setCurrentOpen(current);
+    };
+  };
 
   return (
     <>
@@ -62,7 +73,7 @@ const Header = () => {
           <div className={classes.leftSideBlock}>
             <div
               className={classes.burgerMenuBtn}
-              onClick={() => setOpenBurger(!openBurger)}
+              onClick={toggleCurrent(BURGER)}
             >
               <i>
                 <BurgerIcon />
@@ -75,21 +86,21 @@ const Header = () => {
             </div>
           </div>
 
-          <HeaderNav navItems={navItems} openBurger={openBurger} />
+          <HeaderNav navItems={navItems} currentOpen={currentOpen} />
           <HeaderNavIcons
+            currentOpen={currentOpen}
             isUserEnter={isUserEnter}
-            isModalOpen={isModalOpen}
-            setModalOpen={setModalOpen}
+            toggleCurrent={toggleCurrent}
           />
         </div>
       </header>
 
-      {!isSignIn ? (
-        <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen}>
+      {!isSignIn && currentOpen === MODAL ? (
+        <Modal isModalOpen={MODAL === currentOpen} closeModal={closeCurrent}>
           <LoginInForm setSignIn={setSignIn} setUserEnter={setUserEnter} />
         </Modal>
       ) : (
-        <Modal isModalOpen={isModalOpen} setModalOpen={setModalOpen}>
+        <Modal isModalOpen={MODAL === currentOpen} closeModal={closeCurrent}>
           <SignInForm setUserEnter={setUserEnter} />
         </Modal>
       )}
