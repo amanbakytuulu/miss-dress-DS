@@ -1,4 +1,5 @@
 import React, { FC, useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import { ModalContext } from "../Modal";
@@ -16,53 +17,75 @@ interface VerificationFormProps {
   setUserEnter: (value: boolean) => void;
 }
 
+type ValidationValues = {
+  verificationCode: string;
+};
+
 const VerificationForm: FC<VerificationFormProps> = ({
   title,
   setUserEnter,
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { closeModal } = useContext(ModalContext) as IModal;
-  const [verificationCode, setVerificationCode] = useState("");
-
+  const {
+    register,
+    formState: { errors, isValid, touchedFields },
+    handleSubmit,
+  } = useForm<ValidationValues>({
+    mode: "onChange",
+    reValidateMode: "onChange",
+  });
   const [{ minutes, seconds }, restart] = useTimer(60);
   const isDisabledButton = Number(seconds) !== 0 || Number(minutes) !== 0;
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRestartTimer = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     restart(60);
   };
   const handleAccept = () => {
     setUserEnter(true);
-    if (title?.toLowerCase() == "вход") return closeModal();
+    if (title?.toLowerCase() === "вход") return closeModal();
     setIsSuccess(true);
   };
 
-  const handleChange = (name: string) => (value: string) => {
-    setVerificationCode(value);
-  };
+  // const handleChange = (name: string) => (value: string) => {
+  //   setVerificationCode(value);
+  // };
 
   return (
     <>
       {!isSuccess ? (
-        <form className={classes.modalForm} action="">
+        <form
+          className={classes.modalForm}
+          onSubmit={handleSubmit(handleAccept)}
+        >
           <h3 className={classes.modalTitle}>{title || "Регистрация"}</h3>
           <div className={classes.modalFields}>
             <div className={classes.inputBlock}>
               <InputField
-                value={verificationCode}
+                inputConfig={{
+                  ...register("verificationCode", {
+                    required: "Поле обязательно к заполнению",
+                  }),
+                }}
                 placeholder={"Введите код подтверждения"}
-                type={"phone"}
-                onChange={handleChange("phoneNumber")}
+                type={"text"}
               />
             </div>
             <div className={classes.modalButton}>
-              <Button onClick={handleAccept}>Подтвердить</Button>
+              <Button
+                disabled={!isValid}
+                onClick={handleAccept}
+                type={"submit"}
+              >
+                Подтвердить
+              </Button>
             </div>
             <Link className={classes.modalSupport} to={ERROR_PAGE}>
               Не пришло SMS?
             </Link>
             <div className={classes.modalButtonResend}>
-              <Button onClick={handleClick} disabled={isDisabledButton}>
+              <Button onClick={handleRestartTimer} disabled={isDisabledButton}>
                 Отправить снова
                 {isDisabledButton && (
                   <>
@@ -74,7 +97,9 @@ const VerificationForm: FC<VerificationFormProps> = ({
             </div>
           </div>
           <div className={classes.modalError}>
-            <span>error</span>
+            {errors.verificationCode && (
+              <span>{errors.verificationCode.message}</span>
+            )}
           </div>
         </form>
       ) : (

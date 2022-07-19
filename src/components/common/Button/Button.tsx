@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import classes from "./Button.module.scss";
 
 interface ButtonProps {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: any;
   disabled?: boolean;
   children: React.ReactNode;

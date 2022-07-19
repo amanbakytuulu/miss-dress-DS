@@ -15,6 +15,7 @@
   .modalButton {
     width: 90%;
     text-align: center;
+    margin-bottom: 10px;
   }
   .modalTitle {
     margin-left: 20px;
@@ -92,6 +93,9 @@
         }
         @include xsm-2 {
           left: 37px;
+        }
+        @include xsm {
+          left: 20px;
         }
       }
     }
