@@ -1,14 +1,4 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
 
 import item from "../../assets/mainPage/categories/first.png";
 import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg";
@@ -28,7 +18,7 @@ const CartItem = () => {
     <div className={classes.cartItem}>
       <div className={classes.cartItemContent}>
         <div className={classes.cartItemImage}>
-          <img src={item} />
+          <img src={item} alt={"item"} />
         </div>
         <div className={classes.cartItemInfo}>
           <div className={classes.cartItemHeader}>

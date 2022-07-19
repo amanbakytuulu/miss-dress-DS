@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -6,6 +6,8 @@ import classes from "../LoginInForm/LoginInForm.module.scss";
 import { ERROR_PAGE } from "../../../utils/path";
 import { useTimer } from "../../../hooks/useTimer";
 import SuccessModal from "../SuccessModal/SuccessModal";
+import { ModalContext } from "../Modal";
+import { IModal } from "../../../types/modalTypes/modalType";
 
 interface VerificationFormProps {
   title?: string;
@@ -17,17 +19,19 @@ const VerificationForm: FC<VerificationFormProps> = ({
   setUserEnter,
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
+  const { closeModal } = useContext(ModalContext) as IModal;
 
   const [{ minutes, seconds }, restart] = useTimer(60);
-  const isDisabled = Number(seconds) !== 0 || Number(minutes) !== 0;
+  const isDisabledButton = Number(seconds) !== 0 || Number(minutes) !== 0;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     restart(60);
   };
   const handleAccept = () => {
-    setIsSuccess(true);
     setUserEnter(true);
+    if (title?.toLowerCase() == "вход") return closeModal();
+    setIsSuccess(true);
   };
 
   return (
@@ -45,9 +49,9 @@ const VerificationForm: FC<VerificationFormProps> = ({
             <Link className={classes.modalSupport} to={ERROR_PAGE}>
               Не пришло SMS?
             </Link>
-            <button onClick={handleClick} disabled={isDisabled}>
+            <button onClick={handleClick} disabled={isDisabledButton}>
               Отправить снова
-              {isDisabled && (
+              {isDisabledButton && (
                 <>
                   &nbsp;
                   <span>{minutes}</span>:<span>{seconds}</span>

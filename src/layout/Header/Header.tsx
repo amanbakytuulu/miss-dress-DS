@@ -11,7 +11,7 @@ import {
   PRODUCT_PAGE,
 } from "../../utils/path";
 import { MAIN_PAGE } from "../../utils/path";
-import { IHeaderNav, IOpen } from "../../types/headerTypes/headerTypes";
+import { IHeaderNav } from "../../types/headerTypes/headerTypes";
 
 import { Modal } from "../../components";
 
@@ -49,6 +49,8 @@ const navItems: IHeaderNav[] = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [isSignIn, setSignIn] = useState<boolean>(false);
   const [isUserEnter, setUserEnter] = useState<boolean>(false);
   const [currentOpen, setCurrentOpen] = useState<string | null>(null);
@@ -58,13 +60,14 @@ const Header = () => {
 
   const toggleCurrent = (current: string) => {
     return () => {
-      if (currentOpen === current) {
-        closeCurrent();
-        return;
-      }
+      if (currentOpen === current) return closeCurrent();
       setCurrentOpen(current);
     };
   };
+
+  useEffect(() => {
+    return () => closeCurrent();
+  }, [location.pathname]);
 
   return (
     <>

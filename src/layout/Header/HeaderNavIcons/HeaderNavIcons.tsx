@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import { FAVORITES_PAGE } from "../../../utils/path";
@@ -13,17 +13,17 @@ import HeaderNavProfile from "../HeaderNavProfile/HeaderNavProfile";
 
 import SearchInput from "../../../components/SearchInput/SearchInput";
 
-import CartItem from "../../../components/CartItem/CartItem";
-
 import EmptyCart from "../components/EmptyCart/EmptyCart";
 
-import { IOpen } from "../../../types/headerTypes/headerTypes";
+import { ICartList } from "../../../types/headerTypes/headerTypes";
 import {
   CART_LIST,
   MODAL,
   PROFILE_NAV,
   SEARCH,
 } from "../../../utils/helpers/modalHelper";
+
+import CartList from "../components/CartList/CartList";
 
 import classes from "./HeaderNavIcons.module.scss";
 
@@ -33,7 +33,14 @@ interface HeaderNavIconsProps {
   toggleCurrent: (value: string) => () => void;
 }
 
-const arr: any = [];
+const arr: ICartList[] = [
+  {
+    title: "name",
+  },
+  {
+    title: "name",
+  },
+];
 
 const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   isUserEnter,
@@ -46,6 +53,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <i className={classes.icon} onClick={toggleCurrent(SEARCH)}>
           <SearchIcon />
         </i>
+
         {currentOpen === SEARCH && <SearchInput />}
       </div>
       <div className={classes.headerFav}>
@@ -61,17 +69,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         </i>
 
         {currentOpen === CART_LIST && (
-          <>
-            {arr.length ? (
-              <div className={classes.headerCartList}>
-                {arr.map((item: any) => {
-                  return <CartItem />;
-                })}
-              </div>
-            ) : (
-              <EmptyCart />
-            )}
-          </>
+          <div>{arr.length ? <CartList cartList={arr} /> : <EmptyCart />}</div>
         )}
       </div>
       {!isUserEnter ? (

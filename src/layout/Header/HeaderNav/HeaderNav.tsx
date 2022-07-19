@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { IHeaderNav, IOpen } from "../../../types/headerTypes/headerTypes";
+import { IHeaderNav } from "../../../types/headerTypes/headerTypes";
 
 import { BURGER } from "../../../utils/helpers/modalHelper";
 

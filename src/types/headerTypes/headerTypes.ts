@@ -3,10 +3,6 @@ export interface IHeaderNav {
   path: string;
 }
 
-export interface IOpen {
-  modal: boolean;
-  search: boolean;
-  cartList: boolean;
-  profileNav: boolean;
-  burger: boolean;
+export interface ICartList {
+  title: string;
 }
