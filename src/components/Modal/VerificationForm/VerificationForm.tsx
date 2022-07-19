@@ -1,13 +1,15 @@
 import React, { FC, useContext, useState } from "react";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import classes from "../LoginInForm/LoginInForm.module.scss";
-import { ERROR_PAGE } from "../../../utils/path";
-import { useTimer } from "../../../hooks/useTimer";
-import SuccessModal from "../SuccessModal/SuccessModal";
 import { ModalContext } from "../Modal";
+
+import SuccessModal from "../SuccessModal/SuccessModal";
+import { useTimer } from "../../../hooks/useTimer";
+import { ERROR_PAGE } from "../../../utils/path";
 import { IModal } from "../../../types/modalTypes/modalType";
+import { InputField, Button } from "../../common";
+
+import classes from "./VerificationForm.module.scss";
 
 interface VerificationFormProps {
   title?: string;
@@ -20,6 +22,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { closeModal } = useContext(ModalContext) as IModal;
+  const [verificationCode, setVerificationCode] = useState("");
 
   const [{ minutes, seconds }, restart] = useTimer(60);
   const isDisabledButton = Number(seconds) !== 0 || Number(minutes) !== 0;
@@ -34,6 +37,10 @@ const VerificationForm: FC<VerificationFormProps> = ({
     setIsSuccess(true);
   };
 
+  const handleChange = (name: string) => (value: string) => {
+    setVerificationCode(value);
+  };
+
   return (
     <>
       {!isSuccess ? (
@@ -41,7 +48,12 @@ const VerificationForm: FC<VerificationFormProps> = ({
           <h3 className={classes.modalTitle}>{title || "Регистрация"}</h3>
           <div className={classes.modalFields}>
             <div className={classes.inputBlock}>
-              <input type="text" />
+              <InputField
+                value={verificationCode}
+                placeholder={"Введите код подтверждения"}
+                type={"phone"}
+                onChange={handleChange("phoneNumber")}
+              />
             </div>
             <div className={classes.modalButton}>
               <Button onClick={handleAccept}>Подтвердить</Button>
@@ -49,15 +61,17 @@ const VerificationForm: FC<VerificationFormProps> = ({
             <Link className={classes.modalSupport} to={ERROR_PAGE}>
               Не пришло SMS?
             </Link>
-            <button onClick={handleClick} disabled={isDisabledButton}>
-              Отправить снова
-              {isDisabledButton && (
-                <>
-                  &nbsp;
-                  <span>{minutes}</span>:<span>{seconds}</span>
-                </>
-              )}
-            </button>
+            <div className={classes.modalButtonResend}>
+              <Button onClick={handleClick} disabled={isDisabledButton}>
+                Отправить снова
+                {isDisabledButton && (
+                  <>
+                    &nbsp;
+                    <span>{minutes}</span>:<span>{seconds}</span>
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
           <div className={classes.modalError}>
             <span>error</span>

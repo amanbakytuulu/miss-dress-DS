@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 
+import { Button } from "../../common";
 import { ModalContext } from "../Modal";
 import { IModal } from "../../../types/modalTypes/modalType";
 
@@ -10,9 +11,11 @@ const SuccessModal = () => {
 
   return (
     <div className={classes.successModal}>
-      <h5>Поздравляем!</h5>
-      <p>Регистрация прошла успешно!</p>
-      <button onClick={closeModal}>Продолжить покупки</button>
+      <h5 className={classes.successModalTitle}>Поздравляем!</h5>
+      <p className={classes.successModalText}>Регистрация прошла успешно!</p>
+      <div className={classes.buttonBlock}>
+        <Button onClick={closeModal}>Продолжить покупки</Button>
+      </div>
     </div>
   );
 };

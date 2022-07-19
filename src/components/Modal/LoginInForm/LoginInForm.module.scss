@@ -14,8 +14,21 @@
   .modalSupport {
     margin-bottom: 15px;
   }
-  .modalButton {
-    width: 100%;
+  .modalButtonSignIn {
+    font-family: inherit;
+    background: none;
+    text-align: center;
+    color: #8d4f21;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 12px;
+    margin-bottom: 15px;
+  }
+
+  .modalButtonBlock {
+    width: 90%;
     text-align: center;
   }
   .modalTitle {

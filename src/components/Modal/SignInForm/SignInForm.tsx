@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
-import { Button } from "@mui/material";
+
+import { InputField, Button } from "../../common";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
 
@@ -11,6 +12,16 @@ interface SignInFormProps {
 
 const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
+  const [signInForm, setSignInForm] = useState({
+    name: "",
+    surName: "",
+    phoneNumber: "",
+  });
+
+  const handleChange = (name: string) => (value: string) => {
+    setSignInForm({ ...signInForm, [name]: value });
+  };
+
   return (
     <>
       {!isContinue ? (
@@ -18,13 +29,28 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
           <h3 className={classes.modalTitle}>Регистрация</h3>
           <div className={classes.modalFields}>
             <div className={classes.inputBlock}>
-              <input type="text" />
+              <InputField
+                value={signInForm.name}
+                placeholder={"Имя"}
+                type={"phone"}
+                onChange={handleChange("name")}
+              />
             </div>
             <div className={classes.inputBlock}>
-              <input type="text" />
+              <InputField
+                value={signInForm.surName}
+                placeholder={"Фамилия"}
+                type={"phone"}
+                onChange={handleChange("surName")}
+              />
             </div>
             <div className={classes.inputBlock}>
-              <input type="text" />
+              <InputField
+                value={signInForm.phoneNumber}
+                placeholder={"Номер телефона"}
+                type={"phone"}
+                onChange={handleChange("phoneNumber")}
+              />
             </div>
             <div className={classes.modalCheckBox}>
               <input type="checkbox" id="check" />

@@ -1,7 +1,8 @@
 import React, { FC, useState } from "react";
-import { Button } from "@mui/material";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
+
+import { InputField, Button } from "../../common";
 
 import classes from "./LoginInForm.module.scss";
 
@@ -12,6 +13,16 @@ interface LoginInFormProps {
 
 const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const handleChange = (name: string) => (value: string) => {
+    setPhoneNumber(value);
+  };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setContinue(true);
+  };
 
   return (
     <>
@@ -20,12 +31,25 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
           <h3 className={classes.modalTitle}>Вход</h3>
           <div className={classes.modalFields}>
             <div className={classes.inputBlock}>
-              <input type="text" />
+              <InputField
+                value={phoneNumber}
+                placeholder={"Введите номер телефона"}
+                type={"phone"}
+                onChange={handleChange("phoneNumber")}
+                alignPlaceholder={true}
+              />
             </div>
-            <div className={classes.modalButton}>
-              <Button onClick={() => setContinue(true)}>Войти</Button>
+            <div className={classes.modalButtonBlock}>
+              <Button onClick={handleSubmit} type={"submit"}>
+                Войти
+              </Button>
             </div>
-            <button onClick={() => setSignIn(true)}>Зарегистрироваться</button>
+            <button
+              className={classes.modalButtonSignIn}
+              onClick={() => setSignIn(true)}
+            >
+              Зарегистрироваться
+            </button>
           </div>
           <div className={classes.modalError}>
             <span>error</span>
