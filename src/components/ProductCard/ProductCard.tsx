@@ -17,9 +17,9 @@ const ProductCard = ({ item, btnTitle }: any) => {
       <Description item={item} />
       <div className={classes.iconsDiv}>
         <div className={classes.startsDiv}>
-          {/* {item.stars.map((star: any, index: any) => ( */}
-          <StarsComponent />
-          {/* ))} */}
+          {item.stars.map((star: any, index: any) => (
+            <StarsComponent star={star} index={index} />
+          ))}
         </div>
         <div>
           <img

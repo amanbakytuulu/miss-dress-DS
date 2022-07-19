@@ -16,6 +16,7 @@ const CategoryPagination = ({
   function scrollTop(): void {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
   return (
     <div>
       <ul className={classes.pagination}>
@@ -29,21 +30,27 @@ const CategoryPagination = ({
         >
           <img src={leftArrow} alt="" />
         </Button>
-        {pageNumbers.map((item: any) => (
-          <Button
-            variant="contained"
-            className={
-              currentPage === item ? classes.active : classes.notActive
-            }
-            onClick={() => {
-              setCurrentPage(item);
-              scrollTop();
-            }}
-            key={item}
-          >
-            {item}
-          </Button>
-        ))}
+        {pageNumbers.map((item: any) =>
+          item <= 4 ? (
+            <Button
+              variant="contained"
+              className={
+                currentPage === item ? classes.active : classes.notActive
+              }
+              onClick={() => {
+                setCurrentPage(item);
+                scrollTop();
+              }}
+              key={item}
+            >
+              {item}
+            </Button>
+          ) : null
+        )}
+        {pageNumbers.length > 4 && (
+          <Button className={classes.arrowBtn}>...</Button>
+        )}
+
         <Button
           className={classes.arrowBtn}
           disabled={Math.ceil(totalCount / postsPerPage) === currentPage}

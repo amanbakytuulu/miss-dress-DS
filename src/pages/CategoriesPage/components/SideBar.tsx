@@ -67,13 +67,14 @@ const SideBar = () => {
         style={{ display: show ? "block" : "none" }}
         className={classes.ulItems}
       >
-        <li
-          onClick={() => {
-            true ? setVerh(!verh) : setVerh(false);
-            setVerh2(false);
-          }}
-        >
-          <div className={classes.vectorDiv}>
+        <li>
+          <div
+            onClick={() => {
+              true ? setVerh(!verh) : setVerh(false);
+              setVerh2(false);
+            }}
+            className={classes.vectorDiv}
+          >
             <span style={{ color: verh ? "#E5A66E" : "#372e24" }}>
               {sideBarObj.title}
             </span>

@@ -28,13 +28,13 @@ const Select = () => {
   ];
   return (
     <div className={classes.sideBarSortDiv}>
+      <div onClick={() => setShow(!show)} className={classes.vectorSort}>
+        <h4>Сортировать по</h4>
+        <img src={vector} alt="" />
+      </div>
       <div className={show ? classes.showDiv : classes.mdDiv}>
-        <div onClick={() => setShow(!show)} className={classes.vectorSort}>
-          <h4>Сортировать по</h4>
-          <img src={vector} alt="" />
-        </div>
         {sort.map((item) => (
-          <ul className={show ? classes.showSort : classes.hideSort}>
+          <ul>
             <Link to={item.path}>{item.title}</Link>
           </ul>
         ))}
