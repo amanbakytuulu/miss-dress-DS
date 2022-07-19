@@ -1,0 +1,29 @@
+.mainDiv{
+    width: 100%;
+    background-color: #F1DAC5;
+}
+.selectDiv{
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.selectDiv a{
+    color: #372E24;
+    text-decoration: none;
+}
+.prod{
+    width: 40%;
+}
+.productDiv{
+    display: flex;
+    flex-wrap: wrap;
+}
+.ulItems a{
+    color: #372E24;
+    text-decoration: none;
+}
+.sideBarDiv h1{
+    color: #372E24;
+    font-size: 28px;
+}
