@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Autoplay, EffectFade } from "swiper";
+import SwiperCore, { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
