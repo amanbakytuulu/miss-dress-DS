@@ -9,6 +9,7 @@ import { swiperArr, ISwiperArr } from "./SwiperDb";
 import styles from "./Swiper.module.scss";
 
 SwiperCore.use([Autoplay]);
+SwiperCore.use([Pagination]);
 
 const MainSwiper: FC = () => {
   const [photos, setPhotos] = useState<ISwiperArr[]>([]);
@@ -24,14 +25,12 @@ const MainSwiper: FC = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination, EffectFade]}
         className={styles.swiper}
         allowTouchMove={true}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        effect={"fade"}
       >
         {photos.map((photo) => (
           <SwiperSlide className={styles.swiperSlide} key={photo.id}>
