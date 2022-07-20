@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+
+import { Icon } from "react-icons-kit";
+import { caretUp } from "react-icons-kit/fa/caretUp";
+import { caretDown } from "react-icons-kit/fa/caretDown";
 
 import styles from "./ProductPage.module.scss";
 
@@ -17,21 +21,30 @@ interface IArrDress {
 const SwiperVertical = () => {
   const [arrDress, setArrDress] = useState<IArrDress[]>([]);
 
+  const navigationPrevRef = React.useRef(null);
+  const navigationNextRef = React.useRef(null);
+
   useEffect(() => {
     setArrDress(dressDatabase);
   }, []);
 
   return (
     <div className={styles.mainSwiper}>
+      <div ref={navigationPrevRef} className={styles.iconUp}>
+        <Icon size={64} icon={caretUp} />
+      </div>
       <Swiper
-        navigation={true}
+        navigation={{
+          nextEl: navigationNextRef.current,
+          prevEl: navigationPrevRef.current,
+        }}
         modules={[Navigation]}
         className={styles.mySwiper}
         slidesPerView={4}
         direction={"horizontal"}
         zoom={true}
         breakpoints={{
-          800: {
+          900: {
             direction: "vertical",
           },
         }}
@@ -42,6 +55,9 @@ const SwiperVertical = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div ref={navigationNextRef} className={styles.iconDown}>
+        <Icon size={64} icon={caretDown} />
+      </div>
     </div>
   );
 };
