@@ -7,6 +7,7 @@ import CartPage from "./CartPage/CartPage";
 import ContactsPage from "./ContactsPage/ContactsPage";
 import AboutUs from "./AboutUsPage/AboutUs";
 import MainPage from "./MainPage/MainPage";
+import FavoritesPage from "./FavoritesPage/FavoritesPage";
 
 export {
   ProductPage,
@@ -18,4 +19,5 @@ export {
   ProductInfo,
   MainPage,
   ProfilePage,
+  FavoritesPage,
 };

@@ -7,6 +7,7 @@ import {
   ABOUT_PAGE,
   DELIVERY_PAGE,
   CATEGORIES_PAGE,
+  FAVORITES_PAGE,
   PRODUCT_PAGE,
   ERROR_PAGE,
 } from "../utils/path";
@@ -21,6 +22,7 @@ import {
   ContactsPage,
   CartPage,
   MainPage,
+  FavoritesPage,
 } from "../pages";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
@@ -68,6 +70,10 @@ export const PUBLIC_ROUTES = [
   {
     path: ERROR_PAGE,
     Component: <ErrorPage />,
+  },
+  {
+    path: FAVORITES_PAGE,
+    Component: <FavoritesPage />,
   },
 ];
 
