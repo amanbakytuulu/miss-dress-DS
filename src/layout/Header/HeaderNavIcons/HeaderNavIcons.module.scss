@@ -45,7 +45,24 @@
     right: -60px;
     background-color: $secondary-beige;
   }
-
+  .counter {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    font-family: inherit;
+    font-style: normal;
+    font-size: 14px;
+    cursor: pointer;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: #dbb593;
+    border-radius: 50%;
+    color: black;
+  }
   //.headerSearch {
   //}
   //.headerFav {
