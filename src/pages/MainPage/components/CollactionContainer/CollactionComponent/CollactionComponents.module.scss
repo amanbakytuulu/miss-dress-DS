@@ -1,30 +1,43 @@
-.spring {
+.block__all {
   display: flex;
   justify-content: center;
 
-  &__flex__item {
+}
+
+.collection {
+  width: 1679px;
+  // max-height: 850px;
+  background: rgb(255, 255, 255);
+
+  &__flex {
     display: flex;
     align-items: center;
+    
   }
 
   &__image {
-    width: 1680px;
-    height: 850px;
+        max-width: 100%;
+        
   }
-
-  &__h1 {
-    text-transform: uppercase;
+  &__h3 {
     font-weight: 300;
-    font-size: 4rem;
+    font-size: 4vw;
     line-height: 4.875rem;
     color: #372e24;
-    position: absolute;
-    margin-left: 357px;
+    
   }
 }
-.reverse {
-  margin-left: 1200px;
+.block{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  
+&__dav {
+display: flex;
+justify-content: center;
+width: 50%;
 }
-.spring__image:hover {
-  background: rgba(55, 46, 36, 0.5);
 }
+  .reverse {
+    flex-direction: row-reverse;
+  }

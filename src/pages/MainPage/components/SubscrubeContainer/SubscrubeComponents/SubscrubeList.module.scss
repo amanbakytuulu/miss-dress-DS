@@ -1,0 +1,99 @@
+.image__input {
+  width: 44.9vw;
+  height: 5.625vw;
+  border: none;
+  background: rgba(241, 218, 197, 0.8);
+  border-radius: 45px;
+  font-weight: 300;
+  font-size: 2vw;
+  line-height: 2.4375vw;
+
+  color: #5f4932;
+  margin: 50px 0;
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.image {
+  color: #5f4932;
+  cursor: pointer;
+  display: flex;
+  font-weight: 300;
+font-size: 2vw;
+line-height: 2.4375vw;
+  padding: 20px 30px;
+
+  &__in {
+    width: 47.25vw;
+    height: 22.5vw;
+    z-index: 111;
+    background: rgba(241, 218, 197, 0.8);
+    border-radius: 45px;
+    position: absolute;
+  }
+}
+
+@media screen and(max-width:1024px) {
+  .image__input {
+    display: flex;
+    margin: 20px 0;
+    width: 45.5vw;
+  }
+  .image {
+    width: 46vw;
+    padding: 10px 25px;
+  }
+  @media screen and (max-width: 768px) {
+    .image {
+      width: 46vw;
+      padding: 10px 25px;
+      border-radius: 30px;
+    }
+  }
+  @media screen and (max-width: 425px) {
+    .image__input {
+      width: 52vw;
+
+      height: 40px;
+    }
+    .image__in {
+      width: 49vw;
+      height: 22.5vw;
+      height: 15.5vw;
+      border-radius: 15px;
+      padding: 0px 25px;
+    }
+    .image {
+      padding: 2px 5px;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .image__input {
+      width: 32vw;
+
+      height: 20px;
+    }
+    .image__in {
+      width: 30vw;
+      padding: 0px 25px;
+      border-radius: 15px;
+
+    }
+    .image {
+      padding: 2px 5px;
+    }
+  }
+
+  @media screen and (max-width: 320px) {
+    .image__input {
+      width: 37.5vw;
+      height: 20px;
+    }
+    .image__in {
+      width: 35vw;
+      border-radius: 10px;
+      padding: 0px 25px;
+    }
+  }
+}

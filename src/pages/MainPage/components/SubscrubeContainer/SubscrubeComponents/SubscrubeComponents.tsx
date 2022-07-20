@@ -10,6 +10,7 @@ const SubscrubeComponents: FC<SubscrubeProps> = ({ placeholder }) => {
   return (
     <div className={classes.image}>
       <input
+        required
         placeholder={placeholder}
         className={classes.image__input}
         type="text"

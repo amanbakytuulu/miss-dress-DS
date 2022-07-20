@@ -9,11 +9,11 @@ import { Footer, Header } from "./layout";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <AppRouter />
+      {/* <Header /> */}
+      {/* <AppRouter /> */}
       <ColactionContainer />
       <SubscrubeContainer />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

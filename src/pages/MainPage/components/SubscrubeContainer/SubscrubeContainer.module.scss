@@ -1,28 +1,54 @@
 .image {
-  width: 1680px;
-  height: 1053px;
-
   &__flex {
-    margin: 111px 0;
-    display: flex;
-    justify-content: center;
-  }
-&__item {
+    height: 60vw;
+    background: url(../../../../assets/Main/Subscrube/sub.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: flex-end;
-    
-
-}
-
-  &__h3 {
-    position: absolute;
-    font-weight: 600;
-    font-size: 2.25rem;
-    line-height: 2.75rem;
-    color: #f1dac5;
-    margin: 195px 60px;
-    text-align: center;
-    
+    margin: 110px 0 0 0;
+  }
+  &__item {
+    padding: 220px 200px;
+    position: relative;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 39px;
+    color: #5f4932;
   }
 
+  &__h3 {
+    font-weight: 600;
+    font-size: 2.25vw;
+    line-height: 2.75vw;
+    color: #f1dac5;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+@media screen and(max-width:1440px) {
+  .image__flex {
+    background: url(../../../../assets/Main/Subscrube/sub.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding: 200px 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .image__flex {
+      padding: 35px 0;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .image__flex {
+      padding: 22px 0;
+      display: flex;
+    }
+  }
 }

@@ -1,28 +1,37 @@
 import React, { FC } from "react";
 
-import classes from "./CollactionComponents.module.scss";
+import classes from "../CollactionComponent/CollactionComponents.module.scss";
 
-interface CollactionSpringProps {
+interface CollectionProps {
   children: React.ReactNode;
-  sideImage: string;
+  image: string;
   reverse?: boolean;
 }
-
-const CollactionSpring: FC<CollactionSpringProps> = ({
+const CollactionComponents: FC<CollectionProps> = ({
   children,
-  sideImage,
+  image,
   reverse,
 }) => {
   return (
-    <div className={classes.spring}>
-      <div className={classes.spring__flex__item}>
-        <img className={classes.spring__image} src={sideImage} alt="" />
-        <h3 className={`${classes.spring__h1} ${reverse && classes.reverse}`}>
-          {children}
-        </h3>
+    <>
+      <div className={classes.block__all}>
+        <div className={classes.collection}>
+          <div
+            className={`${classes.collection__flex} ${
+              reverse && classes.reverse
+            }`}
+          >
+            <div className={classes.block}>
+              <img className={classes.collection__image} src={image} alt="" />
+            </div>
+            <div className={classes.block__dav}>
+              <h3 className={classes.collection__h3}>{children}</h3>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default CollactionSpring;
+export default CollactionComponents;
