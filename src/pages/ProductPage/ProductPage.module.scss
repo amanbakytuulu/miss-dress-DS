@@ -4,19 +4,6 @@
   width: 100%;
   height: 200vh;
   background-color: #fff2e3;
-  grid-template-columns: 23% 33% 43%;
-  // grid-template-rows: 1fr 1fr;
-  grid-template-areas: "swiper dress_photo dress_description";
-
-  .swiper {
-    grid-area: "swiper";
-  }
-  .dress_photo {
-    grid-area: "dress_photo";
-  }
-  .dress_description {
-    grid-area: "dress_description";
-  }
 }
 
 // Other
@@ -63,16 +50,6 @@ p {
   border-radius: 30px;
   color: white;
   font-family: "Montserrat";
-}
-
-@media only screen and (max-width: 800px) {
-  .product_container {
-    grid-template-columns: 50% 45%;
-    grid-template-rows: 50% 15%;
-    grid-template-areas:
-      "dress_description dress_description"
-      "dress_photo dress_photo";
-  }
 }
 
 // Swiper

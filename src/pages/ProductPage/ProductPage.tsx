@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 
+import { Grid } from "@mui/material";
+
 import mainDress from "../../assets/ProductPage2/mainDress.png";
 
 import styles from "./ProductPage.module.scss";
@@ -22,19 +24,19 @@ const ProductPage: FC = () => {
   ]);
 
   return (
-    <div className={styles.product_container}>
-      <div className={styles.swiper}>
+    <Grid container spacing={2} className={styles.product_container}>
+      <Grid item xs={6} md={3} order={{ xs: 3, md: 1 }}>
         <SwiperVertical />
-      </div>
-      <div className={styles.dress_photo}>
+      </Grid>
+      <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
         <img
           src={mainDress}
           alt="main dress"
           width="87%"
           className={styles.mainDress}
         />
-      </div>
-      <div className={styles.dress_description}>
+      </Grid>
+      <Grid item xs={6} md={5} order={{ xs: 2, md: 3 }}>
         <div className={styles.text}>
           <h3>Benito Kate Wrap Dress</h3>
           <p>Артикул: Платья AD857</p>
@@ -72,8 +74,8 @@ const ProductPage: FC = () => {
           </p>
           <button className={styles.btn}>Добавить в корзину</button>
         </div>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 

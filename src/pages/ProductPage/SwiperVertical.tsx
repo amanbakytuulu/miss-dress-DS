@@ -22,40 +22,27 @@ const SwiperVertical = () => {
   }, []);
 
   return (
-    <>
-      <div className={styles.mainSwiper}>
-        <Swiper
-          navigation={true}
-          modules={[Navigation]}
-          className={styles.mySwiper}
-          slidesPerView={4}
-          direction={"vertical"}
-          zoom={true}
-        >
-          {arrDress.map((el: IArrDress) => (
-            <SwiperSlide key={el.id}>
-              <img src={el.dress} alt="dresses" className={styles.dress} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className={styles.mainSwiper}>
-        <Swiper
-          navigation={true}
-          modules={[Navigation]}
-          className={styles.mySwiper}
-          slidesPerView={4}
-          //  direction={"vertical"}
-          zoom={true}
-        >
-          {arrDress.map((el: IArrDress) => (
-            <SwiperSlide key={el.id}>
-              <img src={el.dress} alt="dresses" className={styles.dress} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </>
+    <div className={styles.mainSwiper}>
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        className={styles.mySwiper}
+        slidesPerView={4}
+        direction={"horizontal"}
+        zoom={true}
+        breakpoints={{
+          800: {
+            direction: "vertical",
+          },
+        }}
+      >
+        {arrDress.map((el: IArrDress) => (
+          <SwiperSlide key={el.id}>
+            <img src={el.dress} alt="dresses" className={styles.dress} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 export default SwiperVertical;
