@@ -65,6 +65,15 @@
       color: white;
     }
   }
+  .icon:active,
+  .icon:focus .counter {
+    fill: black;
+    color: white;
+    //@include hover {
+    //  background-color: $hover-green;
+    //  color: white;
+    //}
+  }
 
   //.headerSearch {
   //}

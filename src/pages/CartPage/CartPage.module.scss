@@ -1,0 +1,26 @@
+@import "src/index";
+
+.cartPage {
+  padding-top: 70px;
+  background-color: $background-color;
+
+  .cartPageHeader {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    .cartPageOrder {
+      flex: 1 1;
+    }
+    .cartPageSum {
+      width: 330px;
+      height: auto;
+    }
+  }
+}
+
+.cartPageListTitle {
+  font-size: 2em;
+}
+.cartPageList {
+  max-width: 60%;
+}

@@ -27,7 +27,6 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
   } = useForm<SignInFormType>({ mode: "onBlur", reValidateMode: "onChange" });
 
   const onSubmit = (data: SignInFormType) => {
-    console.log(data);
     setContinue(true);
   };
 

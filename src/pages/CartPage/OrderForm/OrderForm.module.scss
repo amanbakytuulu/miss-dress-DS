@@ -1,0 +1,32 @@
+@import "src/styles/vars";
+
+.orderFormWrapper {
+  width: 100%;
+  .orderFormHeader {
+    width: 100%;
+    text-align: start;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $border-color;
+    .orderFormTitle {
+      font-weight: 600;
+      font-size: 2em;
+    }
+  }
+
+  .orderForm {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    .orderFormLeft,
+    .orderFormRight {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1 1;
+    }
+  }
+}
