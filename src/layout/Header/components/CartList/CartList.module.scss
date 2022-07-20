@@ -1,0 +1,14 @@
+@import "src/styles/vars";
+.headerCartList {
+  position: absolute;
+  width: 500px;
+  top: 45px;
+  right: -60px;
+  background-color: $secondary-beige;
+  border-radius: 0 0 28px 28px;
+}
+
+.headerCartListBtn {
+  background-color: $primary-beige;
+  border-radius: 0 0 28px 28px;
+}

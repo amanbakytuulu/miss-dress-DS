@@ -1,8 +1,13 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
-import classes from "../../HeaderNavIcons/HeaderNavIcons.module.scss";
+import { Button } from "../../../../components/common";
 import CartItem from "../../../../components/CartItem/CartItem";
 import { ICartList } from "../../../../types/headerTypes/headerTypes";
+
+import { CART_PAGE } from "../../../../utils/path";
+
+import classes from "./CartList.module.scss";
 
 interface CartListProps {
   cartList: ICartList[];
@@ -14,6 +19,11 @@ const CartList: FC<CartListProps> = ({ cartList }) => {
       {cartList.map((item: ICartList) => {
         return <CartItem />;
       })}
+      <div className={classes.headerCartListBtn}>
+        <Link to={CART_PAGE}>
+          <Button>Смотереть еще</Button>
+        </Link>
+      </div>
     </div>
   );
 };
