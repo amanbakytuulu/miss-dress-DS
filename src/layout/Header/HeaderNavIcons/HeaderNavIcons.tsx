@@ -60,14 +60,15 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
             <FavIcon />
+            <span className={classes.counter}>{arr.length - 1}</span>
           </i>
         </Link>
       </div>
       <div className={classes.headerCart}>
         <i className={classes.icon} onClick={toggleCurrent(CART_LIST)}>
           <CartIcon />
+          <span className={classes.counter}>{arr.length}</span>
         </i>
-
         {currentOpen === CART_LIST && (
           <div>{arr.length ? <CartList cartList={arr} /> : <EmptyCart />}</div>
         )}
