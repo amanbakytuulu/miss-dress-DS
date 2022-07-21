@@ -44,101 +44,113 @@ const ProductPage: FC = () => {
   ]);
 
   return (
-    <div className={styles.product_container}>
-      <Grid container spacing={2}>
-        <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
-          <SwiperVertical />
-        </Grid>
+    <div className={styles.background_container}>
+      <div className={styles.product_container}>
+        <Grid container spacing={2}>
+          <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
+            <SwiperVertical />
+          </Grid>
 
-        <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
-          <img
-            src={mainDress}
-            alt="main dress"
-            width="87%"
-            className={styles.main_dress}
-          />
-        </Grid>
+          <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
+            <img
+              src={mainDress}
+              alt="main dress"
+              width="87%"
+              className={styles.main_dress}
+            />
+          </Grid>
 
-        <Grid item xs={6} md={5} order={{ xs: 2, md: 3 }}>
-          <div className={styles.text_dress}>
-            <h3>{dress_description.title}</h3>
-            <p>Артикул: {dress_description.article}</p>
-            <p>Количество в линейке: {dress_description.quantity}</p>
-            <p className={styles.colors}>
-              Цвет:
-              <span className={styles.color}>
-                {color.map((el) => (
-                  <p
-                    key={el.id}
-                    className={styles.each_color}
-                    style={{ backgroundColor: el.color }}
-                  ></p>
-                ))}
-              </span>
-            </p>
-            <h3>
-              {dress_description.price_old}
-              <span>{dress_description.price_new}</span>
-            </h3>
-            <div className={styles.description_flex}>
-              <p>Размер: {dress_description.size}</p>
-              <p>Ткань: {dress_description.cloth}</p>
+          <Grid item xs={6} md={5} order={{ xs: 2, md: 3 }}>
+            <div className={styles.text_dress}>
+              <h3>{dress_description.title}</h3>
+              <p>Артикул: {dress_description.article}</p>
+              <p>Количество в линейке: {dress_description.quantity}</p>
+              <p className={styles.colors}>
+                Цвет:
+                <span className={styles.color}>
+                  {color.map((el) => (
+                    <p
+                      key={el.id}
+                      className={styles.each_color}
+                      style={{ backgroundColor: el.color }}
+                    ></p>
+                  ))}
+                </span>
+              </p>
+              <h3>
+                {dress_description.price_old}
+                <span>{dress_description.price_new}</span>
+              </h3>
+              <div className={styles.description_flex}>
+                <p>Размер: {dress_description.size}</p>
+                <p>Ткань: {dress_description.cloth}</p>
+              </div>
+              <div className={styles.description_flex}>
+                <p>Длина: {dress_description.length}</p>
+                <p>Фасон: {dress_description.style}</p>
+              </div>
+
+              <div className={styles.description_change}>
+                <h4>О товаре:</h4>
+                <p className={styles.description}>
+                  {dress_description.description}
+                </p>
+                <button className={styles.btn}>Перейти в корзину</button>
+              </div>
             </div>
-            <div className={styles.description_flex}>
-              <p>Длина: {dress_description.length}</p>
-              <p>Фасон: {dress_description.style}</p>
-            </div>
-            <h4>О товаре:</h4>
-            <p className={styles.description}>
-              {dress_description.description}
-            </p>
-            <button className={styles.btn}>Перейти в корзину</button>
+          </Grid>
+        </Grid>
+        <div className={styles.description_change_mobile}>
+          <h4>О товаре:</h4>
+          <p className={styles.description}>{dress_description.description}</p>
+          <button className={styles.btn}>Перейти в корзину</button>
+        </div>
+
+        <div className={styles.similar_container}>
+          <h1>Похожие товары</h1>
+          <div ref={navigationPrevRef} className={styles.similar_swiper_left}>
+            <Icon size={64} icon={caretLeft} />
           </div>
-        </Grid>
-      </Grid>
-      <div className={styles.similar_container}>
-        <h1>Похожие товары</h1>
-        <div ref={navigationPrevRef} className={styles.similar_swiper_left}>
-          <Icon size={64} icon={caretLeft} />
-        </div>
-        <Swiper
-          navigation={{
-            prevEl: navigationPrevRef.current,
-            nextEl: navigationNextRef.current,
-          }}
-          onSwiper={(swiper: any) => {
-            setTimeout(() => {
-              swiper.params.navigation.prevEl = navigationPrevRef.current;
-              swiper.params.navigation.nextEl = navigationNextRef.current;
+          <Swiper
+            navigation={{
+              prevEl: navigationPrevRef.current,
+              nextEl: navigationNextRef.current,
+            }}
+            onSwiper={(swiper: any) => {
+              setTimeout(() => {
+                swiper.params.navigation.prevEl = navigationPrevRef.current;
+                swiper.params.navigation.nextEl = navigationNextRef.current;
 
-              swiper.navigation.destroy();
-              swiper.navigation.init();
-              swiper.navigation.update();
-            });
-          }}
-          mousewheel={true}
-          modules={[Navigation]}
-          className={styles.similarSwiper}
-          slidesPerView={3}
-          direction={"horizontal"}
-          spaceBetween={50}
-          breakpoints={
-            {
-              // 900: {
-              //   direction: "vertical",
-              // },
-            }
-          }
-        >
-          {similarDresses.map((el: any) => (
-            <SwiperSlide key={el.id}>
-              <ProductCard item={el} btnTitle="Открыть" />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div ref={navigationNextRef} className={styles.similar_swiper_right}>
-          <Icon size={64} icon={caretRight} />
+                swiper.navigation.destroy();
+                swiper.navigation.init();
+                swiper.navigation.update();
+              });
+            }}
+            loop={true}
+            loopFillGroupWithBlank={true}
+            mousewheel={true}
+            modules={[Navigation]}
+            className={styles.similarSwiper}
+            slidesPerView={2}
+            direction={"horizontal"}
+            spaceBetween={50}
+            breakpoints={{
+              600: {
+                slidesPerView: 3,
+              },
+            }}
+          >
+            {similarDresses.map((el: any) => (
+              <SwiperSlide key={el.id}>
+                <ProductCard item={el} btnTitle="Открыть" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div ref={navigationNextRef} className={styles.similar_swiper_right}>
+            <Icon size={64} icon={caretRight} />
+          </div>
         </div>
+        <button className={styles.btnMobile}>Смотреть все товары</button>
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ import "swiper/css/navigation";
 import { Icon } from "react-icons-kit";
 import { caretUp } from "react-icons-kit/fa/caretUp";
 import { caretDown } from "react-icons-kit/fa/caretDown";
+import { caretLeft } from "react-icons-kit/fa/caretLeft";
+import { caretRight } from "react-icons-kit/fa/caretRight";
 
 import styles from "./ProductPage.module.scss";
 
@@ -26,7 +28,10 @@ const SwiperVertical = () => {
   return (
     <div className={styles.verticalSwiper}>
       <div ref={navigationPrevRef} className={styles.iconUp}>
-        <Icon size={64} icon={caretUp} />
+        <Icon color="#372E24" size={55} icon={caretUp} />
+      </div>
+      <div ref={navigationPrevRef} className={styles.iconLeftMobile}>
+        <Icon color="#372E24" size={55} icon={caretLeft} />
       </div>
       <Swiper
         navigation={{
@@ -48,9 +53,12 @@ const SwiperVertical = () => {
         slidesPerView={4}
         direction={"horizontal"}
         zoom={true}
+        loop={true}
+        loopFillGroupWithBlank={true}
         breakpoints={{
           900: {
             direction: "vertical",
+            slidesPerView: 4,
           },
         }}
       >
@@ -61,7 +69,10 @@ const SwiperVertical = () => {
         ))}
       </Swiper>
       <div ref={navigationNextRef} className={styles.iconDown}>
-        <Icon size={64} icon={caretDown} />
+        <Icon color="#372E24" size={55} icon={caretDown} />
+      </div>
+      <div ref={navigationNextRef} className={styles.iconRightMobile}>
+        <Icon color="#372E24" size={55} icon={caretRight} />
       </div>
     </div>
   );
