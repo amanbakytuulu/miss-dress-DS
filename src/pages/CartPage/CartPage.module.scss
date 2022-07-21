@@ -12,9 +12,9 @@
 
 .cartPageListTitle {
   font-size: 2em;
+  margin-bottom: 10px;
   @include md {
     font-size: 1.3em;
-    margin-bottom: 10px;
   }
 }
 .cartPageList {
