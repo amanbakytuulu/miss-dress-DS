@@ -1,5 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap");
+@import "src/styles/mixins";
+@import "src/styles/vars";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
@@ -8,7 +23,15 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   height: 100%;
   margin: 0 auto;
 }
+//
+//.App {
+//  height: 100%;
+//  display: flex;
+//  align-items: center;
+//  flex-direction: column;
+//  justify-content: space-between;
+//}

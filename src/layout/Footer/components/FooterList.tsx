@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { IFooterItems } from "../../../types/FooterTypes/FooterTypes";
-import classes from "../style.module.css";
+import { ABOUT_PAGE, CONTACTS_PAGE } from "../../../utils/path";
+
+import classes from "../style.module.scss";
 
 const FooterList = () => {
   const liElements1: IFooterItems[] = [
@@ -50,7 +52,7 @@ const FooterList = () => {
     },
     {
       title: "О нас",
-      path: "/buy",
+      path: ABOUT_PAGE,
     },
     {
       title: "Реквизиты",
@@ -58,33 +60,33 @@ const FooterList = () => {
     },
     {
       title: "Контакты",
-      path: "/buy",
+      path: CONTACTS_PAGE,
     },
   ];
 
   const liElements4: IFooterItems[] = [
     {
       title: "Контакты",
-      path: "/buy",
+      path: CONTACTS_PAGE,
     },
     {
       title: "Номер телефона",
-      path: "/buy",
+      path: "tel:+996712345678",
     },
     {
       title: "Email",
-      path: "/buy",
+      path: `https://mailto:missdress@gmail.com`,
     },
     {
       title: "Адрес",
-      path: "/buy",
+      path: "https://2gis.kg/bishkek/firm/70000001036409659?m=74.592154%2C42.874231%2F16",
     },
   ];
   return (
     <>
       <div>
-        {liElements1.map((item) => (
-          <ul>
+        {liElements1.map((item, index) => (
+          <ul key={index}>
             <Link className={classes.listElem} to={item.path}>
               {item.title}
             </Link>
@@ -92,8 +94,8 @@ const FooterList = () => {
         ))}
       </div>
       <div>
-        {liElements2.map((item) => (
-          <ul>
+        {liElements2.map((item, index) => (
+          <ul key={index}>
             <Link className={classes.listElem} to={item.path}>
               {item.title}
             </Link>
@@ -101,8 +103,8 @@ const FooterList = () => {
         ))}
       </div>
       <div>
-        {liElements3.map((item) => (
-          <ul>
+        {liElements3.map((item, index) => (
+          <ul key={index}>
             <Link className={classes.listElem} to={item.path}>
               {item.title}
             </Link>
@@ -110,11 +112,11 @@ const FooterList = () => {
         ))}
       </div>
       <div>
-        {liElements4.map((item) => (
-          <ul>
-            <Link className={classes.listElem} to={item.path}>
+        {liElements4.map((item, index) => (
+          <ul key={index}>
+            <a className={classes.listElem} href={item.path}>
               {item.title}
-            </Link>
+            </a>
           </ul>
         ))}
       </div>

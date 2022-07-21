@@ -1,0 +1,253 @@
+.mainDiv {
+  width: 100%;
+  background-color: #fff2e3;
+}
+.selectDiv {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.selectDiv a {
+  color: #372e24;
+  text-decoration: none;
+}
+.prod {
+  width: 45%;
+}
+.productDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.ulItems li {
+  color: #372e24;
+  text-decoration: none;
+  list-style: none;
+}
+.sideBarDiv h1 {
+  color: #372e24;
+  font-size: 28px;
+}
+.sideBarDiv ul {
+  margin-left: -40px;
+}
+.selectDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+.selectBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+.selectContainer {
+  width: 200px;
+  height: 40px;
+  border: none;
+  background: #f1dac5;
+  color: #372e24;
+  text-align: right;
+}
+.hideFirst {
+  display: none;
+}
+.showFirst {
+  display: block;
+  margin-left: 20px;
+}
+.showFirst li {
+  padding: 8px;
+  cursor: pointer;
+}
+.hideSecond {
+  display: none;
+}
+.showSecond {
+  display: block;
+  margin-left: 40px;
+}
+.showSecond li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.vectorDiv {
+  cursor: pointer;
+}
+.ulItems a {
+  cursor: pointer;
+  color: #372e24 !important;
+  text-decoration: none;
+}
+.vectorDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.vectorSort {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #f1dac5;
+  height: 100%;
+  cursor: pointer;
+}
+.vectorSort img {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.vectorSort h4 {
+  margin-left: 70px;
+}
+.vectorDivSecond {
+  display: flex;
+  justify-content: space-between;
+  width: 47%;
+}
+.hideSort {
+  display: none;
+}
+.showSort {
+  display: block;
+}
+.showDiv {
+  z-index: 1;
+  position: absolute;
+  display: block;
+  width: 100%;
+  background-color: #f1dac5;
+
+}
+.showDiv a{
+  color: #372e24;
+  text-decoration: none !important;
+}
+.mdDiv{
+  position: absolute;
+  display: none;
+}
+.showSort a {
+  color: #372e24;
+  text-decoration: none;
+}
+.vectorSortCategory {
+  display: flex;
+}
+.miniVec {
+  display: none;
+}
+
+.sideBarSortDiv{
+  position: relative;
+  background-color: #f1dac5;
+}
+
+
+
+@media (max-width: 1100px) {
+  .titleP {
+    font-size: 5px;
+  }
+}
+@media (max-width: 600px) {
+  .sideBarDiv {
+    background: #f1dac5;
+    z-index: 1000;
+    position: absolute;
+    top: 11%;
+    left: 12%;
+    width: 37%;
+  }
+  .sideBarSortDiv {
+    z-index: 1000;
+    position: absolute;
+    top: 11%;
+    width: 37%;
+    left: 55%;
+  }
+  .sideBarSortDiv ul {
+    margin-left: -27px;
+    font-size: 12px;
+  }
+
+  .sideBarDiv ul {
+    margin-left: -27px;
+    font-size: 12px;
+    width: 100%;
+  }
+  .showFirst {
+    margin-left: 0%;
+  }
+  .showSecond {
+    margin-left: 0%;
+  }
+  .sideBarDiv h1 {
+    font-size: 14px;
+    padding: 0px 10px;
+  }
+  .selectBlock {
+    display: flex;
+    justify-content: space-around;
+  }
+  .mediumH {
+    display: none;
+  }
+  .responsiveH {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .mainGrid {
+    display: flex;
+    justify-content: center;
+  }
+  .selectCatDiv {
+    display: block;
+  }
+  .selectContainer {
+    width: 100%;
+    font-size: 10px;
+  }
+  .vectorSort h4 {
+    font-size: 12px;
+    margin: 0;
+    padding: 10px;
+  }
+  .vectorSort {
+    width: 100%;
+    margin: 0;
+  }
+  .vectorSortCategory {
+    width: 110%;
+    margin: 0;
+  }
+  .miniVec {
+    display: block;
+  }
+}
+
+
+@media (min-width: 600px) {
+  .sideBarDiv ul {
+    display: block !important;
+  }
+  .responsiveH {
+    display: none;
+  }
+  .selectCatDiv {
+    display: none;
+  }
+  .allProdBlock {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .selectBlock {
+    display: flex;
+    justify-content: space-between;
+    width: 66%;
+  }
+}

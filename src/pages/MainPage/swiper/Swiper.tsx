@@ -1,19 +1,23 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import SwiperCore, { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import photo2 from "../../../assets/mainSwiper/photo2.png";
-import photo3 from "../../../assets/mainSwiper/photo3.png";
+import { swiperArr, ISwiperArr } from "./SwiperDb";
 
 import styles from "./Swiper.module.scss";
 
+SwiperCore.use([Autoplay]);
+SwiperCore.use([Pagination]);
+
 const MainSwiper: FC = () => {
-  const swiperArr = [
-    { id: 0, photo: photo2 },
-    { id: 1, photo: photo3 },
-  ];
+  const [photos, setPhotos] = useState<ISwiperArr[]>([]);
+
+  useEffect(() => {
+    setPhotos(swiperArr);
+  }, []);
+
   return (
     <div className={styles.swiperDiv}>
       <Swiper
@@ -21,22 +25,23 @@ const MainSwiper: FC = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
         className={styles.swiper}
         allowTouchMove={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
       >
-        {swiperArr.map((photo) => (
-          <SwiperSlide className={styles.swiperSlide}>
-            <div key={photo.id}>
-              <img src={photo.photo} alt="clothes" />
-              <p>
-                Скидки до 50%! <br />
-                Успей приобрести товар по выгодной цене!
-              </p>
-            </div>
+        {photos.map((photo) => (
+          <SwiperSlide className={styles.swiperSlide} key={photo.id}>
+            <img src={photo.photo} alt="clothes" />
+            <p>
+              Скидки до 50%! <br />
+              Успей приобрести товар по выгодной цене!
+            </p>
+            <button className={styles.btn}>Подробнее</button>
           </SwiperSlide>
         ))}
-        <button className={styles.btn}>Подробнее</button>
       </Swiper>
     </div>
   );
