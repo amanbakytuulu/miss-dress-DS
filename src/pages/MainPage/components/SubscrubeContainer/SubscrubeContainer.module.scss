@@ -1,15 +1,18 @@
 .image {
   &__flex {
+    
     height: 60vw;
     background: url(../../../../assets/Main/Subscrube/sub.jpg) ;
+    
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     display: flex;
-    justify-content: flex-end;
-    margin: 110px 0 0 0;
+      
+    max-width: 120vh;
+    margin: 30px auto;
   }
   &__item {
-    padding: 220px 200px;
+    padding: 100px 650px;
     position: relative;
     font-weight: 300;
     font-size: 32px;
@@ -19,7 +22,7 @@
 
   &__h3 {
     font-weight: 600;
-    font-size: 2.25vw;
+    font-size: 1.3vw;
     line-height: 2.75vw;
     color: #f1dac5;
     text-align: center;
@@ -35,7 +38,7 @@
     display: flex;
     justify-content: center;
     padding: 200px 0;
-    margin: 0;
+    margin: 50px 0;
     align-items: center;
   }
 

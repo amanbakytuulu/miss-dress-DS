@@ -1,15 +1,15 @@
 .image__input {
-  width: 44.9vw;
-  height: 5.625vw;
+  width: 23.75vw;
+    height: 3.5vw;
   border: none;
   background: rgba(241, 218, 197, 0.8);
   border-radius: 45px;
   font-weight: 300;
-  font-size: 2vw;
+  font-size: 1.3vw;
   line-height: 2.4375vw;
 
   color: #5f4932;
-  margin: 50px 0;
+  margin: 40px 0;
   display: flex;
   padding: 0 20px;
   align-items: center;
@@ -20,17 +20,27 @@
   cursor: pointer;
   display: flex;
   font-weight: 300;
-font-size: 2vw;
+font-size: 1.3vw;
 line-height: 2.4375vw;
-  padding: 20px 30px;
+  padding: 10px 30px;
 
   &__in {
-    width: 47.25vw;
-    height: 22.5vw;
+    width: 23.9vw;
+    height: 15.5vw;
     z-index: 111;
     background: rgba(241, 218, 197, 0.8);
     border-radius: 45px;
     position: absolute;
+  }
+}
+@media screen and (max-width:1440px) {
+  .image__input {
+    width: 45.9vw;
+
+  }
+  .image__in{
+    width: 45.5vw;
+
   }
 }
 
@@ -71,7 +81,7 @@ line-height: 2.4375vw;
   @media screen and (max-width: 375px) {
     .image__input {
       width: 32vw;
-
+padding: 15px;
       height: 20px;
     }
     .image__in {
@@ -89,11 +99,12 @@ line-height: 2.4375vw;
     .image__input {
       width: 37.5vw;
       height: 20px;
+      padding: 10px 15px;
     }
     .image__in {
       width: 35vw;
       border-radius: 10px;
-      padding: 0px 25px;
+      padding: 0px 10px;
     }
   }
 }

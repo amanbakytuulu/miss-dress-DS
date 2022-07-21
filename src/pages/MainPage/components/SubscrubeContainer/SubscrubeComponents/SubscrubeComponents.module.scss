@@ -1,22 +1,26 @@
 .image {
   &__input {
-    width: 43.75vw;
-    height: 5.625vw;
+    width: 23.75vw;
+    height: 3.5vw;
     border: none;
     background: rgba(241, 218, 197, 0.8);
     border-radius: 45px;
     font-weight: 300;
-    font-size: 2vw;
+    font-size: 1vw;
     line-height: 2.4375vw;
     color: #795E41;
-    margin: 50px 0;
+    margin: 30px 0;
     display: flex;
     padding: 0 30px;
     justify-content: center;
   }
 
   @media screen and (max-width:1440px) {
-  
+    &__input {
+   
+      width: 45vw;
+
+    }
   }
 
   @media screen and(max-width:1024px) {
@@ -27,15 +31,24 @@
   }
   @media screen and (max-width: 425px) {
     &__input {
-      width: 200px;
+      width: 52vw;
+      padding: 0 20px;
       height: 46px;
       
     }
   }
   @media screen and (max-width: 375px) {
     &__input {
-      width: 100px;
+      width: 32vw;
+      padding: 15px;
       height: 20px;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    &__input {
+      padding: 10px 15px;
+      width: 37vw;
+
     }
   }
 }
