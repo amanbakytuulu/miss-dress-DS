@@ -1,20 +1,38 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 
 import { Grid } from "@mui/material";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+
+// import { Icon } from "react-icons-kit";
+import { caretLeft } from "react-icons-kit/fa/caretLeft";
+import { caretRight } from "react-icons-kit/fa/caretRight";
+import Icon from "react-icons-kit";
+
 import mainDress from "../../assets/ProductPage2/mainDress.png";
+
+import ProductCard from "../../components/ProductCard/ProductCard";
+
+import { similarDresses, dress_description } from "./productDb";
 
 import styles from "./ProductPage.module.scss";
 
 import SwiperVertical from "./SwiperVertical";
 
-import { dress_description } from "./productDb";
+import "swiper/css";
+import "swiper/css/navigation";
 interface IColors {
   id: number;
   color: string;
 }
 
+SwiperCore.use([Navigation]);
+
 const ProductPage: FC = () => {
+  const navigationPrevRef = React.useRef(null);
+  const navigationNextRef = React.useRef(null);
+
   const [color, setColors] = useState<IColors[]>([
     { id: 0, color: "#000000" },
     { id: 1, color: "#B89981" },
@@ -28,20 +46,22 @@ const ProductPage: FC = () => {
   return (
     <div className={styles.product_container}>
       <Grid container spacing={2}>
-        <Grid item xs={6} md={2.5} order={{ xs: 3, md: 1 }}>
+        <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
           <SwiperVertical />
         </Grid>
+
         <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
           <img
             src={mainDress}
             alt="main dress"
             width="87%"
-            className={styles.mainDress}
+            className={styles.main_dress}
           />
         </Grid>
-        <Grid item xs={6} md={5.5} order={{ xs: 2, md: 3 }}>
-          <div className={styles.text}>
-            <h3>Benito Kate Wrap Dress</h3>
+
+        <Grid item xs={6} md={5} order={{ xs: 2, md: 3 }}>
+          <div className={styles.text_dress}>
+            <h3>{dress_description.title}</h3>
             <p>Артикул: {dress_description.article}</p>
             <p>Количество в линейке: {dress_description.quantity}</p>
             <p className={styles.colors}>
@@ -58,34 +78,67 @@ const ProductPage: FC = () => {
             </p>
             <h3>
               {dress_description.price_old}
-              <span
-                style={{ textDecoration: "line-through", paddingLeft: "12px" }}
-              >
-                {dress_description.price_new}
-              </span>
+              <span>{dress_description.price_new}</span>
             </h3>
-            <div>
-              <p>{dress_description.size}</p>
-              <p>{dress_description.cloth}</p>
+            <div className={styles.description_flex}>
+              <p>Размер: {dress_description.size}</p>
+              <p>Ткань: {dress_description.cloth}</p>
             </div>
-            <div>
+            <div className={styles.description_flex}>
               <p>Длина: {dress_description.length}</p>
               <p>Фасон: {dress_description.style}</p>
             </div>
             <h4>О товаре:</h4>
             <p className={styles.description}>
-              В наши дни платья по-прежнему пользуются спросом и популярностью
-              среди молодежи, они занимают почетные места на презентациях мод.
-              Однако постепенно в моду входит повседневный стиль, который не
-              подразумевает использование красочных и ярких образов.Платье
-              Benito Kate Wrap Dress отличный пример этому.
+              {dress_description.description}
             </p>
-            <button className={styles.btn}>Добавить в корзину</button>
+            <button className={styles.btn}>Перейти в корзину</button>
           </div>
         </Grid>
       </Grid>
-      <div>
+      <div className={styles.similar_container}>
         <h1>Похожие товары</h1>
+        <div ref={navigationPrevRef} className={styles.similar_swiper_left}>
+          <Icon size={64} icon={caretLeft} />
+        </div>
+        <Swiper
+          navigation={{
+            prevEl: navigationPrevRef.current,
+            nextEl: navigationNextRef.current,
+          }}
+          onSwiper={(swiper: any) => {
+            setTimeout(() => {
+              swiper.params.navigation.prevEl = navigationPrevRef.current;
+              swiper.params.navigation.nextEl = navigationNextRef.current;
+
+              swiper.navigation.destroy();
+              swiper.navigation.init();
+              swiper.navigation.update();
+            });
+          }}
+          mousewheel={true}
+          modules={[Navigation]}
+          className={styles.similarSwiper}
+          slidesPerView={3}
+          direction={"horizontal"}
+          spaceBetween={50}
+          breakpoints={
+            {
+              // 900: {
+              //   direction: "vertical",
+              // },
+            }
+          }
+        >
+          {similarDresses.map((el: any) => (
+            <SwiperSlide key={el.id}>
+              <ProductCard item={el} btnTitle="Открыть" />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div ref={navigationNextRef} className={styles.similar_swiper_right}>
+          <Icon size={64} icon={caretRight} />
+        </div>
       </div>
     </div>
   );

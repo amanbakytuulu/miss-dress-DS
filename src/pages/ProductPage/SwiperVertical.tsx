@@ -11,12 +11,7 @@ import { caretDown } from "react-icons-kit/fa/caretDown";
 
 import styles from "./ProductPage.module.scss";
 
-import { dressDatabase } from "./productDb";
-
-interface IArrDress {
-  id: number;
-  dress: string;
-}
+import { dressDatabase, IArrDress } from "./productDb";
 
 const SwiperVertical = () => {
   const [arrDress, setArrDress] = useState<IArrDress[]>([]);
@@ -29,7 +24,7 @@ const SwiperVertical = () => {
   }, []);
 
   return (
-    <div className={styles.mainSwiper}>
+    <div className={styles.verticalSwiper}>
       <div ref={navigationPrevRef} className={styles.iconUp}>
         <Icon size={64} icon={caretUp} />
       </div>
@@ -38,8 +33,18 @@ const SwiperVertical = () => {
           nextEl: navigationNextRef.current,
           prevEl: navigationPrevRef.current,
         }}
+        onSwiper={(swiper: any) => {
+          setTimeout(() => {
+            swiper.params.navigation.prevEl = navigationPrevRef.current;
+            swiper.params.navigation.nextEl = navigationNextRef.current;
+
+            swiper.navigation.destroy();
+            swiper.navigation.init();
+            swiper.navigation.update();
+          });
+        }}
         modules={[Navigation]}
-        className={styles.mySwiper}
+        className={styles.swiper}
         slidesPerView={4}
         direction={"horizontal"}
         zoom={true}

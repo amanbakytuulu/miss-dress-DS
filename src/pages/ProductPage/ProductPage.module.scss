@@ -1,77 +1,223 @@
-// Product Page Main
+// Product Page Main -- main Product Container
 .product_container {
   width: 100%;
-  height: 200vh;
+  height: 250vh;
   background-color: #fff2e3;
-  
+
+
+  //Grid
+  //Swiper Vertical
+
+  //Image mainDress
+  .main_dress {
+    margin-top: 30%;
+  }
+
+  //Description
+  .text_dress {
+    margin-top: 23%;
+
+    .colors {
+      display: flex;
+    }
+
+    .color {
+      display: flex;
+    }
+
+    .each_color {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin: 5px;
+    }
+
+    h3,
+    p,
+    h4 {
+      line-height: 30px;
+      padding-bottom: 2%;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+    }
+
+    h3 {
+      font-size: 25px;
+    }
+
+    span {
+      text-decoration: line-through;
+      padding-left: 12px;
+      font-size: 20px;
+    }
+
+    .btn {
+      width: 60%;
+      height: 50px;
+      background-color: #372e24;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-family: "Montserrat";
+      font-size: 1rem;
+    }
+
+    .description {
+      width: 90%;
+      line-height: 30px;
+
+      &_flex {
+        width: 75%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  //Similar Products
+  .similar_container {
+    position: relative;
+    padding-top: 4%;
+    width: 90%;
+    margin: 0 auto;
+    h1 {
+      padding-bottom: 4%;
+    }
+    .similar_swiper_left {
+      // position: absolute;
+      position: absolute;
+      width: 100px;
+      left: -58px;
+      bottom: 0;
+    }
+    .similar_swiper_right {
+      // position: absolute;
+      width: 100px;
+      margin-left: 99%;
+      margin-top: -35%;
+      // left: 100px;
+      // bottom: 280px;
+    }
+  }
 }
 
-// Other
+// ----------\\----------\\-----------\\------
 
-.mainDress {
-  margin-top: 30%;
+@media only screen and (max-width: 900px) {
+  .product_container {
+    .text_dress {
+      margin-top: 30%;
+      h4 {
+        font-size: 1rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 0.8rem;
+        line-height: 18px;
+      }
+      span {
+        font-size: 15px;
+      }
+    }
+  }
 }
 
-.text {
-  margin-top: 23%;
+// ----------\\----------\\-----------\\------
+
+@media only screen and (max-width: 1100px) {
+  .product_container {
+    .text_dress {
+      p {
+        font-size: 1rem;
+        line-height: 19px;
+      }
+    }
+  }
 }
 
-.colors {
-  display: flex;
-}
+//Grid
+//Swiper Vertical
+.verticalSwiper {
+  margin-top: 40%;
+  :global(.slider__thumbs) {
+    height: calc(400px - 96px);
+  }
 
-.color {
-  display: flex;
-  margin-top: -1%;
-}
-
-.each_color {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  margin: 5px;
-}
-
-.description {
-  width: 90%;
-  line-height: 25px;
-}
-
-h3,
-p {
-  line-height: 30px;
-}
-
-.btn {
-  width: 40%;
-  height: 50px;
-  background-color: #372e24;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-family: "Montserrat";
-  font-size: 1rem;
-}
-
-.mainSwiper {
-  margin-top: 42%;
   .iconUp,
   .iconDown {
-    margin-left: 33%;
+    margin-left: 36%;
+  }
+  .swiper {
+    height: 73vh;
+    :global(.swiper) {
+      height: 100vh;
+    }
+    :global(.swiper-button-next) {
+      position: absolute;
+      background-image: url(../../assets/ProductPage2/icon-up.svg);
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: center;
+    }
+    :global(.swiper-button-prev) {
+      background-image: url(../../assets/ProductPage2/icon-down.svg);
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: center;
+    }
+    :global(.swiper-button-next::after) {
+      display: none;
+    }
+    :global(.swiper-button-prev::after) {
+      display: none;
+    }
+    :global(.swiper-wrapper) {
+      position: absolute;
+      padding-left: 30%;
+      height: 100vh;
+    }
+    .dress {
+      width: 33%;
+    }
   }
 }
-// Swiper
-.mySwiper {
-  height: 73vh;
-  :global(.swiper) {
-    height: 100vh;
-  }
-  :global(.swiper-wrapper) {
-    position: absolute;
-    padding-left: 30%;
-    height: 100vh;
-  }
-  .dress {
-    width: 33%;
+
+// ----------\\----------\\-----------\\------
+
+@media only screen and (max-width: 900px) {
+  .verticalSwiper {
+    margin-top: 0;
+
+    .swiper {
+      margin: 0 0 0 10%;
+      height: 50vh;
+
+      :global(.swiper-wrapper) {
+        padding-left: 0;
+      }
+      :global(.swiper) {
+        height: 10vh;
+      }
+      .dress {
+        width: 90%;
+      }
+      :global(.swiper-button-next) {
+        background-image: url(../../assets/ProductPage2/icon-right.svg);
+        background-size: cover;
+      }
+      :global(.swiper-button-prev) {
+        background-image: url(../../assets/ProductPage2/icon-left.svg);
+        background-size: cover;
+      }
+    }
+
+    .iconUp,
+    .iconDown {
+      margin-left: 0%;
+    }
   }
 }
