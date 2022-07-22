@@ -2,8 +2,7 @@
 .background_container {
   background-color: #fff2e3;
   width: 100%;
-  // height: 10%;
-  // height: 230vh;
+  height: 230vh;
   overflow-x: hidden;
 
   .product_container {
@@ -116,7 +115,7 @@
 // ----------\\----------\\-----------\\------
 @media only screen and (max-width: 900px) {
   .background_container {
-    height: 250vh;
+    height: 270vh;
     .product_container {
       width: 90%;
       margin: 0 auto;
@@ -176,9 +175,14 @@
     }
   }
 }
+
+@media only screen and (max-width: 750px) {
+  .background_container {
+    height: 230vh;
+  }
+}
 @media only screen and (max-width: 550px) {
   .background_container {
-    max-height: 210vh;
     .product_container {
       .description_change_mobile {
         h4 {
@@ -219,7 +223,7 @@
 
       .btnMobile {
         display: block;
-        margin: 30% 15% 0 15%;
+        margin: 30% 15% 20% 15%;
         width: 70%;
         height: 50px;
         background-color: #372e24;
@@ -234,7 +238,6 @@
     }
   }
 }
-
 
 // ----------\\----------\\-----------\\------
 
@@ -304,8 +307,8 @@
 
     .iconRightMobile {
       position: absolute;
-      left: 99%;
-      top: 3%;
+      left: 97%;
+      top: 2%;
     }
   }
 }
