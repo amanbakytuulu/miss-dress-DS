@@ -27,12 +27,21 @@ const SwiperVertical = () => {
 
   return (
     <div className={styles.verticalSwiper}>
-      <div ref={navigationPrevRef} className={styles.iconUp}>
-        <Icon color="#372E24" size={55} icon={caretUp} />
+      <div ref={navigationPrevRef}>
+        <Icon
+          color="#372E24"
+          size={55}
+          icon={caretUp}
+          className={styles.iconUp}
+        />
+        <Icon
+          color="#372E24"
+          size={55}
+          icon={caretLeft}
+          className={styles.iconLeftMobile}
+        />
       </div>
-      <div ref={navigationPrevRef} className={styles.iconLeftMobile}>
-        <Icon color="#372E24" size={55} icon={caretLeft} />
-      </div>
+
       <Swiper
         navigation={{
           nextEl: navigationNextRef.current,
@@ -68,11 +77,19 @@ const SwiperVertical = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div ref={navigationNextRef} className={styles.iconDown}>
-        <Icon color="#372E24" size={55} icon={caretDown} />
-      </div>
-      <div ref={navigationNextRef} className={styles.iconRightMobile}>
-        <Icon color="#372E24" size={55} icon={caretRight} />
+      <div ref={navigationNextRef}>
+        <Icon
+          color="#372E24"
+          size={55}
+          icon={caretDown}
+          className={styles.iconDown}
+        />
+        <Icon
+          color="#372E24"
+          size={55}
+          icon={caretRight}
+          className={styles.iconRightMobile}
+        />
       </div>
     </div>
   );

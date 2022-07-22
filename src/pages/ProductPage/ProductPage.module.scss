@@ -2,7 +2,9 @@
 .background_container {
   background-color: #fff2e3;
   width: 100%;
-  height: 230vh;
+  // height: 10%;
+  // height: 230vh;
+  overflow-x: hidden;
 
   .product_container {
     .btnMobile {
@@ -99,7 +101,7 @@
       .similar_swiper_left {
         position: absolute;
         width: 100px;
-        left: -58px;
+        left: -50px;
         bottom: 0;
       }
       .similar_swiper_right {
@@ -110,6 +112,7 @@
     }
   }
 }
+
 // ----------\\----------\\-----------\\------
 @media only screen and (max-width: 900px) {
   .background_container {
@@ -117,6 +120,7 @@
     .product_container {
       width: 90%;
       margin: 0 auto;
+
       .description_change_mobile {
         width: 80%;
         margin: 0 auto;
@@ -155,8 +159,9 @@
           margin-bottom: 5%;
         }
         p {
-          line-height: 1rem;
+          line-height: 1.2rem;
           margin-bottom: 5%;
+          font-size: 1rem;
         }
         span {
           font-size: 15px;
@@ -169,85 +174,69 @@
         }
       }
     }
-    @media only screen and (max-width: 550px) {
-      .product_container {
-        .description_change_mobile {
-          h4 {
-            font-size: 1rem;
-          }
-          p {
-            font-size: 14px;
-          }
-          .btn {
-            width: 70%;
-            height: 40px;
-            font-size: 0.7rem;
-          }
+  }
+}
+@media only screen and (max-width: 550px) {
+  .background_container {
+    max-height: 210vh;
+    .product_container {
+      .description_change_mobile {
+        h4 {
+          font-size: 1rem;
         }
-        .main_dress {
-          padding-top: 30%;
-        }
-        .text_dress {
-          padding-top: 30%;
-          .each_color {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            margin: 5px;
-          }
-          p {
-            line-height: 0.7rem;
-
-            font-size: 12px;
-          }
-        }
-
-        .btnMobile {
-          display: block;
-          margin: 30% 15% 0 15%;
-          width: 70%;
-          height: 50px;
-          background-color: #372e24;
-          border: none;
-          border-radius: 30px;
-          color: white;
-          font-family: "Montserrat";
+        p {
           font-size: 14px;
-
-          text-align: center;
         }
+        .btn {
+          width: 50%;
+          height: 40px;
+          font-size: 0.7rem;
+        }
+      }
+      .main_dress {
+        padding-top: 35%;
+      }
+      .text_dress {
+        padding-top: 35%;
+        .each_color {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          margin: 3px;
+        }
+        h3 {
+          line-height: 1.1rem;
+          font-size: 1rem;
+        }
+        p {
+          line-height: 0.7rem;
+          font-size: 12px;
+        }
+        span {
+          padding-left: 10px;
+        }
+      }
+
+      .btnMobile {
+        display: block;
+        margin: 30% 15% 0 15%;
+        width: 70%;
+        height: 50px;
+        background-color: #372e24;
+        border: none;
+        border-radius: 30px;
+        color: white;
+        font-family: "Montserrat";
+        font-size: 14px;
+
+        text-align: center;
       }
     }
   }
 }
 
-// ----------\\----------\\-----------\\------
 
-// @media only screen and (max-width: 1100px) {
-//   .background_container {
-//     .product_container {
-//       .text_dress {
-//         p {
-//           font-size: 1rem;
-//           line-height: 19px;
-//         }
-//       }
-//     }
-//   }
-// }
-// @media only screen and (max-width: 900px) {
-//   .background_container {
-//     height: 240vh;
-//     .product_container {
-//       .text_dress {
-//         p {
-//           font-size: 1rem;
-//           line-height: 19px;
-//         }
-//       }
-//     }
-//   }
-// }
+// ----------\\----------\\-----------\\------
 
 //Grid
 //Swiper Vertical
@@ -260,7 +249,7 @@
   }
   .iconLeftMobile,
   .iconRightMobile {
-    display: none;
+    display: none !important;
   }
   .swiper {
     height: 73vh;
@@ -284,6 +273,7 @@
 @media only screen and (max-width: 900px) {
   .verticalSwiper {
     margin-top: 0;
+    position: relative;
 
     .swiper {
       margin: 10% 0 0 15%;
@@ -303,23 +293,19 @@
 
     .iconUp,
     .iconDown {
-      display: none;
+      display: none !important;
       margin-left: 0%;
     }
     .iconLeftMobile,
     .iconRightMobile {
-      display: block;
-    }
-    .iconLeftMobile {
+      display: inline-block !important;
       position: absolute;
-      width: 100px;
-      bottom: -13%;
     }
+
     .iconRightMobile {
       position: absolute;
-      width: 100px;
-      left: 93%;
-      bottom: -13%;
+      left: 99%;
+      top: 3%;
     }
   }
 }

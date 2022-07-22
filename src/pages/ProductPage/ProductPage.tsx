@@ -109,7 +109,7 @@ const ProductPage: FC = () => {
         <div className={styles.similar_container}>
           <h1>Похожие товары</h1>
           <div ref={navigationPrevRef} className={styles.similar_swiper_left}>
-            <Icon size={64} icon={caretLeft} />
+            <Icon size={55} icon={caretLeft} />
           </div>
           <Swiper
             navigation={{
@@ -147,7 +147,7 @@ const ProductPage: FC = () => {
             ))}
           </Swiper>
           <div ref={navigationNextRef} className={styles.similar_swiper_right}>
-            <Icon size={64} icon={caretRight} />
+            <Icon size={55} icon={caretRight} />
           </div>
         </div>
         <button className={styles.btnMobile}>Смотреть все товары</button>
