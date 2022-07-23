@@ -17,7 +17,7 @@ import SearchList from "./components/SearchList/SearchList";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 
 import classes from "./SearchPage.module.scss";
-import SearchOthers from "./components/SearchOthers/SearchOthers";
+import OthersProducts from "./components/OthersProducts/OthersProducts";
 
 const bestsellerArray = [
   {
@@ -126,7 +126,7 @@ const SearchPage = () => {
             pageNumbers={pageNumbers}
           />
         ) : (
-          <SearchOthers slides={bestsellerArray} />
+          <OthersProducts slides={bestsellerArray} />
         )}
       </div>
     </div>

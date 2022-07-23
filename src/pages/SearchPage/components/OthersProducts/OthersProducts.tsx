@@ -2,13 +2,13 @@ import React, { FC } from "react";
 
 import SearchSlider from "../SearchSlider/SearchSlider";
 
-import classes from "./SearchOthers.module.scss";
+import classes from "./OthersProducts.module.scss";
 
 interface SearchOthersProps {
   slides: any;
 }
 
-const SearchOthers: FC<SearchOthersProps> = ({ slides }) => {
+const OthersProducts: FC<SearchOthersProps> = ({ slides }) => {
   return (
     <div className={classes.searchOthersWrapper}>
       <h3>Похожие товары</h3>
@@ -17,4 +17,4 @@ const SearchOthers: FC<SearchOthersProps> = ({ slides }) => {
   );
 };
 
-export default SearchOthers;
+export default OthersProducts;
