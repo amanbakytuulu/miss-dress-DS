@@ -7,9 +7,21 @@ import classes from "./SearchList.module.scss";
 
 interface SearchListProps {
   searchList: any;
+  totalCount: number;
+  postsPerPage: number;
+  currentPage: number;
+  setCurrentPage: (value: number) => void;
+  pageNumbers: any;
 }
 
-const SearchList: FC<SearchListProps> = ({ searchList }) => {
+const SearchList: FC<SearchListProps> = ({
+  searchList,
+  totalCount,
+  postsPerPage,
+  currentPage,
+  setCurrentPage,
+  pageNumbers,
+}) => {
   return (
     <div className={classes.SearchList}>
       <Grid container spacing={4}>
@@ -18,6 +30,15 @@ const SearchList: FC<SearchListProps> = ({ searchList }) => {
             <ProductCard btnTitle={"Открыть"} item={item} />
           </Grid>
         ))}
+        <Grid item xs={12} md={12}>
+          <Pagination
+            totalCount={totalCount}
+            postsPerPage={postsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            pageNumbers={pageNumbers}
+          />
+        </Grid>
       </Grid>
     </div>
   );

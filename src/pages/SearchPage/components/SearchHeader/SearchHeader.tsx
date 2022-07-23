@@ -1,10 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 
 import classes from "./SearchHeader.module.scss";
 
-const SearchHeader = () => {
-  const quantity = 107;
+interface SearchHeaderProps {
+  quantity: number;
+}
 
+const SearchHeader: FC<SearchHeaderProps> = ({ quantity }) => {
   return (
     <div className={classes.searchPageHeader}>
       <div className={classes.searchPageHeaderLeft}>

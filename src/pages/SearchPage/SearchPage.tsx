@@ -16,7 +16,8 @@ import { Pagination } from "../../components";
 import SearchList from "./components/SearchList/SearchList";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 
-import classes from "./SearchPsge.module.scss";
+import classes from "./SearchPage.module.scss";
+import SearchOthers from "./components/SearchOthers/SearchOthers";
 
 const bestsellerArray = [
   {
@@ -100,7 +101,7 @@ const bestsellerArray = [
 ];
 const SearchPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 1;
+  const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
@@ -113,17 +114,20 @@ const SearchPage = () => {
   return (
     <div className={classes.searchPageWrapper}>
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
-        <SearchHeader />
-        <SearchList searchList={bestsellerArray} />
-        <Grid item xs={12} md={12}>
-          <Pagination
+        <SearchHeader quantity={totalCount} />
+
+        {bestsellerArray.length > 0 ? (
+          <SearchList
+            searchList={currentPosts}
             totalCount={totalCount}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             pageNumbers={pageNumbers}
           />
-        </Grid>
+        ) : (
+          <SearchOthers slides={bestsellerArray} />
+        )}
       </div>
     </div>
   );
