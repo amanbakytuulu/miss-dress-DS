@@ -1,0 +1,9 @@
+@import "src/index";
+
+.searchPageWrapper {
+  padding-top: 70px;
+  background-color: $beige-background;
+  .searchPageContainer {
+    padding: 20px;
+  }
+}
