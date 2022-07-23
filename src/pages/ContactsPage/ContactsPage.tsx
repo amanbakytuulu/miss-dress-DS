@@ -10,22 +10,22 @@ import SocialList from "./SocialList/SocialList";
 
 import classes from "./ContactsPage.module.scss";
 
-const ContactsPage = () => {
-  const socials: ISocialTypes[] = [
-    {
-      icon: <WhatsAppIcon />,
-      contacts: "+996712345678",
-    },
-    {
-      icon: <TelegramIcon />,
-      contacts: "+996712345678",
-    },
-    {
-      icon: <InstagramIcon />,
-      contacts: "@missdress",
-    },
-  ];
+const socials: ISocialTypes[] = [
+  {
+    icon: <WhatsAppIcon />,
+    contacts: "+996712345678",
+  },
+  {
+    icon: <TelegramIcon />,
+    contacts: "+996712345678",
+  },
+  {
+    icon: <InstagramIcon />,
+    contacts: "@missdress",
+  },
+];
 
+const ContactsPage = () => {
   return (
     <div className={classes.contactsWrapper}>
       <h2 className={classes.contactsTitle}>Контакты</h2>
