@@ -116,7 +116,7 @@ const SearchPage = () => {
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
         <SearchHeader quantity={totalCount} />
 
-        {bestsellerArray.length > 0 ? (
+        {bestsellerArray.length < 0 ? (
           <SearchList
             searchList={currentPosts}
             totalCount={totalCount}
