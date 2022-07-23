@@ -1,0 +1,20 @@
+@import "src/styles/vars";
+
+.searchPageHeader {
+  padding-top: 45px;
+  margin-bottom: 35px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  .searchPageHeaderLeft {
+    .searchPageTitle {
+      font-size: 1.7em;
+      color: $black-text;
+      margin-bottom: 30px;
+    }
+    .searchPageHeaderQuantity {
+      font-size: 1.2em;
+      color: $black-text;
+    }
+  }
+}
