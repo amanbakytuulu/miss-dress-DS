@@ -102,9 +102,9 @@ const OrderForm = () => {
           {!isValid && (
             <div className={classes.orderFormError}>
               <span>
-                {(errors.phoneNumber?.message &&
-                  "Некорекктный номер телефона") ||
-                  (isDirty && "Заполните все поля!")}
+                {(isDirty && "Заполните все поля!") ||
+                  (errors.phoneNumber?.message &&
+                    "Некорекктный номер телефона")}
               </span>
             </div>
           )}
