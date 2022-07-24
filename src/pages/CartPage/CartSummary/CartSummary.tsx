@@ -1,10 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { Button } from "../../../components/common";
 
 import classes from "./CartSummary.module.scss";
 
-const CartSummary = () => {
+interface CartSummaryProps {
+  openModal: () => void;
+}
+
+const CartSummary: FC<CartSummaryProps> = ({ openModal }) => {
   return (
     <div className={classes.cartSummary}>
       <h3 className={classes.cartSummaryTitle}>Итого</h3>
@@ -20,7 +24,7 @@ const CartSummary = () => {
         </p>
       </div>
       <div className={classes.cartSummaryBtn}>
-        <Button>Оформить заказ</Button>
+        <Button onClick={openModal}>Оформить заказ</Button>
       </div>
     </div>
   );
