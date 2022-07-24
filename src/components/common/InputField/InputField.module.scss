@@ -26,3 +26,10 @@
     }
   }
 }
+.error {
+  display: inline-block;
+  width: 100%;
+  padding-left: 10px;
+  text-align: start;
+  color: $error-text;
+}
