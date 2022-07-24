@@ -1,0 +1,401 @@
+// Product Page Main -- main Product Container
+.background_container {
+  background-color: #fff2e3;
+  width: 100%;
+  height: 230vh;
+  overflow-x: hidden;
+
+  .product_container {
+    .btnMobile {
+      display: none;
+    }
+    .description_change_mobile {
+      display: none;
+    }
+    //Grid
+    //Swiper Vertical
+
+    //Image mainDress
+    .main_dress {
+      margin-top: 30%;
+    }
+
+    //Description
+    .text_dress {
+      margin-top: 23%;
+
+      .description_change {
+        display: block;
+      }
+
+      .colors {
+        display: flex;
+      }
+
+      .color {
+        display: flex;
+      }
+
+      .each_color {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        margin: 5px;
+      }
+
+      h3,
+      p,
+      h4 {
+        line-height: 30px;
+        padding-bottom: 2%;
+      }
+
+      h4 {
+        font-size: 1.3rem;
+      }
+
+      h3 {
+        font-size: 25px;
+      }
+
+      span {
+        text-decoration: line-through;
+        padding-left: 12px;
+        font-size: 20px;
+      }
+
+      .btn {
+        width: 60%;
+        height: 50px;
+        background-color: #372e24;
+        border: none;
+        border-radius: 30px;
+        color: white;
+        font-family: "Montserrat";
+        font-size: 1rem;
+      }
+
+      .description {
+        width: 90%;
+        line-height: 30px;
+
+        &_flex {
+          width: 75%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    //Similar Products
+    .similar_container {
+      position: relative;
+      padding-top: 4%;
+      width: 90%;
+      margin: 0 auto;
+      h1 {
+        padding-bottom: 4%;
+      }
+
+      .similar_swiper_left {
+        position: absolute;
+        width: 100px;
+        left: -50px;
+        bottom: 0;
+      }
+      .similar_swiper_right {
+        width: 100px;
+        margin-left: 99%;
+        margin-top: -35%;
+      }
+    }
+  }
+}
+
+// ----------\\----------\\-----------\\------
+@media only screen and (max-width: 900px) {
+  .background_container {
+    height: 270vh;
+    .product_container {
+      width: 90%;
+      margin: 0 auto;
+
+      .description_change_mobile {
+        width: 80%;
+        margin: 0 auto;
+        display: block;
+
+        .btn {
+          width: 50%;
+          height: 50px;
+          background-color: #372e24;
+          border: none;
+          border-radius: 30px;
+          color: white;
+          font-family: "Montserrat";
+          font-size: 1rem;
+          margin: 5% 25%;
+          text-align: center;
+        }
+        h4 {
+          margin: 5% 0;
+          font-size: 1.3rem;
+        }
+        p {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      .text_dress {
+        margin-top: 30%;
+
+        .description_change {
+          display: none;
+        }
+
+        h3 {
+          font-size: 1.2rem;
+          margin-bottom: 5%;
+        }
+        p {
+          line-height: 1.2rem;
+          margin-bottom: 5%;
+          font-size: 1rem;
+        }
+        span {
+          font-size: 15px;
+        }
+        .description {
+          &_flex {
+            width: 75%;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .background_container {
+    height: 230vh;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .background_container {
+    .product_container {
+      .description_change_mobile {
+        h4 {
+          font-size: 1rem;
+        }
+        p {
+          font-size: 14px;
+        }
+        .btn {
+          width: 50%;
+          height: 40px;
+          font-size: 0.7rem;
+        }
+      }
+      .main_dress {
+        padding-top: 35%;
+      }
+      .text_dress {
+        padding-top: 35%;
+        .each_color {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          margin: 3px;
+        }
+        h3 {
+          line-height: 1.1rem;
+          font-size: 1rem;
+        }
+        p {
+          line-height: 0.7rem;
+          font-size: 12px;
+        }
+        span {
+          padding-left: 10px;
+        }
+      }
+
+      .btnMobile {
+        display: block;
+        margin: 30% 15% 20% 15%;
+        width: 70%;
+        height: 50px;
+        background-color: #372e24;
+        border: none;
+        border-radius: 30px;
+        color: white;
+        font-family: "Montserrat";
+        font-size: 14px;
+
+        text-align: center;
+      }
+    }
+  }
+}
+
+// ----------\\----------\\-----------\\------
+
+//Grid
+//Swiper Vertical
+.verticalSwiper {
+  margin-top: 40%;
+
+  .iconUp,
+  .iconDown {
+    margin-left: 38%;
+  }
+  .iconLeftMobile,
+  .iconRightMobile {
+    display: none !important;
+  }
+  .swiper {
+    height: 73vh;
+    :global(.swiper) {
+      height: 100vh;
+    }
+
+    :global(.swiper-wrapper) {
+      position: absolute;
+      padding-left: 30%;
+      height: 100vh;
+    }
+    .dress {
+      width: 33%;
+    }
+  }
+}
+
+// ----------\\----------\\-----------\\------
+
+@media only screen and (max-width: 900px) {
+  .verticalSwiper {
+    margin-top: 0;
+    position: relative;
+
+    .swiper {
+      margin: 10% 0 0 15%;
+      height: 20vh;
+      position: relative;
+
+      :global(.swiper-wrapper) {
+        padding-left: 0;
+      }
+      :global(.swiper) {
+        height: 10vh;
+      }
+      .dress {
+        width: 80%;
+      }
+    }
+
+    .iconUp,
+    .iconDown {
+      display: none !important;
+      margin-left: 0%;
+    }
+    .iconLeftMobile,
+    .iconRightMobile {
+      display: inline-block !important;
+      position: absolute;
+    }
+
+    .iconRightMobile {
+      position: absolute;
+      left: 97%;
+      top: 2%;
+    }
+  }
+}
+
+// Bigger than 1400px static
+
+@media only screen and (min-width: 1400px) {
+  .background_container {
+    .product_container {
+      width: 1400px;
+      margin: 0 auto;
+
+      //Grid
+      //Swiper Vertical
+
+      //Image mainDress
+      .main_dress {
+        margin-top: 30%;
+      }
+
+      //Description
+      .text_dress {
+        margin-top: 23%;
+
+        .colors {
+          display: flex;
+        }
+
+        .color {
+          display: flex;
+        }
+
+        .each_color {
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          margin: 5px;
+        }
+
+        h3,
+        p,
+        h4 {
+          line-height: 30px;
+          padding-bottom: 2%;
+        }
+
+        h4 {
+          font-size: 1.3rem;
+        }
+
+        h3 {
+          font-size: 25px;
+        }
+
+        span {
+          text-decoration: line-through;
+          padding-left: 12px;
+          font-size: 20px;
+        }
+
+        .btn {
+          width: 60%;
+          height: 50px;
+          background-color: #372e24;
+          border: none;
+          border-radius: 30px;
+          color: white;
+          font-family: "Montserrat";
+          font-size: 1rem;
+        }
+
+        .description {
+          width: 90%;
+          line-height: 30px;
+
+          &_flex {
+            width: 75%;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+
+      //Similar Products
+      .similar_container {
+        width: 1300px;
+      }
+    }
+  }
+}
