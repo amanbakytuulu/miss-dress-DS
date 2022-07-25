@@ -1,0 +1,50 @@
+@import "src/styles/vars";
+
+.main_container {
+  height: 100%;
+  background-color: $background-color;
+  padding: 8% 6%;
+
+  .container {
+    .orderId {
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding-right: 5%;
+    }
+    article {
+      .grid {
+        padding-left: 1%;
+
+        .newPrice {
+          font-size: 1.6rem;
+          font-weight: 500;
+        }
+        .oldPrice {
+          text-decoration: line-through;
+        }
+        .description {
+          line-height: 1.7rem;
+          p {
+            font-weight: lighter;
+            font-size: 0.9rem;
+
+            span {
+              font-weight: 500;
+            }
+          }
+
+          .title {
+            font-weight: 500;
+            font-size: 1.2rem;
+          }
+        }
+      }
+      .lineThrough {
+        margin: 2% 0;
+      }
+      img {
+        width: 80%;
+      }
+    }
+  }
+}

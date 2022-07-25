@@ -1,0 +1,45 @@
+@import "src/styles/vars";
+
+.container {
+  padding: 10% 5%;
+  background-color: $background-color;
+
+  hr {
+    width: 60%;
+  }
+  h2 {
+    margin-bottom: 10px;
+  }
+  .css-zow5z4-MuiGrid-root > .MuiGrid-item {
+    padding: 0;
+  }
+  .gridContainer {
+    margin-top: 2%;
+    .empty_div {
+      width: 16%;
+      height: 92%;
+      background-color: #f1dac5;
+      margin-top: 2%;
+      
+
+      &_text {
+        font-size: 2rem;
+        text-align: center;
+        margin: 60% 0;
+      }
+    }
+    .images {
+      display: flex;
+      padding-left: 2%;
+      img {
+        width: 20%;
+        padding: 2% 3% 0 0;
+      }
+    }
+
+    .price {
+      margin-top: 22%;
+      font-size: 1.5rem;
+    }
+  }
+}

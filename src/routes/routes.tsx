@@ -18,6 +18,7 @@ import {
   ProductPage,
   CategoriesPage,
   DeliveryPage,
+  DeliveryOrder,
   AboutUs,
   ContactsPage,
   CartPage,
@@ -50,6 +51,10 @@ export const PUBLIC_ROUTES = [
   {
     path: DELIVERY_PAGE,
     Component: <DeliveryPage />,
+  },
+  {
+    path: DELIVERY_PAGE + "/:5",
+    Component: <DeliveryOrder />,
   },
   {
     path: CATEGORIES_PAGE,
