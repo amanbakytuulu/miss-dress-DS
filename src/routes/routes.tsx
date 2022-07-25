@@ -10,6 +10,8 @@ import {
   FAVORITES_PAGE,
   PRODUCT_PAGE,
   ERROR_PAGE,
+  COLLECTION_PAGE,
+  COLLECTION_PRODUCTS_PAGE,
 } from "../utils/path";
 
 import {
@@ -23,6 +25,8 @@ import {
   CartPage,
   MainPage,
   FavoritesPage,
+  CollectionPage,
+  CollectionProductsPage,
 } from "../pages";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
@@ -74,6 +78,14 @@ export const PUBLIC_ROUTES = [
   {
     path: FAVORITES_PAGE,
     Component: <FavoritesPage />,
+  },
+  {
+    path: COLLECTION_PAGE,
+    Component: <CollectionPage />,
+  },
+  {
+    path: COLLECTION_PRODUCTS_PAGE,
+    Component: <CollectionProductsPage />,
   },
 ];
 

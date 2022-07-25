@@ -8,6 +8,8 @@ import ContactsPage from "./ContactsPage/ContactsPage";
 import AboutUs from "./AboutUsPage/AboutUs";
 import MainPage from "./MainPage/MainPage";
 import FavoritesPage from "./FavoritesPage/FavoritesPage";
+import CollectionPage from "./CollectionPage/CollectionPage";
+import CollectionProductsPage from "./CollectionPage/CollectionProductsPage";
 
 export {
   ProductPage,
@@ -20,4 +22,6 @@ export {
   MainPage,
   ProfilePage,
   FavoritesPage,
+  CollectionPage,
+  CollectionProductsPage,
 };

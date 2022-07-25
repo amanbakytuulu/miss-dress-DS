@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 import classes from "../style.module.scss";
 
-const ImagesCard = ({ item, btnTitle }: any) => {
+const ImagesCard = ({ item, btnTitle, path }: any) => {
   const [changeColor, setColor] = useState(false);
+  console.log(path);
+
   return (
     <Grid className={classes.btnDiv}>
       <img className={classes.categoryImg} src={item.img} alt="" />
@@ -21,7 +23,7 @@ const ImagesCard = ({ item, btnTitle }: any) => {
             color: changeColor ? "#372E24" : "#F1DAC5",
             textDecoration: "none",
           }}
-          to="/categories"
+          to="{path}"
         >
           {btnTitle}
         </Link>

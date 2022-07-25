@@ -8,10 +8,9 @@ export const productFavoritesApi = createApi({
   tagTypes: ["ProductFavorites"],
   endpoints: (build) => ({
     fetchProductFavorites: build.query({
-      query: () => ({
-        url: "/product/list/favorites",
-      }),
-      providesTags: ["ProductFavorites"],
+      query: () => `favorites`,
     }),
   }),
 });
+
+export const { useFetchProductFavoritesQuery } = productFavoritesApi;
