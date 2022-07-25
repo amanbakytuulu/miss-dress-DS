@@ -29,7 +29,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
   const { closeModal } = useContext(ModalContext) as IModal;
   const {
     register,
-    formState: { errors, isValid, touchedFields },
+    formState: { errors },
     handleSubmit,
   } = useForm<ValidationValues>({
     mode: "onChange",
@@ -73,13 +73,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
               />
             </div>
             <div className={classes.modalButton}>
-              <Button
-                disabled={!isValid}
-                onClick={handleAccept}
-                type={"submit"}
-              >
-                Подтвердить
-              </Button>
+              <Button type={"submit"}>Подтвердить</Button>
             </div>
             <Link className={classes.modalSupport} to={ERROR_PAGE}>
               Не пришло SMS?

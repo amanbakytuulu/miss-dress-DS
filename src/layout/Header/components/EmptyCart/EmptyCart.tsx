@@ -1,10 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { ReactComponent as CartIcon } from "../../../../assets/header/cartIcon.svg";
+import { Button } from "../../../../components/common";
 
 import classes from "./EmptyCart.module.scss";
 
-const EmptyCart = () => {
+interface EmptyCartProps {
+  closeCart: () => void;
+}
+
+const EmptyCart: FC<EmptyCartProps> = ({ closeCart }) => {
   return (
     <div className={classes.emptyCart}>
       <div className={classes.emptyCartInner}>
@@ -12,7 +17,7 @@ const EmptyCart = () => {
           <CartIcon />
         </i>
         <p>Ваша корзина пуста</p>
-        <button>Продолжить покупки</button>
+        <Button onClick={closeCart}>Продолжить покупки</Button>
       </div>
     </div>
   );
