@@ -24,14 +24,17 @@ const CartItem = () => {
           <div className={classes.cartItemHeader}>
             <div className={classes.cartItemHeaderText}>
               <h4 className={classes.cartItemTitle}>Benito Kate Wrap Dress</h4>
-              <p className={classes.cartItemTextInfo}>
+              <p className={classes.cartItemSeries}>
                 <span>Артикул:</span> <strong>Платья</strong>
               </p>
-              <p className={classes.cartItemTextInfo}>
+              <p className={classes.cartItemSize}>
                 <span>Размер:</span> <strong>14-29</strong>
               </p>
-              <p className={classes.cartItemTextInfo}>
+              <p className={classes.cartItemColor}>
                 <span>Цвет:</span> <strong>Черный</strong>
+              </p>
+              <p className={classes.cartItemQuantity}>
+                <span>Кличество товара в линейке:</span> <strong>5</strong>
               </p>
             </div>
             <span className={classes.cartItemCross}>
@@ -52,7 +55,7 @@ const CartItem = () => {
               </button>
             </div>
 
-            <span>5990</span>
+            <span className={classes.cartItemPrice}>5990</span>
           </div>
         </div>
       </div>

@@ -16,6 +16,9 @@
   }
   .orderCheckEditBtn {
     width: 200px;
+    @include md {
+      width: 100%;
+    }
   }
 
   @include md {
