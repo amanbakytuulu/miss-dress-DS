@@ -39,3 +39,11 @@
     transition: background-color 5000s ease-in-out 0s;
   }
 }
+.error {
+  display: inline-block;
+  font-size: 14px;
+  width: 100%;
+  padding-left: 10px;
+  text-align: start;
+  color: $error-text;
+}

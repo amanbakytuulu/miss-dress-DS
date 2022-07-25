@@ -8,6 +8,7 @@ import {
   DELIVERY_PAGE,
   CATEGORIES_PAGE,
   PRODUCT_PAGE,
+  SEARCH_PAGE,
   ERROR_PAGE,
 } from "../utils/path";
 
@@ -21,8 +22,9 @@ import {
   ContactsPage,
   CartPage,
   MainPage,
+  ErrorPage,
+  SearchPage,
 } from "../pages";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -64,6 +66,10 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductInfo />,
+  },
+  {
+    path: SEARCH_PAGE,
+    Component: <SearchPage />,
   },
   {
     path: ERROR_PAGE,
