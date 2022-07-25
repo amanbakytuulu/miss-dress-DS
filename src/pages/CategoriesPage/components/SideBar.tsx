@@ -6,11 +6,27 @@ import classes from "../CategoryPage.module.scss";
 import vector from "../../../assets/categoriesPage/Vector.svg";
 import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";
 
+interface IObjectItems {
+  title: string;
+  sub: {
+    first: string;
+    second: string;
+    trench: string;
+    trenchVar: {
+      autumn: string;
+      spring: string;
+    };
+  };
+}
+interface IBarItems {
+  title: string;
+  path: string;
+}
 const SideBar = () => {
-  const [verh, setVerh] = useState(false);
-  const [verh2, setVerh2] = useState(false);
-  const [show, setShow] = useState(false);
-  const sideBarObj = {
+  const [verh, setVerh] = useState<boolean>(false);
+  const [verh2, setVerh2] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
+  const sideBarObj: IObjectItems = {
     title: "Верхняя одежда",
     sub: {
       first: "Пальто",
@@ -23,7 +39,7 @@ const SideBar = () => {
     },
   };
 
-  const barItems = [
+  const barItems: IBarItems[] = [
     {
       title: "Платья",
       path: "#",

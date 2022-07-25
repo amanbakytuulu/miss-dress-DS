@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { userSignUpSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+
 import { InputField, Button } from "../../common";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
@@ -129,7 +131,11 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
           </div>
         </form>
       ) : (
-        <VerificationForm title="Регистрация" setUserEnter={setUserEnter} />
+        <VerificationForm
+          title="Регистрация"
+          setUserEnter={setUserEnter}
+          modalSuccessBody={userSignUpSuccess}
+        />
       )}
     </>
   );

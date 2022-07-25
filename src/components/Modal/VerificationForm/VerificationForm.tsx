@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { ModalContext } from "../Modal";
 
+import { IModalSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+
 import SuccessModal from "../SuccessModal/SuccessModal";
 import { useTimer } from "../../../hooks/useTimer";
 import { ERROR_PAGE } from "../../../utils/path";
@@ -12,18 +14,21 @@ import { InputField, Button } from "../../common";
 
 import classes from "./VerificationForm.module.scss";
 
-interface VerificationFormProps {
-  title?: string;
-  setUserEnter: (value: boolean) => void;
-}
-
 type ValidationValues = {
   verificationCode: string;
 };
+interface VerificationFormProps {
+  title?: string;
+  setUserEnter?: (value: boolean) => void;
+  modalSuccessBody: IModalSuccess;
+  setContinue?: (value: boolean) => void;
+}
 
 const VerificationForm: FC<VerificationFormProps> = ({
   title,
   setUserEnter,
+  modalSuccessBody,
+  setContinue,
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { closeModal } = useContext(ModalContext) as IModal;
@@ -43,7 +48,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
     restart(60);
   };
   const handleAccept = () => {
-    setUserEnter(true);
+    setUserEnter && setUserEnter(true);
     if (title?.toLowerCase() === "вход") return closeModal();
     setIsSuccess(true);
   };
@@ -73,11 +78,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
               />
             </div>
             <div className={classes.modalButton}>
-              <Button
-                disabled={!isValid}
-                onClick={handleAccept}
-                type={"submit"}
-              >
+              <Button onClick={handleAccept} type={"submit"}>
                 Подтвердить
               </Button>
             </div>
@@ -103,7 +104,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
           </div>
         </form>
       ) : (
-        <SuccessModal />
+        <SuccessModal setContinue={setContinue} modalBody={modalSuccessBody} />
       )}
     </>
   );

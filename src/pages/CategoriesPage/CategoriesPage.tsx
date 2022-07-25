@@ -19,6 +19,7 @@ import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import { dataArray } from "../MainPage/Products/Data/db";
+import { MAIN_PAGE, PROFILE_PAGE } from "../../utils/path";
 
 import Select from "./components/Select";
 
@@ -28,7 +29,7 @@ const CategoryPage = () => {
   const btnTitle = "Открыть";
   const items = dataArray;
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 1;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -45,9 +46,9 @@ const CategoryPage = () => {
         <Grid className={classes.mainGrid} container spacing={2}>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
+              <Link to={MAIN_PAGE}>Главная</Link>
               <span>/</span>
-              <Link to="/#">Товары</Link>
+              <Link to={PROFILE_PAGE}>Профиль</Link>
             </div>
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>

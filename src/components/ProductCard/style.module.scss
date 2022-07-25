@@ -84,13 +84,15 @@
 .titleP {
   font-size: 24px;
   font-weight: lighter;
-  height: 40px;
+  max-height: 70px;
   margin-top: 0;
+  overflow: hidden;
 }
 
 .sizeP {
   font-size: 20px;
   font-weight: lighter;
+  margin-bottom: 10px;
 }
 .iconsDiv {
   display: flex;
@@ -152,6 +154,9 @@
   .titleP {
     font-size: 12px;
   }
+  .sizeP {
+    font-size: 12px;
+  }
 }
 @media (max-width: 500px) {
   .iconsDiv img {
@@ -193,6 +198,9 @@
     width: 16px;
   }
   .titleP {
+    font-size: 10px;
+  }
+  .sizeP {
     font-size: 10px;
   }
 }

@@ -8,9 +8,13 @@ import skirts from "../../../../assets/mainPage/categories/third.png";
 import classes from "../style.module.scss";
 import ImagesCard from "../../../../components/ProductCard/components/ImagesCard";
 
+interface ICategoryItems {
+  img: string;
+  category: string;
+}
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-  const categoryItems = [
+  const categoryItems: ICategoryItems[] = [
     {
       img: jeans,
       category: "Джинсы",

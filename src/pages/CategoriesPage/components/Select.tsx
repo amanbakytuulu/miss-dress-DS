@@ -5,10 +5,14 @@ import vector from "../../../assets/categoriesPage/Vector.svg";
 
 import classes from "../CategoryPage.module.scss";
 
+interface ISortItems {
+  title: string;
+  path: string;
+}
 const Select = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
 
-  const sort = [
+  const sort: ISortItems[] = [
     {
       title: "По обновлению",
       path: "/#",
