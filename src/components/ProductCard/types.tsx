@@ -16,4 +16,3 @@ export interface IProductCard {
   item: IItemCard;
   btnTitle: string;
 }
-
