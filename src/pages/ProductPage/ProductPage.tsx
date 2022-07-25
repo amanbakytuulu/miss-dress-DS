@@ -140,8 +140,8 @@ const ProductPage: FC = () => {
               },
             }}
           >
-            {similarDresses.map((el: any) => (
-              <SwiperSlide key={el.id}>
+            {similarDresses.map((el, index) => (
+              <SwiperSlide key={index}>
                 <ProductCard item={el} btnTitle="Открыть" />
               </SwiperSlide>
             ))}
@@ -150,7 +150,9 @@ const ProductPage: FC = () => {
             <Icon size={55} icon={caretRight} />
           </div>
         </div>
-        <button className={styles.btnMobile}>Смотреть все товары</button>
+        <div className={styles.btnMobileDiv}>
+          <button className={styles.btnMobile}>Смотреть все товары</button>
+        </div>
       </div>
     </div>
   );
