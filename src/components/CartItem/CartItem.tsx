@@ -54,8 +54,11 @@ const CartItem = () => {
                 +
               </button>
             </div>
-
-            <span className={classes.cartItemPrice}>5990</span>
+            <div className={classes.cartItemPrice}>
+              <span className={classes.cartItemCurrentPrice}>5990</span>
+              <br />
+              <s className={classes.cartItemOldPrice}>7990</s>
+            </div>
           </div>
         </div>
       </div>

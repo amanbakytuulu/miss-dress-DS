@@ -17,7 +17,7 @@ const arr: ICartList[] = [
     title: "name",
   },
   {
-    title: "name",
+    title: "name2",
   },
 ];
 

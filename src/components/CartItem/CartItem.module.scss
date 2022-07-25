@@ -3,7 +3,7 @@
 
 .cartItem {
   width: 100%;
-  height: 270px;
+  //height: 270px;
   max-height: 280px;
   padding: 15px;
   background-color: $primary-beige;
@@ -120,7 +120,16 @@
         }
 
         .cartItemPrice {
-          font-size: 1.2em;
+          text-align: end;
+          .cartItemCurrentPrice {
+            font-size: 1.2em;
+          }
+          .cartItemOldPrice {
+            font-size: 1em;
+            @include xsm-2 {
+              display: none;
+            }
+          }
         }
       }
     }
