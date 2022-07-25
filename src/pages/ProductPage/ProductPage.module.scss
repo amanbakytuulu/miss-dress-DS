@@ -114,8 +114,7 @@
 }
 
 // ----------\\----------\\-----------\\------
-
-@include md {
+@media only screen and (max-width: 900px) {
   .background_container {
     height: 270vh;
     .product_container {
@@ -129,6 +128,13 @@
 
         .btn {
           width: 50%;
+          height: 50px;
+          background-color: #372e24;
+          border: none;
+          border-radius: 30px;
+          color: white;
+          font-family: "Montserrat";
+          font-size: 1rem;
           margin: 5% 25%;
           text-align: center;
         }
@@ -170,13 +176,19 @@
     }
   }
 }
-// @media only screen and (max-width: 900px) {
-// }
 
-@include sm {
+@media only screen and (max-width: 750px) {
   .background_container {
     height: 230vh;
     .product_container {
+      .text_dress {
+        .each_color {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          margin: 3px;
+        }
+      }
       .similar_container {
         .similar_swiper_right {
           margin-top: -55%;
@@ -188,8 +200,6 @@
     }
   }
 }
-// @media only screen and (max-width: 750px) {
-// }
 
 @include xsm-2 {
   .background_container {
@@ -325,8 +335,6 @@
     }
   }
 }
-// @media only screen and (max-width: 900px) {
-// }
 
 // -----------------1400 and bigger -------------------------
 @media only screen and (min-width: 1400px) {
