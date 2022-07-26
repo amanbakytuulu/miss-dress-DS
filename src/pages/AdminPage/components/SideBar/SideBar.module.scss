@@ -1,0 +1,22 @@
+@import "src/styles/vars";
+
+.sideBar {
+  flex: 1;
+  background-color: $beige-background;
+  padding: 0 30px;
+  min-height: 100vh;
+  .top {
+    height: 100px;
+    i {
+      display: inline-block;
+      height: 100%;
+      svg {
+        height: 100%;
+      }
+    }
+  }
+
+  .center{
+
+  }
+}
