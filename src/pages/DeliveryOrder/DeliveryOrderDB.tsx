@@ -75,3 +75,17 @@ export interface IMyOrder {
   newPrice: string;
   orders: Array<IOrders>;
 }
+
+export const orderInfo = {
+  to: "Манки Д. Луффи",
+  number: "+996712345678 ",
+  address: "Кыргызстан, г. Бишкек",
+  total: "23960",
+};
+
+export interface IOrderInfo {
+  to: string;
+  number: string;
+  address: string;
+  total: string;
+}

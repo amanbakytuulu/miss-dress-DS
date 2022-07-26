@@ -4,7 +4,13 @@ import { Grid } from "@mui/material";
 
 import styles from "./DeliveryOrder.module.scss";
 
-import { myOrder, IMyOrder, IOrders } from "./DeliveryOrderDB";
+import {
+  myOrder,
+  IMyOrder,
+  IOrders,
+  IOrderInfo,
+  orderInfo,
+} from "./DeliveryOrderDB";
 
 const DeliveryOrder: FC = () => {
   return (
@@ -57,10 +63,10 @@ const DeliveryOrder: FC = () => {
               <p>Итого к оплате: </p>
             </Grid>
             <Grid item md={9} xs={6} className={styles.answers}>
-              <p>Манки Д. Луффи </p>
-              <p>+996712345678 </p>
-              <p>Кыргызстан, г. Бишкек </p>
-              <p>23960 с. </p>
+              <p>{orderInfo.to}</p>
+              <p>{orderInfo.number}</p>
+              <p>{orderInfo.address}</p>
+              <p>{orderInfo.total}</p>
             </Grid>
           </Grid>
         </div>
