@@ -33,7 +33,8 @@
     "lint": "eslint --ext .ts,.tsx src --fix"
   },
   "prettier": {
-    "singleQuote": false
+    "singleQuote": false,
+    "endOfLine": "auto"
   },
   "browserslist": {
     "production": [

@@ -18,7 +18,7 @@ import { Modal } from "../../components";
 import SignInForm from "../../components/Modal/SignInForm/SignInForm";
 import LoginInForm from "../../components/Modal/LoginInForm/LoginInForm";
 
-import { BURGER, MODAL } from "../../utils/helpers/modalHelper";
+import { BURGER, MODAL } from "../../utils/modalHelper";
 
 import HeaderNav from "./HeaderNav/HeaderNav";
 import HeaderNavIcons from "./HeaderNavIcons/HeaderNavIcons";

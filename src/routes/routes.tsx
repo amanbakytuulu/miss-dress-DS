@@ -10,6 +10,7 @@ import {
   PRODUCT_PAGE,
   SEARCH_PAGE,
   ERROR_PAGE,
+  ADMIN_PAGE_DASHBOARD,
 } from "../utils/path";
 
 import {
@@ -25,6 +26,7 @@ import {
   ErrorPage,
   SearchPage,
 } from "../pages";
+import { DashBoard } from "../pages/AdminPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -79,7 +81,7 @@ export const PUBLIC_ROUTES = [
 
 export const PRIVATE_ROUTES = [
   {
-    path: ADMIN_PAGE,
-    Component: <ProfilePage />,
+    path: ADMIN_PAGE_DASHBOARD,
+    Component: <DashBoard />,
   },
 ];

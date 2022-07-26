@@ -2,6 +2,7 @@ const MAIN_PAGE = "/";
 const ERROR_PAGE = "/error";
 const PROFILE_PAGE = "/profile";
 const ADMIN_PAGE = "/admin";
+const ADMIN_PAGE_DASHBOARD = "/admin/dashboard";
 const LOGIN_PAGE = "/login";
 const CATEGORIES_PAGE = "/categories";
 const DELIVERY_PAGE = "/delivery";
@@ -30,4 +31,5 @@ export {
   ORDERS_PAGE,
   FAVORITES_PAGE,
   SEARCH_PAGE,
+  ADMIN_PAGE_DASHBOARD,
 };

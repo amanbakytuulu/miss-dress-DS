@@ -21,7 +21,7 @@ import {
   MODAL,
   PROFILE_NAV,
   SEARCH,
-} from "../../../utils/helpers/modalHelper";
+} from "../../../utils/modalHelper";
 
 import CartList from "../components/CartList/CartList";
 

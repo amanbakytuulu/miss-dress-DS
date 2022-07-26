@@ -4,7 +4,7 @@ import { ReactComponent as WhatsAppIcon } from "../../assets/icons/contactIcons/
 import { ReactComponent as TelegramIcon } from "../../assets/icons/contactIcons/telegramIcon.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/icons/contactIcons/instagramIcon.svg";
 
-import { ISocialTypes } from "../../types/SocialTypes/SocialTypes";
+import { ISocialTypes } from "../../types/socialTypes/socialTypes";
 
 import SocialList from "./SocialList/SocialList";
 

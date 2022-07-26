@@ -1,5 +1,5 @@
 import ProfilePage from "./ProfilePage/ProfilePage";
-import ProductInfo from "./AdminPage/components/ProductInformation/ProductInfo";
+import ProductInfo from "./AdminPage/ProductInformation/ProductInfo";
 import ProductPage from "./ProductPage/ProductPage";
 import CategoriesPage from "./CategoriesPage/CategoriesPage";
 import DeliveryPage from "./DeliveryPage/DeliveryPage";
@@ -9,6 +9,7 @@ import AboutUs from "./AboutUsPage/AboutUs";
 import MainPage from "./MainPage/MainPage";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import SearchPage from "./SearchPage/SearchPage";
+import DashBoard from "./AdminPage/DashBoard/DashBoard";
 
 export {
   ProductPage,
@@ -22,4 +23,5 @@ export {
   ProfilePage,
   ErrorPage,
   SearchPage,
+  DashBoard,
 };

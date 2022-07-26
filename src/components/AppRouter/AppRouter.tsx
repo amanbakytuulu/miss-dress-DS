@@ -5,7 +5,7 @@ import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "../../routes/routes";
 import { ERROR_PAGE } from "../../utils/path";
 
 const AppRouter: FC = () => {
-  const isAuth = false;
+  const isAuth = true;
   return (
     <Routes>
       {isAuth &&
