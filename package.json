@@ -32,8 +32,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx src --fix"
   },
-  "prettier": {
-    "singleQuote": false
+   "prettier": {
+    "singleQuote": false,
+    "endOfLine": "auto"
   },
   "browserslist": {
     "production": [
