@@ -1,11 +1,13 @@
 @import "src/styles/vars";
+@import "src/styles/mixins";
 
 .container {
   padding: 10% 5%;
+  width: 100%;
   background-color: $background-color;
 
   hr {
-    width: 60%;
+    width: 72%;
   }
   h2 {
     margin-bottom: 10px;
@@ -16,30 +18,104 @@
   .gridContainer {
     margin-top: 2%;
     .empty_div {
-      width: 16%;
+      width: 15%;
       height: 92%;
       background-color: #f1dac5;
       margin-top: 2%;
-      
-
+      border: none;
+      font-family: "Montserrat";
       &_text {
         font-size: 2rem;
         text-align: center;
         margin: 60% 0;
+        color: $black-text;
       }
     }
     .images {
       display: flex;
       padding-left: 2%;
       img {
-        width: 20%;
-        padding: 2% 3% 0 0;
+        width: 19%;
+        margin: 2% 3% 0 0;
       }
     }
 
     .price {
       margin-top: 22%;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
+  }
+}
+@include md {
+  //max-width 820
+  .container {
+    padding: 20% 5%;
+    h2 {
+      font-size: 1rem;
+    }
+    .gridContainer {
+      .price {
+        text-align: end;
+
+        font-size: 1.2rem;
+      }
+      .images {
+        padding-left: 5%;
+        img {
+          width: 21%;
+        }
+      }
+    }
+  }
+}
+@include sm {
+  //max-width 640
+  .container {
+    padding: 20% 7%;
+    font-size: 0.6rem;
+    h2 {
+      font-size: 1rem;
+    }
+    .gridContainer {
+      .images {
+        padding-left: 5%;
+        img {
+          width: 23%;
+        }
+      }
+      .empty_div {
+        width: 18%;
+
+        &_text {
+          font-size: 1.3rem;
+        }
+      }
+      .price {
+        margin-top: 0.3rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+@include xsm-2 {
+  //max-width 520
+  .container {
+    .gridContainer {
+      .price {
+        font-size: 0.9rem;
+      }
+      .empty_div {
+        &_text {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+@include xsm {
+  //max-width 380
+  .container {
+    padding: 27% 5%;
   }
 }

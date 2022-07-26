@@ -53,7 +53,7 @@ export const PUBLIC_ROUTES = [
     Component: <DeliveryPage />,
   },
   {
-    path: DELIVERY_PAGE + "/:5",
+    path: DELIVERY_PAGE + ":2",
     Component: <DeliveryOrder />,
   },
   {

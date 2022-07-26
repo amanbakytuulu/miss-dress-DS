@@ -2,35 +2,43 @@ import React, { FC } from "react";
 
 import { Grid } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
+
 import { myOrders, IMyOrders } from "./DeliveryPageDB";
 
 import styles from "./DeliveryPage.module.scss";
 
 const DeliveryPage: FC = () => {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <h2>Мои заказы</h2>
-      <hr className={styles.lineThrough}></hr>
+      <hr></hr>
       {myOrders.map((el: IMyOrders) => (
         <Grid container spacing={3} className={styles.gridContainer}>
-          <Grid item md={2} style={{ fontWeight: "bold" }}>
+          <Grid item md={3} xs={5} sm={4} style={{ fontWeight: "bold" }}>
             Заказ: {el.orderId}
           </Grid>
-          <Grid item md={9} style={{ fontWeight: "lighter" }}>
+          <Grid item md={8} xs={4} sm={6} style={{ fontWeight: "lighter" }}>
             {el.status}
           </Grid>
-          <Grid item md={1}>
+          <Grid item md={1} xs={3} sm={2}>
             {el.date}
           </Grid>
-          <Grid md={11.2} xs={12} className={styles.images}>
+          <Grid md={11} xs={12} sm={10} className={styles.images}>
             {el.img.map((el) => (
               <img src={el} alt="orderPhoto" />
             ))}
-            <div className={styles.empty_div}>
+
+            <button
+              className={styles.empty_div}
+              style={{ fontWeight: "lighter" }}
+              onClick={() => navigate(`/delivery:${el.orderId}`)}
+            >
               <p className={styles.empty_div_text}>+10</p>
-            </div>
+            </button>
           </Grid>
-          <Grid md={0.8} xs={12} className={styles.price}>
+          <Grid md={1} xs={12} sm={2} className={styles.price}>
             {el.price} с.
           </Grid>
         </Grid>

@@ -11,9 +11,10 @@ const DeliveryOrder: FC = () => {
     <div className={styles.main_container}>
       {myOrder.map((el: IMyOrder) => (
         <div className={styles.container}>
+          <h3>Мои заказы</h3>
           <p>
             <span className={styles.orderId}>Заказ {el.orderId}</span>
-            <span>{el.status}</span>
+            <span className={styles.status}>{el.status}</span>
           </p>
 
           <article>
@@ -22,10 +23,10 @@ const DeliveryOrder: FC = () => {
                 <Grid md={12} xs={12}>
                   <hr className={styles.lineThrough}></hr>
                 </Grid>
-                <Grid md={2}>
+                <Grid md={2} xs={2}>
                   <img src={el.img} alt="dress" className={styles.img} />
                 </Grid>
-                <Grid md={9} className={styles.description}>
+                <Grid md={9} xs={9} className={styles.description}>
                   <p className={styles.title}>{el.title}</p>
                   <p>
                     Артикул: <span>{el.article}</span>
@@ -40,13 +41,28 @@ const DeliveryOrder: FC = () => {
                     Количество товара в линейке: <span>{el.count}</span>
                   </p>
                 </Grid>
-                <Grid md={1}>
+                <Grid md={1} xs={1}>
                   <p className={styles.newPrice}>{el.newPrice}</p>
                   <p className={styles.oldPrice}>{el.oldPrice}</p>
                 </Grid>
               </Grid>
             ))}
           </article>
+          <hr></hr>
+          <Grid container spacing={2} className={styles.orderInfo}>
+            <Grid item md={3} xs={6} className={styles.questions}>
+              <p>Получатель: </p>
+              <p>Номер телефона: </p>
+              <p> Адрес доставки: </p>
+              <p>Итого к оплате: </p>
+            </Grid>
+            <Grid item md={9} xs={6} className={styles.answers}>
+              <p>Манки Д. Луффи </p>
+              <p>+996712345678 </p>
+              <p>Кыргызстан, г. Бишкек </p>
+              <p>23960 с. </p>
+            </Grid>
+          </Grid>
         </div>
       ))}
     </div>
