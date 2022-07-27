@@ -5,7 +5,7 @@ import vector from "../../../assets/categoriesPage/Vector.svg";
 
 import classes from "../CategoryPage.module.scss";
 
-const Select = () => {
+const Select = (props: any) => {
   const [show, setShow] = useState(false);
 
   const sort = [
@@ -26,6 +26,7 @@ const Select = () => {
       path: "/#",
     },
   ];
+
   return (
     <div className={classes.sideBarSortDiv}>
       <div onClick={() => setShow(!show)} className={classes.vectorSort}>
