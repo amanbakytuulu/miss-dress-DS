@@ -11,6 +11,7 @@ import {
   PRODUCT_PAGE,
   SEARCH_PAGE,
   ERROR_PAGE,
+  ORDERS_PAGE,
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
 } from "../utils/path";

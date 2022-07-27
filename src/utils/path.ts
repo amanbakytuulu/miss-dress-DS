@@ -16,7 +16,6 @@ const COLLECTION_PAGE = "/collection";
 const COLLECTION_PRODUCTS_PAGE = "/dresses";
 const SEARCH_PAGE = "/search";
 
-
 export {
   MAIN_PAGE,
   ERROR_PAGE,
