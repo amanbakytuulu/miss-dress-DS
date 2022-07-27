@@ -1,7 +1,11 @@
-import React from "react";
+import { FC } from "react";
 
-const DeliveryPage = () => {
-  return <div style={{ padding: "70px" }}>DELIVERY</div>;
+const DeliveryPage: FC = () => {
+  return (
+    <div>
+      <h1>Delivery </h1>
+    </div>
+  );
 };
 
 export default DeliveryPage;

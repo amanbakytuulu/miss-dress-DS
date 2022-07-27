@@ -30,6 +30,8 @@ import {
   CollectionProductsPage,
   ErrorPage,
   SearchPage,
+  OrderPage,
+  OrderDetails,
 } from "../pages";
 
 export const PUBLIC_ROUTES = [
@@ -72,6 +74,14 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductInfo />,
+  },
+  {
+    path: ORDERS_PAGE,
+    Component: <OrderPage />,
+  },
+  {
+    path: ORDERS_PAGE + ":2",
+    Component: <OrderDetails />,
   },
   {
     path: SEARCH_PAGE,
