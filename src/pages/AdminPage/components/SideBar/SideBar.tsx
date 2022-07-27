@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../../../assets/icons/logoIcon.svg";
 import { ReactComponent as DashBoardIcon } from "../../../../assets/icons/sideBarIcons/dashboardIcon.svg";
@@ -8,41 +9,63 @@ import { ReactComponent as SalesIcon } from "../../../../assets/icons/sideBarIco
 import { ReactComponent as CartIcon } from "../../../../assets/icons/sideBarIcons/cartIcon.svg";
 import { ReactComponent as AdIcon } from "../../../../assets/icons/sideBarIcons/adIcon.svg";
 import { ReactComponent as ChatIcon } from "../../../../assets/icons/sideBarIcons/chatIcon.svg";
+import { ReactComponent as ExitIcon } from "../../../../assets/header/loginIcon.svg";
 
 import { ISideBarListTypes } from "../../../../types/adminTypes/sideBarTypes";
+
+import {
+  ADMIN_PAGE_AD,
+  ADMIN_PAGE_CART,
+  ADMIN_PAGE_CHAT,
+  ADMIN_PAGE_DASHBOARD,
+  ADMIN_PAGE_PRODUCTS,
+  ADMIN_PAGE_SALES,
+  ADMIN_PAGE_USERS,
+} from "../../../../utils/path";
 
 import SidebarList from "./SideBarList/SidebarList";
 
 import classes from "./SideBar.module.scss";
-
 const sidebarList: ISideBarListTypes[] = [
   {
     icon: <DashBoardIcon />,
     title: "Dashboard",
+    path: ADMIN_PAGE_DASHBOARD,
   },
   {
-    icon: <DashBoardIcon />,
-    title: "Dashboard",
+    icon: <UserIcon />,
+    title: "Пользователи",
+    path: ADMIN_PAGE_USERS,
   },
   {
-    icon: <DashBoardIcon />,
-    title: "Dashboard",
+    icon: <ProductsIcon />,
+    title: "Товары",
+    path: ADMIN_PAGE_PRODUCTS,
   },
   {
-    icon: <DashBoardIcon />,
-    title: "Dashboard",
+    icon: <SalesIcon />,
+    title: "Продажи",
+    path: ADMIN_PAGE_SALES,
   },
   {
-    icon: <DashBoardIcon />,
-    title: "Dashboard",
+    icon: <CartIcon />,
+    title: "Корзина",
+    path: ADMIN_PAGE_CART,
   },
   {
-    icon: <DashBoardIcon />,
-    title: "Dashboard",
+    icon: <AdIcon />,
+    title: "Реклама",
+    path: ADMIN_PAGE_AD,
+  },
+  {
+    icon: <ChatIcon />,
+    title: "Чат",
+    path: ADMIN_PAGE_CHAT,
   },
 ];
 
 const SideBar = () => {
+  const { pathname } = useLocation();
   return (
     <div className={classes.sideBar}>
       <div className={classes.top}>
@@ -51,9 +74,16 @@ const SideBar = () => {
         </i>
       </div>
       <div className={classes.center}>
-        <SidebarList sideBarList={sidebarList} />
+        <SidebarList sideBarList={sidebarList} pathname={pathname} />
       </div>
-      <div className={classes.bottom}>exit btn</div>
+      <div className={classes.bottom}>
+        <button className={classes.exitButton}>
+          <i>
+            <ExitIcon />
+          </i>
+          Выйти
+        </button>
+      </div>
     </div>
   );
 };
