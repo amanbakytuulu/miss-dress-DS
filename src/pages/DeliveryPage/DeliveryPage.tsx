@@ -1,7 +1,7 @@
 import React from "react";
 
 const DeliveryPage = () => {
-  return <div>DELIVERY</div>;
+  return <div style={{ padding: "70px" }}>DELIVERY</div>;
 };
 
 export default DeliveryPage;

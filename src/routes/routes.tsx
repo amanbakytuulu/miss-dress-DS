@@ -9,6 +9,7 @@ import {
   CATEGORIES_PAGE,
   FAVORITES_PAGE,
   PRODUCT_PAGE,
+  SEARCH_PAGE,
   ERROR_PAGE,
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
@@ -27,8 +28,9 @@ import {
   FavoritesPage,
   CollectionPage,
   CollectionProductsPage,
+  ErrorPage,
+  SearchPage,
 } from "../pages";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -70,6 +72,10 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductInfo />,
+  },
+  {
+    path: SEARCH_PAGE,
+    Component: <SearchPage />,
   },
   {
     path: ERROR_PAGE,

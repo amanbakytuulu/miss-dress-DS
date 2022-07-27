@@ -53,9 +53,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <i className={classes.icon} onClick={toggleCurrent(SEARCH)}>
           <SearchIcon />
         </i>
-
         {currentOpen === SEARCH && <SearchInput />}
       </div>
+
       <div className={classes.headerFav}>
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
@@ -64,15 +64,23 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
           </i>
         </Link>
       </div>
+
       <div className={classes.headerCart}>
         <i className={classes.icon} onClick={toggleCurrent(CART_LIST)}>
           <CartIcon />
           <span className={classes.counter}>{arr.length}</span>
         </i>
         {currentOpen === CART_LIST && (
-          <div>{arr.length ? <CartList cartList={arr} /> : <EmptyCart />}</div>
+          <div>
+            {arr.length ? (
+              <CartList cartList={arr} />
+            ) : (
+              <EmptyCart closeCart={toggleCurrent(CART_LIST)} />
+            )}
+          </div>
         )}
       </div>
+
       {!isUserEnter ? (
         <div className={classes.headerLogin}>
           <i className={classes.icon} onClick={toggleCurrent(MODAL)}>
@@ -84,7 +92,6 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
           <i className={classes.icon} onClick={toggleCurrent(PROFILE_NAV)}>
             <AccIcon />
           </i>
-
           {currentOpen === PROFILE_NAV && <HeaderNavProfile />}
         </div>
       )}

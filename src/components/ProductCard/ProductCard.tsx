@@ -8,8 +8,9 @@ import classes from "./style.module.scss";
 import ImagesCard from "./components/ImagesCard";
 import StarsComponent from "./components/StarsComponent";
 import Description from "./components/Description";
+import { IProductCard } from "./types";
 
-const ProductCard = ({ item, btnTitle }: any) => {
+const ProductCard = ({ item, btnTitle }: IProductCard) => {
   const [changeColor, setChangeColor] = useState(false);
 
   return (

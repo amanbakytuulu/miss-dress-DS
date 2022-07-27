@@ -10,6 +10,8 @@ import MainPage from "./MainPage/MainPage";
 import FavoritesPage from "./FavoritesPage/FavoritesPage";
 import CollectionPage from "./CollectionPage/CollectionPage";
 import CollectionProductsPage from "./CollectionPage/CollectionProductsPage";
+import ErrorPage from "./ErrorPage/ErrorPage";
+import SearchPage from "./SearchPage/SearchPage";
 
 export {
   ProductPage,
@@ -24,4 +26,6 @@ export {
   FavoritesPage,
   CollectionPage,
   CollectionProductsPage,
+  ErrorPage,
+  SearchPage,
 };

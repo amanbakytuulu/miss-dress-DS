@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.33.1",
+    "react-icons-kit": "^2.0.0",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
@@ -31,8 +32,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx src --fix"
   },
-  "prettier": {
-    "singleQuote": false
+   "prettier": {
+    "singleQuote": false,
+    "endOfLine": "auto"
   },
   "browserslist": {
     "production": [

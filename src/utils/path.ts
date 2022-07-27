@@ -14,6 +14,8 @@ const ORDERS_PAGE = "/orders";
 const FAVORITES_PAGE = "/favorites";
 const COLLECTION_PAGE = "/collection";
 const COLLECTION_PRODUCTS_PAGE = "/dresses";
+const SEARCH_PAGE = "/search";
+
 
 export {
   MAIN_PAGE,
@@ -32,4 +34,5 @@ export {
   FAVORITES_PAGE,
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
+  SEARCH_PAGE,
 };
