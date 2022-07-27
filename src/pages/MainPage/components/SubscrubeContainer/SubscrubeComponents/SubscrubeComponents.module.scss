@@ -1,14 +1,14 @@
 .image {
   
   &__input {
-    width: 23.75vw;
-    height: 3.5vw;
+    width: 380px;
+    height: 56px;
     border: none;
     background: rgba(241, 218, 197, 0.8);
     border-radius: 45px;
     font-weight: 300;
-    font-size: 1vw;
-    line-height: 2.4375vw;
+    font-size: 25px;
+    line-height: 39px;
     color: #795E41;
     margin: 30px 0;
     display: flex;
@@ -17,41 +17,61 @@
     outline: none;
 
   }
+}
+
+
 
   @media screen and (max-width:1440px) {
-    &__input {
+    .image__input {
    
-      width: 45vw;
+      // width: 45vw;
 
     }
   }
 
   @media screen and(max-width:1024px) {
-    &__input {
-      display: flex;
-      margin: 20px 0;
+    .image__input {
+      // display: flex;
+      // margin: 20px 0;
+    }
+
+  }
+
+  @media screen and (max-width:425px) {
+    .image__input {
+      width: 220px;
+      height: 36px;
+      background: rgba(241, 218, 197, 0.8);
+      border-radius: 45px;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 29px;
+    
+
     }
   }
-  @media screen and (max-width: 425px) {
-    &__input {
-      width: 52vw;
-      padding: 0 20px;
-      height: 46px;
-      
-    }
-  }
+  
   @media screen and (max-width: 375px) {
-    &__input {
-      width: 32vw;
+    .image__input {
+      width: 220px;
+      
       padding: 15px;
       height: 20px;
     }
   }
   @media screen and (max-width: 320px) {
-    &__input {
+    .image__input {
       padding: 10px 15px;
-      width: 37vw;
+      width: 220px;
+
 
     }
+    .image__input {
+      width: 220px;
+      
+      padding: 15px;
+      height: 20px;
+    }
+
   }
-}
+

@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import { colors } from "../../../types/modalTypes/inputTypes";
+
 import classes from "./InputField.module.scss";
 
 interface InputFieldProps {
@@ -10,6 +12,8 @@ interface InputFieldProps {
   type: string;
   alignPlaceholder?: boolean;
   inputConfig?: object;
+  color?: colors;
+  error?: string;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -19,21 +23,27 @@ export const InputField: FC<InputFieldProps> = ({
   onChange,
   alignPlaceholder,
   inputConfig,
+  color,
+  error,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     onChange && onChange(value);
   };
   return (
-    <div className={classes.formGroup}>
-      <input
-        {...inputConfig}
-        className={`${alignPlaceholder ? classes.input : ""}`}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={handleChange}
-      />
-    </div>
+    <>
+      <div className={classes.formGroup}>
+        <input
+          style={{ backgroundColor: `${color && color}` }}
+          {...inputConfig}
+          className={`${alignPlaceholder ? classes.input : ""}`}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+        />
+      </div>
+      {error && <span className={classes.error}>{error}</span>}
+    </>
   );
 };

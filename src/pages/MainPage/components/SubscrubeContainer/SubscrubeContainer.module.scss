@@ -1,57 +1,98 @@
+@import "../../../../styles/vars.scss";
+
 .image {
   &__flex {
-    
-    height: 60vw;
-    background: url(../../../../assets/Main/Subscrube/sub.jpg) ;
-    
+    background: url(../../../../assets/Main/Subscrube/sub.jpg);
+
     background-repeat: no-repeat;
     background-size: contain;
     display: flex;
-      
-    max-width: 120vh;
+    justify-content: flex-end;
+    max-width: 1150px;
     margin: 30px auto;
+    height: 750px;
   }
   &__item {
-    padding: 100px 650px;
-    position: relative;
-    font-weight: 300;
-    font-size: 32px;
-    line-height: 39px;
-    color: #5f4932;
+    // padding: 100px 650px;
+    // position: relative;
+    // font-weight: 300;
+    // font-size: 32px;
+    // line-height: 39px;
+    // display: flex;
+    // justify-content: flex-end;
+    // color: #5f4932;
   }
 
+  .inputBlock {
+    margin-bottom: 20px;
+  }
+  .error {
+
+    span {
+      color: $error-text;
+    }
+  }
   &__h3 {
     font-weight: 600;
-    font-size: 1.3vw;
-    line-height: 2.75vw;
+    font-size: 20.8px;
+    line-height: 44px;
     color: #f1dac5;
     text-align: center;
-    margin: 0;
+    
+    margin: 200px 50px;
   }
 }
 
 @media screen and(max-width:1440px) {
-  .image__flex {
-    background: url(../../../../assets/Main/Subscrube/sub.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    padding: 200px 0;
-    margin: 50px 0;
-    align-items: center;
+  // .image__flex {
+    //   background: url(../../../../assets/Main/Subscrube/sub.jpg);
+    //   background-repeat: no-repeat;
+    //   background-size: cover;
+    //   display: flex;
+    //   justify-content: center;
+    //   padding: 200px 0;
+    //   margin: 50px 0;
+    //   align-items: center;
+    // }
+    
   }
-
-  @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 1024px) {
     .image__flex {
       padding: 35px 0;
     }
   }
-
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 768px) {
     .image__flex {
-      padding: 22px 0;
-      display: flex;
+      justify-content: center;
+    }
+    .image__h3 {
+      margin: 0;
     }
   }
-}
+  @media screen and (max-width: 425px) {
+    .image__flex {
+      padding: 0;
+      display: flex;
+    }
+    .image__h3 {
+      font-weight: 600;
+      font-size: 15.8px;
+      line-height: 44px;
+      color: #f1dac5;
+    }
+    .error {
+    height: 30px;
+
+    }
+    .inputBlock {
+      width: 220px;
+      div {
+        height: 26px;
+      }
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .inputBlock {
+      margin-bottom: 20px;
+    }
+  }

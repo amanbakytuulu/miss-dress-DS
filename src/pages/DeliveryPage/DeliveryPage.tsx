@@ -11,8 +11,8 @@ const DeliveryPage = () => {
         <DeliveryComponents />
         <div className={classes.flex}>
           <div className={classes.deliv__item}>
-            <h1>Доставка</h1>
-            <p>
+            <h1 className={classes.deliv__h1}>Доставка</h1>
+            <p className={classes.deliv__p}>
               После того, как Вы сделали заказ, наши менеджеры связываются с
               Вами для подтверждения заказа (обработка заказов происходит с
               понедельника по пятницу с 10:00 до 20:00)

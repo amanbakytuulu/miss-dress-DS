@@ -1,0 +1,271 @@
+[33mcommit 6a29c9dc4cd699175257f80e3efdde30f6e5156e[m[33m ([m[1;36mHEAD -> [m[1;32mMID-12[m[33m)[m
+Author: Matvey <matvey55561@mail.ru>
+Date:   Fri Jul 22 13:31:39 2022 +0600
+
+    MID-12 -delivery
+
+[33mcommit dd3f08e64aa7485b8eb2c9b59e728e742df15169[m[33m ([m[1;31morigin/MID-12[m[33m)[m
+Author: Matvey <matvey55561@mail.ru>
+Date:   Thu Jul 21 13:22:19 2022 +0600
+
+    MID-12 fix--subscrube
+
+[33mcommit aba852533578b12a9a40416bc203cc49f9c45951[m
+Merge: dca2217 0497f2a
+Author: Matvey <matvey55561@mail.ru>
+Date:   Thu Jul 21 11:17:34 2022 +0600
+
+    Merge branch 'dev' of https://gitlab.com/erkinchik/miss-dress into MID-12
+
+[33mcommit dca221777b972ec68ffc30bbf649a2c0199c1dfc[m
+Author: Matvey <matvey55561@mail.ru>
+Date:   Wed Jul 20 19:32:43 2022 +0600
+
+    MID-12 Subscrube
+
+[33mcommit 0497f2ad00696fed00f349204720a3f93a959f8d[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/MID-35-search[m[33m)[m
+Merge: ea5a837 737d590
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Wed Jul 20 05:34:21 2022 +0000
+
+    Merge branch 'MID-9-header-modal' into 'dev'
+    
+    MID-9 add quantity cart and favorites
+    
+    See merge request erkinchik/miss-dress!10
+
+[33mcommit 737d59063f963b9695adf1215e58f95d05acd08e[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Wed Jul 20 11:32:13 2022 +0600
+
+    MID-9 add quantity cart and favorites
+
+[33mcommit ea5a8373700c1b52403095b46e24c42324d4621a[m
+Author: millana_chotubaeva <chotubaevam@gmail.com>
+Date:   Wed Jul 20 08:26:01 2022 +0600
+
+    delete EffectFade
+
+[33mcommit e8c1afb8c3e0b40fd50a02fba4217dd7532e85cb[m
+Merge: 7d344c2 e9d0b3e
+Author: millana_chotubaeva <chotubaevam@gmail.com>
+Date:   Wed Jul 20 08:21:16 2022 +0600
+
+    Merge branch 'dev' of gitlab.com:erkinchik/miss-dress into dev
+
+[33mcommit 7d344c2158a8823e788ff8c331decd1a00a32a82[m
+Author: millana_chotubaeva <chotubaevam@gmail.com>
+Date:   Wed Jul 20 08:21:11 2022 +0600
+
+    add swiper core to pagination
+
+[33mcommit e9d0b3e804bc1659f78857fbcdf5df5cce250655[m
+Merge: f04e5f4 bf7f6ae
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 13:27:21 2022 +0000
+
+    Merge branch 'MID-9-header-modal' into 'dev'
+    
+    Mid 9 header modal
+    
+    See merge request erkinchik/miss-dress!9
+
+[33mcommit bf7f6aecc78c6ddb41d6e381dc3653eedfccf4e9[m[33m ([m[1;31morigin/MID-9-header-modal[m[33m)[m
+Merge: a856e12 f04e5f4
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 19:24:20 2022 +0600
+
+    MID-9 pull from dev
+
+[33mcommit a856e12d0a16fe2777fa63b6e474e26ffdb72074[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 19:19:03 2022 +0600
+
+    MID-9 add validations for modals
+
+[33mcommit 96d9056bfd61c7b600606274bc325b907d84097b[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 16:45:25 2022 +0600
+
+    MID-9 add reusable inputs and buttons
+
+[33mcommit fd22867c1b91cb459b49c22f1c3f7bb210c71550[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 14:35:10 2022 +0600
+
+    MID-9 add context and fix some bugs
+
+[33mcommit 837dda54bb8d98318a23ed92ee650c866869cbdc[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 12:10:05 2022 +0600
+
+    MID-9 fix bug with cover drops and modals
+
+[33mcommit f04e5f4fceb92c22336738aaa23e187d382dd1dc[m
+Merge: 861fd32 e897432
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 05:33:06 2022 +0000
+
+    Merge branch 'MID-24' into 'dev'
+    
+    Mid 24
+    
+    See merge request erkinchik/miss-dress!6
+
+[33mcommit 861fd32161beda8dbf93fa4e35ce4d6d6cf4b382[m
+Merge: 7efda2e 9ca152d
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Tue Jul 19 05:32:50 2022 +0000
+
+    Merge branch 'MID-22NEW' into 'dev'
+    
+    Mid 22 new
+    
+    See merge request erkinchik/miss-dress!5
+
+[33mcommit e8974329642c66ad3224ffab16684050d9a89fe3[m
+Author: Beksultan <beks.altymyshov@gmail.com>
+Date:   Tue Jul 19 11:14:23 2022 +0600
+
+    MID-24 category page done
+
+[33mcommit 9ca152d3ce4238ca00bd075123586a643db14ab1[m
+Author: Sezim <sezim.ydyrysova@alatoo.edu>
+Date:   Tue Jul 19 10:22:49 2022 +0600
+
+    MID-22 Advantages/News
+
+[33mcommit 7efda2ed66167f81ebda960990aff34a5ba9649c[m
+Merge: a7ff71c 8105e21
+Author: millana_chotubaeva <chotubaevam@gmail.com>
+Date:   Tue Jul 19 10:07:04 2022 +0600
+
+    Merge branch 'dev' of gitlab.com:erkinchik/miss-dress into dev
+
+[33mcommit a7ff71cbb26d515e709992d0b978b90589842eff[m
+Author: millana_chotubaeva <chotubaevam@gmail.com>
+Date:   Tue Jul 19 10:06:57 2022 +0600
+
+    add SwiperCore to AutoPlay
+
+[33mcommit fee195e9c66108c7452783b7591166f61c0f63f3[m[33m ([m[1;31morigin/MID-22NEW[m[33m)[m
+Merge: fc14939 8105e21
+Author: Sezim <sezim.ydyrysova@alatoo.edu>
+Date:   Mon Jul 18 16:52:13 2022 +0600
+
+    fix
+
+[33mcommit fec44ed6aacca224133fa21d76378efc73455e7f[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Mon Jul 18 16:11:33 2022 +0600
+
+    MID-9 add fixes in headerNavIcons
+
+[33mcommit a95071e7ac50b8ee0b56d3bbff0a6c1391d555e1[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Mon Jul 18 15:25:20 2022 +0600
+
+    MID-9 add cart items and cart drop
+
+[33mcommit 7b50f10f9443050a2446fd800d310ef3bec9e1d2[m[33m ([m[1;31morigin/MID-24[m[33m)[m
+Author: Beksultan <beks.altymyshov@gmail.com>
+Date:   Mon Jul 18 14:22:50 2022 +0600
+
+    MID-24 responsive category page
+
+[33mcommit fc149397963ce320c72e98972ca01559ac68eff1[m
+Author: Sezim <sezim.ydyrysova@alatoo.edu>
+Date:   Mon Jul 18 12:20:09 2022 +0600
+
+    media queries
+
+[33mcommit 7d70b25356916626bfc4df73ad70e4ac8dd15d0d[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Mon Jul 18 02:25:24 2022 +0600
+
+    MID-9 add dropdown menu for account and burger
+
+[33mcommit 20b2af0bfa013ed93e4768257d6965631bd43c14[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Mon Jul 18 01:36:06 2022 +0600
+
+    MID-9 add some features in modal forms
+
+[33mcommit ae269df0fd2f79da827aaf7399487e142de062a6[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Sun Jul 17 20:38:02 2022 +0600
+
+    MID-9 add validations forms and fix some layout
+
+[33mcommit 7b5f4ff44aa4dd27d33146e21c248f82ef2820ab[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Sun Jul 17 20:31:23 2022 +0600
+
+    MID-9 fix timer hook
+
+[33mcommit 525fd77598f53bfeaebb4720c31f018f5a29b80b[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Sun Jul 17 16:16:33 2022 +0600
+
+    add timer hook
+
+[33mcommit a84d326225b79e9491794f5422260e6487270816[m
+Merge: 4b3e2b1 8105e21
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Sun Jul 17 16:13:49 2022 +0600
+
+    Merge branch 'dev' of https://gitlab.com/erkinchik/miss-dress into MID-9-header-modal
+
+[33mcommit f2adc79cb891b6164d9fc763cf19f45fcc9395a9[m
+Author: Beksultan <beks.altymyshov@gmail.com>
+Date:   Sat Jul 16 18:20:30 2022 +0600
+
+    MID-24 developing category page
+
+[33mcommit 8105e21575743496aa8f5655047acfb783582c2b[m
+Merge: 6c7e175 b180157
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Fri Jul 15 13:33:12 2022 +0000
+
+    Merge branch 'MID-11' into 'dev'
+    
+    Mid 24 update
+    
+    See merge request erkinchik/miss-dress!4
+
+[33mcommit b180157f0792c145fcf4d91c8b4fd1510e8b3df2[m[33m ([m[1;31morigin/MID-11[m[33m)[m
+Author: Beksultan <beks.altymyshov@gmail.com>
+Date:   Fri Jul 15 19:20:57 2022 +0600
+
+    MID-24 update
+
+[33mcommit 6c7e1753be19049daa08c4d39c1e0a1ba42307c6[m
+Merge: 9ac8334 61b16b9
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Fri Jul 15 12:36:56 2022 +0000
+
+    Merge branch 'MID-11' into 'dev'
+    
+    Mid 11 Mid 24
+    
+    See merge request erkinchik/miss-dress!3
+
+[33mcommit 61b16b9d8e415ebd7629fd8728894718d8d2e389[m
+Author: Beksultan <beks.altymyshov@gmail.com>
+Date:   Fri Jul 15 18:31:59 2022 +0600
+
+    MID-11 MID-24 done
+
+[33mcommit 4b3e2b1e8eafc575e795f86519557ec957405b5e[m
+Author: erkinchik <erkin.berdibaev@gmail.com>
+Date:   Fri Jul 15 17:22:51 2022 +0600
+
+    MID-9 add modal component and LoginIn/SignIn forms
+
+[33mcommit 9cfe0944c8897ac435fba64ef13771ca4a79efe6[m
+Author: Sezim <sezim.ydyrysova@alatoo.edu>
+Date:   Fri Jul 15 14:56:46 2022 +0600
+
+    MID-22NEW advantages and news/ media queries
+
+[33mcommit 30b4ac52d7ff4cf7b7c7bece8165228
