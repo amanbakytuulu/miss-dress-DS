@@ -51,7 +51,7 @@ const FavoritesPage = () => {
           </Grid>
           {currentPosts.map((item, index) => (
             <Grid key={index} item xs={6} md={4}>
-              <ProductCard btnTitle={btnTitle} item={item} img={heartFull} />
+              <ProductCard btnTitle={btnTitle} item={item} />
             </Grid>
           ))}
           <Grid item xs={12} md={12}>
