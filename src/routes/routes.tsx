@@ -10,6 +10,7 @@ import {
   PRODUCT_PAGE,
   SEARCH_PAGE,
   ERROR_PAGE,
+  ORDERS_PAGE,
 } from "../utils/path";
 
 import {
@@ -18,13 +19,14 @@ import {
   ProductPage,
   CategoriesPage,
   DeliveryPage,
-  DeliveryOrder,
   AboutUs,
   ContactsPage,
   CartPage,
   MainPage,
   ErrorPage,
   SearchPage,
+  OrderPage,
+  OrderDetails,
 } from "../pages";
 
 export const PUBLIC_ROUTES = [
@@ -53,10 +55,6 @@ export const PUBLIC_ROUTES = [
     Component: <DeliveryPage />,
   },
   {
-    path: DELIVERY_PAGE + ":2",
-    Component: <DeliveryOrder />,
-  },
-  {
     path: CATEGORIES_PAGE,
     Component: <CategoriesPage />,
   },
@@ -71,6 +69,14 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductInfo />,
+  },
+  {
+    path: ORDERS_PAGE,
+    Component: <OrderPage />,
+  },
+  {
+    path: ORDERS_PAGE + ":2",
+    Component: <OrderDetails />,
   },
   {
     path: SEARCH_PAGE,

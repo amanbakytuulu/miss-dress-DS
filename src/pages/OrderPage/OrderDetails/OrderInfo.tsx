@@ -2,17 +2,11 @@ import { FC } from "react";
 
 import { Grid } from "@mui/material";
 
-import styles from "./DeliveryOrder.module.scss";
+import styles from "./OrderInfo.module.scss";
 
-import {
-  myOrder,
-  IMyOrder,
-  IOrders,
-  IOrderInfo,
-  orderInfo,
-} from "./DeliveryOrderDB";
+import { myOrder, IMyOrder, IOrders, orderInfo } from "./OrderInfoDB";
 
-const DeliveryOrder: FC = () => {
+const OrderDetails: FC = () => {
   return (
     <div className={styles.main_container}>
       {myOrder.map((el: IMyOrder) => (
@@ -75,4 +69,4 @@ const DeliveryOrder: FC = () => {
   );
 };
 
-export default DeliveryOrder;
+export default OrderDetails;
