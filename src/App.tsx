@@ -8,7 +8,7 @@ import { Footer, Header } from "./layout";
 
 function App() {
   const { pathname } = useLocation();
-  const shouldShow = pathname.split("/")[0] === ADMIN_PAGE;
+  const shouldShow = pathname.split("/")[1] !== "admin";
   return (
     <div className="App">
       {shouldShow && <Header />}

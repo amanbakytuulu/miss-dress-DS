@@ -11,6 +11,12 @@ import {
   SEARCH_PAGE,
   ERROR_PAGE,
   ADMIN_PAGE_DASHBOARD,
+  ADMIN_PAGE_USERS,
+  ADMIN_PAGE_PRODUCTS,
+  ADMIN_PAGE_SALES,
+  ADMIN_PAGE_CART,
+  ADMIN_PAGE_AD,
+  ADMIN_PAGE_CHAT,
 } from "../utils/path";
 
 import {
@@ -82,6 +88,30 @@ export const PUBLIC_ROUTES = [
 export const PRIVATE_ROUTES = [
   {
     path: ADMIN_PAGE_DASHBOARD,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_USERS,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_PRODUCTS,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_SALES,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_CART,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_AD,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_CHAT,
     Component: <DashBoard />,
   },
 ];

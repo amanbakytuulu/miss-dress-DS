@@ -3,6 +3,12 @@ const ERROR_PAGE = "/error";
 const PROFILE_PAGE = "/profile";
 const ADMIN_PAGE = "/admin";
 const ADMIN_PAGE_DASHBOARD = "/admin/dashboard";
+const ADMIN_PAGE_USERS = "/admin/users";
+const ADMIN_PAGE_PRODUCTS = "/admin/products";
+const ADMIN_PAGE_SALES = "/admin/sales";
+const ADMIN_PAGE_CART = "/admin/cart";
+const ADMIN_PAGE_AD = "/admin/advertisement";
+const ADMIN_PAGE_CHAT = "/admin/chat";
 const LOGIN_PAGE = "/login";
 const CATEGORIES_PAGE = "/categories";
 const DELIVERY_PAGE = "/delivery";
@@ -32,4 +38,10 @@ export {
   FAVORITES_PAGE,
   SEARCH_PAGE,
   ADMIN_PAGE_DASHBOARD,
+  ADMIN_PAGE_CHAT,
+  ADMIN_PAGE_CART,
+  ADMIN_PAGE_AD,
+  ADMIN_PAGE_PRODUCTS,
+  ADMIN_PAGE_SALES,
+  ADMIN_PAGE_USERS,
 };
