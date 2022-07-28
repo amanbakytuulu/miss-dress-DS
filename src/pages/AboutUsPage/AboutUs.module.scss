@@ -15,7 +15,7 @@
     }
 
     p {
-      width: 70%;
+      width: 85%;
       margin: 0 auto;
       font-size: 1.3rem;
       line-height: 1.8rem;
@@ -31,13 +31,30 @@
         padding-top: 100px;
         font-size: 3rem;
       }
+      :nth-child(4) {
+        display: none;
+      }
       :last-child {
         display: none;
       }
     }
     .article:nth-child(2) {
+      :nth-child(5) {
+        display: none;
+      }
       :nth-last-child(-1n + 3) {
         width: 50%;
+      }
+    }
+    .article:nth-child(4) {
+      :nth-child(3) {
+        display: none;
+      }
+      :nth-child(4) {
+        display: none;
+      }
+      :nth-child(5) {
+        display: none;
       }
     }
     @media only screen and (max-width: 1050px) {
