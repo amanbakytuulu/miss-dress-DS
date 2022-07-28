@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { FAVORITES_PAGE } from "../../../utils/path";
+import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
 
 import { ReactComponent as SearchIcon } from "../../../assets/header/searchIcon.svg";
 import { ReactComponent as FavIcon } from "../../../assets/header/favIcon.svg";
@@ -47,6 +47,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   toggleCurrent,
   currentOpen,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>
@@ -66,19 +67,10 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
       </div>
 
       <div className={classes.headerCart}>
-        <i className={classes.icon} onClick={toggleCurrent(CART_LIST)}>
+        <i className={classes.icon} onClick={() => navigate(CART_PAGE)}>
           <CartIcon />
           <span className={classes.counter}>{arr.length}</span>
         </i>
-        {currentOpen === CART_LIST && (
-          <div>
-            {arr.length ? (
-              <CartList cartList={arr} />
-            ) : (
-              <EmptyCart closeCart={toggleCurrent(CART_LIST)} />
-            )}
-          </div>
-        )}
       </div>
 
       {!isUserEnter ? (
