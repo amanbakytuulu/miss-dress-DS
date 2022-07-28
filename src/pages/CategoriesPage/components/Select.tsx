@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import vector from "../../../assets/categoriesPage/Vector.svg";
+import vector from "../../../assets/CategoriesPage/Vector.svg";
 
 import classes from "../CategoryPage.module.scss";
 
