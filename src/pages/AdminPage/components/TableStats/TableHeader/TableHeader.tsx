@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
-import { colors } from "../../../../../types/modalTypes/inputTypes";
+import { colors } from "../../../../../types/colorTypes/colorTypes";
 
 import { InputField } from "../../../../../components/common";
 

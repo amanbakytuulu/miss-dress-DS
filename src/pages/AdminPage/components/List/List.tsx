@@ -1,5 +1,9 @@
 import React, { FC } from "react";
 
+import { colors } from "../../../../types/colorTypes/colorTypes";
+
+import { Button } from "../../../../components/common";
+
 import classes from "./List.module.scss";
 
 interface ListProps {
@@ -22,6 +26,17 @@ const List: FC<ListProps> = ({ title, itemsList }) => {
           );
         })}
       </ul>
+      <div className={classes.buttonBox}>
+        <Button
+          style={{
+            backgroundColor: colors.primary,
+            color: colors.blackText,
+            borderRadius: "18px",
+          }}
+        >
+          Посмотреть все
+        </Button>
+      </div>
     </div>
   );
 };

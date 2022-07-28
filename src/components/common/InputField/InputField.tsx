@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { colors } from "../../../types/modalTypes/inputTypes";
+import { colors } from "../../../types/colorTypes/colorTypes";
 
 import classes from "./InputField.module.scss";
 
