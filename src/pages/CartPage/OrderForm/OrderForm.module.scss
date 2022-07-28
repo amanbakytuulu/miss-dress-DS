@@ -38,6 +38,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    @include md {
+      flex-direction: column;
+      gap: 10px;
+    }
     .orderFormLeft,
     .orderFormRight {
       display: flex;
@@ -45,6 +49,9 @@
       flex-direction: column;
       gap: 10px;
       flex: 1 1;
+      @include md {
+        width: 100%;
+      }
     }
   }
 }

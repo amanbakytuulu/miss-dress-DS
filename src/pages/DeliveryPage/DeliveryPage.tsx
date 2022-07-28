@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 import classes from "../DeliveryPage/DeliveryPage.module.scss";
 

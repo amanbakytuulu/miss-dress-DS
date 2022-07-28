@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 
 import classes from "./style.module.scss";
+
 import ImagesCard from "./components/ImagesCard";
 import StarsComponent from "./components/StarsComponent";
 import Description from "./components/Description";
@@ -23,6 +24,20 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
           ))}
         </div>
         <div>
+          {/*  {item.isFav ? 
+         <img
+           onClick={() => removeFromFav(item)}
+           width={43}
+           src={changeColor ? heartFull : item.heart}
+           alt=""
+         /> :
+         <img
+         onClick={() => addToFav(item)}
+         width={43}
+         src={changeColor ? heartFull : item.heart}
+         alt=""
+         />
+          } */}
           <img
             onClick={() => setChangeColor(!changeColor)}
             width={43}

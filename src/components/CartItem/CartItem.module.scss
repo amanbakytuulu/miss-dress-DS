@@ -1,16 +1,26 @@
 @import "src/styles/vars";
+@import "src/styles/mixins";
 
 .cartItem {
   width: 100%;
+  //height: 270px;
+  max-height: 280px;
   padding: 15px;
   background-color: $primary-beige;
+
+  @include xsm-2 {
+    height: auto;
+  }
+
   .cartItemContent {
     display: flex;
     align-items: center;
+    height: 100%;
     .cartItemImage {
-      width: 33%;
+      width: 200px;
       img {
         width: 100%;
+        height: 100%;
       }
     }
 
@@ -21,20 +31,19 @@
       align-items: flex-start;
       flex-direction: column;
       justify-content: space-between;
-      gap: 20px;
+      padding: 10px;
       margin-left: 10px;
-
-      .cartItemTextInfo {
-        font-weight: 300;
-        strong {
-          font-weight: 400;
-        }
+      gap: 15px;
+      @include xsm-2 {
+        gap: 30px;
       }
+
       .cartItemHeader {
         width: 100%;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        gap: 15px;
 
         .cartItemCross {
           cursor: pointer;
@@ -42,19 +51,36 @@
 
         .cartItemHeaderText {
           text-align: start;
-          *:first-child {
-            margin: 0;
-          }
-          * {
-            margin-top: 10px;
-          }
-
-          p {
-            font-size: 1em;
-          }
           .cartItemTitle {
             font-size: 1.3em;
             font-weight: 400;
+            @include xsm-2 {
+              font-size: 1.1em;
+            }
+          }
+
+          .cartItemSeries,
+          .cartItemSize,
+          .cartItemColor,
+          .cartItemQuantity {
+            font-weight: 300;
+            strong {
+              font-weight: 400;
+            }
+          }
+
+          .cartItemQuantity,
+          .cartItemSeries {
+            @include sm {
+              display: none;
+            }
+          }
+          p {
+            font-size: 1em;
+            margin-top: 10px;
+            @include xsm-2 {
+              font-size: 1em;
+            }
           }
         }
       }
@@ -90,6 +116,19 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+          }
+        }
+
+        .cartItemPrice {
+          text-align: end;
+          .cartItemCurrentPrice {
+            font-size: 1.2em;
+          }
+          .cartItemOldPrice {
+            font-size: 1em;
+            @include xsm-2 {
+              display: none;
+            }
           }
         }
       }

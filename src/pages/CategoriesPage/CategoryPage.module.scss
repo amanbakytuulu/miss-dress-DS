@@ -1,6 +1,7 @@
 .mainDiv {
   width: 100%;
   background-color: #fff2e3;
+  font-weight: lighter;
 }
 .selectDiv {
   width: 15%;
@@ -36,6 +37,7 @@
   display: flex;
   justify-content: space-between;
   width: 20%;
+  font-weight: lighter;
 }
 .selectBlock {
   display: flex;
@@ -95,6 +97,8 @@
   background: #f1dac5;
   height: 100%;
   cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .vectorSort img {
   margin-right: 10px;
@@ -102,6 +106,7 @@
 }
 .vectorSort h4 {
   margin-left: 70px;
+  font-weight: lighter;
 }
 .vectorDivSecond {
   display: flex;
@@ -120,11 +125,15 @@
   display: block;
   width: 100%;
   background-color: #f1dac5;
-
 }
 .showDiv a{
   color: #372e24;
   text-decoration: none !important;
+  font-size: 18px;
+  margin: 3%;
+}
+.showDiv ul{
+  margin: 3%;
 }
 .mdDiv{
   position: absolute;
@@ -162,21 +171,26 @@
     left: 12%;
     width: 37%;
   }
+  .vectorSort h4 {
+    margin-left: 0;
+  }
   .sideBarSortDiv {
     z-index: 1000;
     position: absolute;
     top: 11%;
-    width: 37%;
-    left: 55%;
+    //width: 37%;
+    left: 45%;
   }
   .sideBarSortDiv ul {
-    margin-left: -27px;
-    font-size: 12px;
+    font-size: 10px;
   }
 
+  .showDiv a{
+    font-size: 12px;
+  }
   .sideBarDiv ul {
     margin-left: -27px;
-    font-size: 12px;
+    font-size: 10px;
     width: 100%;
   }
   .showFirst {
@@ -186,7 +200,7 @@
     margin-left: 0%;
   }
   .sideBarDiv h1 {
-    font-size: 14px;
+    font-size: 10px;
     padding: 0px 10px;
   }
   .selectBlock {
@@ -210,10 +224,10 @@
   }
   .selectContainer {
     width: 100%;
-    font-size: 10px;
+    font-size: 12px;
   }
   .vectorSort h4 {
-    font-size: 12px;
+    font-size: 13px;
     margin: 0;
     padding: 10px;
   }
@@ -227,6 +241,11 @@
   }
   .miniVec {
     display: block;
+  }
+  .sideBarSortDiv{
+    top:20%;
+    font-size: 30px;
+    right: 4%;
   }
 }
 
@@ -249,5 +268,18 @@
     display: flex;
     justify-content: space-between;
     width: 66%;
+  }
+}
+
+@media (max-width: 616px){
+  .vectorSort h4 {
+    margin-left:0;
+    width: 143px;
+  }
+}
+
+@media (min-width: 601px){
+  .vectorSort h4 {
+    margin-left: 21px;
   }
 }
