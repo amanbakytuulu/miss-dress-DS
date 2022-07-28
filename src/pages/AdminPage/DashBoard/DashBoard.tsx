@@ -44,13 +44,15 @@ const listOfUsers = [
 ];
 const DashBoard = () => {
   return (
-    <div className={classes.dashBoard}>
+    <div className={classes.dashboard}>
       <SideBar />
-      <div className={classes.dashBoardContainer}>
+      <div className={classes.dashboardContainer}>
         <div className={classes.header}>
-          <Profile />
+          <div className={classes.headerProfile}>
+            <Profile />
+          </div>
         </div>
-        <div className={classes.dashBoardContent}>
+        <div className={classes.dashboardContent}>
           <div className={classes.left}>
             <div className={classes.widgetsContainer}>
               <h3 className={classes.widgetsTitle}>За последние 30 дней</h3>

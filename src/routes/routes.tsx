@@ -32,7 +32,7 @@ import {
   ErrorPage,
   SearchPage,
 } from "../pages";
-import { DashBoard } from "../pages/AdminPage";
+import { DashBoard, Users, UserInformation } from "../pages/AdminPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -92,7 +92,11 @@ export const PRIVATE_ROUTES = [
   },
   {
     path: ADMIN_PAGE_USERS,
-    Component: <DashBoard />,
+    Component: <Users />,
+  },
+  {
+    path: ADMIN_PAGE_USERS + "/:id",
+    Component: <UserInformation />,
   },
   {
     path: ADMIN_PAGE_PRODUCTS,

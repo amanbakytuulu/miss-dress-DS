@@ -67,22 +67,24 @@ const sidebarList: ISideBarListTypes[] = [
 const SideBar = () => {
   const { pathname } = useLocation();
   return (
-    <div className={classes.sideBar}>
-      <div className={classes.top}>
-        <i>
-          <LogoIcon />
-        </i>
-      </div>
-      <div className={classes.center}>
-        <SidebarList sideBarList={sidebarList} pathname={pathname} />
-      </div>
-      <div className={classes.bottom}>
-        <button className={classes.exitButton}>
+    <div className={classes.sideBarWrapper}>
+      <div className={classes.sideBar}>
+        <div className={classes.top}>
           <i>
-            <ExitIcon />
+            <LogoIcon />
           </i>
-          Выйти
-        </button>
+        </div>
+        <div className={classes.center}>
+          <SidebarList sideBarList={sidebarList} pathname={pathname} />
+        </div>
+        <div className={classes.bottom}>
+          <button className={classes.exitButton}>
+            <i>
+              <ExitIcon />
+            </i>
+            Выйти
+          </button>
+        </div>
       </div>
     </div>
   );
