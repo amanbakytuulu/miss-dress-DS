@@ -12,6 +12,9 @@ const CONTACTS_PAGE = "/contacts";
 const NEWS_PAGE = "/news";
 const ORDERS_PAGE = "/orders";
 const FAVORITES_PAGE = "/favorites";
+const COLLECTION_PAGE = "/collection";
+const COLLECTION_PRODUCTS_PAGE = "/dresses";
+const SEARCH_PAGE = "/search";
 
 export {
   MAIN_PAGE,
@@ -28,4 +31,7 @@ export {
   NEWS_PAGE,
   ORDERS_PAGE,
   FAVORITES_PAGE,
+  COLLECTION_PAGE,
+  COLLECTION_PRODUCTS_PAGE,
+  SEARCH_PAGE,
 };

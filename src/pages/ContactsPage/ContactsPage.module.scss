@@ -1,0 +1,15 @@
+@import "src/styles/vars";
+
+.contactsWrapper {
+  padding: 70px;
+  background-color: $beige-background;
+  .contactsTitle {
+    font-size: 2em;
+  }
+  .phoneNumber,
+  .email,
+  .workingHours {
+    margin: 25px 0;
+    font-size: 1.2em;
+  }
+}
