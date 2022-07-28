@@ -9,7 +9,7 @@ import { colors } from "../../../../types/modalTypes/inputTypes";
 
 import ButtonImage from "../Button/Button";
 
-import SubscrubeComponents from "./SubscrubeComponents/SubscrubeComponents";
+// import SubscrubeComponents from "./SubscrubeComponents/SubscrubeComponents";
 import SubscrubeList from "./SubscrubeComponents/SubscrubeList";
 
 type SubscribeFormTypes = {

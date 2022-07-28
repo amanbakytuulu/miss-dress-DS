@@ -1,15 +1,48 @@
-@import "src/styles/vars";
-
 .contactsWrapper {
-  padding: 70px;
-  background-color: $beige-modal;
+  padding-top: 70px;
+  display: flex;
+  align-items: center;
+// margin: 88px 286px 446px ;
+margin: 20px 350px;
+  gap: 273px;
   .contactsTitle {
     font-size: 2em;
   }
-  .phoneNumber,
   .email,
   .workingHours {
     margin: 25px 0;
     font-size: 1.2em;
+  }
+} 
+.contactsFlex {
+  display: flex;
+flex-direction: column;
+
+}
+.phoneNumber {
+    font-size: 1.2em;
+    margin: 25px 0 0;
+}
+
+@media screen and (max-width:1024px) {
+  .contactsWrapper {
+    margin: 0;
+  }
+  
+
+}
+
+@media screen and (max-width: 820px) {
+    .contactsWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      }
+  
+}
+
+@media screen and (max-width: 690px) {
+  .contactsWrapper {
+    padding: 150px 30px;
   }
 }
