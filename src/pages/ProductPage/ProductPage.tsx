@@ -15,7 +15,9 @@ import mainDress from "../../assets/ProductPage/mainDress.png";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 
-import { similarDresses, dress_description } from "./productDb";
+import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+
+import { dress_description } from "./productDb";
 
 import styles from "./ProductPage.module.scss";
 
@@ -33,6 +35,9 @@ SwiperCore.use([Navigation]);
 const ProductPage: FC = () => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+
+  const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
+  const similarDresses = data?.result.data;
 
   const [color, setColors] = useState<IColors[]>([
     { id: 0, color: "#000000" },
@@ -145,7 +150,7 @@ const ProductPage: FC = () => {
               },
             }}
           >
-            {similarDresses.map((el, index) => (
+            {similarDresses?.map((el: any, index: any) => (
               <SwiperSlide key={index}>
                 <ProductCard item={el} btnTitle="Открыть" />
               </SwiperSlide>

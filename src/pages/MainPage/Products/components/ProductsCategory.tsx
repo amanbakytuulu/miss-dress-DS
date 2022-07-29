@@ -7,31 +7,22 @@ import skirts from "../../../../assets/mainPage/categories/third.png";
 
 import classes from "../style.module.scss";
 import ImagesCard from "../../../../components/ProductCard/components/ImagesCard";
+import { categoryMainApi } from "../../../../store/features/Category/categoryMain/categoryMainQuery";
 
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-  const categoryItems = [
-    {
-      img: jeans,
-      category: "Джинсы",
-    },
-    {
-      img: dresses,
-      category: "Платья",
-    },
-    {
-      img: skirts,
-      category: "Юбки",
-    },
-  ];
+
+  const data = categoryMainApi.useFetchCategoryMainQuery(6);
+  const categories = data?.data?.result.slice(0, 3);
+  console.log(categories)
 
   return (
     <Grid container spacing={2}>
-      {categoryItems.map((item, index) => (
+      {categories?.map((item: any, index: any) => (
         <Grid key={index} className={classes.categoryDiv} item xs={6} md={4}>
           <div className={classes.btnDiv}>
             <ImagesCard btnTitle={btnTitle} item={item} />
-            <h4>{item.category}</h4>
+            <h4>{item.title}</h4>
           </div>
         </Grid>
       ))}

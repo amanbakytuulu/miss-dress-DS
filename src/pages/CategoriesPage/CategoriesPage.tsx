@@ -18,7 +18,8 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-import { dataArray } from "../MainPage/Products/Data/db";
+// import { dataArray } from "../MainPage/Products/Data/db";
+import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import Select from "./components/Select";
 
@@ -26,14 +27,15 @@ import classes from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
   const btnTitle = "Открыть";
-  const items = dataArray;
+  const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
+  const items = data?.result.data;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 1;
+  const postsPerPage = 6;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items.length;
+  const currentPosts = items?.slice(indexOfFirstPost, indexOfLastPost);
+  const totalCount = items?.length;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -72,7 +74,7 @@ const CategoryPage = () => {
             <SideBar />
           </Grid>
           <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
-            {currentPosts.map((item: any) => (
+            {currentPosts?.map((item: any) => (
               <div className={classes.prod}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </div>

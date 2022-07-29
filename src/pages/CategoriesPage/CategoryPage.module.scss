@@ -1,3 +1,32 @@
+.vector{
+  margin-left: 70px;
+  cursor: pointer;
+  width: 20px;
+}
+
+.categoriesListItem {
+  font-size: 20px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.categoriesListItem a:hover {
+  color: #E6A66E !important;
+}
+
+.childrenListItem {
+  margin-left: 80px;
+  margin-bottom: 20px;
+}
+
+.childrenListItem:hover {
+  color: #E6A66E !important;
+}
+
+.childrenListItem:first-child {
+  margin-top: 20px;
+}
+
 .mainDiv {
   width: 100%;
   background-color: #fff2e3;
@@ -82,7 +111,7 @@
 }
 .ulItems a {
   cursor: pointer;
-  color: #372e24 !important;
+  color: #372e24 ;
   text-decoration: none;
 }
 .vectorDiv {
@@ -145,6 +174,7 @@
 }
 .vectorSortCategory {
   display: flex;
+  margin-bottom: 20px;
 }
 .miniVec {
   display: none;
@@ -283,3 +313,5 @@
     margin-left: 21px;
   }
 }
+
+
