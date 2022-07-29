@@ -12,7 +12,7 @@ const Description: React.FC<DescriptionProps> = ({ item }) => {
     <>
       <div className={classes.priceDiv}>
         <div className={classes.priceP}>
-          <p>{item.discount || 0}</p>
+          <p>{item.discount}</p>
           <p>{item.price}</p>
         </div>
         <div className={classes.colorDiv}>

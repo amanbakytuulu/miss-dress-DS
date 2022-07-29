@@ -52,11 +52,15 @@ const FavoritesPage = () => {
               <h2>Избранное</h2>
             </div>
           </Grid>
-          {currentPosts.map((item: any, index: any) => (
-            <Grid key={index} item xs={6} md={4}>
-              <ProductCard btnTitle={btnTitle} item={item} />
-            </Grid>
-          ))}
+          {currentPosts.length !== 0 ? (
+            currentPosts.map((item: any, index: any) => (
+              <Grid key={index} item xs={6} md={4}>
+                <ProductCard btnTitle={btnTitle} item={item} />
+              </Grid>
+            ))
+          ) : (
+            <div className={classes.empty}>Избранные пусто!</div>
+          )}
           <Grid item xs={12} md={12}>
             <CategoryPagination
               totalCount={totalCount}
