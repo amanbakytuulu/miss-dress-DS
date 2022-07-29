@@ -3,7 +3,6 @@
   cursor: pointer;
   width: 20px;
 }
-
 .categoriesDropdown{
   display: none;
 }
@@ -29,6 +28,52 @@
 
 .childrenListItem:first-child {
   margin-top: 20px;
+}
+.filterDropDown{
+  display: inline-block;
+  border: none;
+  position: relative;
+  width: 40%;
+  height: 46px;
+}
+.filterDropdownTitle{
+  font-weight: 300 !important;
+  font-size: 24px;
+  margin: 0 20px;
+}
+.filterDropdownContent{
+  display: none;
+}
+.filterDropDownContentOn{
+  display: block;
+  position: absolute;
+  background-color: #F1DAC5;
+  min-width: 100%;
+  z-index: 1;
+}
+.filterDropDownBtn{
+  background-color: #F1DAC5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+.filterDropDownBtn img{
+  width: 18px;
+}
+.filterListItem {
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  text-decoration: none;
+  text-align: right;
+  cursor: pointer;
+}
+.filterListItem:first-child{
+  margin-top: 20px;
+}
+.filterListItem:hover{
+  color: #E6A66E;
 }
 
 .mainDiv {
@@ -189,12 +234,39 @@
   background-color: #f1dac5;
 }
 
-
-
 @media (max-width: 1100px) {
   .titleP {
     font-size: 5px;
   }
+  .filterDropdownTitle{
+    font-weight: 300 !important;
+    font-size: 20px;
+    margin: 0 20px;
+  }
+  .filterDropDownBtn img{
+    width: 14px;
+  }
+  .filterListItem {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 880px) {
+  .filterDropdownTitle{
+    font-weight: 300 !important;
+    font-size: 16px;
+    margin: 0 20px;
+  }
+  .filterDropDownBtn img{
+    width: 10px;
+  }
+  .filterListItem {
+    font-size: 14px;
+  }
+  .filterListItem:first-child{
+    margin-top: 10px;
+  }
+}
 
 @media (max-width: 810px) {
   .vectorSortCategory h1{
@@ -206,16 +278,33 @@
   .vector {
     margin-left: 0px;
   }
+  .filterDropdownTitle{
+    font-weight: 300 !important;
+    font-size: 16px;
+    margin: 0 20px;
+  }
+  .filterDropDownBtn img{
+    width: 10px;
+  }
 }
 
+@media (max-width: 740px) {
+  .filterDropdownTitle{
+    font-weight: 300 !important;
+    font-size: 14px;
+    margin: 0 10px 0 10px;
+  }
+  .filterDropDownBtn img{
+    width: 10px;
+  }
 }
+
 @media (max-width: 600px) {
   .categoriesDropdown{
     display: inline-block;
     margin-left: 8.5%;
     border: none;
     position: relative;
-    background-color: hsl(29, 61%, 86%);
     width: 37.5%;
     height: 46px;
   }
@@ -248,9 +337,12 @@
   }
   .categoriesListItem {
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-left: 10px;
     text-decoration: none;
+  }
+  .categoriesListItem:first-child{
+    margin-top: 10px;
   }
   .categoriesListItem a:active {
     text-decoration: none;
@@ -268,9 +360,54 @@
   .childrenListItem:first-child {
     margin-top: 10px;
   }
+  .filterDropDown{
+    display: inline-block;
+    margin-right: 8.5%;
+    border: none;
+    position: relative;
+    width: 37.5%;
+    height: 46px;
+  }
+  .filterDropdownTitle{
+    font-weight: 300 !important;
+    font-size: 14px;
+  }
+  .filterDropdownContent{
+    display: none;
+  }
+  .filterDropDownContentOn{
+    display: block;
+    position: absolute;
+    background-color: #F1DAC5;
+    min-width: 100%;
+    z-index: 1;
+  }
+  .filterDropDownBtn{
+    background-color: #F1DAC5;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 46px;
+  }
+  .filterListItem {
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    text-align: right;
+  }
+  .filterListItem:first-child{
+    margin-top: 10px;
+  }
+  .filterListItem li:active {
+    text-decoration: none;
+  }
+  .filterListItem li:hover {
+    color: #E6A66E !important;
+  }
   .selectBlock{
     display: flex;
-    justify-content: start !important;
+    justify-content: space-between !important;
   }
   .vectorSort{
     width: 100%;
@@ -281,16 +418,15 @@
     margin: 0 auto;
   }
   .vectorSort img {
-    margin: 0 !important;
+    margin: 0 20px 0 -20px!important;
   }
   .sideBarSortDiv {
-    z-index: 1000;
-    position: absolute;
-    top: 11%;
-    //width: 37%;
-    left: 54%;
     display: flex;
     justify-content: end;
+    margin-right: 8.5%;
+  }
+  .sideBarSortDiv h4{
+    padding: 0 !important;
   }
   .sideBarSortDiv ul {
     font-size: 10px;
@@ -304,10 +440,6 @@
   }
   .showSecond {
     margin-left: 0%;
-  }
-  .selectBlock {
-    display: flex;
-    justify-content: space-around;
   }
   .mediumH {
     display: none;
@@ -336,11 +468,6 @@
   }
   .miniVec {
     display: block;
-  }
-  .sideBarSortDiv{
-    top:112px;
-    font-size: 30px;
-    right: 11%;
   }
 }
 

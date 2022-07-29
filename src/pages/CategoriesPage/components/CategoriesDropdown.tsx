@@ -9,7 +9,6 @@ import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";
 import { categoryApi } from "../../../store/features/Category/category/categoryQuery";
 
 const CategoriesDropdown = () => {
-  const [show, setShow] = useState(false);
   const [showChild, setShowChild] = useState(false);
   const [openDd, setOpenDd] = useState(false);
 
@@ -18,11 +17,20 @@ const CategoriesDropdown = () => {
 
   return (
     <div className={classes.categoriesDropdown}>
-      <div className={classes.categoriesDropDownBtn} onClick={() => setOpenDd(!openDd)}>
+      <div
+        className={classes.categoriesDropDownBtn}
+        onClick={() => setOpenDd(!openDd)}
+      >
         <h2 className={classes.categoriesDropdownTitle}>Категория</h2>
-        <img src={show ? vectorfull : vector} />
+        <img src={openDd ? vectorfull : vector} />
       </div>
-      <div className={openDd ? classes.categoriesDropdownContentOn : classes.categoriesDropdownContent}>
+      <div
+        className={
+          openDd
+            ? classes.categoriesDropdownContentOn
+            : classes.categoriesDropdownContent
+        }
+      >
         <ul>
           {categories?.map((item: any) => {
             return (
