@@ -21,6 +21,8 @@ import CategoryPagination from "../../components/Pagination/CategoryPagination";
 // import { dataArray } from "../MainPage/Products/Data/db";
 import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
+import CategoriesDropdown from "./components/CategoriesDropdown";
+
 import Select from "./components/Select";
 
 import classes from "./CategoryPage.module.scss";
@@ -55,9 +57,7 @@ const CategoryPage = () => {
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>
-              <div className={classes.selectCatDiv}>
-                <SideBar />
-              </div>
+              <CategoriesDropdown />
               <Select />
             </div>
           </Grid>
@@ -74,7 +74,7 @@ const CategoryPage = () => {
             <SideBar />
           </Grid>
           <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
-            {currentPosts?.map((item: any) => (
+            {items?.map((item: any) => (
               <div className={classes.prod}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </div>
