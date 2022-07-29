@@ -23,10 +23,7 @@ const SideBar = () => {
       <ul className={classes.ulItems}>
         {categories?.map((item: any) => {
           return (
-            <li
-              key={item.id}
-              className={classes.categoriesListItem}
-            >
+            <li key={item.id} className={classes.categoriesListItem}>
               <NavLink to={item.id}>{item.title}</NavLink>
               {item.children?.length > 0 && (
                 <img

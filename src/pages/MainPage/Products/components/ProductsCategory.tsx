@@ -14,7 +14,7 @@ const ProductsCategory = () => {
 
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
   const categories = data?.data?.result.slice(0, 3);
-  console.log(categories)
+  console.log(categories);
 
   return (
     <Grid container spacing={2}>

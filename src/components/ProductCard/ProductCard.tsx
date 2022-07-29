@@ -38,12 +38,12 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
          alt=""
          />
           } */}
-          {/* <img
+          <img
             onClick={() => setChangeColor(!changeColor)}
             width={43}
-            src={changeColor ? heartFull : item.heart}
+            src={changeColor ? heartFull : heartFull}
             alt=""
-          /> */}
+          />
         </div>
       </div>
     </Grid>
