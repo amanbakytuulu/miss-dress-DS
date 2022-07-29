@@ -8,9 +8,24 @@ export const productFavoritesApi = createApi({
   tagTypes: ["ProductFavorites"],
   endpoints: (build) => ({
     fetchProductFavorites: build.query({
-      query: () => `favorites`,
+      query: () => ({
+        url: "/product/list/favorites",
+        headers: {
+          Authorization: process.env.REACT_APP_API_TOKEN,
+        },
+      }),
+    }),
+    addProductFavorites: build.mutation({
+      query: (item) => ({
+        url: `/product/favorite/${item.id}`,
+        method: "PATCH",
+        headers: {
+          Authorization: process.env.REACT_APP_API_TOKEN,
+        },
+        body: item,
+      }),
     }),
   }),
 });
 
-export const { useFetchProductFavoritesQuery } = productFavoritesApi;
+export const { useFetchProductFavoritesQuery, useAddProductFavoritesMutation } = productFavoritesApi;

@@ -12,11 +12,13 @@ import Select from "../CategoriesPage/components/Select";
 import { favoritesArray } from "../MainPage/Products/Data/db";
 
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
+import { useFetchProductFavoritesQuery } from "../../store/features/Product/productFavorites/productFavoritesQuery";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
   const items = favoritesArray;
-
+  const { data = [], isLoading } = useFetchProductFavoritesQuery("");
+  console.log(data);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
   const indexOfLastPost = currentPage * postsPerPage;
