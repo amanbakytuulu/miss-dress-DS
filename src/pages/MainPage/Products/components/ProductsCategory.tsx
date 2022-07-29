@@ -13,7 +13,7 @@ const ProductsCategory = () => {
   const btnTitle = "Смотреть";
 
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-  const categories = data?.data?.result.slice(0, 3);
+  const categories = data?.data?.result.slice(0, 4);
 
   return (
     <Grid container spacing={2}>

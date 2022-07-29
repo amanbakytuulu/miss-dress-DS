@@ -3,6 +3,9 @@
   justify-content: center;
   text-align: center;
 }
+.categoryDiv:last-child{
+  display: none !important;
+}
 .categoryDiv div h4 {
   color: #372e24;
 }
@@ -111,6 +114,12 @@
 @media (max-width: 1064px) {
   .iconsDiv img {
     width: 28px;
+  }
+}
+
+@media (max-width: 899px) {
+  .categoryDiv:last-child{
+    display: block !important;
   }
 }
 

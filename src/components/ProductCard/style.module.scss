@@ -19,6 +19,7 @@
 .btnDiv {
   position: relative;
   width: 100%;
+  margin-bottom: 15px;
 }
 .btnDiv::before {
   opacity: 0;
@@ -68,7 +69,7 @@
 .priceP {
   display: flex;
   justify-content: space-between;
-  width: 45%;
+  width: 35%;
 }
 .priceP p:nth-child(1) {
   text-decoration: line-through;
@@ -85,7 +86,7 @@
   font-size: 24px;
   font-weight: lighter;
   max-height: 100%;
-  height: 60px;
+  height: 65px;
   margin-top: 0;
 }
 
