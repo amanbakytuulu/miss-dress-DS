@@ -2,13 +2,13 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../../../assets/icons/logoIcon.svg";
-import { ReactComponent as DashBoardIcon } from "../../../../assets/icons/sideBarIcons/dashboardIcon.svg";
-import { ReactComponent as UserIcon } from "../../../../assets/icons/sideBarIcons/userIcon.svg";
-import { ReactComponent as ProductsIcon } from "../../../../assets/icons/sideBarIcons/productsIcon.svg";
-import { ReactComponent as SalesIcon } from "../../../../assets/icons/sideBarIcons/salesIcon.svg";
-import { ReactComponent as CartIcon } from "../../../../assets/icons/sideBarIcons/cartIcon.svg";
-import { ReactComponent as AdIcon } from "../../../../assets/icons/sideBarIcons/adIcon.svg";
-import { ReactComponent as ChatIcon } from "../../../../assets/icons/sideBarIcons/chatIcon.svg";
+import { ReactComponent as DashBoardIcon } from "../../../../assets/adminPage/sideBarIcons/dashboardIcon.svg";
+import { ReactComponent as UserIcon } from "../../../../assets/adminPage/sideBarIcons/userIcon.svg";
+import { ReactComponent as ProductsIcon } from "../../../../assets/adminPage/sideBarIcons/productsIcon.svg";
+import { ReactComponent as SalesIcon } from "../../../../assets/adminPage/sideBarIcons/salesIcon.svg";
+import { ReactComponent as CartIcon } from "../../../../assets/adminPage/sideBarIcons/cartIcon.svg";
+import { ReactComponent as AdIcon } from "../../../../assets/adminPage/sideBarIcons/adIcon.svg";
+import { ReactComponent as ChatIcon } from "../../../../assets/adminPage/sideBarIcons/chatIcon.svg";
 import { ReactComponent as ExitIcon } from "../../../../assets/header/loginIcon.svg";
 
 import { ISideBarListTypes } from "../../../../types/adminTypes/sideBarTypes";

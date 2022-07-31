@@ -12,6 +12,22 @@
   .tableCell {
     font-weight: 300;
   }
+  .tableRow {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  :global(.MuiTableRow-root td:first-child) {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  :global(.MuiTableRow-root td:last-child) {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  .tableRow:hover {
+    background-color: $input-beige;
+  }
   .tableCellName {
     font-weight: 500;
   }

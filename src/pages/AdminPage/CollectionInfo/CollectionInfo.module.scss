@@ -1,10 +1,10 @@
 @import "src/styles/vars";
 
-.userInformation {
+.collectionInfo {
   display: flex;
   background-color: $admin-background;
 
-  .userInformationContainer {
+  .collectionInfoContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,6 +18,18 @@
       align-items: start;
       justify-content: space-between;
       gap: 50px;
+      .headerLeft {
+        display: flex;
+        align-items: flex-start;
+        gap: 100px;
+        flex: 4;
+        .widgets {
+          flex: 2;
+        }
+        .popularUsers {
+          flex: 3;
+        }
+      }
       .headerProfile {
         height: 100%;
         display: flex;
@@ -27,24 +39,19 @@
       }
     }
 
-    .userInformationContent {
+    .collectionInfoContent {
       width: 100%;
       display: flex;
       align-items: flex-start;
-      .infoBlock {
-        max-width: 500px;
-
-        .infoTitle {
-          margin-bottom: 50px;
-        }
-        .listOfInfo {
-          li {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-          }
+      gap: 50px;
+      .left {
+        flex: 7;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+        .tableContainer {
+          width: 100%;
         }
       }
     }

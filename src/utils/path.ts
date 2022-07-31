@@ -1,14 +1,6 @@
 const MAIN_PAGE = "/";
 const ERROR_PAGE = "/error";
 const PROFILE_PAGE = "/profile";
-const ADMIN_PAGE = "/admin";
-const ADMIN_PAGE_DASHBOARD = "/admin/dashboard";
-const ADMIN_PAGE_USERS = "/admin/users";
-const ADMIN_PAGE_PRODUCTS = "/admin/products";
-const ADMIN_PAGE_SALES = "/admin/sales";
-const ADMIN_PAGE_CART = "/admin/cart";
-const ADMIN_PAGE_AD = "/admin/advertisement";
-const ADMIN_PAGE_CHAT = "/admin/chat";
 const LOGIN_PAGE = "/login";
 const CATEGORIES_PAGE = "/categories";
 const DELIVERY_PAGE = "/delivery";
@@ -21,6 +13,15 @@ const ORDERS_PAGE = "/orders";
 const FAVORITES_PAGE = "/favorites";
 const SEARCH_PAGE = "/search";
 
+const ADMIN_PAGE = "/admin";
+const ADMIN_PAGE_DASHBOARD = "/admin/dashboard";
+const ADMIN_PAGE_USERS = "/admin/users";
+const ADMIN_PAGE_PRODUCTS = "/admin/products";
+const ADMIN_PAGE_COLLECTIONS = "/admin/collections";
+const ADMIN_PAGE_SALES = "/admin/sales";
+const ADMIN_PAGE_CART = "/admin/cart";
+const ADMIN_PAGE_AD = "/admin/advertisement";
+const ADMIN_PAGE_CHAT = "/admin/chat";
 export {
   MAIN_PAGE,
   ERROR_PAGE,
@@ -44,4 +45,5 @@ export {
   ADMIN_PAGE_PRODUCTS,
   ADMIN_PAGE_SALES,
   ADMIN_PAGE_USERS,
+  ADMIN_PAGE_COLLECTIONS,
 };

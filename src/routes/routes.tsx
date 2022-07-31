@@ -17,6 +17,7 @@ import {
   ADMIN_PAGE_CART,
   ADMIN_PAGE_AD,
   ADMIN_PAGE_CHAT,
+  ADMIN_PAGE_COLLECTIONS,
 } from "../utils/path";
 
 import {
@@ -32,7 +33,13 @@ import {
   ErrorPage,
   SearchPage,
 } from "../pages";
-import { DashBoard, Users, UserInformation } from "../pages/AdminPage";
+import {
+  DashBoard,
+  Users,
+  UserInformation,
+  Products,
+  CollectionInfo,
+} from "../pages/AdminPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -100,7 +107,11 @@ export const PRIVATE_ROUTES = [
   },
   {
     path: ADMIN_PAGE_PRODUCTS,
-    Component: <DashBoard />,
+    Component: <Products />,
+  },
+  {
+    path: ADMIN_PAGE_COLLECTIONS + "/:id",
+    Component: <CollectionInfo />,
   },
   {
     path: ADMIN_PAGE_SALES,
