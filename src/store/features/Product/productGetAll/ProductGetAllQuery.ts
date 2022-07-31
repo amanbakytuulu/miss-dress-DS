@@ -17,7 +17,8 @@ export const productGetAllApi = createApi({
     fetchProductBytitle: build.query({
       query: (title) => ({
         url: `/product/get-all?name=${title}`,
-      })
+      }),
+      providesTags: ["ProductGetAll"],
     })
   }),
 });
