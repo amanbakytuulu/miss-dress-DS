@@ -9,9 +9,10 @@ import classes from "./TableHeader.module.scss";
 
 interface TableHeaderProps {
   title: string;
+  subTitle?: string | null;
 }
 
-const TableHeader: FC<TableHeaderProps> = ({ title }) => {
+const TableHeader: FC<TableHeaderProps> = ({ title, subTitle }) => {
   const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -19,7 +20,10 @@ const TableHeader: FC<TableHeaderProps> = ({ title }) => {
   };
   return (
     <div className={classes.tableHeader}>
-      <h3>{title}</h3>
+      <div className={classes.title}>
+        <h3>{title}</h3>
+        {subTitle && <span>{subTitle}</span>}
+      </div>
 
       <div className={classes.navs}>
         <div className={classes.inputBlock}>

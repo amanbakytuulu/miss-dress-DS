@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,6 +7,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
+import {
+  TableTypes,
+  Status,
+  TableStatsTypes,
+} from "../../../../types/adminTypes/tableTypes";
 
 import { colors } from "../../../../types/colorTypes/colorTypes";
 
@@ -18,47 +24,92 @@ import TableHeader from "./TableHeader/TableHeader";
 
 import classes from "./TableStats.module.scss";
 
-function createData(
-  name: string,
-  sales: string,
-  income: string,
-  status: string
-) {
-  return { name, sales, income, status };
+// function createData(
+//   name: string,
+//   sales: string,
+//   income: string,
+//   status: string
+// ) {
+//   return { name, sales, income, status };
+// }
+//
+// const rows = [
+//   createData("Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
+//   createData("Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
+//   createData("Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
+//   createData("Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
+//   createData("Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
+// ];
+
+interface TableStatsProps {
+  type: TableTypes;
+  subTitle?: string;
+  rows: TableStatsTypes[];
+  navigateToPage: string;
 }
 
-enum Status {
-  PENDING = "Pending",
-  ACTIVE = "Active",
-  DELETED = "Deleted",
-  BANNED = "Banned",
-}
-const rows = [
-  createData("Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
-  createData("Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
-  createData("Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
-  createData("Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
-  createData("Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
-];
-
-const TableStats = () => {
+const TableStats: FC<TableStatsProps> = ({
+  type,
+  rows,
+  subTitle,
+  navigateToPage,
+}) => {
   const navigate = useNavigate();
-  const navigateTo = () => {
-    navigate(ADMIN_PAGE_USERS + "/1");
+  let data;
+  const navigateTo = (id: number) => {
+    return () => navigate(navigateToPage + `/${id}`);
   };
+
+  switch (type) {
+    case TableTypes.USERS:
+      data = {
+        title: "Все пользователи",
+        tableCellHeader: [
+          { name: "Пользователь" },
+          { name: "Продажи" },
+          { name: "Доход" },
+        ],
+      };
+      break;
+    case TableTypes.ALL_PRODUCTS:
+      data = {
+        title: "Все товары",
+        subTitle: subTitle || null,
+        tableCellHeader: [
+          { name: "Наименование товара" },
+          { name: "Номер товара" },
+          { name: "Продажи" },
+          { name: "Доход" },
+        ],
+      };
+      break;
+
+    default:
+      data = {
+        title: "Все пользователи",
+        tableCellHeader: [
+          { name: "Пользователь" },
+          { name: "Продажи" },
+          { name: "Доход" },
+        ],
+      };
+      break;
+  }
 
   return (
     <>
-      <TableHeader title={"Все пользователи"} />
+      <TableHeader title={data.title} subTitle={data?.subTitle} />
       <TableContainer component={Paper} className={classes.table}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableCellHeader}>
-                Пользователь
-              </TableCell>
-              <TableCell className={classes.tableCellHeader}>Продажи</TableCell>
-              <TableCell className={classes.tableCellHeader}>Доход</TableCell>
+              {data.tableCellHeader.map((tableCell) => {
+                return (
+                  <TableCell className={classes.tableCellHeader}>
+                    {tableCell.name}
+                  </TableCell>
+                );
+              })}
               <TableCell className={classes.tableCellHeader} align="center">
                 Статус
               </TableCell>
@@ -69,7 +120,7 @@ const TableStats = () => {
               <TableRow
                 key={row.name}
                 className={classes.tableRow}
-                onClick={navigateTo}
+                onClick={navigateTo(row.id)}
                 // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell
@@ -77,6 +128,11 @@ const TableStats = () => {
                 >
                   {row.name}
                 </TableCell>
+                {row.productId && (
+                  <TableCell className={classes.tableCell}>
+                    {row.productId}
+                  </TableCell>
+                )}
                 <TableCell className={classes.tableCell}>{row.sales}</TableCell>
                 <TableCell className={classes.tableCell}>
                   {row.income}

@@ -6,6 +6,10 @@ import Widget from "../components/Widget/Widget";
 import TableStats from "../components/TableStats/TableStats";
 import List from "../components/List/List";
 
+import { ADMIN_PAGE_USERS } from "../../../utils/path";
+
+import { Status, TableTypes } from "../../../types/adminTypes/tableTypes";
+
 import classes from "./Users.module.scss";
 
 const listOfUsers = [
@@ -24,6 +28,23 @@ const listOfUsers = [
     sales: "25 продаж",
     income: "125k+ доход",
   },
+];
+function createData(
+  id: number,
+  name: string,
+  sales: string,
+  income: string,
+  status: string
+) {
+  return { id, name, sales, income, status };
+}
+
+const rows = [
+  createData(1, "Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
+  createData(2, "Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
+  createData(3, "Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
+  createData(4, "Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
+  createData(5, "Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
 ];
 
 const Users = () => {
@@ -52,7 +73,11 @@ const Users = () => {
         <div className={classes.usersContent}>
           <div className={classes.left}>
             <div className={classes.tableContainer}>
-              <TableStats />
+              <TableStats
+                navigateToPage={ADMIN_PAGE_USERS}
+                type={TableTypes.USERS}
+                rows={rows}
+              />
             </div>
           </div>
         </div>

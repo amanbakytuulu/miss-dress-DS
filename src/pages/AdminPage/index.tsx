@@ -1,7 +1,15 @@
 import DashBoard from "./DashBoard/DashBoard";
 import Users from "./Users/Users";
-import UserInformation from "./UserInformation/UserInformation";
+import UserDetails from "./UserDetails/UserDetails";
 import Products from "./Products/Products";
 import CollectionInfo from "./CollectionInfo/CollectionInfo";
+import ProductDetails from "./ProductDetails/ProductDetails";
 
-export { DashBoard, Users, UserInformation, Products, CollectionInfo };
+export {
+  DashBoard,
+  Users,
+  UserDetails,
+  Products,
+  CollectionInfo,
+  ProductDetails,
+};

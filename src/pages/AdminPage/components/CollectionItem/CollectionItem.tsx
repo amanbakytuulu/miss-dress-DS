@@ -50,7 +50,7 @@ const CollectionItem: FC<CollectionItemProps> = ({ path }) => {
       </div>
       <div
         className={classes.banner}
-        onClick={() => navigate(ADMIN_PAGE_COLLECTIONS + "/1")}
+        onClick={() => navigate(ADMIN_PAGE_COLLECTIONS + `/${path}`)}
       >
         <img src={banner} alt="" />
       </div>

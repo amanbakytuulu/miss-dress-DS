@@ -6,13 +6,13 @@ import BackButton from "../components/BackButton/BackButton";
 import SideBar from "../components/SideBar/SideBar";
 import Profile from "../components/Profile/Profile";
 
-import classes from "./UserInformation.module.scss";
+import classes from "./UserDetails.module.scss";
 
-const UserInformation = () => {
+const UserDetails = () => {
   return (
-    <div className={classes.userInformation}>
+    <div className={classes.userDetails}>
       <SideBar />
-      <div className={classes.userInformationContainer}>
+      <div className={classes.userDetailsContainer}>
         <div className={classes.header}>
           <BackButton path={ADMIN_PAGE_USERS}>
             Вернуться ко всем пользователям
@@ -22,7 +22,7 @@ const UserInformation = () => {
           </div>
         </div>
 
-        <div className={classes.userInformationContent}>
+        <div className={classes.userDetailsContent}>
           <div className={classes.infoBlock}>
             <h3 className={classes.infoTitle}>Информация о пользователе</h3>
             <ul className={classes.listOfInfo}>
@@ -50,4 +50,4 @@ const UserInformation = () => {
   );
 };
 
-export default UserInformation;
+export default UserDetails;

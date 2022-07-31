@@ -1,5 +1,4 @@
 import ProfilePage from "./ProfilePage/ProfilePage";
-import ProductInfo from "./AdminPage/ProductInformation/ProductInfo";
 import ProductPage from "./ProductPage/ProductPage";
 import CategoriesPage from "./CategoriesPage/CategoriesPage";
 import DeliveryPage from "./DeliveryPage/DeliveryPage";
@@ -18,7 +17,6 @@ export {
   AboutUs,
   DeliveryPage,
   CategoriesPage,
-  ProductInfo,
   MainPage,
   ProfilePage,
   ErrorPage,

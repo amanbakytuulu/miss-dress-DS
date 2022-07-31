@@ -6,6 +6,10 @@ import List from "../components/List/List";
 import Profile from "../components/Profile/Profile";
 import TableStats from "../components/TableStats/TableStats";
 
+import { ADMIN_PAGE_PRODUCTS } from "../../../utils/path";
+
+import { Status, TableTypes } from "../../../types/adminTypes/tableTypes";
+
 import classes from "./CollectionInfo.module.scss";
 
 const listOfProducts = [
@@ -24,6 +28,59 @@ const listOfProducts = [
     sales: "159 продаж",
     income: "790k+ доход",
   },
+];
+function createData(
+  id: number,
+  name: string,
+  sales: string,
+  income: string,
+  productId: string,
+  status: string
+) {
+  return { id, name, sales, income, status, productId };
+}
+
+const rows = [
+  createData(
+    1,
+    "Benito Kate Wrap Dress",
+    "104 продаж",
+    "500k+ доход",
+    "1234",
+    Status.ACTIVE
+  ),
+  createData(
+    2,
+    "JUSTONE Shy Embo Can Skirt",
+    "104 продаж",
+    "500k+ доход",
+    "1234",
+    Status.PENDING
+  ),
+  createData(
+    3,
+    "Envy Look Button Eco Dress",
+    "104 продаж",
+    "500k+ доход",
+    "1234",
+    Status.BANNED
+  ),
+  createData(
+    4,
+    "Envy Look All Season Skirt",
+    "104 продаж",
+    "500k+ доход",
+    "1234",
+    Status.DELETED
+  ),
+  createData(
+    5,
+    "Choper Shoulder Frill Vent Dress ",
+    "104 продаж",
+    "500k+ доход",
+    "1234",
+    Status.ACTIVE
+  ),
 ];
 
 const CollectionInfo = () => {
@@ -52,7 +109,12 @@ const CollectionInfo = () => {
         <div className={classes.collectionInfoContent}>
           <div className={classes.left}>
             <div className={classes.tableContainer}>
-              <TableStats />
+              <TableStats
+                navigateToPage={ADMIN_PAGE_PRODUCTS}
+                type={TableTypes.ALL_PRODUCTS}
+                rows={rows}
+                subTitle={"Весенняя коллекция"}
+              />
             </div>
           </div>
         </div>

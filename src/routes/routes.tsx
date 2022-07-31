@@ -22,7 +22,6 @@ import {
 
 import {
   ProfilePage,
-  ProductInfo,
   ProductPage,
   CategoriesPage,
   DeliveryPage,
@@ -36,9 +35,10 @@ import {
 import {
   DashBoard,
   Users,
-  UserInformation,
+  UserDetails,
   Products,
   CollectionInfo,
+  ProductDetails,
 } from "../pages/AdminPage";
 
 export const PUBLIC_ROUTES = [
@@ -72,15 +72,11 @@ export const PUBLIC_ROUTES = [
   },
   {
     path: PRODUCT_PAGE + "/:id",
-    Component: <ProductInfo />,
+    Component: <ProductPage />,
   },
   {
     path: PRODUCT_PAGE,
     Component: <ProductPage />,
-  },
-  {
-    path: PRODUCT_PAGE + "/:id",
-    Component: <ProductInfo />,
   },
   {
     path: SEARCH_PAGE,
@@ -103,11 +99,15 @@ export const PRIVATE_ROUTES = [
   },
   {
     path: ADMIN_PAGE_USERS + "/:id",
-    Component: <UserInformation />,
+    Component: <UserDetails />,
   },
   {
     path: ADMIN_PAGE_PRODUCTS,
     Component: <Products />,
+  },
+  {
+    path: ADMIN_PAGE_PRODUCTS + "/:id",
+    Component: <ProductDetails />,
   },
   {
     path: ADMIN_PAGE_COLLECTIONS + "/:id",
