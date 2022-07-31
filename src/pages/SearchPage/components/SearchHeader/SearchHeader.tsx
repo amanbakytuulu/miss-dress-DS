@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import classes from "./SearchHeader.module.scss";
+import Select from './../../../CategoriesPage/components/Select';
 
 interface SearchHeaderProps {
   quantity: number;
@@ -15,9 +16,7 @@ const SearchHeader: FC<SearchHeaderProps> = ({ quantity }) => {
           Найдено {quantity} моделей
         </span>
       </div>
-      <select>
-        <option value="123">123</option>
-      </select>
+      {quantity > 0 ? < Select /> : null}
     </div>
   );
 };

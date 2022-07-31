@@ -37,8 +37,9 @@
   display: inline-block;
   border: none;
   position: relative;
-  width: 40%;
+  width: max-content;
   height: 46px;
+  cursor: pointer;
 }
 .filterDropdownTitle {
   font-weight: 300 !important;
@@ -60,7 +61,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
+  height: 50px;
+  padding: 0px 20px 0px 100px !important;
 }
 .filterDropDownBtn img {
   width: 18px;

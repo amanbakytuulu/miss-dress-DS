@@ -53,7 +53,7 @@ const FavoritesPage = () => {
             </div>
           </Grid>
           {currentPosts.length !== 0 ? (
-            currentPosts.map((item: any, index: any) => (
+            currentPosts.map((item, index: number) => (
               <Grid key={index} item xs={6} md={4}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </Grid>
