@@ -9,6 +9,12 @@
   cursor: pointer;
   opacity: 0;
   color: #f1dac5;
+  transition: all 0.2s linear;
+
+  &:hover {
+    background-color: #f1dac5 !important;
+    color: #372e24 !important;
+  }
 }
 
 .categoryImg {

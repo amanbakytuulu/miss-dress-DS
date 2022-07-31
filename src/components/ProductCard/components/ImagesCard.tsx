@@ -17,24 +17,25 @@ const ImagesCard = ({ item, btnTitle, path }: any) => {
   return (
     <Grid className={classes.btnDiv}>
       <img className={classes.categoryImg} src={same3} alt="image" />
-      <button
+
+      <Link
         style={{
-          background: changeColor ? "#F1DAC5" : "#372e24",
+          color: changeColor ? "#372E24" : "#F1DAC5",
+          textDecoration: "none",
         }}
-        onClick={() => handleBtn()}
-        className={classes.btn}
+        to="{path}"
       >
-        <Link
+        <button
           style={{
-            color: changeColor ? "#372E24" : "#F1DAC5",
-            textDecoration: "none",
+            background: changeColor ? "#F1DAC5" : "#372e24",
           }}
-          to="{path}"
+          onClick={() => handleBtn()}
+          className={classes.btn}
         >
           {btnTitle}
-        </Link>
-      </button>
-    </Grid>
+        </button>
+      </Link>
+    </Grid >
   );
 };
 

@@ -16,3 +16,5 @@ export const categoryMainApi = createApi({
     }),
   }),
 });
+
+export const { useFetchCategoryMainQuery } = categoryMainApi;
