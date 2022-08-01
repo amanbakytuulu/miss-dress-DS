@@ -14,7 +14,14 @@ export const productGetAllApi = createApi({
       }),
       providesTags: ["ProductGetAll"],
     }),
+    fetchProductBytitle: build.query({
+      query: (title) => ({
+        url: `/product/get-all?name=${title}`,
+      }),
+      providesTags: ["ProductGetAll"],
+    }),
   }),
 });
 
-export const { useFetchProductGetAllQuery } = productGetAllApi;
+export const { useFetchProductGetAllQuery, useFetchProductBytitleQuery } =
+  productGetAllApi;

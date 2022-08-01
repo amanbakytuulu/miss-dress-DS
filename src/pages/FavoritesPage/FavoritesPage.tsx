@@ -43,9 +43,14 @@ const FavoritesPage = () => {
               <Link to="/#">Товары</Link>
             </div>
           </Grid>
-          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12} >
-            <div className={classes.selectBlock} style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>Избранное</h2>
+          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
+            <div
+              className={classes.selectBlock}
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>
+                Избранное
+              </h2>
               <Select />
             </div>
             <div className={classes.responsiveH}>
@@ -53,7 +58,7 @@ const FavoritesPage = () => {
             </div>
           </Grid>
           {currentPosts.length !== 0 ? (
-            currentPosts.map((item: any, index: any) => (
+            currentPosts.map((item, index: number) => (
               <Grid key={index} item xs={6} md={4}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </Grid>

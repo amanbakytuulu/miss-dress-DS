@@ -8,7 +8,7 @@ import { productFavoritesApi } from "./features/Product/productFavorites/product
 import { productGetAllApi } from "./features/Product/productGetAll/ProductGetAllQuery";
 import { getAllApi } from "./features/User/getAll/getAllQuery";
 import { meApi } from "./features/User/userMe/meQuery";
-import { collectionApi } from './features/Collection/collectionQuery';
+import { collectionApi } from "./features/Collection/collectionQuery";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,

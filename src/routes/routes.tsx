@@ -85,7 +85,7 @@ export const PUBLIC_ROUTES = [
     Component: <OrderDetails />,
   },
   {
-    path: SEARCH_PAGE,
+    path: SEARCH_PAGE + "/title=:title",
     Component: <SearchPage />,
   },
   {

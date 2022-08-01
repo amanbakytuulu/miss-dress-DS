@@ -1,7 +1,9 @@
+@import "../../../../styles/vars.scss";
+
 .collections {
     padding: 100px 0px;
     width: 100%;
-    background-color: #f1dac580;
+    background-color: $beige-background;
 
     & &__title {
         text-align: center;

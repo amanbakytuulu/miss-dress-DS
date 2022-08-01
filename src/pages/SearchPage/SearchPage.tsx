@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 import fifthImg from "../../assets/mainPage/news/forth.png";
 import fillIcon from "../../assets/mainPage/icons/fill.svg";
@@ -12,6 +13,11 @@ import forthImg from "../../assets/mainPage/news/six.png";
 import secondImg from "../../assets/mainPage/news/second.png";
 
 import { Pagination } from "../../components";
+
+import {
+  useFetchProductBytitleQuery,
+  useFetchProductGetAllQuery,
+} from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import SearchList from "./components/SearchList/SearchList";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
@@ -100,12 +106,17 @@ const bestsellerArray = [
   },
 ];
 const SearchPage = () => {
+  const { title } = useParams<string>();
+  const { data: otherData = [] } = useFetchProductGetAllQuery(6);
+  const { data = [] } = useFetchProductBytitleQuery(title);
+  const items = data.result?.data || [];
+  const otherItems = otherData.result?.data || [];
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = bestsellerArray.length;
+  const totalCount = items.length;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -116,9 +127,9 @@ const SearchPage = () => {
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
         <SearchHeader quantity={totalCount} />
 
-        {bestsellerArray.length < 0 ? (
+        {items.length > 0 ? (
           <SearchList
-            searchList={currentPosts}
+            searchList={items}
             totalCount={totalCount}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
@@ -126,7 +137,7 @@ const SearchPage = () => {
             pageNumbers={pageNumbers}
           />
         ) : (
-          <OthersProducts slides={bestsellerArray} />
+          <OthersProducts slides={otherItems} />
         )}
       </div>
     </div>
