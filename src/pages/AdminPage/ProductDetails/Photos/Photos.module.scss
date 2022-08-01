@@ -1,0 +1,26 @@
+.photos {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .images {
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    //justify-content: space-between;
+    width: 100%;
+
+    .image {
+      width: 100px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .editPhotos {
+    align-self: flex-end;
+  }
+}

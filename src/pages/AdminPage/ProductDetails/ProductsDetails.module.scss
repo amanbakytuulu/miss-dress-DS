@@ -1,10 +1,10 @@
 @import "src/styles/vars";
 
-.userDetails {
+.productDetails {
   display: flex;
   background-color: $admin-background;
 
-  .userDetailsContainer {
+  .productDetailsContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,24 +27,23 @@
       }
     }
 
-    .userDetailsContent {
+    .productDetailsContent {
       width: 100%;
       display: flex;
       align-items: flex-start;
       .infoBlock {
-        max-width: 500px;
-
-        .infoTitle {
-          margin-bottom: 50px;
+        width: 100%;
+        display: flex;
+        align-items: start;
+        gap: 100px;
+        .left {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          flex: 4;
         }
-        .listOfInfo {
-          li {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-          }
+        .right {
+          flex: 3;
         }
       }
     }

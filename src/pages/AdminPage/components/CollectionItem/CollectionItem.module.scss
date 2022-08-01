@@ -16,6 +16,9 @@
         white-space: pre-line;
         word-wrap: break-word;
       }
+      .editName {
+        width: auto;
+      }
     }
   }
 
@@ -55,14 +58,5 @@
 
   .editBanner {
     align-self: flex-end;
-  }
-
-  .editBtn {
-    background: none;
-    font-family: inherit;
-    font-size: 0.9em;
-    outline: none;
-    border: none;
-    cursor: pointer;
   }
 }
