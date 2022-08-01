@@ -19,7 +19,7 @@ import SearchHeader from "./components/SearchHeader/SearchHeader";
 
 import classes from "./SearchPage.module.scss";
 import OthersProducts from "./components/OthersProducts/OthersProducts";
-import { useFetchProductBytitleQuery } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { useFetchProductBytitleQuery, useFetchProductGetAllQuery } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 const bestsellerArray = [
   {
@@ -103,8 +103,10 @@ const bestsellerArray = [
 ];
 const SearchPage = () => {
   const { title } = useParams<string>();
+  const { data: otherData = [] } = useFetchProductGetAllQuery(6);
   const { data = [] } = useFetchProductBytitleQuery(title);
   const items = data.result?.data || [];
+  const otherItems = otherData.result?.data || [];
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
@@ -131,7 +133,7 @@ const SearchPage = () => {
             pageNumbers={pageNumbers}
           />
         ) : (
-          <OthersProducts slides={bestsellerArray} />
+          <OthersProducts slides={otherItems} />
         )}
       </div>
     </div>
