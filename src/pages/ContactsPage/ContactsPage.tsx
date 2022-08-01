@@ -9,6 +9,7 @@ import { ISocialTypes } from "../../types/socialTypes/socialTypes";
 import SocialList from "./SocialList/SocialList";
 
 import classes from "./ContactsPage.module.scss";
+import ContactsTransition from "./ContactsTransition";
 
 const socials: ISocialTypes[] = [
   {
@@ -28,22 +29,25 @@ const socials: ISocialTypes[] = [
 const ContactsPage = () => {
   return (
     <div className={classes.contactsWrapper}>
-      <h2 className={classes.contactsTitle}>Контакты</h2>
+      <ContactsTransition />
+      <div className={classes.contactsFlex}>
+        <h2 className={classes.contactsTitle}>Контакты</h2>
 
-      <div className={classes.phoneNumber}>
-        <span>Тел: +996712345678, +996787654321</span>
-      </div>
+        <div className={classes.phoneNumber}>
+          <span>Тел: +996712345678, +996787654321</span>
+        </div>
 
-      <SocialList socials={socials} />
+        <SocialList socials={socials} />
 
-      <div className={classes.email}>
-        <span>Email: missdress@gmail.com</span>
-      </div>
+        <div className={classes.email}>
+          <span>Email: missdress@gmail.com</span>
+        </div>
 
-      <div className={classes.workingHours}>
-        <span>
-          Рабочие дни: Пн. - Пт: с 10:00 до 20:00 <br /> Выходные дни: Сб-Вс
-        </span>
+        <div className={classes.workingHours}>
+          <span>
+            Рабочие дни: Пн. - Пт: с 10:00 до 20:00 <br /> Выходные дни: Сб-Вс
+          </span>
+        </div>
       </div>
     </div>
   );

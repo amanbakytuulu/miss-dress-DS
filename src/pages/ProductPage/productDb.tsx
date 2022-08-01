@@ -1,11 +1,11 @@
-import dress1 from "../../assets/ProductPage2/dress1.png";
-import dress2 from "../../assets/ProductPage2/dress2.png";
-import dress3 from "../../assets/ProductPage2/dress3.png";
-import dress4 from "../../assets/ProductPage2/dress4.png";
+import dress1 from "../../assets/ProductPage/dress1.png";
+import dress2 from "../../assets/ProductPage/dress2.png";
+import dress3 from "../../assets/ProductPage/dress3.png";
+import dress4 from "../../assets/ProductPage/dress4.png";
 
-import same1 from "../../assets/ProductPage2/same1.png";
-import same2 from "../../assets/ProductPage2/same2.png";
-import same3 from "../../assets/ProductPage2/same3.png";
+import same1 from "../../assets/ProductPage/same1.png";
+import same2 from "../../assets/ProductPage/same2.png";
+import same3 from "../../assets/ProductPage/same3.png";
 
 import secondImg from "../../assets/mainPage/news/second.png";
 import thirdImg from "../../assets/mainPage/news/third.png";
@@ -35,8 +35,8 @@ export const dress_description = {
   title: "Benito Kate Wrap Dress",
   article: "Платья AD857",
   quantity: 5,
-  price_old: 5990,
-  price_new: 7500,
+  price_old: 7500,
+  price_new: 5900,
   size: "29 - 49",
   cloth: "Полиэстер",
   length: 115,

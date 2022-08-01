@@ -7,6 +7,7 @@ import {
   ABOUT_PAGE,
   DELIVERY_PAGE,
   CATEGORIES_PAGE,
+  FAVORITES_PAGE,
   PRODUCT_PAGE,
   SEARCH_PAGE,
   ERROR_PAGE,
@@ -18,6 +19,9 @@ import {
   ADMIN_PAGE_AD,
   ADMIN_PAGE_CHAT,
   ADMIN_PAGE_COLLECTIONS,
+  ORDERS_PAGE,
+  COLLECTION_PAGE,
+  COLLECTION_PRODUCTS_PAGE,
 } from "../utils/path";
 
 import {
@@ -29,8 +33,13 @@ import {
   ContactsPage,
   CartPage,
   MainPage,
+  FavoritesPage,
+  CollectionPage,
+  CollectionProductsPage,
   ErrorPage,
   SearchPage,
+  OrderPage,
+  OrderDetails,
 } from "../pages";
 import {
   DashBoard,
@@ -79,12 +88,32 @@ export const PUBLIC_ROUTES = [
     Component: <ProductPage />,
   },
   {
+    path: ORDERS_PAGE,
+    Component: <OrderPage />,
+  },
+  {
+    path: ORDERS_PAGE + ":2",
+    Component: <OrderDetails />,
+  },
+  {
     path: SEARCH_PAGE,
     Component: <SearchPage />,
   },
   {
     path: ERROR_PAGE,
     Component: <ErrorPage />,
+  },
+  {
+    path: FAVORITES_PAGE,
+    Component: <FavoritesPage />,
+  },
+  {
+    path: COLLECTION_PAGE,
+    Component: <CollectionPage />,
+  },
+  {
+    path: COLLECTION_PRODUCTS_PAGE,
+    Component: <CollectionProductsPage />,
   },
 ];
 

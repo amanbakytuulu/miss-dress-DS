@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 import { ICartList } from "../../types/headerTypes/headerTypes";
 
-import CartItem from "../../components/CartItem/CartItem";
 import { Modal } from "../../components";
 
 import SuccessOrder from "../../components/Modal/SuccessOrder/SuccessOrder";
 
 import OrderForm from "./OrderForm/OrderForm";
 import CartSummary from "./CartSummary/CartSummary";
+import CartList from "./CartList/CartList";
 
 import classes from "./CartPage.module.scss";
 
@@ -17,7 +17,7 @@ const arr: ICartList[] = [
     title: "name",
   },
   {
-    title: "name",
+    title: "name2",
   },
 ];
 
@@ -36,11 +36,7 @@ const CartPage = () => {
               <OrderForm />
             </div>
             <h3 className={classes.cartPageListTitle}>Состав заказа</h3>
-            <div className={classes.cartPageList}>
-              {arr.map((item) => {
-                return <CartItem />;
-              })}
-            </div>
+            <CartList cartList={arr} />
           </div>
           <div className={classes.cartPageSum}>
             <CartSummary openModal={openModal} />

@@ -5,12 +5,13 @@ import { Grid } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 
-// import { Icon } from "react-icons-kit";
 import { caretLeft } from "react-icons-kit/fa/caretLeft";
 import { caretRight } from "react-icons-kit/fa/caretRight";
 import Icon from "react-icons-kit";
 
-import mainDress from "../../assets/ProductPage2/mainDress.png";
+import Like from "../../assets/ProductPage/Vector.svg";
+
+import mainDress from "../../assets/ProductPage/mainDress.png";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 
@@ -62,8 +63,12 @@ const ProductPage: FC = () => {
 
           <Grid item xs={6} md={5} order={{ xs: 2, md: 3 }}>
             <div className={styles.text_dress}>
-              <h3>{dress_description.title}</h3>
-              <p>Артикул: {dress_description.article}</p>
+              <h3 className={styles.title}>{dress_description.title}</h3>
+              <div className={styles.like_flex}>
+                <p>Артикул: {dress_description.article}</p>
+                <img src={Like} alt="like" className={styles.likeIcon} />
+              </div>
+
               <p>Количество в линейке: {dress_description.quantity}</p>
               <p className={styles.colors}>
                 Цвет:
@@ -77,9 +82,9 @@ const ProductPage: FC = () => {
                   ))}
                 </span>
               </p>
-              <h3>
-                {dress_description.price_old}
-                <span>{dress_description.price_new}</span>
+              <h3 className={styles.prices}>
+                {dress_description.price_new}
+                <span>{dress_description.price_old}</span>
               </h3>
               <div className={styles.description_flex}>
                 <p>Размер: {dress_description.size}</p>
@@ -149,6 +154,9 @@ const ProductPage: FC = () => {
           <div ref={navigationNextRef} className={styles.similar_swiper_right}>
             <Icon size={55} icon={caretRight} />
           </div>
+        </div>
+        <div className={styles.btnBottom}>
+          <button>Millana</button>
         </div>
         <div className={styles.btnMobileDiv}>
           <button className={styles.btnMobile}>Смотреть все товары</button>
