@@ -14,12 +14,16 @@ import secondImg from "../../assets/mainPage/news/second.png";
 
 import { Pagination } from "../../components";
 
+import {
+  useFetchProductBytitleQuery,
+  useFetchProductGetAllQuery,
+} from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+
 import SearchList from "./components/SearchList/SearchList";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 
 import classes from "./SearchPage.module.scss";
 import OthersProducts from "./components/OthersProducts/OthersProducts";
-import { useFetchProductBytitleQuery, useFetchProductGetAllQuery } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 const bestsellerArray = [
   {
