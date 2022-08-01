@@ -12,20 +12,6 @@ const StarsComponent = ({ star, index }: any) => {
       src={starChange ? starFull : star}
       alt=""
     />
-    // <Box
-    //   sx={{
-    //     "& > legend": { mt: 4 },
-    //   }}
-    // >
-    // <Rating
-    //   name="simple-controlled"
-    //   value={value}
-    //   onChange={(event, newValue: any) => {
-    //     setValue(newValue);
-    //     console.log(event);
-    //   }}
-    // />
-    // </Box>
   );
 };
 

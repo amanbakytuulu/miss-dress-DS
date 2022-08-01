@@ -4,13 +4,11 @@ import { Container, Grid } from "@mui/material";
 import classes from "../style.module.scss";
 
 import ProductCard from "../../../../components/ProductCard/ProductCard";
-import { bestsellerArray } from "../Data/db";
 
 import { productGetAllApi } from "../../../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 const Bestseller = () => {
   const btnTitle = "Открыть";
-  const bestsellerItems = bestsellerArray;
 
   const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
   const products = data?.result.data;
