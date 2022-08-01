@@ -2,7 +2,7 @@ interface IColors {
   img: string;
   count: string;
 }
-interface IItemCard {
+export interface IItemCard {
   // img: string;
   // oldPrice: string;
   // newPrice: string;
@@ -22,6 +22,7 @@ interface IItemCard {
   amount: number;
   article: string;
   rate: number;
+  discount: number | null;
 }
 export interface IProductCard {
   item: IItemCard;

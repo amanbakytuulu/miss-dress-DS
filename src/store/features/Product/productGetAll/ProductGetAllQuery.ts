@@ -16,3 +16,5 @@ export const productGetAllApi = createApi({
     }),
   }),
 });
+
+export const { useFetchProductGetAllQuery } = productGetAllApi;

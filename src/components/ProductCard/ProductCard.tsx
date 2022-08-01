@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
+import heart from "../../assets/mainPage/icons/heart.svg";
+import {
+  useAddProductFavoritesMutation,
+  useFetchProductFavoritesQuery,
+} from "../../store/features/Product/productFavorites/productFavoritesQuery";
 
 import classes from "./style.module.scss";
 
 import ImagesCard from "./components/ImagesCard";
 import StarsComponent from "./components/StarsComponent";
 import Description from "./components/Description";
-import { IProductCard } from "./types";
+import { IItemCard, IProductCard } from "./types";
 
 const ProductCard = ({ item, btnTitle }: IProductCard) => {
+  const [addProductFavorites] = useAddProductFavoritesMutation();
+  const { data = [] } = useFetchProductFavoritesQuery("");
+  const items: IItemCard[] = data.result?.data || [];
   const [changeColor, setChangeColor] = useState(false);
+  const handleAddFavorite = () => {
+    setChangeColor(!changeColor);
+    addProductFavorites(item);
+  };
+
+  useEffect(() => {
+    if (items.length !== 0) {
+      setChangeColor(items.some((el) => el.id === item.id));
+    }
+  }, [items]);
 
   return (
     <Grid className={classes.bestsellerCard}>
@@ -20,9 +38,9 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
       <div className={classes.iconsDiv}>
         <div>
           <img
-            onClick={() => setChangeColor(!changeColor)}
+            onClick={handleAddFavorite}
             width={43}
-            src={changeColor ? heartFull : heartFull}
+            src={changeColor ? heartFull : heart}
             alt=""
           />
         </div>
