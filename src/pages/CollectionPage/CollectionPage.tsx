@@ -85,9 +85,17 @@ const CollectionPage = () => {
             <h2>Коллекция</h2>
           </div>
           {currentPosts.map((item, index) => (
-            <Grid item xs={6} sm={4} md={4} sx={{ mb: '30px' }}>
+            <Grid item xs={6} sm={4} md={4} sx={{ mb: "30px" }}>
               <ImagesCard btnTitle={btnTitle} item={item} path={item.path} />
-              <h4 style={{ fontWeight: 400, textAlign: "center", marginTop: "10px" }}>{item.category}</h4>
+              <h4
+                style={{
+                  fontWeight: 400,
+                  textAlign: "center",
+                  marginTop: "10px",
+                }}
+              >
+                {item.category}
+              </h4>
             </Grid>
           ))}
           <Grid item xs={12} md={12}>

@@ -35,7 +35,7 @@ const ImagesCard = ({ item, btnTitle, path }: any) => {
           {btnTitle}
         </button>
       </Link>
-    </Grid >
+    </Grid>
   );
 };
 

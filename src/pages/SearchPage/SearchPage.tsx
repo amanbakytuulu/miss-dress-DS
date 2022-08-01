@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 import fifthImg from "../../assets/mainPage/news/forth.png";
 import fillIcon from "../../assets/mainPage/icons/fill.svg";
@@ -18,6 +19,7 @@ import SearchHeader from "./components/SearchHeader/SearchHeader";
 
 import classes from "./SearchPage.module.scss";
 import OthersProducts from "./components/OthersProducts/OthersProducts";
+import { useFetchProductBytitleQuery } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 const bestsellerArray = [
   {
@@ -100,12 +102,15 @@ const bestsellerArray = [
   },
 ];
 const SearchPage = () => {
+  const { title } = useParams<string>();
+  const { data = [] } = useFetchProductBytitleQuery(title);
+  const items = data.result?.data || [];
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = bestsellerArray.length;
+  const totalCount = items.length;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -116,9 +121,9 @@ const SearchPage = () => {
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
         <SearchHeader quantity={totalCount} />
 
-        {bestsellerArray.length > 0 ? (
+        {items.length > 0 ? (
           <SearchList
-            searchList={currentPosts}
+            searchList={items}
             totalCount={totalCount}
             postsPerPage={postsPerPage}
             currentPage={currentPage}

@@ -19,8 +19,9 @@ export const productGetAllApi = createApi({
         url: `/product/get-all?name=${title}`,
       }),
       providesTags: ["ProductGetAll"],
-    })
+    }),
   }),
 });
 
-export const { useFetchProductGetAllQuery, useFetchProductBytitleQuery } = productGetAllApi;
+export const { useFetchProductGetAllQuery, useFetchProductBytitleQuery } =
+  productGetAllApi;

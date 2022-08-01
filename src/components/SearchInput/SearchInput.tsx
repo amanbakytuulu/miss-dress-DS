@@ -12,15 +12,13 @@ const SearchInput = () => {
   const onHandleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (title !== "") {
-
-      navigate(SEARCH_PAGE);
+      navigate(SEARCH_PAGE + `/title=${title}`);
     }
     return false;
-  }
+  };
 
   return (
-    <form className={classes.searchInputBlock}
-      onSubmit={onHandleSearch}>
+    <form className={classes.searchInputBlock} onSubmit={onHandleSearch}>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}

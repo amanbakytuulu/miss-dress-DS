@@ -43,9 +43,14 @@ const FavoritesPage = () => {
               <Link to="/#">Товары</Link>
             </div>
           </Grid>
-          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12} >
-            <div className={classes.selectBlock} style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>Избранное</h2>
+          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
+            <div
+              className={classes.selectBlock}
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>
+                Избранное
+              </h2>
               <Select />
             </div>
             <div className={classes.responsiveH}>
