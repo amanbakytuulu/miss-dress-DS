@@ -13,14 +13,14 @@ import classes from "./CollectionItem.module.scss";
 
 interface CollectionItemProps {
   path?: string | number;
+  title: string;
   collection?: object;
 }
 
-const CollectionItem: FC<CollectionItemProps> = ({ path }) => {
+const CollectionItem: FC<CollectionItemProps> = ({ path, title }) => {
   const navigate = useNavigate();
   const [isEdit, setEdit] = useState<boolean>(false);
-  const [collectionName, setCollectionName] =
-    useState<string>("Зимняя коллекция");
+  const [collectionName, setCollectionName] = useState<string>(title);
 
   const handler = (value: string) => {
     setCollectionName(value);

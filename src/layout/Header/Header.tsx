@@ -5,6 +5,7 @@ import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
 import { ReactComponent as BurgerIcon } from "../../assets/header/burgerIcon.svg";
 import {
   ABOUT_PAGE,
+  CATEGORIES_PAGE,
   CONTACTS_PAGE,
   DELIVERY_PAGE,
   NEWS_PAGE,
@@ -27,7 +28,7 @@ import classes from "./Header.module.scss";
 const navItems: IHeaderNav[] = [
   {
     title: "Товары",
-    path: PRODUCT_PAGE,
+    path: CATEGORIES_PAGE,
   },
   {
     title: "О нас",

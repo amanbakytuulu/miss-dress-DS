@@ -79,14 +79,22 @@ export const PUBLIC_ROUTES = [
     path: CATEGORIES_PAGE,
     Component: <CategoriesPage />,
   },
+  // {
+  //   path: PRODUCT_PAGE + "/:id",
+  //   Component: <ProductInfo />,
+  // },
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductPage />,
   },
-  {
-    path: PRODUCT_PAGE,
-    Component: <ProductPage />,
-  },
+  // {
+  //   path: PRODUCT_PAGE,
+  //   Component: <ProductPage />,
+  // },
+  // {
+  //   path: PRODUCT_PAGE + "/:id",
+  //   Component: <ProductInfo />,
+  // },
   {
     path: ORDERS_PAGE,
     Component: <OrderPage />,
@@ -96,7 +104,7 @@ export const PUBLIC_ROUTES = [
     Component: <OrderDetails />,
   },
   {
-    path: SEARCH_PAGE,
+    path: SEARCH_PAGE + "/title=:title",
     Component: <SearchPage />,
   },
   {

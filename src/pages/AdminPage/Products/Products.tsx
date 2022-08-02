@@ -54,9 +54,10 @@ const Products = () => {
           </div>
 
           <div className={classes.collections}>
-            <Collection path={1} />
-            <Collection path={2} />
-            <Collection path={3} />
+            <Collection path={"winter"} title={"Зимняя коллекция"} />
+            <Collection path={"summer"} title={"Летняя коллекция"} />
+            <Collection path={"autumn"} title={"Осенняя коллекция"} />
+            <Collection path={"spring"} title={"Летняя коллекция"} />
           </div>
         </div>
       </div>

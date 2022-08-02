@@ -1,10 +1,13 @@
 import React from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 import SideBar from "../components/SideBar/SideBar";
 import Widget from "../components/Widget/Widget";
 import List from "../components/List/List";
 import Profile from "../components/Profile/Profile";
 import TableStats from "../components/TableStats/TableStats";
+
+import { useFetchProductGetAllQuery } from "../../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import { ADMIN_PAGE_PRODUCTS } from "../../../utils/path";
 
@@ -84,6 +87,12 @@ const rows = [
 ];
 
 const CollectionInfo = () => {
+  const { id } = useParams();
+  const { data: products, isSuccess } = useFetchProductGetAllQuery({
+    take: 5,
+    collectionsType: id,
+  });
+
   return (
     <div className={classes.collectionInfo}>
       <SideBar />
@@ -112,7 +121,7 @@ const CollectionInfo = () => {
               <TableStats
                 navigateToPage={ADMIN_PAGE_PRODUCTS}
                 type={TableTypes.ALL_PRODUCTS}
-                rows={rows}
+                rows={isSuccess ? products?.result?.data : []}
                 subTitle={"Весенняя коллекция"}
               />
             </div>

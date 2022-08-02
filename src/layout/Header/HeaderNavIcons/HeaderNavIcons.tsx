@@ -24,6 +24,7 @@ import {
 } from "../../../utils/modalHelper";
 
 import CartList from "../components/CartList/CartList";
+import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
 
 import classes from "./HeaderNavIcons.module.scss";
 
@@ -47,6 +48,8 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   toggleCurrent,
   currentOpen,
 }) => {
+  const { data = [] } = useFetchProductFavoritesQuery("");
+  const countFavorites = data.result?.count || 0;
   const navigate = useNavigate();
   return (
     <div className={classes.headerNavIcons}>
@@ -61,7 +64,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
             <FavIcon />
-            <span className={classes.counter}>{arr.length - 1}</span>
+            {countFavorites > 0 && (
+              <span className={classes.counter}>{countFavorites}</span>
+            )}
           </i>
         </Link>
       </div>

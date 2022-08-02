@@ -13,5 +13,14 @@ export const categoryApi = createApi({
       }),
       providesTags: ["Category"],
     }),
+    addCategory: build.mutation({
+      query: (category) => ({
+        url: "/category",
+        method: "POST",
+        body: category,
+      }),
+    }),
   }),
 });
+
+export const { useFetchCategoryQuery, useAddCategoryMutation } = categoryApi;

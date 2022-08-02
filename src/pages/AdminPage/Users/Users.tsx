@@ -73,11 +73,11 @@ const Users = () => {
         <div className={classes.usersContent}>
           <div className={classes.left}>
             <div className={classes.tableContainer}>
-              <TableStats
-                navigateToPage={ADMIN_PAGE_USERS}
-                type={TableTypes.USERS}
-                rows={rows}
-              />
+              {/*<TableStats*/}
+              {/*  navigateToPage={ADMIN_PAGE_USERS}*/}
+              {/*  type={TableTypes.USERS}*/}
+              {/*  rows={rows}*/}
+              {/*/>*/}
             </div>
           </div>
         </div>

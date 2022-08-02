@@ -101,11 +101,11 @@ const DashBoard = () => {
             </div>
 
             <div className={classes.tableContainer}>
-              <TableStats
-                navigateToPage={ADMIN_PAGE_USERS}
-                type={TableTypes.USERS}
-                rows={rows}
-              />
+              {/*<TableStats*/}
+              {/*  navigateToPage={ADMIN_PAGE_USERS}*/}
+              {/*  type={TableTypes.USERS}*/}
+              {/*  rows={rows}*/}
+              {/*/>*/}
             </div>
           </div>
           <div className={classes.right}>

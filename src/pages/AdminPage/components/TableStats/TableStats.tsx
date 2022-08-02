@@ -14,6 +14,8 @@ import {
   TableStatsTypes,
 } from "../../../../types/adminTypes/tableTypes";
 
+import { IProductType } from "../../../../types/productsTypes/productsTypes";
+
 import { colors } from "../../../../types/colorTypes/colorTypes";
 
 import { ADMIN_PAGE_USERS } from "../../../../utils/path";
@@ -44,7 +46,7 @@ import classes from "./TableStats.module.scss";
 interface TableStatsProps {
   type: TableTypes;
   subTitle?: string;
-  rows: TableStatsTypes[];
+  rows: IProductType[] | [];
   navigateToPage: string;
 }
 
@@ -96,6 +98,8 @@ const TableStats: FC<TableStatsProps> = ({
       break;
   }
 
+  console.log(rows);
+
   return (
     <>
       <TableHeader title={data.title} subTitle={data?.subTitle} />
@@ -118,7 +122,7 @@ const TableStats: FC<TableStatsProps> = ({
           <TableBody>
             {rows.map((row) => (
               <TableRow
-                key={row.name}
+                key={row.title}
                 className={classes.tableRow}
                 onClick={navigateTo(row.id)}
                 // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -126,22 +130,22 @@ const TableStats: FC<TableStatsProps> = ({
                 <TableCell
                   className={`${classes.tableCell} ${classes.tableCellName}`}
                 >
-                  {row.name}
+                  {row.title}
                 </TableCell>
-                {row.productId && (
+                {row?.article && (
                   <TableCell className={classes.tableCell}>
-                    {row.productId}
+                    {row.article}
                   </TableCell>
                 )}
-                <TableCell className={classes.tableCell}>{row.sales}</TableCell>
-                <TableCell className={classes.tableCell}>
-                  {row.income}
-                </TableCell>
-                <TableCell align="center" className={classes.tableCell}>
-                  <span className={`${classes.status} ${classes[row.status]}`}>
-                    {row.status}
-                  </span>
-                </TableCell>
+                {/*<TableCell className={classes.tableCell}>{row.sales}</TableCell>*/}
+                {/*<TableCell className={classes.tableCell}>*/}
+                {/*  {row.income}*/}
+                {/*</TableCell>*/}
+                {/*<TableCell align="center" className={classes.tableCell}>*/}
+                {/*  <span className={`${classes.status} ${classes[row.status]}`}>*/}
+                {/*    {row.status}*/}
+                {/*  </span>*/}
+                {/*</TableCell>*/}
                 <TableCell align="center" className={classes.tableCell}>
                   <Button
                     onClick={(e) => e.stopPropagation()}
