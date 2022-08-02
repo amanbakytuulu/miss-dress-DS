@@ -6,6 +6,7 @@ import styles from "./MainPage.module.scss";
 import Advantages from "./components/Advantages/Advantages";
 import NewsList from "./components/News/NewsList";
 import Collections from "./components/Collections/Collections";
+import SubscrubeContainer from "./components/SubscrubeContainer/SubscrubeContainer";
 
 const MainPage = () => {
   return (
@@ -13,6 +14,7 @@ const MainPage = () => {
       <MainSwiper />
       <ProductsPage />
       <Collections />
+      <SubscrubeContainer />
       <Advantages />
       <NewsList />
     </div>
