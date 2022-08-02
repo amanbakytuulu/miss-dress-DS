@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import classes from "../SubscrubeContainer/SubscrubeContainer.module.scss";
@@ -12,6 +12,7 @@ import ButtonImage from "../Button/Button";
 // import SubscrubeComponents from "./SubscrubeComponents/SubscrubeComponents";
 import SubscrubeList from "./SubscrubeComponents/SubscrubeList";
 
+import { newsDb } from "./newsDb";
 type SubscribeFormTypes = {
   fullName: string;
   phoneNumber: string;
@@ -19,6 +20,8 @@ type SubscribeFormTypes = {
 };
 
 const SubscrubeContainer = () => {
+  const [name, setName] = useState<string>("");
+
   const {
     register,
     formState: { errors },
@@ -29,8 +32,16 @@ const SubscrubeContainer = () => {
   });
 
   const onSubmit = (data: SubscribeFormTypes) => {
-    console.log(data);
+    newsDb.push({ ...data, category: name });
+    console.log(newsDb);
+    // console.log({ ...data, category: name });
   };
+  const getValue = (value: string) => {
+    setName(value);
+  };
+  // const submit = () => {
+  //   console.log(name);
+  // };
 
   return (
     <>
@@ -64,11 +75,18 @@ const SubscrubeContainer = () => {
                     type={"text"}
                   />
                 </div>
-                <SubscrubeList />
+                <SubscrubeList
+                  onChange={getValue}
+                  inputConfig={{
+                    ...register("category"),
+                  }}
+                  type={"text"}
+                />
                 <div className={classes.error}>
                   <span>
-                    {(errors.fullName?.message && "Заполните ФИО") ||
-                      (errors.phoneNumber?.message && "Заполните поле номер")}
+                    {(errors.fullName?.message && "Заполните Ф.И.О") ||
+                      (errors.phoneNumber?.message &&
+                        "Заполните номер телефона")}
                   </span>
                 </div>
                 <ButtonImage>Продолжить</ButtonImage>
