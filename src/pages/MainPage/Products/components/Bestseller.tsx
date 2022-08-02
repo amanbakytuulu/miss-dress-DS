@@ -15,8 +15,6 @@ const Bestseller = () => {
   const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
   const products = data?.result.data;
 
-  console.log(data);
-
   return (
     <div className={classes.mainBestseller}>
       <Grid container spacing={4}>

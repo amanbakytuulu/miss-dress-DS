@@ -22,6 +22,7 @@ export interface IItemCard {
   amount: number;
   article: string;
   rate: number;
+  images: string[];
   discount: number | null;
 }
 export interface IProductCard {
