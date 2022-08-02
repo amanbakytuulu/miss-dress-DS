@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 
-import leftArrow from "../../assets/CategoriesPage/left.svg";
-import rightArrow from "../../assets/CategoriesPage/right.svg";
+import leftArrow from "../../assets/categoriesPage/left.svg";
+import rightArrow from "../../assets/categoriesPage/right.svg";
 
 import classes from "./style.module.scss";
 

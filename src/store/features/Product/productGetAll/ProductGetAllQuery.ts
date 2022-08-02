@@ -8,10 +8,20 @@ export const productGetAllApi = createApi({
   tagTypes: ["ProductGetAll"],
   endpoints: (build) => ({
     fetchProductGetAll: build.query({
-      query: () => ({
+      query: (take) => ({
         url: "/product/get-all",
+        take,
+      }),
+      providesTags: ["ProductGetAll"],
+    }),
+    fetchProductBytitle: build.query({
+      query: (title) => ({
+        url: `/product/get-all?name=${title}`,
       }),
       providesTags: ["ProductGetAll"],
     }),
   }),
 });
+
+export const { useFetchProductGetAllQuery, useFetchProductBytitleQuery } =
+  productGetAllApi;

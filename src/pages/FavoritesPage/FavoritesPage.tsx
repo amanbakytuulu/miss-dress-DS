@@ -9,14 +9,16 @@ import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 import Select from "../CategoriesPage/components/Select";
-import { favoritesArray } from "../MainPage/Products/Data/db";
 
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
+import { useFetchProductFavoritesQuery } from "../../store/features/Product/productFavorites/productFavoritesQuery";
+import { IItemCard } from "../../components/ProductCard/types";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
-  const items = favoritesArray;
 
+  const { data = [] } = useFetchProductFavoritesQuery("");
+  const items: IItemCard[] = data.result?.data || [];
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
   const indexOfLastPost = currentPage * postsPerPage;
@@ -41,19 +43,28 @@ const FavoritesPage = () => {
             </div>
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
-            <div className={classes.selectBlock}>
-              <h2 className={classes.mediumH}>Избранное</h2>
+            <div
+              className={classes.selectBlock}
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>
+                Избранное
+              </h2>
               <Select />
             </div>
             <div className={classes.responsiveH}>
               <h2>Избранное</h2>
             </div>
           </Grid>
-          {currentPosts.map((item, index) => (
-            <Grid key={index} item xs={6} md={4}>
-              <ProductCard btnTitle={btnTitle} item={item} />
-            </Grid>
-          ))}
+          {currentPosts.length !== 0 ? (
+            currentPosts.map((item, index: number) => (
+              <Grid key={index} item xs={6} md={4}>
+                <ProductCard btnTitle={btnTitle} item={item} />
+              </Grid>
+            ))
+          ) : (
+            <div className={classes.empty}>Избранные пусто!</div>
+          )}
           <Grid item xs={12} md={12}>
             <CategoryPagination
               totalCount={totalCount}

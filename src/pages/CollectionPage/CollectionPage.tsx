@@ -18,7 +18,7 @@ import Select from "../CategoriesPage/components/Select";
 import SideBar from "../CategoriesPage/components/SideBar";
 
 const CollectionPage = () => {
-  const btnTitle = "Открыть";
+  const btnTitle = "Смотреть";
   const collectionItems = [
     {
       img: jeans,
@@ -77,17 +77,25 @@ const CollectionPage = () => {
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
-              <h2 className={classes.mediumH}>Коллекции</h2>
+              <h2 className={classes.mediumH}>Коллекция</h2>
               <Select />
             </div>
           </Grid>
           <div className={classes.responsiveH}>
-            <h2>Коллекции</h2>
+            <h2>Коллекция</h2>
           </div>
           {currentPosts.map((item, index) => (
-            <Grid item xs={6} sm={4} md={4}>
+            <Grid item xs={6} sm={4} md={4} sx={{ mb: "30px" }}>
               <ImagesCard btnTitle={btnTitle} item={item} path={item.path} />
-              <h4 style={{ textAlign: "center" }}>{item.category}</h4>
+              <h4
+                style={{
+                  fontWeight: 400,
+                  textAlign: "center",
+                  marginTop: "10px",
+                }}
+              >
+                {item.category}
+              </h4>
             </Grid>
           ))}
           <Grid item xs={12} md={12}>
