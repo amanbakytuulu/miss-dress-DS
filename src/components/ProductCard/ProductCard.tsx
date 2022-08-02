@@ -17,6 +17,9 @@ import classes from "./style.module.scss";
 import ImagesCard from "./components/ImagesCard";
 import Description from "./components/Description";
 import { IItemCard, IProductCard } from "./types";
+import { Box } from "@mui/system";
+import ResponsiveStar from "./components/ResponsiveStar";
+import ResponsiveStarFull from "./components/ResponsiveStarFull";
 
 const ProductCard = ({ item, btnTitle }: IProductCard) => {
   const [addProductFavorites] = useAddProductFavoritesMutation();
@@ -38,11 +41,13 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
       color: "#ff3d47",
     },
   });
+
+  const screenWidth = window.screen.width;
   
-const handleAddRate = (body:{rate:number | null, productId: number }) => {
-  setNewRate(body)
-  addProductRate(body)
-}
+  const handleAddRate = (body:{rate:number | null, productId: number }) => {
+    setNewRate(body)
+    addProductRate(body)
+  }
 
   useEffect(() => {
     if (items.length !== 0) {
@@ -55,21 +60,29 @@ const handleAddRate = (body:{rate:number | null, productId: number }) => {
       <ImagesCard btnTitle={btnTitle} item={item} />
       <Description item={item} />
       <div className={classes.iconsDiv}>
-        <StyledRating
-          name="customized-color"
-          defaultValue={rate}
-          value={rate}
-          getLabelText={(value: number) =>
-            `${value} Heart${value !== 1 ? "s" : ""}`
-          }
-          precision={1}
-          icon={<StarFull />}
-          emptyIcon={<Star />}
-          onChange={(e, newValue ) => handleAddRate({
-            rate: newValue || Math.ceil(rate),
-            productId: item.id,
-          })}
-        />
+        <Box
+        sx={{
+          width: 200,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+        >
+          <StyledRating
+            name="customized-color"
+            defaultValue={rate}
+            value={rate}
+            getLabelText={(value: number) =>
+              `${value} Heart${value !== 1 ? "s" : ""}`
+            }
+            precision={1}
+            icon={screenWidth > 715 ? <StarFull /> : <ResponsiveStarFull />}
+            emptyIcon={screenWidth > 715 ? <Star /> : <ResponsiveStar />}
+            onChange={(e, newValue ) => handleAddRate({
+              rate: newValue || Math.ceil(rate),
+              productId: item.id,
+            })}
+          />
+        </Box>
         <div>
           <img
             onClick={handleAddFavorite}
