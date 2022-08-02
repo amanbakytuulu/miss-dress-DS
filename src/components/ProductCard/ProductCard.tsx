@@ -21,8 +21,8 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
   const items: IItemCard[] = data.result?.data || [];
   const [changeColor, setChangeColor] = useState(false);
   const handleAddFavorite = () => {
-    setChangeColor(!changeColor);
     addProductFavorites(item);
+    setChangeColor(!changeColor);
   };
 
   useEffect(() => {

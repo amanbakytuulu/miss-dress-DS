@@ -49,7 +49,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   currentOpen,
 }) => {
   const { data = [] } = useFetchProductFavoritesQuery("");
-  const items = data.result?.data || [];
+  const countFavorites = data.result?.count || 0;
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>
@@ -63,7 +63,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
             <FavIcon />
-            <span className={classes.counter}>{items.length}</span>
+            <span className={classes.counter}>{countFavorites}</span>
           </i>
         </Link>
       </div>

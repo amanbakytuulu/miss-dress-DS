@@ -12,6 +12,7 @@ export const productFavoritesApi = createApi({
     fetchProductFavorites: build.query({
       query: () => ({
         url: "/product/list/favorites",
+        method: "GET",
         headers: {
           Authorization: process.env.REACT_APP_API_TOKEN,
         },
