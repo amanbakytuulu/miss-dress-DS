@@ -23,7 +23,6 @@ const Description: React.FC<DescriptionProps> = ({ item }) => {
         </div>
       </div>
       <p className={classes.titleP}>{item.title}</p>
-      {/* <p className={classes.sizeP}>{item.size}</p> */}
     </>
   );
 };

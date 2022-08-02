@@ -13,7 +13,6 @@ const NewProducts = () => {
 
   const { data, isLoading } = productGetAllApi.useFetchProductGetAllQuery(6);
   const newProductItems = data?.result.data;
-  console.log(newProductItems);
 
   if (isLoading) {
     return <h1>Loading...</h1>;

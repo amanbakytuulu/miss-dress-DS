@@ -13,7 +13,8 @@ export const productFavoritesApi = createApi({
       query: () => ({
         url: "/product/list/favorites",
         headers: {
-          Authorization: process.env.REACT_APP_API_TOKEN,
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5MzUxOTM4LCJleHAiOjE2NTk1MjQ3Mzh9.vc249ShD3v50COUfKbHb1EQJWCCg42UiSTPvkxq68d8",
         },
       }),
       providesTags: ["ProductFavorites"],
@@ -23,7 +24,8 @@ export const productFavoritesApi = createApi({
         url: `/product/favorite/${item.id}`,
         method: "PATCH",
         headers: {
-          Authorization: process.env.REACT_APP_API_TOKEN,
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5MzUxOTM4LCJleHAiOjE2NTk1MjQ3Mzh9.vc249ShD3v50COUfKbHb1EQJWCCg42UiSTPvkxq68d8",
         },
         body: item,
       }),
