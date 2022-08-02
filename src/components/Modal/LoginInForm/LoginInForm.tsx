@@ -1,10 +1,15 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
-import { useForm, Resolver } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
 
 import { InputField, Button } from "../../common";
+
+import {
+  useLazyGetSmsCodeQuery,
+  useUserLoginMutation,
+} from "../../../store/authorization/Authorization";
 
 import classes from "./LoginInForm.module.scss";
 
@@ -20,6 +25,12 @@ type FormValues = {
 const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [sendPhone, setSendPhone] = useState<string>("");
+
+  const [login, { data: loginData, isSuccess }] = useUserLoginMutation();
+  const [getSms, { data: sms, isSuccess: isSmsSuccess }] =
+    useLazyGetSmsCodeQuery();
+
   const {
     register,
     formState: { errors },
@@ -31,8 +42,24 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   };
 
   const onSubmit = (data: any) => {
+    login({
+      phoneNumber: data.phoneNumber,
+    });
     setContinue(true);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      const id = loginData?.result?.user?.id;
+      getSms(id);
+    }
+  }, [isSuccess, loginData]);
+
+  useEffect(() => {
+    if (isSmsSuccess) {
+      sessionStorage.setItem("data", JSON.stringify(sms.result));
+    }
+  }, [sms]);
 
   return (
     <>

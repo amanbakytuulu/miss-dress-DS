@@ -8,6 +8,8 @@ import { productFavoritesApi } from "./features/Product/productFavorites/product
 import { productGetAllApi } from "./features/Product/productGetAll/ProductGetAllQuery";
 import { getAllApi } from "./features/User/getAll/getAllQuery";
 import { meApi } from "./features/User/userMe/meQuery";
+import { apiAuth } from "./authorization/Authorization";
+// import { cartApi } from "./features/Cart/cartQuery";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
   [productGetAllApi.reducerPath]: productGetAllApi.reducer,
   [getAllApi.reducerPath]: getAllApi.reducer,
   [meApi.reducerPath]: meApi.reducer,
+  [apiAuth.reducerPath]: apiAuth.reducer,
+  // [cartApi.reducerPath]: cartApi.reducer,
 });
 
 export const store = configureStore({
@@ -29,7 +33,9 @@ export const store = configureStore({
       productFavoritesApi.middleware,
       productGetAllApi.middleware,
       getAllApi.middleware,
-      meApi.middleware
+      meApi.middleware,
+      apiAuth.middleware
+      // cartApi.middleware
     ),
 });
 

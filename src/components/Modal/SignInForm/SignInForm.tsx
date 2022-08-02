@@ -1,9 +1,14 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { InputField, Button } from "../../common";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
+
+import {
+  useLazyGetSmsCodeQuery,
+  useUserSignUpMutation,
+} from "../../../store/authorization/Authorization";
 
 import classes from "./SignInForm.module.scss";
 
@@ -26,20 +31,31 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
     handleSubmit,
   } = useForm<SignInFormType>({ mode: "onBlur", reValidateMode: "onChange" });
 
-  const onSubmit = (data: SignInFormType) => {
-    setContinue(true);
+  const [signUp, { isSuccess, data, isError }] = useUserSignUpMutation();
+  const [getSms, { data: sms, isSuccess: isSmsSuccess }] =
+    useLazyGetSmsCodeQuery();
+
+  useEffect(() => {
+    if (isSuccess) {
+      const id = data?.result?.user?.id;
+      getSms(id);
+    }
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    if (isSmsSuccess) {
+      setContinue(true);
+      sessionStorage.setItem("data", JSON.stringify(sms.result));
+    }
+  }, [sms]);
+
+  const onSubmit = (user: SignInFormType) => {
+    signUp({
+      firstName: user.name,
+      lastName: user.surName,
+      phoneNumber: user.phoneNumber,
+    });
   };
-
-  console.log(touchedFields);
-  // const [signInForm, setSignInForm] = useState({
-  //   name: "",
-  //   surName: "",
-  //   phoneNumber: "",
-  // });
-
-  // const handleChange = (name: string) => (value: string) => {
-  //   setSignInForm({ ...signInForm, [name]: value });
-  // };
 
   return (
     <>

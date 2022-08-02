@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,8 @@ import { useTimer } from "../../../hooks/useTimer";
 import { ERROR_PAGE } from "../../../utils/path";
 import { IModal } from "../../../types/modalTypes/modalType";
 import { InputField, Button } from "../../common";
+
+import { useLazySendActivateCodeQuery } from "../../../store/authorization/Authorization";
 
 import classes from "./VerificationForm.module.scss";
 
@@ -39,19 +41,28 @@ const VerificationForm: FC<VerificationFormProps> = ({
   const [{ minutes, seconds }, restart] = useTimer(60);
   const isDisabledButton = Number(seconds) !== 0 || Number(minutes) !== 0;
 
+  const [sendActivate, { data: activate }] = useLazySendActivateCodeQuery();
+
+  const smsData = JSON.parse(sessionStorage.getItem("data") || "");
+
   const handleRestartTimer = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     restart(60);
   };
+
   const handleAccept = () => {
+    sendActivate({
+      userId: smsData.user_id,
+      code: smsData.code,
+    });
+    localStorage.setItem(
+      "accessToken",
+      JSON.stringify(activate.result.token.accessToken)
+    );
     setUserEnter(true);
     if (title?.toLowerCase() === "вход") return closeModal();
     setIsSuccess(true);
   };
-
-  // const handleChange = (name: string) => (value: string) => {
-  //   setVerificationCode(value);
-  // };
 
   return (
     <>

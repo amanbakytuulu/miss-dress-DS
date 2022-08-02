@@ -6,6 +6,8 @@ import { Modal } from "../../components";
 
 import SuccessOrder from "../../components/Modal/SuccessOrder/SuccessOrder";
 
+// import { useGetProductFromCardQuery } from "../../store/features/Cart/cartQuery";
+
 import OrderForm from "./OrderForm/OrderForm";
 import CartSummary from "./CartSummary/CartSummary";
 import CartList from "./CartList/CartList";
@@ -23,6 +25,10 @@ const arr: ICartList[] = [
 
 const CartPage = () => {
   const [isModalOpen, setOpenModal] = useState<boolean>(false);
+
+  // const {} = useGetProductFromCardQuery("");
+
+  // console.log(data);
 
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
