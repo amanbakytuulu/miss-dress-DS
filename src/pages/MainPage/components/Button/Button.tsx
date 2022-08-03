@@ -2,14 +2,15 @@ import React, { FC } from "react";
 
 import classes from "../Button/Button.module.scss";
 interface ButtonPoros {
-  onCLicks?: () => void;
   children: React.ReactNode;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: any;
 }
 
-const ButtonImage: FC<ButtonPoros> = ({ children, onCLicks }) => {
+const ButtonImage: FC<ButtonPoros> = ({ children, type, onClick }) => {
   return (
     <div className={classes.image}>
-      <button onClick={onCLicks} className={classes.btn}>
+      <button onClick={onClick} type={type} className={classes.btn}>
         {children}
       </button>
     </div>

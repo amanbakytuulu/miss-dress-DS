@@ -20,28 +20,26 @@ type SubscribeFormTypes = {
 };
 
 const SubscrubeContainer = () => {
-  const [name, setName] = useState<string>("");
-
+  const [value, setValue] = useState<string>("Выбрать категорию");
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<SubscribeFormTypes>({
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
   const onSubmit = (data: SubscribeFormTypes) => {
-    newsDb.push({ ...data, category: name });
+    newsDb.push({ ...data, category: value });
     console.log(newsDb);
-    // console.log({ ...data, category: name });
+    reset({ fullName: "", phoneNumber: "" });
+    setValue("Выбрать категорию");
   };
   const getValue = (value: string) => {
-    setName(value);
+    setValue(value);
   };
-  // const submit = () => {
-  //   console.log(name);
-  // };
 
   return (
     <>
@@ -49,8 +47,8 @@ const SubscrubeContainer = () => {
         <div className={classes.image__flex}>
           <div className={classes.image__item}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <h3 className={classes.image__h3}>
-                Оформить подписку
+              <div className={classes.block}>
+                <h3 className={classes.image__h3}>Оформить подписку</h3>
                 <div className={classes.inputBlock}>
                   <InputField
                     color={colors.subscribeInput}
@@ -76,7 +74,9 @@ const SubscrubeContainer = () => {
                   />
                 </div>
                 <SubscrubeList
-                  onChange={getValue}
+                  value={value}
+                  setValue={setValue}
+                  // onChange={getValue}
                   inputConfig={{
                     ...register("category"),
                   }}
@@ -89,8 +89,10 @@ const SubscrubeContainer = () => {
                         "Заполните номер телефона")}
                   </span>
                 </div>
-                <ButtonImage>Продолжить</ButtonImage>
-              </h3>
+                <div className={classes.btn__fix}>
+                  <ButtonImage type={"submit"}>Продолжить</ButtonImage>
+                </div>
+              </div>
             </form>
           </div>
         </div>
