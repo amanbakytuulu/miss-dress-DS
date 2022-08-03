@@ -4,17 +4,26 @@ import { Button } from "@mui/material";
 import leftArrow from "../../assets/categoriesPage/left.svg";
 import rightArrow from "../../assets/categoriesPage/right.svg";
 
+import {
+  useFetchProductGetAllQuery,
+  useFetchProductsPaginationQuery,
+} from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+
 import classes from "./style.module.scss";
 
-const CategoryPagination = ({
-  pageNumbers,
-  setCurrentPage,
-  currentPage,
-  postsPerPage,
-  totalCount,
-}: any) => {
+const CategoryPagination = () => {
   function scrollTop(): void {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  const { data } = useFetchProductGetAllQuery('');
+  const products = data?.result.data;
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalCount = products?.length;
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalCount / 6); i++) {
+    pageNumbers.push(i);
   }
 
   return (
@@ -50,10 +59,9 @@ const CategoryPagination = ({
         {pageNumbers.length > 4 && (
           <Button className={classes.arrowBtn}>...</Button>
         )}
-
         <Button
           className={classes.arrowBtn}
-          disabled={Math.ceil(totalCount / postsPerPage) === currentPage}
+          disabled={Math.ceil(totalCount / 6) === currentPage}
           onClick={() => {
             setCurrentPage(currentPage + 1);
             scrollTop();

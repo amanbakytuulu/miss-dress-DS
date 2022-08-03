@@ -12,14 +12,20 @@ export const productGetAllApi = createApi({
         url: "/product/get-all",
         params: {
           take,
-          sort: "title"
-        }
+          sort: "title",
+        },
       }),
       providesTags: ["ProductGetAll"],
     }),
     fetchProductBytitle: build.query({
       query: (title) => ({
         url: `/product/get-all?name=${title}`,
+      }),
+      providesTags: ["ProductGetAll"],
+    }),
+    fetchProductsPagination: build.query({
+      query: (page) => ({
+        url: `/product/get-all?page=${page}`,
       }),
       providesTags: ["ProductGetAll"],
     }),
@@ -43,4 +49,5 @@ export const {
   useFetchProductGetAllQuery,
   useFetchProductBytitleQuery,
   useAddProductRateMutation,
+  useFetchProductsPaginationQuery,
 } = productGetAllApi;

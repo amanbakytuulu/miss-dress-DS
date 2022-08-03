@@ -20,17 +20,7 @@ const FavoritesPage = () => {
 
   const { data = [] } = useFetchProductFavoritesQuery("");
   const items: IItemCard[] = data.result?.data || [];
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items.length;
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const currentPosts = items.slice(1, 2);
 
   return (
     <div className={classes.mainDiv} style={{ marginTop: "22px" }}>
@@ -67,13 +57,7 @@ const FavoritesPage = () => {
             <div className={classes.empty}>Избранные пусто!</div>
           )}
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination />
           </Grid>
         </Grid>
       </Container>

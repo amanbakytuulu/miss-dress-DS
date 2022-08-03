@@ -20,6 +20,7 @@ import SideBar from "../CategoriesPage/components/SideBar";
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 // import { dataArray } from "../MainPage/Products/Data/db";
 import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { useFetchProductsPaginationQuery } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import CategoriesDropdown from "./components/CategoriesDropdown";
 
@@ -30,18 +31,7 @@ import classes from "./CategoryPage.module.scss";
 const CategoryPage = () => {
   const btnTitle = "Открыть";
   const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
-  const items = data?.result.data;
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = items?.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items?.length;
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const items = data?.result.data;  
 
   return (
     <div className={classes.mainDiv}>
@@ -81,13 +71,7 @@ const CategoryPage = () => {
             ))}
           </Grid>
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination />
           </Grid>
         </Grid>
       </Container>

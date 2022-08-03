@@ -111,31 +111,14 @@ const SearchPage = () => {
   const { data = [] } = useFetchProductBytitleQuery(title);
   const items = data.result?.data || [];
   const otherItems = otherData.result?.data || [];
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 3;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items.length;
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
 
   return (
     <div className={classes.searchPageWrapper}>
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
-        <SearchHeader quantity={totalCount} />
+        <SearchHeader quantity={items.length} />
 
         {items.length > 0 ? (
-          <SearchList
-            searchList={items}
-            totalCount={totalCount}
-            postsPerPage={postsPerPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            pageNumbers={pageNumbers}
-          />
+          <SearchList searchList={items} />
         ) : (
           <OthersProducts slides={otherItems} />
         )}

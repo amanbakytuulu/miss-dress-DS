@@ -18,18 +18,6 @@ const CollectionProductsPage = () => {
   const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
   const dresses = data?.result.data;
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = dresses.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = dresses.length;
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
   return (
     <div className={classes.mainDiv}>
       <Container sx={{ flexGrow: 1 }}>
@@ -56,13 +44,7 @@ const CollectionProductsPage = () => {
             ))}
           </Grid>
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination />
           </Grid>
         </Grid>
       </Container>

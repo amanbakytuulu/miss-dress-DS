@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Rating, styled } from "@mui/material";
 
+import { Box } from "@mui/system";
+
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import heart from "../../assets/mainPage/icons/heart.svg";
 import {
@@ -17,7 +19,6 @@ import classes from "./style.module.scss";
 import ImagesCard from "./components/ImagesCard";
 import Description from "./components/Description";
 import { IItemCard, IProductCard } from "./types";
-import { Box } from "@mui/system";
 import ResponsiveStar from "./components/ResponsiveStar";
 import ResponsiveStarFull from "./components/ResponsiveStarFull";
 
@@ -43,17 +44,17 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
   });
 
   const screenWidth = window.screen.width;
-  
-  const handleAddRate = (body:{rate:number | null, productId: number }) => {
-    setNewRate(body)
-    addProductRate(body)
-  }
+
+  const handleAddRate = (body: { rate: number | null; productId: number }) => {
+    setNewRate(body);
+    addProductRate(body);
+  };
 
   useEffect(() => {
     if (items.length !== 0) {
       setChangeColor(items.some((el) => el.id === item.id));
     }
-  }, [items,newRate]);
+  }, [items, newRate]);
 
   return (
     <Grid className={classes.bestsellerCard}>
@@ -61,11 +62,11 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
       <Description item={item} />
       <div className={classes.iconsDiv}>
         <Box
-        sx={{
-          width: 200,
-          display: 'flex',
-          alignItems: 'center',
-        }}
+          sx={{
+            width: 200,
+            display: "flex",
+            alignItems: "center",
+          }}
         >
           <StyledRating
             name="customized-color"
@@ -77,10 +78,12 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
             precision={1}
             icon={screenWidth > 715 ? <StarFull /> : <ResponsiveStarFull />}
             emptyIcon={screenWidth > 715 ? <Star /> : <ResponsiveStar />}
-            onChange={(e, newValue ) => handleAddRate({
-              rate: newValue || Math.ceil(rate),
-              productId: item.id,
-            })}
+            onChange={(e, newValue) =>
+              handleAddRate({
+                rate: newValue || Math.ceil(rate),
+                productId: item.id,
+              })
+            }
           />
         </Box>
         <div>

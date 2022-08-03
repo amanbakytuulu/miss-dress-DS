@@ -52,17 +52,7 @@ const CollectionPage = () => {
     },
   ];
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = collectionItems.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = collectionItems.length;
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const currentPosts = collectionItems.slice(1, 2);
 
   return (
     <div className={classes.mainDiv} style={{ marginTop: "20px" }}>
@@ -99,13 +89,7 @@ const CollectionPage = () => {
             </Grid>
           ))}
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination />
           </Grid>
         </Grid>
       </Container>
