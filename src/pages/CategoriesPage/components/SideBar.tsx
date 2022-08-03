@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import classes from "../CategoryPage.module.scss";
 
-import vector from "../../../assets/CategoriesPage/Vector.svg";
-import vectorfull from "../../../assets/CategoriesPage/Vector.svg";
+import vector from "../../../assets/categoriesPage/Vector.svg";
+import vectorfull from "../../../assets/categoriesPage/Vector.svg";
 
 const SideBar = () => {
   const [verh, setVerh] = useState(false);
