@@ -27,4 +27,9 @@
     background-color: $secondary-beige;
     border: 1px solid rgba(0, 0, 0, 0.3);
   }
+
+  button {
+    display: none;
+    visibility: hidden;
+  }
 }
