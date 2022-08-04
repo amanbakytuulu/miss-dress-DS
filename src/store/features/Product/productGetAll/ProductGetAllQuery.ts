@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 import { API } from "../../../../hooks/api";
-import { IProductType } from "../../../../types/productsTypes/productsTypes";
 
 export const productGetAllApi = createApi({
   reducerPath: "productGetAllApi",
@@ -9,10 +8,9 @@ export const productGetAllApi = createApi({
   tagTypes: ["ProductGetAll"],
   endpoints: (build) => ({
     fetchProductGetAll: build.query({
-      query: ({ take, collectionsType }) => ({
+      query: (take) => ({
         url: "/product/get-all",
         params: {
-          collectionsType,
           take,
         },
       }),

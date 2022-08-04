@@ -12,9 +12,15 @@ import {
   TableTypes,
   Status,
   TableStatsTypes,
+  IAllStatus,
 } from "../../../../types/adminTypes/tableTypes";
 
-import { IProductType } from "../../../../types/productsTypes/productsTypes";
+import {
+  IProduct,
+  IProductsStat,
+} from "../../../../types/productsTypes/productsTypes";
+
+import { IUser } from "../../../../types/usersTypes/usersTypes";
 
 import { colors } from "../../../../types/colorTypes/colorTypes";
 
@@ -46,7 +52,7 @@ import classes from "./TableStats.module.scss";
 interface TableStatsProps {
   type: TableTypes;
   subTitle?: string;
-  rows: IProductType[] | [];
+  rows: any[];
   navigateToPage: string;
 }
 
@@ -62,12 +68,20 @@ const TableStats: FC<TableStatsProps> = ({
     return () => navigate(navigateToPage + `/${id}`);
   };
 
+  const allStatus: IAllStatus = {
+    [Status.ACTIVE]: "Active",
+    [Status.PENDING]: "Pending",
+    [Status.DELETED]: "Deleted",
+    [Status.BANNED]: "Banned",
+  };
+
   switch (type) {
     case TableTypes.USERS:
       data = {
         title: "Все пользователи",
         tableCellHeader: [
           { name: "Пользователь" },
+          { name: "Номер телефона" },
           { name: "Продажи" },
           { name: "Доход" },
         ],
@@ -79,6 +93,7 @@ const TableStats: FC<TableStatsProps> = ({
         subTitle: subTitle || null,
         tableCellHeader: [
           { name: "Наименование товара" },
+          { name: "Артикул" },
           { name: "Номер товара" },
           { name: "Продажи" },
           { name: "Доход" },
@@ -119,48 +134,107 @@ const TableStats: FC<TableStatsProps> = ({
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.title}
-                className={classes.tableRow}
-                onClick={navigateTo(row.id)}
-                // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell
-                  className={`${classes.tableCell} ${classes.tableCellName}`}
+          {rows[0]?.product ? (
+            <TableBody>
+              {rows.map((row: IProductsStat) => (
+                <TableRow
+                  key={row.id}
+                  className={classes.tableRow}
+                  onClick={navigateTo(row.productId)}
+                  // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  {row.title}
-                </TableCell>
-                {row?.article && (
-                  <TableCell className={classes.tableCell}>
-                    {row.article}
-                  </TableCell>
-                )}
-                {/*<TableCell className={classes.tableCell}>{row.sales}</TableCell>*/}
-                {/*<TableCell className={classes.tableCell}>*/}
-                {/*  {row.income}*/}
-                {/*</TableCell>*/}
-                {/*<TableCell align="center" className={classes.tableCell}>*/}
-                {/*  <span className={`${classes.status} ${classes[row.status]}`}>*/}
-                {/*    {row.status}*/}
-                {/*  </span>*/}
-                {/*</TableCell>*/}
-                <TableCell align="center" className={classes.tableCell}>
-                  <Button
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      padding: "5px",
-                      backgroundColor: colors.deleteBtn,
-                      color: colors.blackText,
-                    }}
+                  <TableCell
+                    className={`${classes.tableCell} ${classes.tableCellName}`}
                   >
-                    Удалить
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+                    {row.product.title}
+                  </TableCell>
+                  <TableCell className={classes.tableCell}>
+                    {row.product.article}
+                  </TableCell>
+                  {row.productId && (
+                    <TableCell className={classes.tableCell}>
+                      {row.productId}
+                    </TableCell>
+                  )}
+
+                  <TableCell className={classes.tableCell}>
+                    {row.allTotalCount} продаж
+                  </TableCell>
+                  <TableCell className={classes.tableCell}>
+                    {row.allAmount} доход
+                  </TableCell>
+                  <TableCell align="center" className={classes.tableCell}>
+                    <span
+                      className={`${classes.status} ${
+                        classes[allStatus[`${row.status}`]]
+                      }`}
+                    >
+                      {allStatus[`${row.status}`]}
+                    </span>
+                  </TableCell>
+                  <TableCell align="center" className={classes.tableCell}>
+                    <Button
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        padding: "5px",
+                        backgroundColor: colors.deleteBtn,
+                        color: colors.blackText,
+                      }}
+                    >
+                      Удалить
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          ) : (
+            <TableBody>
+              {rows.map((row: IUser) => (
+                <TableRow
+                  key={row.user_first_name}
+                  className={classes.tableRow}
+                  // onClick={navigateTo(row.user_first_name)}
+                >
+                  <TableCell
+                    className={`${classes.tableCell} ${classes.tableCellName}`}
+                  >
+                    {`${row.user_first_name} ${row.user_last_name}`}
+                  </TableCell>
+                  <TableCell className={classes.tableCell}>
+                    {row.user_phone_number}
+                  </TableCell>
+
+                  <TableCell className={classes.tableCell}>
+                    {row.price || 0} продаж
+                  </TableCell>
+                  <TableCell className={classes.tableCell}>
+                    {row.amount || 0} доход
+                  </TableCell>
+                  <TableCell align="center" className={classes.tableCell}>
+                    <span
+                      className={`${classes.status} ${
+                        classes[allStatus[`${row.user_status}`]]
+                      }`}
+                    >
+                      {allStatus[`${row.user_status}`]}
+                    </span>
+                  </TableCell>
+                  <TableCell align="center" className={classes.tableCell}>
+                    <Button
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        padding: "5px",
+                        backgroundColor: colors.deleteBtn,
+                        color: colors.blackText,
+                      }}
+                    >
+                      Удалить
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
     </>

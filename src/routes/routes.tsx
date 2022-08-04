@@ -143,7 +143,7 @@ export const PRIVATE_ROUTES = [
     Component: <Products />,
   },
   {
-    path: ADMIN_PAGE_PRODUCTS + "/:id",
+    path: ADMIN_PAGE_PRODUCTS + "/:productId",
     Component: <ProductDetails />,
   },
   {

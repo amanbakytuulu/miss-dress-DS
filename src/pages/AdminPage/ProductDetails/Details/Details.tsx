@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
-import { IProductType } from "../../../../types/productsTypes/productsTypes";
+import { IProduct } from "../../../../types/productsTypes/productsTypes";
 
 import EditBtn from "../../components/EditBtn/EditBtn";
 
 import classes from "./Details.module.scss";
 
 interface DetailsProps {
-  product: IProductType;
+  product: IProduct;
 }
 
 const Details: FC<DetailsProps> = ({ product }) => {

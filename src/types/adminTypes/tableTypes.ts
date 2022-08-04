@@ -3,11 +3,26 @@ export enum TableTypes {
   POPULAR_PRODUCTS = 1,
   ALL_PRODUCTS = 2,
 }
+// export enum Status {
+//   PENDING = "Pending",
+//   ACTIVE = "Active",
+//   DELETED = "Deleted",
+//   BANNED = "Banned",
+// }
 export enum Status {
-  PENDING = "Pending",
-  ACTIVE = "Active",
-  DELETED = "Deleted",
-  BANNED = "Banned",
+  PENDING = 0,
+  ACTIVE = 1,
+  DELETED = 2,
+  BANNED = 3,
+}
+
+export enum ProceedStatus {
+  ACTIVE = 1,
+  PENDING = 2,
+  PAID = 3,
+}
+export interface IAllStatus {
+  [key: string]: string;
 }
 export interface TableStatsTypes {
   id: number;

@@ -1,10 +1,13 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 import { ADMIN_PAGE_PRODUCTS } from "../../../utils/path";
 
-import { IProductType } from "../../../types/productsTypes/productsTypes";
+import { IProduct } from "../../../types/productsTypes/productsTypes";
 
 import photo from "../../../assets/mainPage/categories/first.png";
+
+import { useGetProductByIdQuery } from "../../../store/features/Product/productId/productIdQuery";
 
 import SideBar from "../components/SideBar/SideBar";
 import BackButton from "../components/BackButton/BackButton";
@@ -16,7 +19,7 @@ import Information from "./Information/Information";
 
 import classes from "./ProductsDetails.module.scss";
 
-const product: IProductType = {
+const product: IProduct = {
   id: 1,
   status: 1,
   createDate: "2022-07-25T01:12:06.420Z",
@@ -52,6 +55,10 @@ const product: IProductType = {
   ],
 };
 const ProductDetails = () => {
+  const { productId } = useParams();
+  console.log(productId);
+  const { data = {}, isSuccess } = useGetProductByIdQuery(productId);
+  const product = isSuccess && data.result;
   return (
     <div className={classes.productDetails}>
       <SideBar />
@@ -69,7 +76,7 @@ const ProductDetails = () => {
           <div className={classes.infoBlock}>
             <div className={classes.left}>
               <h3>Информация о товаре</h3>
-              <Photos images={product.images} />
+              <Photos images={product?.images} />
               <Details product={product} />
             </div>
             <div className={classes.right}>

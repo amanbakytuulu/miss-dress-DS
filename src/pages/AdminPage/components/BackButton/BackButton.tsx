@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ReactComponent as ArrowIcon } from "../../../../assets/adminPage/adminIcons/arrowIcon.svg";
 
@@ -11,13 +11,15 @@ interface BackButtonProps {
 }
 
 const BackButton: FC<BackButtonProps> = ({ path, children }) => {
+  const navigate = useNavigate();
+
   return (
-    <Link to={path} className={classes.backButton}>
+    <div onClick={() => navigate(-1)} className={classes.backButton}>
       <i>
         <ArrowIcon />
       </i>
       <span>{children}</span>
-    </Link>
+    </div>
   );
 };
 

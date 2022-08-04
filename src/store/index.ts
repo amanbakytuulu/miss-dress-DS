@@ -11,6 +11,8 @@ import { productGetAllApi } from "./features/Product/productGetAll/ProductGetAll
 import { getAllApi } from "./features/User/getAll/getAllQuery";
 import { meApi } from "./features/User/userMe/meQuery";
 import { collectionApi } from "./features/Collection/collectionQuery";
+import { productsStatApi } from "./features/Admin/productStatisticsQuery";
+import { usersStatsApi } from "./features/Admin/usersStatisticsQuery";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   [productIdApi.reducerPath]: productIdApi.reducer,
   [getAllApi.reducerPath]: getAllApi.reducer,
   [meApi.reducerPath]: meApi.reducer,
+  [productsStatApi.reducerPath]: productsStatApi.reducer,
+  [usersStatsApi.reducerPath]: usersStatsApi.reducer,
 });
 
 export const store = configureStore({
@@ -36,7 +40,9 @@ export const store = configureStore({
       productGetAllApi.middleware,
       productIdApi.middleware,
       getAllApi.middleware,
-      meApi.middleware
+      meApi.middleware,
+      productsStatApi.middleware,
+      usersStatsApi.middleware
     ),
 });
 

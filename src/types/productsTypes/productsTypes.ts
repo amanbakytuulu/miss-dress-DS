@@ -1,4 +1,4 @@
-export interface IProductType {
+export interface IProduct {
   id: number;
   status: number;
   createDate: Date | string;
@@ -11,4 +11,15 @@ export interface IProductType {
   rate: number;
   discount?: any;
   images: any[];
+}
+
+export interface IProductsStat {
+  id: number;
+  status: number;
+  createDate: Date | string;
+  updateDate: Date | string;
+  productId: number;
+  allTotalCount: number;
+  allAmount: number;
+  product: IProduct;
 }

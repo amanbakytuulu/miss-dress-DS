@@ -47,24 +47,25 @@ const listOfUsers = [
   },
 ];
 
-function createData(
-  id: number,
-  name: string,
-  sales: string,
-  income: string,
-  status: string
-) {
-  return { id, name, sales, income, status };
-}
-
-const rows = [
-  createData(1, "Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
-  createData(2, "Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
-  createData(3, "Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
-  createData(4, "Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
-  createData(5, "Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
-];
+// function createData(
+//   id: number,
+//   name: string,
+//   sales: string,
+//   income: string,
+//   status: string
+// ) {
+//   return { id, name, sales, income, status };
+// }
+//
+// const rows = [
+//   createData(1, "Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
+//   createData(2, "Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
+//   createData(3, "Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
+//   createData(4, "Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
+//   createData(5, "Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
+// ];
 const DashBoard = () => {
+  // const {data: users, is} =
   return (
     <div className={classes.dashboard}>
       <SideBar />
