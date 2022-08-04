@@ -8,6 +8,12 @@ import List from "../components/List/List";
 
 import { ADMIN_PAGE_USERS } from "../../../utils/path";
 
+import { useFetchAllStatQuery } from "../../../store/features/Admin/allStatQuery";
+import { useFetchPopularProductsQuery } from "../../../store/features/Admin/productStatisticsQuery";
+import { useFetchUsersStatsQuery } from "../../../store/features/Admin/usersStatisticsQuery";
+
+import { separateList } from "../../../utils/separateList";
+
 import { Status, TableTypes } from "../../../types/adminTypes/tableTypes";
 
 import classes from "./Dashboard.module.scss";
@@ -65,7 +71,23 @@ const listOfUsers = [
 //   createData(5, "Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
 // ];
 const DashBoard = () => {
-  // const {data: users, is} =
+  const { data, isSuccess: isUsersSuccess } = useFetchUsersStatsQuery("");
+  const { data: statData = {}, isSuccess: isStatsDataSuccess } =
+    useFetchAllStatQuery("");
+  const { data: popularProducts = {}, isSuccess: isPopularProductsSuccess } =
+    useFetchPopularProductsQuery("");
+  const { data: popularUsers, isSuccess: isPopularUsersSuccess } =
+    useFetchPopularProductsQuery("");
+
+  const popularProductList = separateList(
+    isPopularProductsSuccess && popularProducts.result
+  );
+  const popularUserList = separateList(
+    isPopularUsersSuccess && popularUsers.result
+  );
+  const users = isUsersSuccess && data.result;
+  const stats = isStatsDataSuccess && statData.result;
+
   return (
     <div className={classes.dashboard}>
       <SideBar />
@@ -82,40 +104,50 @@ const DashBoard = () => {
               <div className={classes.widgets}>
                 <Widget
                   widget={{
-                    widgetStat: "1500",
+                    widgetStat: stats.lastDateNewOrderAmount || 0,
                     widgetTitle: "проданных товаров",
                   }}
                 />
                 <Widget
                   widget={{
-                    widgetStat: "1.5m",
+                    widgetStat: stats.lastDateNewUsers || 0,
+                    widgetTitle: "новых пользователей",
+                  }}
+                />
+                <Widget
+                  widget={{
+                    widgetStat: stats.lastDateNewOrderPrices || 0,
                     widgetTitle: "полученный доход",
-                  }}
-                />
-                <Widget
-                  widget={{
-                    widgetStat: "1500",
-                    widgetTitle: "проданных товаров",
                   }}
                 />
               </div>
             </div>
 
             <div className={classes.tableContainer}>
-              {/*<TableStats*/}
-              {/*  navigateToPage={ADMIN_PAGE_USERS}*/}
-              {/*  type={TableTypes.USERS}*/}
-              {/*  rows={rows}*/}
-              {/*/>*/}
+              <TableStats
+                navigateToPage={ADMIN_PAGE_USERS}
+                type={TableTypes.USERS}
+                rows={users || []}
+              />
             </div>
           </div>
           <div className={classes.right}>
-            <div className={classes.popularProducts}>
-              <List title={"Популярные товары"} itemsList={listOfProducts} />
-            </div>
-            <div className={classes.popularUsers}>
-              <List title={"Постоянные пользователи"} itemsList={listOfUsers} />
-            </div>
+            {isPopularProductsSuccess && (
+              <div className={classes.popularProducts}>
+                <List
+                  title={"Популярные товары"}
+                  itemsList={popularProductList || []}
+                />
+              </div>
+            )}
+            {isPopularUsersSuccess && (
+              <div className={classes.popularUsers}>
+                <List
+                  title={"Постоянные пользователи"}
+                  itemsList={popularUserList || []}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

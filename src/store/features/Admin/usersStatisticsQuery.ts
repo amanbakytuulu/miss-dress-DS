@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 import { API } from "../../../hooks/api";
+import { token } from "../../../utils/token";
 
 export const usersStatsApi = createApi({
   reducerPath: "usersStatsApi",
@@ -8,11 +9,25 @@ export const usersStatsApi = createApi({
   tagTypes: ["UserStat"],
   endpoints: (build) => ({
     fetchUsersStats: build.query({
-      query: () => ({
+      query: ({ take, page, sort }) => ({
         url: "/user/users-orders",
+        params: {
+          take,
+          page,
+          sort,
+        },
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6IlNVUEVSX0FETUlOIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5NDM0MTQzLCJleHAiOjE2NTk2MDY5NDN9.HWQgLGHlJH0vehPep19QYh8BpztIb0dpf0R9RcfZGEo",
+          Authorization: token,
+        },
+      }),
+      providesTags: ["UserStat"],
+    }),
+
+    fetchPopularProducts: build.query({
+      query: () => ({
+        url: "/order/popular-users/price",
+        headers: {
+          Authorization: token,
         },
       }),
       providesTags: ["UserStat"],
@@ -20,4 +35,5 @@ export const usersStatsApi = createApi({
   }),
 });
 
-export const { useFetchUsersStatsQuery } = usersStatsApi;
+export const { useFetchUsersStatsQuery, useFetchPopularProductsQuery } =
+  usersStatsApi;

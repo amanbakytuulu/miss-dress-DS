@@ -113,8 +113,6 @@ const TableStats: FC<TableStatsProps> = ({
       break;
   }
 
-  console.log(rows);
-
   return (
     <>
       <TableHeader title={data.title} subTitle={data?.subTitle} />
@@ -191,9 +189,9 @@ const TableStats: FC<TableStatsProps> = ({
             <TableBody>
               {rows.map((row: IUser) => (
                 <TableRow
-                  key={row.user_first_name}
+                  key={row.user_id}
                   className={classes.tableRow}
-                  // onClick={navigateTo(row.user_first_name)}
+                  onClick={navigateTo(row.user_id)}
                 >
                   <TableCell
                     className={`${classes.tableCell} ${classes.tableCellName}`}

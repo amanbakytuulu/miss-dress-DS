@@ -23,3 +23,9 @@ export interface IProductsStat {
   allAmount: number;
   product: IProduct;
 }
+
+export interface IPopularProduct {
+  product_title: string;
+  amount: string;
+  totalCount: string;
+}

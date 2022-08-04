@@ -5,27 +5,23 @@ import { colors } from "../../../../types/colorTypes/colorTypes";
 import { Button } from "../../../../components/common";
 
 import classes from "./List.module.scss";
+import ProductList from "./ProductList";
+import UserList from "./UserList";
 
 interface ListProps {
   title: string;
-  itemsList: any;
+  itemsList: any[];
 }
 
 const List: FC<ListProps> = ({ title, itemsList }) => {
   return (
     <div className={classes.list}>
       <h3 className={classes.title}>{title}</h3>
-      <ul>
-        {itemsList.map((item: any) => {
-          return (
-            <li key={item.name}>
-              <strong>{item.name}</strong>
-              <span>{item.sales}</span>
-              <span>{item.income}</span>
-            </li>
-          );
-        })}
-      </ul>
+      {itemsList[0]?.product_title ? (
+        <ProductList productList={itemsList} />
+      ) : (
+        <UserList userList={itemsList} />
+      )}
       <div className={classes.buttonBox}>
         <Button
           style={{
