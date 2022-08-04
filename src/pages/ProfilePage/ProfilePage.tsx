@@ -15,33 +15,39 @@ import classes from "./ProfilePage.module.scss";
 const ProfilePage = () => {
   return (
     <div className={classes.profilePage}>
-      <Breadcrumbs className={classes.navigation} aria-label="breadcrumb">
-        <Link className={classes.link} to="/" title="Главная">
-          Главная
-        </Link>
-        <Link className={classes.link} to="/" title="Профиль">
-          Профиль
-        </Link>
-        <Typography></Typography>
-      </Breadcrumbs>
-      <Card sx={{ maxWidth: 345, display: "flex" }} >
-        <CardMedia
-          component="img"
-          // height="140"
-          image={profilePhoto}
-          alt="green iguana"
-        />
-        <CardContent sx={{width:"300px"}}>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </Card>
-    </div >
+      <div className="container" style={{ padding: "0px 20px" }}>
+        <Breadcrumbs className={classes.navigation} aria-label="breadcrumb">
+          <Link className={classes.link} to="/" title="Главная">
+            Главная
+          </Link>
+          <Link className={classes.link} to="/" title="Профиль">
+            Профиль
+          </Link>
+          <Typography></Typography>
+        </Breadcrumbs>
+        <Card className={classes.profile}>
+          <CardMedia
+            component="img"
+            className={classes.photo}
+            image={profilePhoto}
+            alt="green iguana"
+          />
+          <CardContent className={classes.content}>
+            <p>Профиль</p>
+            <input type="text" placeholder="Имя" disabled />
+            <input type="text" placeholder="Фамилия" disabled />
+            <input type="text" placeholder="Номер телефона" disabled />
+            <button className={`${classes.btn}`}>Изменить номер</button>
+            <p>Адрес доставки </p>
+            <input type="text" placeholder="Страна" />
+            <input type="text" placeholder="Город" />
+            <button className={`${classes.btn} ${classes.btn__save}`}>
+              Сохранить
+            </button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 };
 

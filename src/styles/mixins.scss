@@ -10,6 +10,12 @@
   }
 }
 
+@mixin md-2 {
+  @media screen and (max-width: 780px) {
+    @content;
+  }
+}
+
 @mixin sm {
   @media screen and (max-width: 640px) {
     @content;
