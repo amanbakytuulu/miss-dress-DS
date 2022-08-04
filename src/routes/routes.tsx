@@ -64,18 +64,18 @@ export const PUBLIC_ROUTES = [
     path: CATEGORIES_PAGE,
     Component: <CategoriesPage />,
   },
+  // {
+  //   path: PRODUCT_PAGE + "/:id",
+  //   Component: <ProductInfo />,
+  // },
   {
     path: PRODUCT_PAGE + "/:id",
-    Component: <ProductInfo />,
-  },
-  {
-    path: PRODUCT_PAGE,
     Component: <ProductPage />,
   },
-  {
-    path: PRODUCT_PAGE + "/:id",
-    Component: <ProductInfo />,
-  },
+  // {
+  //   path: PRODUCT_PAGE + "/:id",
+  //   Component: <ProductInfo />,
+  // },
   {
     path: ORDERS_PAGE,
     Component: <OrderPage />,
@@ -97,11 +97,11 @@ export const PUBLIC_ROUTES = [
     Component: <FavoritesPage />,
   },
   {
-    path: COLLECTION_PAGE,
+    path: COLLECTION_PAGE + "/:category",
     Component: <CollectionPage />,
   },
   {
-    path: COLLECTION_PRODUCTS_PAGE,
+    path: COLLECTION_PRODUCTS_PAGE + "/category=:category/collectionType=:type",
     Component: <CollectionProductsPage />,
   },
 ];

@@ -9,6 +9,8 @@ import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 import Select from "../CategoriesPage/components/Select";
+
+import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import { useFetchProductFavoritesQuery } from "../../store/features/Product/productFavorites/productFavoritesQuery";
 import { IItemCard } from "../../components/ProductCard/types";
 

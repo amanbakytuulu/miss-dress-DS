@@ -22,9 +22,22 @@ export interface IItemCard {
   amount: number;
   article: string;
   rate: number;
+  images: string[];
   discount: number | null;
 }
+
+type Category = {
+  createDate: string;
+  id: number;
+  status: number;
+  title: string;
+  updateDate: string;
+};
+export interface IProductCardCollection extends IItemCard {
+  category?: Category;
+}
+
 export interface IProductCard {
-  item: IItemCard;
+  item: IProductCardCollection;
   btnTitle: string;
 }
