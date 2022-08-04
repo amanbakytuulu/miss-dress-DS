@@ -25,10 +25,9 @@ type FormValues = {
 const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [sendPhone, setSendPhone] = useState<string>("");
 
-  const [login, { data: loginData, isSuccess }] = useUserLoginMutation();
-  const [getSms, { data: sms, isSuccess: isSmsSuccess }] =
+  const [login, { data: loginData = null, isSuccess }] = useUserLoginMutation();
+  const [getSms, { data: sms = null, isSuccess: isSmsSuccess }] =
     useLazyGetSmsCodeQuery();
 
   const {
@@ -37,20 +36,19 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
     handleSubmit,
   } = useForm<FormValues>({ mode: "onBlur" });
 
-  const handleChange = (name: string) => (value: string) => {
+  const handleChange = (value: string) => {
     setPhoneNumber(value);
   };
 
   const onSubmit = (data: any) => {
     login({
-      phoneNumber: data.phoneNumber,
+      phoneNumber: phoneNumber,
     });
-    setContinue(true);
   };
 
   useEffect(() => {
     if (isSuccess) {
-      const id = loginData?.result?.user?.id;
+      const id = loginData.result?.id;
       getSms(id);
     }
   }, [isSuccess, loginData]);
@@ -58,6 +56,7 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   useEffect(() => {
     if (isSmsSuccess) {
       sessionStorage.setItem("data", JSON.stringify(sms.result));
+      setContinue(true);
     }
   }, [sms]);
 
@@ -84,7 +83,7 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
                 }}
                 placeholder={"Введите номер телефона"}
                 type={"tel"}
-                onChange={handleChange("phoneNumber")}
+                onChange={handleChange}
                 alignPlaceholder={true}
               />
             </div>

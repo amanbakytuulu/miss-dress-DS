@@ -11,7 +11,7 @@ import { ERROR_PAGE } from "../../../utils/path";
 import { IModal } from "../../../types/modalTypes/modalType";
 import { InputField, Button } from "../../common";
 
-import { useLazySendActivateCodeQuery } from "../../../store/authorization/Authorization";
+import { useSendActivateCodeMutation } from "../../../store/authorization/Authorization";
 
 import classes from "./VerificationForm.module.scss";
 
@@ -41,10 +41,10 @@ const VerificationForm: FC<VerificationFormProps> = ({
   const [{ minutes, seconds }, restart] = useTimer(60);
   const isDisabledButton = Number(seconds) !== 0 || Number(minutes) !== 0;
 
-  const [sendActivate, { data: activate }] = useLazySendActivateCodeQuery();
+  const [sendActivate, { data: activate }] = useSendActivateCodeMutation();
 
-  const smsData = JSON.parse(sessionStorage.getItem("data") || "");
-
+  const smsData = JSON.parse(sessionStorage.getItem("data") || "{}");
+  console.log(smsData && smsData.code);
   const handleRestartTimer = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     restart(60);
@@ -55,14 +55,19 @@ const VerificationForm: FC<VerificationFormProps> = ({
       userId: smsData.user_id,
       code: smsData.code,
     });
-    localStorage.setItem(
-      "accessToken",
-      JSON.stringify(activate.result.token.accessToken)
-    );
     setUserEnter(true);
-    if (title?.toLowerCase() === "вход") return closeModal();
-    setIsSuccess(true);
   };
+
+  useEffect(() => {
+    if (activate) {
+      localStorage.setItem(
+        "accessToken",
+        JSON.stringify(activate.result.token.accessToken)
+      );
+      if (title?.toLowerCase() === "вход") return closeModal();
+      setIsSuccess(true);
+    }
+  }, [activate]);
 
   return (
     <>
@@ -78,6 +83,10 @@ const VerificationForm: FC<VerificationFormProps> = ({
                 inputConfig={{
                   ...register("verificationCode", {
                     required: "Поле обязательно к заполнению",
+                    validate: (match) => {
+                      const code = smsData.code;
+                      return match === code || "Код не совпадает!";
+                    },
                   }),
                 }}
                 placeholder={"Введите код подтверждения"}
@@ -104,7 +113,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
           </div>
           <div className={classes.modalError}>
             {errors.verificationCode && (
-              <span>{errors.verificationCode.message}</span>
+              <span>{errors.verificationCode?.message}</span>
             )}
           </div>
         </form>

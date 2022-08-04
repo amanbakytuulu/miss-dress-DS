@@ -27,25 +27,26 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
   const {
     register,
-    formState: { errors, isValid, touchedFields },
+    formState: { errors, touchedFields },
     handleSubmit,
   } = useForm<SignInFormType>({ mode: "onBlur", reValidateMode: "onChange" });
 
-  const [signUp, { isSuccess, data, isError }] = useUserSignUpMutation();
-  const [getSms, { data: sms, isSuccess: isSmsSuccess }] =
+  const [signUp, { isSuccess, data = null, error = null }] =
+    useUserSignUpMutation();
+  const [getSms, { data: sms = null, isSuccess: isSmsSuccess }] =
     useLazyGetSmsCodeQuery();
 
   useEffect(() => {
     if (isSuccess) {
-      const id = data?.result?.user?.id;
+      const id = data.result?.user?.id;
       getSms(id);
     }
   }, [isSuccess, data]);
 
   useEffect(() => {
     if (isSmsSuccess) {
-      setContinue(true);
       sessionStorage.setItem("data", JSON.stringify(sms.result));
+      setContinue(true);
     }
   }, [sms]);
 
@@ -136,7 +137,7 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
               </label>
             </div>
             <div className={classes.modalButton}>
-              <Button disabled={!isValid}>Продолжить</Button>
+              <Button>Продолжить</Button>
             </div>
           </div>
           <div className={classes.modalError}>

@@ -26,7 +26,6 @@ const FavoritesPage = () => {
   const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
   const totalCount = items.length;
   const pageNumbers = [];
-
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
   }

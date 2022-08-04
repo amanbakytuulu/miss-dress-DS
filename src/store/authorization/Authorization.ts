@@ -13,30 +13,30 @@ export const apiAuth = createApi({
         method: "POST",
         body: auth,
       }),
-      invalidatesTags: ["apiAuth"],
+      invalidatesTags: ["POSTAuth"],
     }),
 
     getSmsCode: build.query({
       query: (id) => ({
         url: `/user/sms-code/${id}`,
       }),
-      invalidatesTags: ["apiAuth"],
+      providesTags: ["POSTAuth"],
     }),
-    sendActivateCode: build.query({
+    sendActivateCode: build.mutation({
       query: (auth) => ({
         url: `/auth/activate`,
         method: "POST",
         body: auth,
       }),
-      invalidatesTags: ["apiAuth"],
+      invalidatesTags: ["POSTAuth"],
     }),
     userLogin: build.mutation({
-      query: (auth) => ({
+      query: (number) => ({
         url: "auth/login",
         method: "POST",
-        body: auth,
+        body: number,
       }),
-      invalidatesTags: ["apiAuth"],
+      invalidatesTags: ["POSTAuth"],
     }),
   }),
 });
@@ -44,6 +44,6 @@ export const {
   useUserSignUpMutation,
   useUserLoginMutation,
   useLazyGetSmsCodeQuery,
-  useLazySendActivateCodeQuery,
+  useSendActivateCodeMutation,
 } = apiAuth;
 // user/sms-code/id-sigh up
