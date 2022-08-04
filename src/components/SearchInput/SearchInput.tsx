@@ -1,4 +1,4 @@
-import React from "react";
+import React, { InputHTMLAttributes, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { SEARCH_PAGE } from "../../utils/path";
@@ -6,21 +6,27 @@ import { SEARCH_PAGE } from "../../utils/path";
 import classes from "./SearchInput.module.scss";
 
 const SearchInput = () => {
+  const [title, setTitle] = useState<string>("");
   const navigate = useNavigate();
 
-  const navigateToSearchPage = () => {
-    navigate(SEARCH_PAGE);
+  const onHandleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (title !== "") {
+      navigate(SEARCH_PAGE + `/title=${title}`);
+    }
+    return false;
   };
+
   return (
-    <div className={classes.searchInputBlock}>
+    <form className={classes.searchInputBlock} onSubmit={onHandleSearch}>
       <input
-        onKeyDown={(e) =>
-          e.key === "Enter" && e.target.value !== "" && navigateToSearchPage()
-        }
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         type="text"
         placeholder="Поиск"
       />
-    </div>
+      <button type="submit"></button>
+    </form>
   );
 };
 

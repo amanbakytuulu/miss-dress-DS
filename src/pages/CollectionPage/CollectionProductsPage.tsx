@@ -4,7 +4,9 @@ import React, { useState } from "react";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Select from "../CategoriesPage/components/Select";
-import { dressesArray } from "../MainPage/Products/Data/db";
+// import { dressesArray } from "../MainPage/Products/Data/db";
+
+import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
@@ -12,7 +14,9 @@ import ImagesCard from "../../components/ProductCard/components/ImagesCard";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
-  const dresses = dressesArray;
+  // const dresses = dressesArray;
+  const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
+  const dresses = data?.result.data;
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -45,7 +49,7 @@ const CollectionProductsPage = () => {
           </Grid>
 
           <Grid container spacing={4}>
-            {dresses.map((item, index) => (
+            {dresses.map((item: any, index: any) => (
               <Grid key={index} item xs={6} md={4}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </Grid>

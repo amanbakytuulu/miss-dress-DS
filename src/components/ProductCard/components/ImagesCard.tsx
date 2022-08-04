@@ -1,33 +1,41 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import { IProductCard } from "../types";
 import classes from "../style.module.scss";
 
-const ImagesCard = ({ item, btnTitle, path }: any) => {
+import same3 from "../../../assets/ProductPage/same3.png";
+
+const ImagesCard = ({ item, btnTitle }: any) => {
   const [changeColor, setColor] = useState(false);
-  console.log(path);
+  // const navigate = useNavigate();
+  // const handleBtn = () => {
+  //   navigate(`/${path}`);
+  //   setColor(!changeColor);
+  // };
 
   return (
     <Grid className={classes.btnDiv}>
-      <img className={classes.categoryImg} src={item.img} alt="" />
-      <button
+      <img className={classes.categoryImg} src={same3} alt="image" />
+
+      <Link
         style={{
-          background: changeColor ? "#F1DAC5" : "#372e24",
+          color: changeColor ? "#372E24" : "#F1DAC5",
+          textDecoration: "none",
         }}
-        onClick={() => setColor(!changeColor)}
-        className={classes.btn}
+        to={`/product/${item.id}`}
       >
-        <Link
+        <button
           style={{
-            color: changeColor ? "#372E24" : "#F1DAC5",
-            textDecoration: "none",
+            background: changeColor ? "#F1DAC5" : "#372e24",
           }}
-          to="{path}"
+          // onClick={() => handleBtn()}
+          className={classes.btn}
         >
           {btnTitle}
-        </Link>
-      </button>
+        </button>
+      </Link>
     </Grid>
   );
 };
