@@ -1,0 +1,41 @@
+@import "../../styles/vars.scss";
+@import "../../styles/mixins.scss";
+
+.profilePage{
+    height: 100vh;
+    background-color: $beige-background;
+
+    & .navigation{
+        padding-top: 85px !important;
+        width: 75% !important;
+        margin:0 auto !important;
+    
+        @include xsm-2{
+            width: 90% !important;
+        }
+
+        & .link{
+            font-family: 'Montserrat';
+            color:black;
+            font-weight: 300;
+        
+            &::after{
+                display: block;
+                content: attr(title);
+                font-weight: bold;
+                overflow: hidden;
+                visibility: hidden;
+                height: 0;
+            }
+            &:hover{
+                font-weight: 500;
+            }
+        }
+    }
+
+    & .profile{
+        
+    }
+    
+    
+}
