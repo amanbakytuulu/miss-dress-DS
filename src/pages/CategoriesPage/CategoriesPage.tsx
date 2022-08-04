@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -19,8 +19,10 @@ import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 // import { dataArray } from "../MainPage/Products/Data/db";
-import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
-import { useFetchProductsPaginationQuery } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import {
+  productGetAllApi,
+  useFetchProductsByCategoryQuery,
+} from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import CategoriesDropdown from "./components/CategoriesDropdown";
 
@@ -30,8 +32,26 @@ import classes from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
   const btnTitle = "Открыть";
-  const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
-  const items = data?.result.data;  
+  const [page, setPage] = useState(1);
+  const [category, setCategory] = useState(1);
+  const [productsData, setProductsData] = useState({
+    take: 6,
+    category: 1,
+    page: 1,
+  });
+  const { data } = productGetAllApi.useFetchProductsGetAllQuery(productsData);
+  const { data: productsByCategory } =
+    useFetchProductsByCategoryQuery(category);
+  const items = data?.result.data;
+  const totalCount: number = productsByCategory?.result.count;
+
+  useEffect(() => {
+    setProductsData({ ...productsData, category: category });
+  }, [category]);
+
+  useEffect(() => {
+    setProductsData({ ...productsData, page: page });
+  }, [page]);
 
   return (
     <div className={classes.mainDiv}>
@@ -61,7 +81,7 @@ const CategoryPage = () => {
             sm={4}
             md={4}
           >
-            <SideBar />
+            <SideBar setCategory={setCategory} />
           </Grid>
           <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
             {items?.map((item: any) => (
@@ -71,7 +91,7 @@ const CategoryPage = () => {
             ))}
           </Grid>
           <Grid item xs={12} md={12}>
-            <CategoryPagination />
+            <CategoryPagination totalCount={totalCount} setPage={setPage} />
           </Grid>
         </Grid>
       </Container>

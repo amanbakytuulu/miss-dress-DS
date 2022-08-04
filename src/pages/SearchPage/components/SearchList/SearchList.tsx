@@ -21,7 +21,7 @@ const SearchList: FC<SearchListProps> = ({ searchList }) => {
           </Grid>
         ))}
         <Grid item xs={12} md={12}>
-          <Pagination />
+          {/* <Pagination /> */}
         </Grid>
       </Grid>
     </div>
