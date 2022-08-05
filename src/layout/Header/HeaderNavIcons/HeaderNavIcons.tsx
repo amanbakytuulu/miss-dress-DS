@@ -50,9 +50,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   currentOpen,
   setUserEnter,
 }) => {
-  const { data = [] } = useFetchProductFavoritesQuery("", {
-    pollingInterval: isUserEnter ? 1000 : 0,
-  });
+  const { data = [] } = useFetchProductFavoritesQuery("");
   const countFavorites = data.result?.count || 0;
   const navigate = useNavigate();
   return (
