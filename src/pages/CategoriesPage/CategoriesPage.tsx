@@ -18,8 +18,10 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-import { dataArray } from "../MainPage/Products/Data/db";
-import { MAIN_PAGE, PROFILE_PAGE } from "../../utils/path";
+// import { dataArray } from "../MainPage/Products/Data/db";
+import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+
+import CategoriesDropdown from "./components/CategoriesDropdown";
 
 import Select from "./components/Select";
 
@@ -27,14 +29,15 @@ import classes from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
   const btnTitle = "Открыть";
-  const items = dataArray;
+  const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
+  const items = data?.result.data;
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const postsPerPage = 1;
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items.length;
+  const currentPosts = items?.slice(indexOfFirstPost, indexOfLastPost);
+  const totalCount = items?.length;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -46,17 +49,15 @@ const CategoryPage = () => {
         <Grid className={classes.mainGrid} container spacing={2}>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
-              <Link to={MAIN_PAGE}>Главная</Link>
+              <Link to="/#">Главная</Link>
               <span>/</span>
-              <Link to={PROFILE_PAGE}>Профиль</Link>
+              <Link to="/#">Товары</Link>
             </div>
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>
-              <div className={classes.selectCatDiv}>
-                <SideBar />
-              </div>
+              <CategoriesDropdown />
               <Select />
             </div>
           </Grid>
@@ -73,7 +74,7 @@ const CategoryPage = () => {
             <SideBar />
           </Grid>
           <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
-            {currentPosts.map((item: any) => (
+            {items?.map((item: any) => (
               <div className={classes.prod}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </div>

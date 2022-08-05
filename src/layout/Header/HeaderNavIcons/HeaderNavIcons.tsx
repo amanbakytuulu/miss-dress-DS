@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { FAVORITES_PAGE } from "../../../utils/path";
+import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
 
 import { ReactComponent as SearchIcon } from "../../../assets/header/searchIcon.svg";
 import { ReactComponent as FavIcon } from "../../../assets/header/favIcon.svg";
@@ -24,6 +24,7 @@ import {
 } from "../../../utils/helpers/modalHelper";
 
 import CartList from "../components/CartList/CartList";
+import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
 
 import classes from "./HeaderNavIcons.module.scss";
 
@@ -47,6 +48,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   toggleCurrent,
   currentOpen,
 }) => {
+  const { data = [] } = useFetchProductFavoritesQuery("");
+  const countFavorites = data.result?.count || 0;
+  const navigate = useNavigate();
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>
@@ -60,25 +64,18 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
             <FavIcon />
-            <span className={classes.counter}>{arr.length - 1}</span>
+            {countFavorites > 0 && (
+              <span className={classes.counter}>{countFavorites}</span>
+            )}
           </i>
         </Link>
       </div>
 
       <div className={classes.headerCart}>
-        <i className={classes.icon} onClick={toggleCurrent(CART_LIST)}>
+        <i className={classes.icon} onClick={() => navigate(CART_PAGE)}>
           <CartIcon />
           <span className={classes.counter}>{arr.length}</span>
         </i>
-        {currentOpen === CART_LIST && (
-          <div>
-            {arr.length ? (
-              <CartList cartList={arr} />
-            ) : (
-              <EmptyCart closeCart={toggleCurrent(CART_LIST)} />
-            )}
-          </div>
-        )}
       </div>
 
       {!isUserEnter ? (

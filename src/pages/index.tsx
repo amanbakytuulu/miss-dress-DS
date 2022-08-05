@@ -7,8 +7,13 @@ import CartPage from "./CartPage/CartPage";
 import ContactsPage from "./ContactsPage/ContactsPage";
 import AboutUs from "./AboutUsPage/AboutUs";
 import MainPage from "./MainPage/MainPage";
+import FavoritesPage from "./FavoritesPage/FavoritesPage";
+import CollectionPage from "./CollectionPage/CollectionPage";
+import CollectionProductsPage from "./CollectionPage/CollectionProductsPage";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import SearchPage from "./SearchPage/SearchPage";
+import OrderPage from "./OrderPage/Order";
+import OrderDetails from "./OrderPage/OrderDetails/OrderInfo";
 
 export {
   ProductPage,
@@ -20,6 +25,11 @@ export {
   ProductInfo,
   MainPage,
   ProfilePage,
+  FavoritesPage,
+  CollectionPage,
+  CollectionProductsPage,
   ErrorPage,
   SearchPage,
+  OrderPage,
+  OrderDetails,
 };

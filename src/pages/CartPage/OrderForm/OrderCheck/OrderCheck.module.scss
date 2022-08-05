@@ -1,3 +1,5 @@
+@import "src/styles/mixins";
+
 .orderCheck {
   .orderCheckTitle {
     margin-bottom: 15px;
@@ -12,8 +14,14 @@
       margin-bottom: 15px;
     }
   }
-
   .orderCheckEditBtn {
-    width: 30%;
+    width: 200px;
+    @include md {
+      width: 100%;
+    }
+  }
+
+  @include md {
+    text-align: start;
   }
 }
