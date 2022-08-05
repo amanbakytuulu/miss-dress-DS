@@ -11,20 +11,19 @@ import { caretDown } from "react-icons-kit/fa/caretDown";
 import { caretLeft } from "react-icons-kit/fa/caretLeft";
 import { caretRight } from "react-icons-kit/fa/caretRight";
 
+import { Images } from "../../components/ProductCard/types";
+import mainDress from "../../assets/ProductPage/mainDress.png";
+
 import styles from "./ProductPage.module.scss";
+import { dressDatabase } from "./productDb";
 
-import { dressDatabase, IArrDress } from "./productDb";
+interface SwiperVerticalProps {
+  images: Images[];
+}
 
-const SwiperVertical = () => {
-  const [arrDress, setArrDress] = useState<IArrDress[]>([]);
-
+const SwiperVertical: React.FC<SwiperVerticalProps> = ({ images }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
-
-  useEffect(() => {
-    setArrDress(dressDatabase);
-  }, []);
-
   return (
     <div className={styles.verticalSwiper}>
       <div ref={navigationPrevRef}>
@@ -71,11 +70,17 @@ const SwiperVertical = () => {
           },
         }}
       >
-        {arrDress.map((el: IArrDress) => (
-          <SwiperSlide key={el.id}>
-            <img src={el.dress} alt="dresses" className={styles.dress} />
-          </SwiperSlide>
-        ))}
+        {images.length !== 0
+          ? images.map((img) => (
+              <SwiperSlide key={img.id}>
+                <img src={img.url} alt="dresses" className={styles.dress} />
+              </SwiperSlide>
+            ))
+          : dressDatabase.map((img) => (
+              <SwiperSlide key={img.id}>
+                <img src={img.dress} alt="dresses" className={styles.dress} />
+              </SwiperSlide>
+            ))}
       </Swiper>
       <div ref={navigationNextRef}>
         <Icon

@@ -80,12 +80,22 @@ const ProductPage: FC = () => {
       <div className={styles.product_container}>
         <Grid container spacing={2}>
           <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
-            <SwiperVertical />
+            <SwiperVertical
+              images={
+                productCurrent.images && productCurrent.images.length > 0
+                  ? productCurrent.images
+                  : []
+              }
+            />
           </Grid>
 
           <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
             <img
-              src={mainDress}
+              src={
+                productCurrent.images && productCurrent.images.length > 0
+                  ? productCurrent.images[2].url
+                  : mainDress
+              }
               alt="main dress"
               width="87%"
               className={styles.main_dress}

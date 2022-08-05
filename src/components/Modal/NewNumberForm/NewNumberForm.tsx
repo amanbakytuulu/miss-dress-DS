@@ -1,5 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useEditPhoneMutation, useUpdatePhoneMutation } from "../../../store/features/User/userMe/meQuery";
 
 import { changePhoneSuccess } from "../../../utils/helpers/modalSuccessConsructor";
 
@@ -16,6 +17,8 @@ type getMessageTypeR = {
 const NewNumberForm: FC = () => {
   const [isContinue, setContinue] = useState<boolean>(false);
   const [isetUser, setUserEnter] = useState<boolean>(true);
+  const [editPhone, { data: phoneData = [], isSuccess }] = useEditPhoneMutation();
+  const [updatePhone, { data: updatePhoneData = [] }] = useUpdatePhoneMutation();
   const {
     register,
     formState: { errors },
@@ -23,10 +26,21 @@ const NewNumberForm: FC = () => {
     reset,
   } = useForm<getMessageTypeR>({ mode: "onBlur", reValidateMode: "onChange" });
 
-  function enter(data: getMessageTypeR) {
-    setContinue(true);
+  const enter = async (data: getMessageTypeR) => {
+    await editPhone(data.phoneNumber);
+    // updatePhone(data.phoneNumber);
+    // setContinue(true);
     reset();
   }
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     updatePhone()
+  //   }
+  // }, [isSuccess])
+
+  console.log(phoneData);
+  console.log(updatePhoneData);
+
   return (
     <>
       {!isContinue ? (

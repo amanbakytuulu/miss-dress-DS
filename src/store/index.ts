@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 
+import { productCategoryApi } from "./features/Product/productCategory/productCategoryQuery";
+
 import { productIdApi } from "./features/Product/productId/productIdQuery";
 
 import { categoryApi } from "./features/Category/category/categoryQuery";
@@ -22,6 +24,7 @@ const rootReducer = combineReducers({
   [productFavoritesApi.reducerPath]: productFavoritesApi.reducer,
   [productGetAllApi.reducerPath]: productGetAllApi.reducer,
   [productIdApi.reducerPath]: productIdApi.reducer,
+  [productCategoryApi.reducerPath]: productCategoryApi.reducer,
   [getAllApi.reducerPath]: getAllApi.reducer,
   [meApi.reducerPath]: meApi.reducer,
   [apiAuth.reducerPath]: apiAuth.reducer,
@@ -39,6 +42,7 @@ export const store = configureStore({
       productFavoritesApi.middleware,
       productGetAllApi.middleware,
       productIdApi.middleware,
+      productCategoryApi.middleware,
       getAllApi.middleware,
       meApi.middleware,
       apiAuth.middleware

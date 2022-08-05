@@ -24,13 +24,11 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
     addProductFavorites(item);
     setChangeColor(!changeColor);
   };
-
   useEffect(() => {
     if (items.length !== 0) {
       setChangeColor(items.some((el) => el.id === item.id));
     }
   }, [items]);
-
   return (
     <Grid className={classes.bestsellerCard}>
       <ImagesCard btnTitle={btnTitle} item={item} />
