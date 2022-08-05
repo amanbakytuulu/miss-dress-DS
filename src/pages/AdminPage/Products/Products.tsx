@@ -7,6 +7,10 @@ import SideBar from "../components/SideBar/SideBar";
 import Collection from "../components/CollectionItem/CollectionItem";
 import TableStats from "../components/TableStats/TableStats";
 
+import { useFetchPopularProductsQuery } from "../../../store/features/Admin/productStatisticsQuery";
+
+import { separateList } from "../../../utils/separateList";
+
 import classes from "./Products.module.scss";
 
 const listOfUsers = [
@@ -28,6 +32,12 @@ const listOfUsers = [
 ];
 
 const Products = () => {
+  const { data: popularProducts = {}, isSuccess: isPopularProductsSuccess } =
+    useFetchPopularProductsQuery("");
+
+  const popularProductList = separateList(
+    isPopularProductsSuccess && popularProducts.result
+  );
   return (
     <div className={classes.products}>
       <SideBar />
@@ -49,7 +59,10 @@ const Products = () => {
               />
             </div>
             <div className={classes.popularUsers}>
-              <List title={"Постоянные пользователи"} itemsList={listOfUsers} />
+              <List
+                title={"Постоянные пользователи"}
+                itemsList={popularProductList || []}
+              />
             </div>
           </div>
 

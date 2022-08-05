@@ -13,8 +13,8 @@ const UserList: FC<UserListProps> = ({ userList }) => {
         return (
           <li key={item.user_id}>
             <strong>{item.user_first_name}</strong>
-            <span>{item.price}</span>
-            <span>{item.amount}</span>
+            <span>{item.price} продаж</span>
+            <span>{item.amount} доход</span>
           </li>
         );
       })}

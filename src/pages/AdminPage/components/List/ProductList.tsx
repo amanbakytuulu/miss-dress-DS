@@ -13,8 +13,8 @@ const ProductList: FC<ProductListProps> = ({ productList }) => {
         return (
           <li key={item.product_title + index}>
             <strong>{item.product_title}</strong>
-            <span>{item.amount}</span>
-            <span>{item.totalCount}</span>
+            <span>{item.amount} продаж</span>
+            <span>{item.totalCount} доход</span>
           </li>
         );
       })}

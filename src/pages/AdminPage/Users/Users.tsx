@@ -10,8 +10,11 @@ import { ADMIN_PAGE_USERS } from "../../../utils/path";
 
 import { Status, TableTypes } from "../../../types/adminTypes/tableTypes";
 
+import { separateList } from "../../../utils/separateList";
+
 import { useFetchUsersStatsQuery } from "../../../store/features/Admin/usersStatisticsQuery";
 import { useFetchAllStatQuery } from "../../../store/features/Admin/allStatQuery";
+import { useFetchPopularProductsQuery } from "../../../store/features/Admin/productStatisticsQuery";
 
 import classes from "./Users.module.scss";
 
@@ -36,8 +39,13 @@ const listOfUsers = [
 const Users = () => {
   const { data, isSuccess: isUsersSuccess } = useFetchUsersStatsQuery("");
   const users = isUsersSuccess && data.result;
+  const { data: popularUsers, isSuccess: isPopularUsersSuccess } =
+    useFetchPopularProductsQuery("");
   const { data: stats = {}, isSuccess: isStatsSuccess } =
     useFetchAllStatQuery("");
+  const popularUserList = separateList(
+    isPopularUsersSuccess && popularUsers.result
+  );
   return (
     <div className={classes.users}>
       <SideBar />
@@ -53,7 +61,12 @@ const Users = () => {
               />
             </div>
             <div className={classes.popularUsers}>
-              <List title={"Постоянные пользователи"} itemsList={listOfUsers} />
+              {isPopularUsersSuccess && (
+                <List
+                  title={"Постоянные пользователи"}
+                  itemsList={popularUserList || []}
+                />
+              )}
             </div>
           </div>
           <div className={classes.headerProfile}>
