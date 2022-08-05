@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
@@ -50,9 +50,14 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   currentOpen,
   setUserEnter,
 }) => {
-  const { data = [] } = useFetchProductFavoritesQuery("");
+  const { data = [], refetch } = useFetchProductFavoritesQuery("");
   const countFavorites = data.result?.count || 0;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentOpen == null) refetch();
+  }, [currentOpen]);
+
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>

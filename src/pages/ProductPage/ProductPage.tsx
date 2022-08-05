@@ -74,8 +74,7 @@ const ProductPage: FC = () => {
         countFavorites.some((el: any) => el.id === productCurrent.id)
       );
     }
-  }, [countFavorites]);
-
+  }, [productCurrent, countFavorites]);
   return (
     <div className={styles.background_container}>
       <div className={styles.product_container}>

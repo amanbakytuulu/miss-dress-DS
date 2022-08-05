@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 
 import { ModalContext } from "../Modal";
 
+import { IModalSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+
 import SuccessModal from "../SuccessModal/SuccessModal";
 import { useTimer } from "../../../hooks/useTimer";
 import { ERROR_PAGE } from "../../../utils/path";
@@ -15,18 +17,21 @@ import { useSendActivateCodeMutation } from "../../../store/authorization/Author
 
 import classes from "./VerificationForm.module.scss";
 
-interface VerificationFormProps {
-  title?: string;
-  setUserEnter: (value: boolean) => void;
-}
-
 type ValidationValues = {
   verificationCode: string;
 };
+interface VerificationFormProps {
+  title?: string;
+  setUserEnter: (value: boolean) => void;
+  modalSuccessBody: IModalSuccess;
+  setContinue?: (value: boolean) => void;
+}
 
 const VerificationForm: FC<VerificationFormProps> = ({
   title,
   setUserEnter,
+  modalSuccessBody,
+  setContinue,
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { closeModal } = useContext(ModalContext) as IModal;
@@ -118,7 +123,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
           </div>
         </form>
       ) : (
-        <SuccessModal />
+        <SuccessModal setContinue={setContinue} modalBody={modalSuccessBody} />
       )}
     </>
   );

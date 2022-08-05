@@ -10,8 +10,15 @@ export const meApi = createApi({
     fetchUserMe: build.query({
       query: () => ({
         url: "/user/me",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
+        },
       }),
       providesTags: ["Me"],
     }),
   }),
 });
+
+export const { useFetchUserMeQuery } = meApi;

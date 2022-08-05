@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
 
+import { userLoginInSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+
 import { InputField, Button } from "../../common";
 
 import {
@@ -102,7 +104,11 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
           </div>
         </form>
       ) : (
-        <VerificationForm title="Вход" setUserEnter={setUserEnter} />
+        <VerificationForm
+          title="Вход"
+          setUserEnter={setUserEnter}
+          modalSuccessBody={userLoginInSuccess}
+        />
       )}
     </>
   );

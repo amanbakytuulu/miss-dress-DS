@@ -29,7 +29,7 @@ const FavoritesPage = () => {
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
+  
   return (
     <div className={classes.mainDiv} style={{ marginTop: "22px" }}>
       <Container sx={{ flexGrow: 1 }}>

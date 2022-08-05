@@ -37,5 +37,8 @@ export const productFavoritesApi = createApi({
   }),
 });
 
-export const { useFetchProductFavoritesQuery, useAddProductFavoritesMutation } =
-  productFavoritesApi;
+export const {
+  useFetchProductFavoritesQuery,
+  useLazyFetchProductFavoritesQuery,
+  useAddProductFavoritesMutation,
+} = productFavoritesApi;
