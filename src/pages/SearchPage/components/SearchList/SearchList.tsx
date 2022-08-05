@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Grid } from "@mui/material";
 
 import { ProductCard, Pagination } from "../../../../components";
@@ -9,9 +9,15 @@ import classes from "./SearchList.module.scss";
 
 interface SearchListProps {
   searchList: IItemCard[];
+  totalCount: number;
+  setPage: (value: number) => void;
 }
 
-const SearchList: FC<SearchListProps> = ({ searchList }) => {
+const SearchList: FC<SearchListProps> = ({
+  searchList,
+  totalCount,
+  setPage,
+}) => {
   return (
     <div className={classes.SearchList}>
       <Grid container spacing={4}>
@@ -21,7 +27,7 @@ const SearchList: FC<SearchListProps> = ({ searchList }) => {
           </Grid>
         ))}
         <Grid item xs={12} md={12}>
-          {/* <Pagination /> */}
+          <Pagination totalCount={totalCount} setPage={setPage} />
         </Grid>
       </Grid>
     </div>

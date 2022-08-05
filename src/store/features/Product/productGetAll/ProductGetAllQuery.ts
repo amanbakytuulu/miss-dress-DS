@@ -34,8 +34,12 @@ export const productGetAllApi = createApi({
       providesTags: ["ProductGetAll"],
     }),
     fetchProductBytitle: build.query({
-      query: (title) => ({
-        url: `/product/get-all?name=${title}`,
+      query: ({ title, page }) => ({
+        url: "/product/get-all",
+        params: {
+          title,
+          page,
+        },
       }),
       providesTags: ["ProductGetAll"],
     }),
@@ -53,8 +57,14 @@ export const productGetAllApi = createApi({
       invalidatesTags: ["ProductGetAll"],
     }),
     fetchProductByCategory: build.query({
-      query: ({ categoryId, collectionsType }) => ({
-        url: `/product/get-all?category=${categoryId}&collectionsType=${collectionsType}`,
+      query: ({ categoryId, collectionsType, take, page }) => ({
+        url: "/product/get-all",
+        params: {
+          category: categoryId,
+          collectionsType,
+          take,
+          page,
+        },
       }),
       providesTags: ["ProductGetAll"],
     }),

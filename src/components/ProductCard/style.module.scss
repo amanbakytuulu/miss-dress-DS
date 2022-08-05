@@ -139,7 +139,8 @@
     width: 28px;
   }
   .titleP {
-    font-size: 15px;
+    font-size: 18px;
+    height: 50px;
   }
   .priceP p {
     font-size: 18px;
@@ -158,7 +159,8 @@
 
 @media (max-width: 624px) {
   .titleP {
-    font-size: 12px;
+    font-size: 16px;
+    height: 50px;
   }
 }
 @media (max-width: 500px) {
@@ -180,7 +182,8 @@
     align-items: flex-end;
   }
   .titleP {
-    font-size: 10px;
+    font-size: 14px;
+    height: 40px;
   }
   .sizeP {
     font-size: 16px;
@@ -201,6 +204,7 @@
     width: 16px;
   }
   .titleP {
-    font-size: 10px;
+    font-size: 14px;
+    height: 40px;
   }
 }

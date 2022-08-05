@@ -27,8 +27,6 @@ const FavoritesPage = () => {
   const items: IItemCard[] = data.result?.data || [];
   const totalCount: number = data?.result?.count;
 
-  console.log(productsData);
-
   useEffect(() => {
     setProductsData({
       ...productsData,

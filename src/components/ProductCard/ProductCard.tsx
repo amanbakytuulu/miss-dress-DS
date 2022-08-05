@@ -61,7 +61,6 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
       <ImagesCard btnTitle={btnTitle} item={item} />
       <Description item={item} />
       <div className={classes.iconsDiv}>
-<<<<<<< HEAD
         <Box
           sx={{
             width: 200,
@@ -87,8 +86,6 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
             }
           />
         </Box>
-=======
->>>>>>> 597872cbdfb7de0302e82f5b9f8404311ecf8eb0
         <div>
           <img
             onClick={handleAddFavorite}

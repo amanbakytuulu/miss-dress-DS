@@ -62,7 +62,7 @@
   justify-content: center;
   align-items: center;
   height: 50px;
-  padding: 0px 20px 0px 100px !important;
+  padding: 0px 20px 0px 0px !important;
 }
 .filterDropDownBtn img {
   width: 18px;
@@ -99,6 +99,7 @@
 }
 .prod {
   width: 45%;
+  margin-bottom: 20px;
 }
 .productDiv {
   display: flex;
