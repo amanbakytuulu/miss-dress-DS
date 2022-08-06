@@ -128,8 +128,10 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
                 },
               }),
             }}
+            value="Kyrgyzstan"
             placeholder="Страна"
             type="text"
+            disable={true}
           />
         </div>
         <div className={classes.modalError}>
@@ -146,8 +148,10 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
                 },
               }),
             }}
+            value="Bishkek"
             placeholder="Город"
             type="text"
+            disable={true}
           />
         </div>
         <div className={classes.modalError}>

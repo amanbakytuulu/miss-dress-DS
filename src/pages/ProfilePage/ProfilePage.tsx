@@ -28,9 +28,9 @@ const ProfilePage = () => {
         >
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
+              <Link to="/">Главная</Link>
               <span>/</span>
-              <Link to="/#">Товары</Link>
+              <Link to="/profile">Профиль</Link>
               <i className={classes.logoIcon}>
                 <LogoIcon />
               </i>

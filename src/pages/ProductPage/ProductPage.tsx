@@ -10,6 +10,8 @@ import { caretRight } from "react-icons-kit/fa/caretRight";
 import Icon from "react-icons-kit";
 import { useParams } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import heart from "../../assets/mainPage/icons/heart.svg";
 import mainDress from "../../assets/ProductPage/mainDress.png";
@@ -32,6 +34,7 @@ import SwiperVertical from "./SwiperVertical";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import ModalFullPhoto from "./modal/ModalFullPhoto";
 
 interface IColors {
   id: number;
@@ -43,6 +46,12 @@ SwiperCore.use([Navigation]);
 const ProductPage: FC = () => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+  const [url, setUrl] = useState<number>(2);
+  // modalFullPhoto
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  // modalFullPhoto
   const { id } = useParams();
   const [changeColor, setChangeColor] = useState(false);
   const [addProductFavorites] = useAddProductFavoritesMutation();
@@ -81,6 +90,7 @@ const ProductPage: FC = () => {
         <Grid container spacing={2}>
           <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
             <SwiperVertical
+              setUrl={setUrl}
               images={
                 productCurrent.images && productCurrent.images.length > 0
                   ? productCurrent.images
@@ -91,9 +101,10 @@ const ProductPage: FC = () => {
 
           <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
             <img
+              onClick={handleOpen}
               src={
                 productCurrent.images && productCurrent.images.length > 0
-                  ? productCurrent.images[2].url
+                  ? productCurrent.images[url].url
                   : mainDress
               }
               alt="main dress"
@@ -146,7 +157,9 @@ const ProductPage: FC = () => {
                 <p className={styles.description}>
                   {productCurrent.description}
                 </p>
-                <button className={styles.btn}>Перейти в корзину</button>
+                <Link to="/cart">
+                  <button className={styles.btn}>Перейти в корзину</button>
+                </Link>
               </div>
             </div>
           </Grid>
@@ -154,7 +167,9 @@ const ProductPage: FC = () => {
         <div className={styles.description_change_mobile}>
           <h4>О товаре:</h4>
           <p className={styles.description}>{productCurrent.description}</p>
-          <button className={styles.btn}>Перейти в корзину</button>
+          <Link to="/cart">
+            <button className={styles.btn}>Перейти в корзину</button>
+          </Link>
         </div>
 
         <div className={styles.similar_container}>
@@ -205,9 +220,20 @@ const ProductPage: FC = () => {
           <button>Millana</button>
         </div>
         <div className={styles.btnMobileDiv}>
-          <button className={styles.btnMobile}>Смотреть все товары</button>
+          <Link to="/">
+            <button className={styles.btnMobile}>Смотреть все товары</button>
+          </Link>
         </div>
       </div>
+      <ModalFullPhoto
+        handleClose={handleClose}
+        open={open}
+        photo={
+          productCurrent.images && productCurrent.images.length > 0
+            ? productCurrent.images[url].url
+            : mainDress
+        }
+      />
     </div>
   );
 };

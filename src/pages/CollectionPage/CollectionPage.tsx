@@ -77,9 +77,9 @@ const CollectionPage = () => {
         <Grid className={classes.mainGrid} container spacing={2}>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
+              <Link to="/">Главная</Link>
               <span>/</span>
-              <Link to="/#">Товары</Link>
+              <Link to="/#">Коллекция</Link>
             </div>
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>

@@ -19,9 +19,10 @@ import { dressDatabase } from "./productDb";
 
 interface SwiperVerticalProps {
   images: Images[];
+  setUrl: (url: number) => void;
 }
 
-const SwiperVertical: React.FC<SwiperVerticalProps> = ({ images }) => {
+const SwiperVertical: React.FC<SwiperVerticalProps> = ({ images, setUrl }) => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
   return (
@@ -71,8 +72,8 @@ const SwiperVertical: React.FC<SwiperVerticalProps> = ({ images }) => {
         }}
       >
         {images.length !== 0
-          ? images.map((img) => (
-              <SwiperSlide key={img.id}>
+          ? images.map((img, index) => (
+              <SwiperSlide key={img.id} onClick={() => setUrl(index)}>
                 <img src={img.url} alt="dresses" className={styles.dress} />
               </SwiperSlide>
             ))
