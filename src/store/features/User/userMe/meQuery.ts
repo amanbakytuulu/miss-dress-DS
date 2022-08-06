@@ -18,7 +18,7 @@ export const meApi = createApi({
       }),
       providesTags: ["Me"],
     }),
-    editPhone: build.mutation({
+    addPhone: build.mutation({
       query: (data) => ({
         url: "/user/add-phone",
         method: "POST",
@@ -31,6 +31,7 @@ export const meApi = createApi({
           phoneNumber: data,
         },
       }),
+      invalidatesTags: ["Me"],
     }),
     updatePhone: build.mutation({
       query: (data) => ({
@@ -43,11 +44,16 @@ export const meApi = createApi({
         },
         body: {
           phoneNumber: data.phoneNumber,
-          code: data.code
+          code: data.code,
         },
       }),
+      invalidatesTags: ["Me"],
     }),
   }),
 });
 
-export const { useFetchUserMeQuery, useEditPhoneMutation, useUpdatePhoneMutation } = meApi;
+export const {
+  useFetchUserMeQuery,
+  useAddPhoneMutation,
+  useUpdatePhoneMutation,
+} = meApi;

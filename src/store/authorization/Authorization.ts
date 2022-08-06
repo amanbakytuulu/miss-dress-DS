@@ -18,7 +18,7 @@ export const apiAuth = createApi({
 
     getSmsCode: build.query({
       query: (id) => ({
-        url: `/user/sms-code/${id}`,
+        url: `/auth/sms-code/${id}`,
       }),
       providesTags: ["POSTAuth"],
     }),

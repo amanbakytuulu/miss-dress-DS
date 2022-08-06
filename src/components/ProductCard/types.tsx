@@ -9,7 +9,7 @@ type Collection = {
   status: number;
   type: string;
   updateDate: string;
-}
+};
 type Category = {
   createDate: string;
   id: number;

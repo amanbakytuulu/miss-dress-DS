@@ -1,6 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useEditPhoneMutation, useUpdatePhoneMutation } from "../../../store/features/User/userMe/meQuery";
+
+import { useLazyGetSmsCodeQuery } from "../../../store/authorization/Authorization";
+import {
+  useAddPhoneMutation,
+  useUpdatePhoneMutation,
+} from "../../../store/features/User/userMe/meQuery";
 
 import { changePhoneSuccess } from "../../../utils/helpers/modalSuccessConsructor";
 
@@ -17,8 +22,11 @@ type getMessageTypeR = {
 const NewNumberForm: FC = () => {
   const [isContinue, setContinue] = useState<boolean>(false);
   const [isetUser, setUserEnter] = useState<boolean>(true);
-  const [editPhone, { data: phoneData = [], isSuccess }] = useEditPhoneMutation();
-  const [updatePhone, { data: updatePhoneData = [] }] = useUpdatePhoneMutation();
+  const [addPhone, { data: phoneData = [], isSuccess }] = useAddPhoneMutation();
+  const [updatePhone, { data: updatePhoneData = [] }] =
+    useUpdatePhoneMutation();
+  const [getSms, { data: sms = null, isSuccess: smsSuccess }] =
+    useLazyGetSmsCodeQuery();
   const {
     register,
     formState: { errors },
@@ -27,19 +35,25 @@ const NewNumberForm: FC = () => {
   } = useForm<getMessageTypeR>({ mode: "onBlur", reValidateMode: "onChange" });
 
   const enter = async (data: getMessageTypeR) => {
-    await editPhone(data.phoneNumber);
-    // updatePhone(data.phoneNumber);
-    // setContinue(true);
+    await addPhone(data.phoneNumber);
     reset();
-  }
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     updatePhone()
-  //   }
-  // }, [isSuccess])
-
-  console.log(phoneData);
-  console.log(updatePhoneData);
+  };
+  useEffect(() => {
+    if (isSuccess) {
+      const id = phoneData.result?.user;
+      getSms(id);
+    }
+  }, [isSuccess]);
+  useEffect(() => {
+    if (smsSuccess) {
+      sessionStorage.setItem("data", JSON.stringify(sms.result));
+      updatePhone({
+        phoneNumber: phoneData.result?.unregistredNumber,
+        code: sms.result?.code,
+      });
+      setContinue(true);
+    }
+  }, [sms]);
 
   return (
     <>
