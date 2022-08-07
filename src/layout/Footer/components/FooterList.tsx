@@ -10,7 +10,6 @@ const FooterList = () => {
   const liElements1: IFooterItems[] = [
     {
       title: "Покупателям",
-      path: "/buy",
     },
     {
       title: "Как сделать заказ",
@@ -29,7 +28,6 @@ const FooterList = () => {
   const liElements2: IFooterItems[] = [
     {
       title: "Покупателям",
-      path: "/buy",
     },
     {
       title: "Возврат товара",
@@ -48,7 +46,6 @@ const FooterList = () => {
   const liElements3: IFooterItems[] = [
     {
       title: "Компания",
-      path: "/buy",
     },
     {
       title: "О нас",
@@ -67,7 +64,6 @@ const FooterList = () => {
   const liElements4: IFooterItems[] = [
     {
       title: "Контакты",
-      path: CONTACTS_PAGE,
     },
     {
       title: "Номер телефона",
@@ -87,36 +83,64 @@ const FooterList = () => {
       <div>
         {liElements1.map((item, index) => (
           <ul key={index}>
-            <Link className={classes.listElem} to={item.path}>
-              {item.title}
-            </Link>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}>
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
       <div>
         {liElements2.map((item, index) => (
           <ul key={index}>
-            <Link className={classes.listElem} to={item.path}>
-              {item.title}
-            </Link>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}>
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
       <div>
         {liElements3.map((item, index) => (
           <ul key={index}>
-            <Link className={classes.listElem} to={item.path}>
-              {item.title}
-            </Link>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}>
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
       <div>
         {liElements4.map((item, index) => (
           <ul key={index}>
-            <a className={classes.listElem} href={item.path}>
-              {item.title}
-            </a>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}>
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
