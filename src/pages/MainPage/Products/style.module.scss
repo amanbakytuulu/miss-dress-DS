@@ -3,6 +3,9 @@
   justify-content: center;
   text-align: center;
 }
+.categoryDiv:last-child{
+  display: none !important;
+}
 .categoryDiv div h4 {
   color: #372e24;
 }
@@ -51,7 +54,7 @@
 .titleP {
   font-size: 24px;
   font-weight: lighter;
-  height: 40px;
+  max-height: 100%;
   margin-top: 0;
 }
 .btnDiv {
@@ -114,9 +117,19 @@
   }
 }
 
+@media (max-width: 899px) {
+  .categoryDiv:last-child{
+    display: block !important;
+  }
+  .titleP{
+    height: 40px;
+  }
+}
+
 @media (max-width: 624px) {
   .titleP {
     font-size: 20px;
+    height: 35px;
   }
 }
 @media (max-width: 500px) {
@@ -139,6 +152,7 @@
   }
   .titleP {
     font-size: 16px;
+    height: 35px;
   }
   .sizeP {
     font-size: 16px;
@@ -159,6 +173,7 @@
     width: 16px;
   }
   .titleP {
-    font-size: 14px;
+    font-size: 16px;
+    height: 30px;
   }
 }

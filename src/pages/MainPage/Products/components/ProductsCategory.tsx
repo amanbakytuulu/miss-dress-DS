@@ -1,10 +1,6 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
 
-import jeans from "../../../../assets/mainPage/categories/second.png";
-import dresses from "../../../../assets/mainPage/categories/first.png";
-import skirts from "../../../../assets/mainPage/categories/third.png";
-
 import classes from "../style.module.scss";
 import ImagesCard from "../../../../components/ProductCard/components/ImagesCard";
 import { categoryMainApi } from "../../../../store/features/Category/categoryMain/categoryMainQuery";
@@ -13,7 +9,10 @@ const ProductsCategory = () => {
   const btnTitle = "Смотреть";
 
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-  const categories = data?.data?.result.slice(0, 3);
+  const allCategories = data?.data?.result;
+  const categories = allCategories
+    ?.filter((item: any) => item.children.length === 0)
+    .slice(0, 4);
 
   return (
     <Grid container spacing={2}>

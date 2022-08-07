@@ -2,17 +2,22 @@ import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { IItemCard } from "../types";
-import classes from "../style.module.scss";
-
 import same3 from "../../../assets/ProductPage/same3.png";
+import { CategoryItem } from "../types/types";
 
-interface ImagesCardProps {
-  item: IItemCard;
+import classes from "./CollectionImagesCard.module.scss";
+
+interface CollectionImagesCardProps {
+  item: CategoryItem;
   btnTitle: string;
+  type: string;
 }
 
-const ImagesCard: React.FC<ImagesCardProps> = ({ item, btnTitle }) => {
+const CollectionImagesCard: React.FC<CollectionImagesCardProps> = ({
+  item,
+  btnTitle,
+  type,
+}) => {
   const [changeColor] = useState(false);
 
   return (
@@ -24,7 +29,7 @@ const ImagesCard: React.FC<ImagesCardProps> = ({ item, btnTitle }) => {
           color: changeColor ? "#372E24" : "#F1DAC5",
           textDecoration: "none",
         }}
-        to={`/product/${item.id}`}
+        to={`/dresses/category=${item.category_id}/collectionType=${type}`}
       >
         <button
           style={{
@@ -39,4 +44,4 @@ const ImagesCard: React.FC<ImagesCardProps> = ({ item, btnTitle }) => {
   );
 };
 
-export default ImagesCard;
+export default CollectionImagesCard;

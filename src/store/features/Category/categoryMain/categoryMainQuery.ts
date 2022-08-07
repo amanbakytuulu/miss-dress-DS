@@ -9,7 +9,7 @@ export const categoryMainApi = createApi({
   endpoints: (build) => ({
     fetchCategoryMain: build.query({
       query: (take) => ({
-        url: "/category/main",
+        url: "/category",
         take: take,
       }),
       providesTags: ["CategoryMain"],
