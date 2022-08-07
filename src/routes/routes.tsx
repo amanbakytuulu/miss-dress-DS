@@ -47,6 +47,7 @@ import {
   UserDetails,
   Products,
   CollectionInfo,
+  Sales,
   ProductDetails,
 } from "../pages/AdminPage";
 
@@ -152,7 +153,7 @@ export const PRIVATE_ROUTES = [
   },
   {
     path: ADMIN_PAGE_SALES,
-    Component: <DashBoard />,
+    Component: <Sales />,
   },
   {
     path: ADMIN_PAGE_CART,

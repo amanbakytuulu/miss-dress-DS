@@ -4,6 +4,7 @@ import UserDetails from "./UserDetails/UserDetails";
 import Products from "./Products/Products";
 import CollectionInfo from "./CollectionInfo/CollectionInfo";
 import ProductDetails from "./ProductDetails/ProductDetails";
+import Sales from "./Sales/Sales";
 
 export {
   DashBoard,
@@ -12,4 +13,5 @@ export {
   Products,
   CollectionInfo,
   ProductDetails,
+  Sales,
 };
