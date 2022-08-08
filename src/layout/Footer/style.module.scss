@@ -1,16 +1,23 @@
 @import "../../styles/vars.scss";
 
+.container{
+    max-width: 1220px;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
 .mainDiv {
     width: 100%;
     padding: 50px 0px 80px;
     background-color: #3c210a;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
 }
 .list {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 30px !important;
 }
 .listElem {
     color: $secondary-beige !important;
@@ -54,4 +61,10 @@
 }
 .iconsMin a {
     margin-left: 13px;
+}
+
+@media screen and (max-width:1220px) {
+    .container{
+        padding:0px 20px;
+    }
 }

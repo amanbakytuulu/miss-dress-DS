@@ -14,6 +14,11 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import SearchPage from "./SearchPage/SearchPage";
 import OrderPage from "./OrderPage/Order";
 import OrderDetails from "./OrderPage/OrderDetails/OrderInfo";
+import RequisitePage from "./RequisitePage/RequisitePage";
+import ReturnProduct from "./ReturnProduct/ReturnProduct";
+import QuestionPage from "./QuestionPage/QuestionPage";
+import MakeOrderPage from "./MakeOrderPage/MakeOrderPage";
+import OffertPage from "./OffertPage/OffertPage";
 
 export {
   ProductPage,
@@ -32,4 +37,9 @@ export {
   SearchPage,
   OrderPage,
   OrderDetails,
+  RequisitePage,
+  ReturnProduct,
+  QuestionPage,
+  MakeOrderPage,
+  OffertPage,
 };

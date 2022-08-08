@@ -13,7 +13,7 @@ const FooterList = () => {
     },
     {
       title: "Как сделать заказ",
-      path: "/buy",
+      path: "/make_order",
     },
     {
       title: "Способы оплаты",
@@ -31,15 +31,15 @@ const FooterList = () => {
     },
     {
       title: "Возврат товара",
-      path: "/buy",
+      path: "/backProduct",
     },
     {
       title: "Вопросы и ответы",
-      path: "/buy",
+      path: "/questions",
     },
     {
       title: "Публичная оферта",
-      path: "/buy",
+      path: "/offert",
     },
   ];
 
@@ -53,7 +53,7 @@ const FooterList = () => {
     },
     {
       title: "Реквизиты",
-      path: "/buy",
+      path: "/requisite",
     },
     {
       title: "Контакты",
@@ -66,16 +66,16 @@ const FooterList = () => {
       title: "Контакты",
     },
     {
-      title: "Номер телефона",
-      path: "tel:+996712345678",
+      title: "( +996 ) 707892010",
+      path: "tel:+996707892010",
     },
     {
-      title: "Email",
+      title: "missdress@gmail.com",
       path: `https://mailto:missdress@gmail.com`,
     },
     {
-      title: "Адрес",
-      path: "https://2gis.kg/bishkek/firm/70000001036409659?m=74.592154%2C42.874231%2F16",
+      title: "Насирдина Исанова, 79",
+      path: "https://2gis.kg/bishkek/firm/70000001036409659?floor=1&m=74.592154%2C42.874231%2F17.7",
     },
   ];
   return (
@@ -87,7 +87,8 @@ const FooterList = () => {
               <Link
                 className={classes.listElem}
                 title={item.title}
-                to={item.path}>
+                to={item.path}
+              >
                 {item.title}
               </Link>
             ) : (
@@ -103,7 +104,8 @@ const FooterList = () => {
               <Link
                 className={classes.listElem}
                 title={item.title}
-                to={item.path}>
+                to={item.path}
+              >
                 {item.title}
               </Link>
             ) : (
@@ -119,7 +121,8 @@ const FooterList = () => {
               <Link
                 className={classes.listElem}
                 title={item.title}
-                to={item.path}>
+                to={item.path}
+              >
                 {item.title}
               </Link>
             ) : (
@@ -132,12 +135,15 @@ const FooterList = () => {
         {liElements4.map((item, index) => (
           <ul key={index}>
             {item.path ? (
-              <Link
+              <a
                 className={classes.listElem}
                 title={item.title}
-                to={item.path}>
+                href={item.path}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {item.title}
-              </Link>
+              </a>
             ) : (
               <h3 className={classes.listHeader}>{item.title}</h3>
             )}

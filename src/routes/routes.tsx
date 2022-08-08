@@ -14,6 +14,11 @@ import {
   ORDERS_PAGE,
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
+  REQUISITE_PAGE,
+  RETURN_PRODUCT,
+  QUESTION_PAGE,
+  MAKEORDER_PAGE,
+  OFFERT_PAGE,
 } from "../utils/path";
 
 import {
@@ -33,6 +38,11 @@ import {
   SearchPage,
   OrderPage,
   OrderDetails,
+  RequisitePage,
+  ReturnProduct,
+  QuestionPage,
+  MakeOrderPage,
+  OffertPage,
 } from "../pages";
 
 export const PUBLIC_ROUTES = [
@@ -103,6 +113,26 @@ export const PUBLIC_ROUTES = [
   {
     path: COLLECTION_PRODUCTS_PAGE,
     Component: <CollectionProductsPage />,
+  },
+  {
+    path: REQUISITE_PAGE,
+    Component: <RequisitePage />,
+  },
+  {
+    path: RETURN_PRODUCT,
+    Component: <ReturnProduct />,
+  },
+  {
+    path: QUESTION_PAGE,
+    Component: <QuestionPage />,
+  },
+  {
+    path: MAKEORDER_PAGE,
+    Component: <MakeOrderPage />,
+  },
+  {
+    path: OFFERT_PAGE,
+    Component: <OffertPage />,
   },
 ];
 
