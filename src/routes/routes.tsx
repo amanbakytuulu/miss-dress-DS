@@ -1,7 +1,6 @@
 import {
   MAIN_PAGE,
   PROFILE_PAGE,
-  ADMIN_PAGE,
   CART_PAGE,
   CONTACTS_PAGE,
   ABOUT_PAGE,
@@ -49,6 +48,8 @@ import {
   CollectionInfo,
   Sales,
   ProductDetails,
+  Cart,
+  Advertising,
 } from "../pages/AdminPage";
 
 export const PUBLIC_ROUTES = [
@@ -157,11 +158,11 @@ export const PRIVATE_ROUTES = [
   },
   {
     path: ADMIN_PAGE_CART,
-    Component: <DashBoard />,
+    Component: <Cart />,
   },
   {
     path: ADMIN_PAGE_AD,
-    Component: <DashBoard />,
+    Component: <Advertising />,
   },
   {
     path: ADMIN_PAGE_CHAT,

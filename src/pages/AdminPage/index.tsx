@@ -5,6 +5,8 @@ import Products from "./Products/Products";
 import CollectionInfo from "./CollectionInfo/CollectionInfo";
 import ProductDetails from "./ProductDetails/ProductDetails";
 import Sales from "./Sales/Sales";
+import Cart from "./Cart/Cart";
+import Advertising from "./Advertising/Advertising";
 
 export {
   DashBoard,
@@ -14,4 +16,6 @@ export {
   CollectionInfo,
   ProductDetails,
   Sales,
+  Cart,
+  Advertising,
 };
