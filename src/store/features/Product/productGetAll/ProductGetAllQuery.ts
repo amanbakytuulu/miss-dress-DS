@@ -17,15 +17,29 @@ export const productGetAllApi = createApi({
       }),
       providesTags: ["ProductGetAll"],
     }),
-    fetchProductBytitle: build.query({
-      query: (title) => ({
-        url: `/product/get-all?name=${title}`,
+    fetchProductsGetAll: build.query({
+      query: ({ take, category, page }) => ({
+        url: `/product/get-all?category=${category}&page=${page}`,
+        params: {
+          take,
+          sort: "title",
+        },
       }),
       providesTags: ["ProductGetAll"],
     }),
-    fetchProductsPagination: build.query({
-      query: (page) => ({
-        url: `/product/get-all?page=${page}`,
+    fetchProductsByCategory: build.query({
+      query: (category) => ({
+        url: `/product/get-all?category=${category}`,
+      }),
+      providesTags: ["ProductGetAll"],
+    }),
+    fetchProductBytitle: build.query({
+      query: ({ title, page }) => ({
+        url: "/product/get-all",
+        params: {
+          title,
+          page,
+        },
       }),
       providesTags: ["ProductGetAll"],
     }),
@@ -36,18 +50,32 @@ export const productGetAllApi = createApi({
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5MzUxOTM4LCJleHAiOjE2NTk1MjQ3Mzh9.vc249ShD3v50COUfKbHb1EQJWCCg42UiSTPvkxq68d8",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5NTMwNTYyLCJleHAiOjE2NTk3MDMzNjJ9.j7xhNsCqvLriBiGkisiP7H_Y_u-A1dV-sHGf7puLRjM",
         },
         body,
       }),
       invalidatesTags: ["ProductGetAll"],
+    }),
+    fetchProductByCategory: build.query({
+      query: ({ categoryId, collectionsType, take, page }) => ({
+        url: "/product/get-all",
+        params: {
+          category: categoryId,
+          collectionsType,
+          take,
+          page,
+        },
+      }),
+      providesTags: ["ProductGetAll"],
     }),
   }),
 });
 
 export const {
   useFetchProductGetAllQuery,
-  useFetchProductBytitleQuery,
+  useFetchProductsGetAllQuery,
+  useFetchProductsByCategoryQuery,
   useAddProductRateMutation,
-  useFetchProductsPaginationQuery,
+  useFetchProductBytitleQuery,
+  useFetchProductByCategoryQuery,
 } = productGetAllApi;

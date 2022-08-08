@@ -30,8 +30,8 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
   const [changeColor, setChangeColor] = useState(false);
   const [newRate, setNewRate] = useState({});
   const handleAddFavorite = () => {
-    setChangeColor(!changeColor);
     addProductFavorites(item);
+    setChangeColor(!changeColor);
   };
   const rate = item.rate;
   const StyledRating = styled(Rating)({

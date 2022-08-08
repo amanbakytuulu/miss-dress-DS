@@ -8,7 +8,12 @@ export const collectionApi = createApi({
   tagTypes: ["Collection"],
   endpoints: (build) => ({
     fetchCollection: build.query({
-      query: () => "/collections/all",
+      query: () => ({
+        url: "/collections/all",
+        headers: {
+          Authorization: process.env.REACT_APP_API_TOKEN,
+        },
+      }),
       providesTags: ["Collection"],
     }),
   }),
