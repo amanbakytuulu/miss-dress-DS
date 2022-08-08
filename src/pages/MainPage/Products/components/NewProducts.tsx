@@ -8,8 +8,10 @@ import { productGetAllApi } from "../../../../store/features/Product/productGetA
 
 const NewProducts = () => {
   const btnTitle = "Открыть";
-  const { data = [], isLoading } =
-    productGetAllApi.useFetchProductGetAllQuery(6);
+  const { data = [], isLoading } = productGetAllApi.useFetchProductGetAllQuery({
+    take: 6,
+    sort: "updateDate",
+  });
   const newProductItems = data.result?.data || [];
 
   if (isLoading) {

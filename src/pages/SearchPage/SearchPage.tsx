@@ -28,11 +28,16 @@ import OthersProducts from "./components/OthersProducts/OthersProducts";
 const SearchPage = () => {
   const { title } = useParams<string>();
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
-    title: title,
+    name: title,
     page: 1,
+    sort: "createDate",
   });
-  const { data: otherData = [] } = useFetchProductGetAllQuery(6);
+  const { data: otherData = [] } = useFetchProductGetAllQuery({
+    take: 6,
+    sort: "createDate",
+  });
   const { data = [] } = useFetchProductBytitleQuery(productsData);
   const items = data.result?.data || [];
   const otherItems = otherData.result?.data || [];
@@ -41,14 +46,28 @@ const SearchPage = () => {
   useEffect(() => {
     setProductsData({
       ...productsData,
+      name: title,
+    });
+  }, [title]);
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
       page,
     });
   }, [page]);
 
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      sort,
+    });
+  }, [sort]);
+
   return (
     <div className={classes.searchPageWrapper}>
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
-        <SearchHeader quantity={totalCount} />
+        <SearchHeader quantity={totalCount} setSort={setSort} />
 
         {items.length > 0 ? (
           <SearchList

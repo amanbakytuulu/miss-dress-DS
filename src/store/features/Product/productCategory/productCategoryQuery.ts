@@ -8,10 +8,11 @@ export const productCategoryApi = createApi({
   tagTypes: ["ProductCategory"],
   endpoints: (build) => ({
     fetchProductByCollectionType: build.query({
-      query: ({ category, page }) => ({
+      query: ({ category, page, sort }) => ({
         url: `/product/categories/${category}`,
         params: {
           page,
+          sort,
         },
       }),
       providesTags: (result) => ["ProductCategory"],

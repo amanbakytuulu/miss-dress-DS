@@ -4,29 +4,14 @@ import { NavLink } from "react-router-dom";
 import classes from "../CategoryPage.module.scss";
 
 import vector from "../../../assets/categoriesPage/Vector.svg";
-import vectorfull from "../../../assets/categoriesPage/Vector.svg";
+import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";
 
 import { categoryApi } from "../../../store/features/Category/category/categoryQuery";
 
 interface ISetProducts {
   setCategory: (value: number) => void;
 }
-interface IObjectItems {
-  title: string;
-  sub: {
-    first: string;
-    second: string;
-    trench: string;
-    trenchVar: {
-      autumn: string;
-      spring: string;
-    };
-  };
-}
-interface IBarItems {
-  title: string;
-  path: string;
-}
+
 const SideBar: FC<ISetProducts> = ({ setCategory }) => {
   const [showChild, setShowChild] = useState(false);
   const [show, setShow] = useState(false);
