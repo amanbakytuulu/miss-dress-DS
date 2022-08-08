@@ -13,9 +13,11 @@ const ProductsCategory = () => {
   const btnTitle = "Смотреть";
 
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
+  const allCategories = data?.data?.result;
+  const categories = allCategories
+    ?.filter((item: any) => item.children.length === 0)
+    .slice(0, 4);
 
-  const categories = data?.data?.result.slice(0, 3);
-  
   return (
     <Grid container spacing={2}>
       {categories?.map((item: any, index: any) => (
