@@ -1,7 +1,7 @@
 @import "../../styles/vars.scss";
 @import "../../styles/mixins.scss";
 
-.offertPage{
+.offertPage {
     font-family: "Montserrat";
     background-color: $beige-background;
     padding: 80px 0px;
@@ -26,20 +26,28 @@
         @include md {
             font-size: 16px;
         }
-        & p{
+        @include sm {
+            margin: 20px;
+        }
+        & p {
             margin-bottom: 10px;
         }
     }
 
-    & ol li{
-        list-style-type:decimal;
+    & ol li {
+        list-style-type: decimal;
 
-        & ul li{
-            list-style-type:lower-latin;
+        & p {
+            @include sm {
+                font-size: 14px;
+            }
+        }
+        & ul li {
+            font-weight: 300;
             & a {
-                color:$black-text;
-                &:hover{
-                    font-weight: bold;
+                color: $black-text;
+                &:hover {
+                    font-weight: 400;
                 }
             }
         }

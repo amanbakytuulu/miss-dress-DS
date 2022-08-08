@@ -17,11 +17,11 @@ const FooterList = () => {
     },
     {
       title: "Способы оплаты",
-      path: "/buy",
+      path: "/payment",
     },
     {
       title: "Доставка",
-      path: "/buy",
+      path: "/delivery",
     },
   ];
 
@@ -66,7 +66,7 @@ const FooterList = () => {
       title: "Контакты",
     },
     {
-      title: "( +996 ) 707892010",
+      title: "( +996 ) 707 89-20-10",
       path: "tel:+996707892010",
     },
     {

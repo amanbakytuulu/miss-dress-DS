@@ -19,6 +19,7 @@ import ReturnProduct from "./ReturnProduct/ReturnProduct";
 import QuestionPage from "./QuestionPage/QuestionPage";
 import MakeOrderPage from "./MakeOrderPage/MakeOrderPage";
 import OffertPage from "./OffertPage/OffertPage";
+import PaymentPage from "./PaymentPage/PaymentPage";
 
 export {
   ProductPage,
@@ -42,4 +43,5 @@ export {
   QuestionPage,
   MakeOrderPage,
   OffertPage,
+  PaymentPage,
 };

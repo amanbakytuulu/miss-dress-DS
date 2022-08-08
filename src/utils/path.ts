@@ -20,6 +20,7 @@ const RETURN_PRODUCT = "/backProduct";
 const QUESTION_PAGE = "/questions";
 const MAKEORDER_PAGE = "/make_order";
 const OFFERT_PAGE = "/offert";
+const PAYMENT_PAGE = "/payment";
 
 export {
   MAIN_PAGE,
@@ -44,4 +45,5 @@ export {
   QUESTION_PAGE,
   MAKEORDER_PAGE,
   OFFERT_PAGE,
+  PAYMENT_PAGE,
 };

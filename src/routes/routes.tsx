@@ -19,6 +19,7 @@ import {
   QUESTION_PAGE,
   MAKEORDER_PAGE,
   OFFERT_PAGE,
+  PAYMENT_PAGE,
 } from "../utils/path";
 
 import {
@@ -43,6 +44,7 @@ import {
   QuestionPage,
   MakeOrderPage,
   OffertPage,
+  PaymentPage,
 } from "../pages";
 
 export const PUBLIC_ROUTES = [
@@ -133,6 +135,10 @@ export const PUBLIC_ROUTES = [
   {
     path: OFFERT_PAGE,
     Component: <OffertPage />,
+  },
+  {
+    path: PAYMENT_PAGE,
+    Component: <PaymentPage />,
   },
 ];
 
