@@ -19,7 +19,14 @@ const navs = [
   },
 ];
 
-const HeaderNavProfile = () => {
+const HeaderNavProfile = ({ setUserEnter }: any) => {
+  const handleRemoveToken = () => {
+    if (localStorage.getItem("accessToken")) {
+      localStorage.removeItem("accessToken");
+      setUserEnter(false);
+    }
+  };
+
   return (
     <div className={classes.headerProfileNav}>
       <ul>
@@ -29,7 +36,7 @@ const HeaderNavProfile = () => {
               {nav?.path ? (
                 <Link to={nav.path}>{nav.title}</Link>
               ) : (
-                <button>{nav.title}</button>
+                <button onClick={handleRemoveToken}>{nav.title}</button>
               )}
             </li>
           );

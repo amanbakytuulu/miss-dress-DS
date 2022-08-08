@@ -115,8 +115,8 @@ const SearchPage = () => {
   const postsPerPage = 3;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items.length;
+  // const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
+  const totalCount = data.result?.count;
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);

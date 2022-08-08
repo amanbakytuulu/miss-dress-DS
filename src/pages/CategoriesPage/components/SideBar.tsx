@@ -8,6 +8,22 @@ import vectorfull from "../../../assets/categoriesPage/Vector.svg";
 
 import { categoryApi } from "../../../store/features/Category/category/categoryQuery";
 
+interface IObjectItems {
+  title: string;
+  sub: {
+    first: string;
+    second: string;
+    trench: string;
+    trenchVar: {
+      autumn: string;
+      spring: string;
+    };
+  };
+}
+interface IBarItems {
+  title: string;
+  path: string;
+}
 const SideBar = () => {
   const [showChild, setShowChild] = useState(false);
   const [show, setShow] = useState(false);

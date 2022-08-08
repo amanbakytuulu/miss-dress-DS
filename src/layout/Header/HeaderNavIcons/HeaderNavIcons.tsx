@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
@@ -32,6 +32,7 @@ interface HeaderNavIconsProps {
   isUserEnter: boolean;
   currentOpen: string | null;
   toggleCurrent: (value: string) => () => void;
+  setUserEnter: any;
 }
 
 const arr: ICartList[] = [
@@ -47,10 +48,16 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   isUserEnter,
   toggleCurrent,
   currentOpen,
+  setUserEnter,
 }) => {
-  const { data = [] } = useFetchProductFavoritesQuery("");
+  const { data = [], refetch } = useFetchProductFavoritesQuery("");
   const countFavorites = data.result?.count || 0;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentOpen == null) refetch();
+  }, [currentOpen]);
+
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>
@@ -64,7 +71,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
             <FavIcon />
-            {countFavorites > 0 && (
+            {isUserEnter && countFavorites > 0 && (
               <span className={classes.counter}>{countFavorites}</span>
             )}
           </i>
@@ -74,7 +81,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
       <div className={classes.headerCart}>
         <i className={classes.icon} onClick={() => navigate(CART_PAGE)}>
           <CartIcon />
-          <span className={classes.counter}>{arr.length}</span>
+          {isUserEnter && <span className={classes.counter}>{arr.length}</span>}
         </i>
       </div>
 
@@ -89,7 +96,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
           <i className={classes.icon} onClick={toggleCurrent(PROFILE_NAV)}>
             <AccIcon />
           </i>
-          {currentOpen === PROFILE_NAV && <HeaderNavProfile />}
+          {currentOpen === PROFILE_NAV && (
+            <HeaderNavProfile setUserEnter={setUserEnter} />
+          )}
         </div>
       )}
     </div>
