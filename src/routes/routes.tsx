@@ -118,11 +118,11 @@ export const PUBLIC_ROUTES = [
     Component: <FavoritesPage />,
   },
   {
-    path: COLLECTION_PAGE,
+    path: COLLECTION_PAGE + "/:category",
     Component: <CollectionPage />,
   },
   {
-    path: COLLECTION_PRODUCTS_PAGE,
+    path: COLLECTION_PRODUCTS_PAGE + "/category=:category/collectionType=:type",
     Component: <CollectionProductsPage />,
   },
 ];

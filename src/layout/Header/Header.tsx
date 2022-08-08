@@ -53,7 +53,9 @@ const Header = () => {
   const location = useLocation();
 
   const [isSignIn, setSignIn] = useState<boolean>(false);
-  const [isUserEnter, setUserEnter] = useState<boolean>(false);
+  const [isUserEnter, setUserEnter] = useState<boolean>(
+    localStorage.getItem("accessToken") ? true : false
+  );
   const [currentOpen, setCurrentOpen] = useState<string | null>(null);
 
   const handleClickLogo = () => navigate(MAIN_PAGE);
@@ -95,6 +97,7 @@ const Header = () => {
             currentOpen={currentOpen}
             isUserEnter={isUserEnter}
             toggleCurrent={toggleCurrent}
+            setUserEnter={setUserEnter}
           />
         </div>
       </header>

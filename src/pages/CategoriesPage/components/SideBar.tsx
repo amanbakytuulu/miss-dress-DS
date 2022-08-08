@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import classes from "../CategoryPage.module.scss";
 
 import vector from "../../../assets/categoriesPage/Vector.svg";
-import vectorfull from "../../../assets/categoriesPage/Vector.svg";
+import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";
 
 import { categoryApi } from "../../../store/features/Category/category/categoryQuery";
 
-const SideBar = () => {
+interface ISetProducts {
+  setCategory: (value: number) => void;
+}
+
+const SideBar: FC<ISetProducts> = ({ setCategory }) => {
   const [showChild, setShowChild] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -23,14 +27,27 @@ const SideBar = () => {
       <ul className={classes.ulItems}>
         {categories?.map((item: any) => {
           return (
-            <li key={item.id} className={classes.categoriesListItem}>
-              <NavLink to={item.id}>{item.title}</NavLink>
+            <li
+              key={item.id}
+              className={classes.categoriesListItem}
+              onClick={() => {
+                item.children?.length === 0 && setCategory(item.id);
+              }}
+            >
+              <NavLink
+                to={item.id}
+                onClick={() =>
+                  item.children?.length > 0 && setShowChild(!showChild)
+                }
+              >
+                {item.title}
+              </NavLink>
               {item.children?.length > 0 && (
                 <img
                   className={classes.vector}
                   src={showChild ? vectorfull : vector}
-                  onClick={() => setShowChild(!showChild)}
                   alt=""
+                  onClick={() => setShowChild(!showChild)}
                 />
               )}
               <ul>
@@ -38,7 +55,11 @@ const SideBar = () => {
                   showChild &&
                   item.children.map((el: any) => {
                     return (
-                      <li key={el.id} className={classes.childrenListItem}>
+                      <li
+                        key={el.id}
+                        className={classes.childrenListItem}
+                        onClick={() => setCategory(el.id)}
+                      >
                         <NavLink to={el.id}>{el.title}</NavLink>
                       </li>
                     );

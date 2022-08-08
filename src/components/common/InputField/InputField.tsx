@@ -16,6 +16,7 @@ interface InputFieldProps {
   error?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   autofocus?: boolean;
+  disable?: boolean;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -29,6 +30,7 @@ export const InputField: FC<InputFieldProps> = ({
   error,
   onKeyDown,
   autofocus,
+  disable,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -47,6 +49,7 @@ export const InputField: FC<InputFieldProps> = ({
           value={value}
           placeholder={placeholder}
           onChange={handleChange}
+          disabled={disable ? true : false}
         />
       </div>
       {error && <span className={classes.error}>{error}</span>}

@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 
+import { productCategoryApi } from "./features/Product/productCategory/productCategoryQuery";
+
 import { productIdApi } from "./features/Product/productId/productIdQuery";
 
 import { categoryApi } from "./features/Category/category/categoryQuery";
@@ -10,6 +12,8 @@ import { productFavoritesApi } from "./features/Product/productFavorites/product
 import { productGetAllApi } from "./features/Product/productGetAll/ProductGetAllQuery";
 import { getAllApi } from "./features/User/getAll/getAllQuery";
 import { meApi } from "./features/User/userMe/meQuery";
+import { apiAuth } from "./authorization/Authorization";
+// import { cartApi } from "./features/Cart/cartQuery";
 import { collectionApi } from "./features/Collection/collectionQuery";
 import { productsStatApi } from "./features/Admin/productStatisticsQuery";
 import { usersStatsApi } from "./features/Admin/usersStatisticsQuery";
@@ -23,11 +27,14 @@ const rootReducer = combineReducers({
   [productFavoritesApi.reducerPath]: productFavoritesApi.reducer,
   [productGetAllApi.reducerPath]: productGetAllApi.reducer,
   [productIdApi.reducerPath]: productIdApi.reducer,
+  [productCategoryApi.reducerPath]: productCategoryApi.reducer,
   [getAllApi.reducerPath]: getAllApi.reducer,
   [meApi.reducerPath]: meApi.reducer,
   [productsStatApi.reducerPath]: productsStatApi.reducer,
   [usersStatsApi.reducerPath]: usersStatsApi.reducer,
   [allStatApi.reducerPath]: allStatApi.reducer,
+  [apiAuth.reducerPath]: apiAuth.reducer,
+  // [cartApi.reducerPath]: cartApi.reducer,
 });
 
 export const store = configureStore({
@@ -41,11 +48,14 @@ export const store = configureStore({
       productFavoritesApi.middleware,
       productGetAllApi.middleware,
       productIdApi.middleware,
+      productCategoryApi.middleware,
       getAllApi.middleware,
       meApi.middleware,
       productsStatApi.middleware,
       usersStatsApi.middleware,
-      allStatApi.middleware
+      allStatApi.middleware,
+      apiAuth.middleware
+      // cartApi.middleware
     ),
 });
 
