@@ -17,9 +17,9 @@
 
   .modal {
     width: 480px;
-    height: auto;
+    min-height: 300px;
     padding: 0 20px 30px 20px;
-    background-color: $beige-background;
+    background-color: $secondary-beige;
 
     @include sm {
       width: 400px;
@@ -41,4 +41,14 @@
 
 .active {
   display: flex;
+}
+@media (max-width: 900px) {
+  .modalLogo {
+    display: none;
+  }
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

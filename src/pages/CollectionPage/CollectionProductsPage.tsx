@@ -12,9 +12,9 @@ import {
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
+
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-import ImagesCard from "../../components/ProductCard/components/ImagesCard";
-import { IProductCardCollection } from "../../components/ProductCard/types";
+import { IItemCard } from "../../components/ProductCard/types";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
@@ -27,7 +27,7 @@ const CollectionProductsPage = () => {
     page: 1,
   });
   const { data = [] } = useFetchProductByCategoryQuery(productsData);
-  const collectionItems: IProductCardCollection[] = data.result?.data || [];
+  const collectionItems: IItemCard[] = data.result?.data || [];
   const dressType = collectionItems[0]?.category?.title;
   const dresses: any = [];
   const totalCount = data?.result?.count;

@@ -11,7 +11,22 @@ import { categoryApi } from "../../../store/features/Category/category/categoryQ
 interface ISetProducts {
   setCategory: (value: number) => void;
 }
-
+interface IObjectItems {
+  title: string;
+  sub: {
+    first: string;
+    second: string;
+    trench: string;
+    trenchVar: {
+      autumn: string;
+      spring: string;
+    };
+  };
+}
+interface IBarItems {
+  title: string;
+  path: string;
+}
 const SideBar: FC<ISetProducts> = ({ setCategory }) => {
   const [showChild, setShowChild] = useState(false);
   const [show, setShow] = useState(false);

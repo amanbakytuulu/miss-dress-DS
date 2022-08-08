@@ -14,6 +14,7 @@ interface InputFieldProps {
   inputConfig?: object;
   color?: colors;
   error?: string;
+  disable?: boolean;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -25,6 +26,7 @@ export const InputField: FC<InputFieldProps> = ({
   inputConfig,
   color,
   error,
+  disable,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -41,6 +43,7 @@ export const InputField: FC<InputFieldProps> = ({
           value={value}
           placeholder={placeholder}
           onChange={handleChange}
+          disabled={disable ? true : false}
         />
       </div>
       {error && <span className={classes.error}>{error}</span>}

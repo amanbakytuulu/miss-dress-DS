@@ -2,30 +2,14 @@ interface IColors {
   img: string;
   count: string;
 }
-export interface IItemCard {
-  // img: string;
-  // oldPrice: string;
-  // newPrice: string;
-  // title: string;
-  // colors: IColors;
-  // size: string;
-  // stars: Array<string>;
-  // heart: string;
-
-  id: number;
-  status: number;
+type Collection = {
   createDate: string;
+  id: number;
+  productId: number;
+  status: number;
+  type: string;
   updateDate: string;
-  title: string;
-  description: string;
-  price: number;
-  amount: number;
-  article: string;
-  rate: number;
-  images: string[];
-  discount: number | null;
-}
-
+};
 type Category = {
   createDate: string;
   id: number;
@@ -33,11 +17,35 @@ type Category = {
   title: string;
   updateDate: string;
 };
-export interface IProductCardCollection extends IItemCard {
+export interface Images {
+  contentSize: number;
+  contentType: string;
+  createDate: string;
+  fileKey: string;
+  id: number;
+  name: string;
+  status: number;
+  updateDate: string;
+  url: string;
+}
+export interface IItemCard {
+  amount: number;
+  article: string;
   category?: Category;
+  collections?: Collection[];
+  createDate: string;
+  description: string;
+  discount: number | null;
+  id: number;
+  images?: Images[];
+  price: number;
+  rate: number;
+  status: number;
+  title: string;
+  updateDate: string;
 }
 
 export interface IProductCard {
-  item: IProductCardCollection;
+  item: IItemCard;
   btnTitle: string;
 }
