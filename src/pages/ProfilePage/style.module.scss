@@ -1,0 +1,54 @@
+@import "../../styles/mixins.scss";
+.mainDiv {
+  background-color: #fff2e3;
+  width: 100%;
+}
+.mainContainer {
+  width: 100%;
+  max-height: 2000px;
+  display: flex;
+}
+.selectDiv {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  align-items: center;
+}
+.selectDiv a {
+  color: #372e24;
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  .logoIcon {
+    display: none;
+  }
+  .logoIconResp {
+    display: block;
+    position: absolute;
+    top: 80%;
+    left: 40%;
+  }
+  .logoGrid {
+    position: relative;
+  }
+}
+@media (min-width: 900px) {
+  .logoIconResp {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .logoIconResp {
+    position: absolute;
+    top: 75%;
+    left: 37%;
+  }
+}
+@media (max-width: 400px) {
+  .logoIconResp {
+    position: absolute;
+    top: 70%;
+    left: 35%;
+  }
+}

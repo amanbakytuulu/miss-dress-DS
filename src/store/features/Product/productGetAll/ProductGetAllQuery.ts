@@ -8,21 +8,23 @@ export const productGetAllApi = createApi({
   tagTypes: ["ProductGetAll"],
   endpoints: (build) => ({
     fetchProductGetAll: build.query({
-      query: (take) => ({
+      query: ({ take, sort }) => ({
         url: "/product/get-all",
         params: {
           take,
-          sort: "title",
+          sort,
         },
       }),
       providesTags: ["ProductGetAll"],
     }),
     fetchProductsGetAll: build.query({
-      query: ({ take, category, page }) => ({
-        url: `/product/get-all?category=${category}&page=${page}`,
+      query: ({ take, category, page, sort }) => ({
+        url: "/product/get-all",
         params: {
           take,
-          sort: "title",
+          category,
+          page,
+          sort,
         },
       }),
       providesTags: ["ProductGetAll"],
@@ -34,11 +36,12 @@ export const productGetAllApi = createApi({
       providesTags: ["ProductGetAll"],
     }),
     fetchProductBytitle: build.query({
-      query: ({ title, page }) => ({
+      query: ({ name, page, sort }) => ({
         url: "/product/get-all",
         params: {
-          title,
+          name,
           page,
+          sort,
         },
       }),
       providesTags: ["ProductGetAll"],
@@ -48,22 +51,23 @@ export const productGetAllApi = createApi({
         url: "/product/set/rate",
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5NTMwNTYyLCJleHAiOjE2NTk3MDMzNjJ9.j7xhNsCqvLriBiGkisiP7H_Y_u-A1dV-sHGf7puLRjM",
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
         body,
       }),
       invalidatesTags: ["ProductGetAll"],
     }),
     fetchProductByCategory: build.query({
-      query: ({ categoryId, collectionsType, take, page }) => ({
+      query: ({ categoryId, collectionsType, take, page, sort }) => ({
         url: "/product/get-all",
         params: {
           category: categoryId,
           collectionsType,
           take,
           page,
+          sort,
         },
       }),
       providesTags: ["ProductGetAll"],

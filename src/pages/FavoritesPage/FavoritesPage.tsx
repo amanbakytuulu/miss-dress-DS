@@ -17,13 +17,14 @@ import { IItemCard } from "../../components/ProductCard/types";
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
     take: 6,
     page: 1,
+    sort: "createDate",
   });
 
   const { data = [] } = useFetchProductFavoritesQuery(productsData);
-  // const { data: product} = useFetchProductFavoritesPageQuery();
   const items: IItemCard[] = data.result?.data || [];
   const totalCount: number = data?.result?.count;
 
@@ -34,15 +35,22 @@ const FavoritesPage = () => {
     });
   }, [page]);
 
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      sort: sort,
+    });
+  }, [sort]);
+
   return (
     <div className={classes.mainDiv} style={{ marginTop: "22px" }}>
       <Container sx={{ flexGrow: 1 }}>
         <Grid className={classes.mainGrid} container spacing={2}>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
+              <Link to="/">Главная</Link>
               <span>/</span>
-              <Link to="/#">Товары</Link>
+              <Link to="/#">Избранное</Link>
             </div>
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
@@ -53,7 +61,7 @@ const FavoritesPage = () => {
               <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>
                 Избранное
               </h2>
-              <Select />
+              <Select setSort={setSort} />
             </div>
             <div className={classes.responsiveH}>
               <h2>Избранное</h2>

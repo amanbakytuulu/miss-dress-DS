@@ -10,15 +10,17 @@ export const productFavoritesApi = createApi({
   tagTypes: ["ProductFavorites"],
   endpoints: (build) => ({
     fetchProductFavorites: build.query({
-      query: ({ take, page }) => ({
+      query: ({ take, page, sort }) => ({
         url: `/product/list/favorites`,
         params: {
           take,
           page,
+          sort,
         },
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5NTMwNTYyLCJleHAiOjE2NTk3MDMzNjJ9.j7xhNsCqvLriBiGkisiP7H_Y_u-A1dV-sHGf7puLRjM",
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["ProductFavorites"],
@@ -28,8 +30,9 @@ export const productFavoritesApi = createApi({
         url: `/product/favorite/${item.id}`,
         method: "PATCH",
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsInJvbGUiOiJVU0VSIiwidHlwZSI6ImFjY2Vzc1Rva2VuIiwiaWF0IjoxNjU5NTMwNTYyLCJleHAiOjE2NTk3MDMzNjJ9.j7xhNsCqvLriBiGkisiP7H_Y_u-A1dV-sHGf7puLRjM",
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
         body: item,
       }),
@@ -38,5 +41,8 @@ export const productFavoritesApi = createApi({
   }),
 });
 
-export const { useFetchProductFavoritesQuery, useAddProductFavoritesMutation } =
-  productFavoritesApi;
+export const {
+  useFetchProductFavoritesQuery,
+  useLazyFetchProductFavoritesQuery,
+  useAddProductFavoritesMutation,
+} = productFavoritesApi;

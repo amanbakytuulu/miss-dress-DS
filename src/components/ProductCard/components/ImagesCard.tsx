@@ -14,10 +14,13 @@ interface ImagesCardProps {
 
 const ImagesCard: React.FC<ImagesCardProps> = ({ item, btnTitle }) => {
   const [changeColor] = useState(false);
-
   return (
     <Grid className={classes.btnDiv}>
-      <img className={classes.categoryImg} src={same3} alt="image" />
+      <img
+        className={classes.categoryImg}
+        src={item.images && item.images.length > 0 ? item.images[2].url : same3}
+        alt="image"
+      />
 
       <Link
         style={{

@@ -5,6 +5,10 @@ import classes from "../style.module.scss";
 import ImagesCard from "../../../../components/ProductCard/components/ImagesCard";
 import { categoryMainApi } from "../../../../store/features/Category/categoryMain/categoryMainQuery";
 
+interface ICategoryItems {
+  img: string;
+  category: string;
+}
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
 

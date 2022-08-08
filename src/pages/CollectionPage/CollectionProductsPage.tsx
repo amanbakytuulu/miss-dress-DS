@@ -12,22 +12,24 @@ import {
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
+
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-import ImagesCard from "../../components/ProductCard/components/ImagesCard";
-import { IProductCardCollection } from "../../components/ProductCard/types";
+import { IItemCard } from "../../components/ProductCard/types";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
   const { category, type } = useParams<string>();
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
     categoryId: category,
     collectionType: type,
     take: 6,
     page: 1,
+    sort: "createDate",
   });
   const { data = [] } = useFetchProductByCategoryQuery(productsData);
-  const collectionItems: IProductCardCollection[] = data.result?.data || [];
+  const collectionItems: IItemCard[] = data.result?.data || [];
   const dressType = collectionItems[0]?.category?.title;
   const dresses: any = [];
   const totalCount = data?.result?.count;
@@ -38,6 +40,13 @@ const CollectionProductsPage = () => {
       page,
     });
   }, [page]);
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      sort,
+    });
+  }, [sort]);
 
   return (
     <div className={classes.mainDiv}>
@@ -53,7 +62,7 @@ const CollectionProductsPage = () => {
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>{dressType}</h2>
-              <Select />
+              <Select setSort={setSort} />
             </div>
           </Grid>
 

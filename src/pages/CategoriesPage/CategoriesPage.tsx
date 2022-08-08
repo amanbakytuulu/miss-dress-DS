@@ -34,16 +34,19 @@ const CategoryPage = () => {
   const btnTitle = "Открыть";
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState(1);
+  const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
     take: 6,
     category: 1,
     page: 1,
+    sort: "createDate",
   });
   const { data } = productGetAllApi.useFetchProductsGetAllQuery(productsData);
   const { data: productsByCategory } =
     useFetchProductsByCategoryQuery(category);
   const items = data?.result.data;
   const totalCount: number = productsByCategory?.result.count;
+  console.log(productsData);
 
   useEffect(() => {
     setProductsData({ ...productsData, category: category });
@@ -52,6 +55,10 @@ const CategoryPage = () => {
   useEffect(() => {
     setProductsData({ ...productsData, page: page });
   }, [page]);
+
+  useEffect(() => {
+    setProductsData({ ...productsData, sort: sort });
+  }, [sort]);
 
   return (
     <div className={classes.mainDiv}>
@@ -68,7 +75,7 @@ const CategoryPage = () => {
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>
               <CategoriesDropdown />
-              <Select />
+              <Select setSort={setSort} />
             </div>
           </Grid>
           <div className={classes.responsiveH}>

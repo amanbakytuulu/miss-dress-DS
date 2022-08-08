@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { FC, useContext } from "react";
+
+import { IModalSuccess } from "../../../utils/helpers/modalSuccessConsructor";
 
 import { Button } from "../../common";
 import { ModalContext } from "../Modal";
@@ -6,15 +8,32 @@ import { IModal } from "../../../types/modalTypes/modalType";
 
 import classes from "./SuccessModal.module.scss";
 
-const SuccessModal = () => {
+interface SuccessModalProps {
+  modalBody: IModalSuccess;
+  setContinue?: (value: boolean) => void;
+}
+
+const SuccessModal: FC<SuccessModalProps> = ({ modalBody, setContinue }) => {
   const { closeModal } = useContext(ModalContext) as IModal;
+
+  const continueHandler = () => {
+    closeModal();
+    setContinue && setContinue(false);
+  };
 
   return (
     <div className={classes.successModal}>
-      <h5 className={classes.successModalTitle}>Поздравляем!</h5>
-      <p className={classes.successModalText}>Регистрация прошла успешно!</p>
+      <h5 className={classes.successModalTitle}>{modalBody.title}</h5>
+      {modalBody.firstRow && (
+        <p className={classes.successModalText}>{modalBody.firstRow}</p>
+      )}
+      {modalBody.secondRow && (
+        <p className={classes.successModalText}>{modalBody.secondRow}</p>
+      )}
       <div className={classes.buttonBlock}>
-        <Button onClick={closeModal}>Продолжить покупки</Button>
+        <Button onClick={continueHandler}>
+          {modalBody.buttonText || "Продолжить покупки"}
+        </Button>
       </div>
     </div>
   );
