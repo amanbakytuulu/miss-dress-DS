@@ -22,7 +22,6 @@ interface formPropsType {
   openModal: () => void;
 }
 
-
 const FormComponent: FC<formPropsType> = ({ openModal }) => {
   const [isContinue, setContinue] = useState<boolean>(false);
   const { data: me = {} } = useFetchUserMeQuery("");

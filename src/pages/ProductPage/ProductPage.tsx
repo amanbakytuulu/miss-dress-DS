@@ -25,8 +25,11 @@ import {
   useAddProductFavoritesMutation,
   useFetchProductFavoritesQuery,
 } from "../../store/features/Product/productFavorites/productFavoritesQuery";
-
-import { dress_description } from "./productDb";
+import {
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useGetProductFromCardQuery,
+} from "../../store/features/Cart/cartQuery";
 
 import styles from "./ProductPage.module.scss";
 
@@ -35,13 +38,6 @@ import SwiperVertical from "./SwiperVertical";
 import "swiper/css";
 import "swiper/css/navigation";
 import ModalFullPhoto from "./modal/ModalFullPhoto";
-
-import {
-  useAddProductToCartMutation,
-  useDeleteProductFromCartMutation,
-  useGetProductFromCardQuery,
-} from "../../store/features/Cart/cartQuery";
-import { ICart } from "../../types/cartPageTypes/orderFormTypes";
 
 interface IColors {
   id: number;

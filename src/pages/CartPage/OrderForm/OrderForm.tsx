@@ -5,17 +5,19 @@ import { Button, InputField } from "../../../components/common";
 import { colors } from "../../../types/modalTypes/inputTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 
-import classes from "./OrderForm.module.scss";
-import OrderCheck from "./OrderCheck/OrderCheck";
 import { useGetCountryQuery } from "../../../store/features/Country/CountryQuery";
 import { useFetchUserMeQuery } from "../../../store/features/User/userMe/meQuery";
 import { useGetCityQuery } from "../../../store/features/City/CityQuery";
 import { useAddContactInfoMutation } from "../../../store/features/Contact/ContactInfoQuery";
 
+import OrderCheck from "./OrderCheck/OrderCheck";
+import classes from "./OrderForm.module.scss";
+
 const OrderForm = () => {
   const { data: me = {} } = useFetchUserMeQuery("");
-  const { data: getCountry = [] } = useGetCountryQuery("");
-  const { data: getCity = [], isSuccess } = useGetCityQuery("");
+  const { data: getCountry = [], isSuccess: countrySuccess } =
+    useGetCountryQuery("");
+  const { data: getCity = [], isSuccess: citySuccess } = useGetCityQuery("");
   const [addContactInfo] = useAddContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -32,23 +34,33 @@ const OrderForm = () => {
     handleSubmit,
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
 
-  const onSubmit = async (data: IOrderFormValues) => {
-    // await addContactInfo(data);
-    console.log(data);
-    // setSaved(true);
-    // setInputFormValues(data);
+  const onSubmit = async () => {
+    // await addContactInfo({
+    //   firstName,
+    //   lastName,
+    //   phoneNumber,
+    //   cityId: getCity.result[0].id,
+    //   countryId: getCountry.result[0].id,
+    // });
+    setSaved(true);
+    setInputFormValues({
+      firstName,
+      lastName,
+      phoneNumber,
+      cityId: city,
+      countryId: country,
+    });
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      setFirstName(me.result?.firstName);
-      setLastName(me.result?.lastName);
-      setPhoneNumber(me.result?.phoneNumber);
-      setCity(getCity.result[0]?.title);
-      setCountry(getCountry.result[0]?.title);
+    if (countrySuccess && citySuccess) {
+      setFirstName(me.result?.firstName || "");
+      setLastName(me.result?.lastName || "");
+      setPhoneNumber(me.result?.phoneNumber || "");
+      setCity(getCity.result[0]?.title || "");
+      setCountry(getCountry.result[0]?.title || "");
     }
-  }, [isSuccess])
-
+  }, [countrySuccess, citySuccess]);
 
   return (
     <div className={classes.orderFormWrapper}>
