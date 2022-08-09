@@ -4,9 +4,30 @@ import item from "../../assets/mainPage/categories/first.png";
 import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg";
 
 import classes from "./CartItem.module.scss";
+import { useDeleteProductFromCartMutation } from "../../store/features/Cart/cartQuery";
 
-const CartItem = () => {
-  const [counter, setCounter] = useState(0);
+interface CartItemProps {
+  product: {
+    id: number;
+    createDate: string;
+    updateDate: string;
+    title: string;
+    description: string;
+    price: number;
+    amount: number;
+    article: string;
+    rate: number;
+    discount: null;
+  };
+}
+
+const CartItem: React.FC<CartItemProps> = ({ product }) => {
+  const [counter, setCounter] = useState(1);
+  const [deleteProductFromCart] = useDeleteProductFromCartMutation();
+
+  const handleDeleteCart = async () => {
+    await deleteProductFromCart(product.id);
+  };
 
   const increment = () => {
     setCounter((prev) => prev + 1);
@@ -23,9 +44,9 @@ const CartItem = () => {
         <div className={classes.cartItemInfo}>
           <div className={classes.cartItemHeader}>
             <div className={classes.cartItemHeaderText}>
-              <h4 className={classes.cartItemTitle}>Benito Kate Wrap Dress</h4>
+              <h4 className={classes.cartItemTitle}>{product.title}</h4>
               <p className={classes.cartItemSeries}>
-                <span>Артикул:</span> <strong>Платья</strong>
+                <span>Артикул:</span> <strong>{product.article}</strong>
               </p>
               <p className={classes.cartItemSize}>
                 <span>Размер:</span> <strong>14-29</strong>
@@ -34,10 +55,13 @@ const CartItem = () => {
                 <span>Цвет:</span> <strong>Черный</strong>
               </p>
               <p className={classes.cartItemQuantity}>
-                <span>Кличество товара в линейке:</span> <strong>5</strong>
+                <span>Кличество товара в линейке:</span> <strong>{product.amount}</strong>
               </p>
             </div>
-            <span className={classes.cartItemCross}>
+            <span
+              className={classes.cartItemCross}
+              onClick={handleDeleteCart}
+            >
               <CrossIcon />
             </span>
           </div>
@@ -55,9 +79,9 @@ const CartItem = () => {
               </button>
             </div>
             <div className={classes.cartItemPrice}>
-              <span className={classes.cartItemCurrentPrice}>5990</span>
+              <span className={classes.cartItemCurrentPrice}>{product.price}</span>
               <br />
-              <s className={classes.cartItemOldPrice}>7990</s>
+              <s className={classes.cartItemOldPrice}>{product.discount}</s>
             </div>
           </div>
         </div>

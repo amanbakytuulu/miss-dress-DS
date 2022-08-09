@@ -67,8 +67,8 @@ const ProductPage: FC = () => {
   //cart
   // getProductCart
   const [added, setAdd] = useState<boolean>(false);
-  const { data: cartProducts = {} } = useGetProductFromCardQuery();
-  // const allProductsCart: ICart = cartProducts?.result;
+  const { data: cartProducts = {}, isSuccess } = useGetProductFromCardQuery();
+  const allProductsCart = cartProducts?.result?.products || [];
   // getProductCart
   // addProductCart
   const [addProductToCart] = useAddProductToCartMutation();
@@ -87,8 +87,8 @@ const ProductPage: FC = () => {
     { id: 6, color: "#F45656" },
   ]);
 
-  const handleAddFavorite = () => {
-    addProductFavorites(productCurrent);
+  const handleAddFavorite = async () => {
+    await addProductFavorites(productCurrent);
     setChangeColor(!changeColor);
   };
 
@@ -108,11 +108,11 @@ const ProductPage: FC = () => {
     }
   }, [productCurrent, countFavorites]);
 
-  // useEffect(() => {
-  //   if (allProductsCart.products.length !== 0)
-  //     ""
-  //   // setAdd(allProductsCart.products.some((prod) => prod.id === productCurrent.id));
-  // }, [cartProducts]);
+  useEffect(() => {
+    if (allProductsCart.length !== 0) {
+      setAdd(allProductsCart.some((prod) => prod.product.id === productCurrent.id));
+    }
+  }, [allProductsCart]);
 
   return (
     <div className={styles.background_container}>
@@ -188,15 +188,17 @@ const ProductPage: FC = () => {
                   {productCurrent.description}
                 </p>
                 {added ? (
-                  <button className={styles.btn} onClick={handleAddCart}>
-                    Перейти в корзину
-                  </button>
-                ) : (
                   <button
                     className={`${styles.btn} ${styles.btn__delete}`}
                     onClick={handleDeleteCart}
                   >
                     Удалить из корзины
+                  </button>
+                ) : (
+
+                  <button className={styles.btn}
+                    onClick={handleAddCart}>
+                    Перейти в корзину
                   </button>
                 )}
               </div>

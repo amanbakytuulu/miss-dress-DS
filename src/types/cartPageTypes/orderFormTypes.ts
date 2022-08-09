@@ -6,7 +6,7 @@ export interface IOrderFormValues {
   countryId: string;
 }
 
-interface Products {
+export interface Products {
   id: number;
   status: number;
   createDate: string;
@@ -28,12 +28,14 @@ interface Products {
 }
 
 export interface ICart {
-  id: number;
-  status: number;
-  createDate: string;
-  updateDate: string;
-  amount: number;
-  price: number;
-  proceedStatus: number;
-  products: Products[];
+  result?: {
+    id: number;
+    status: number;
+    createDate: string;
+    updateDate: string;
+    amount: number;
+    price: number;
+    proceedStatus: number;
+    products: Products[];
+  }
 }
