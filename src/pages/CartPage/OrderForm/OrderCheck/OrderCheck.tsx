@@ -24,7 +24,7 @@ const OrderCheck: FC<OrderCheckProps> = ({ orderFormValues, setSaved }) => {
         </span>
         <br />
         <span>
-          {orderFormValues?.city}, {orderFormValues?.country}
+          {orderFormValues?.cityId}, {orderFormValues?.countryId}
         </span>
       </address>
       <div className={classes.orderCheckEditBtn}>

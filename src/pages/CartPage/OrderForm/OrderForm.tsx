@@ -15,7 +15,7 @@ import { useAddContactInfoMutation } from "../../../store/features/Contact/Conta
 const OrderForm = () => {
   const { data: me = {} } = useFetchUserMeQuery("");
   const { data: getCountry = [] } = useGetCountryQuery("");
-  const { data: getCity = [] } = useGetCityQuery("");
+  const { data: getCity = [], isSuccess } = useGetCityQuery("");
   const [addContactInfo] = useAddContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -40,12 +40,15 @@ const OrderForm = () => {
   };
 
   useEffect(() => {
-    setFirstName(me.result?.firstName);
-    setLastName(me.result?.lastName);
-    setPhoneNumber(me.result?.phoneNumber);
-    setCity(getCity[0]?.title);
-    setCountry(getCountry[0]?.title);
-  }, [])
+    if (isSuccess) {
+      setFirstName(me.result?.firstName);
+      setLastName(me.result?.lastName);
+      setPhoneNumber(me.result?.phoneNumber);
+      setCity(getCity.result[0]?.title);
+      setCountry(getCountry.result[0]?.title);
+    }
+  }, [isSuccess])
+
 
   return (
     <div className={classes.orderFormWrapper}>
