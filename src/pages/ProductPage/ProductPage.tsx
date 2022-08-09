@@ -35,7 +35,12 @@ import SwiperVertical from "./SwiperVertical";
 import "swiper/css";
 import "swiper/css/navigation";
 import ModalFullPhoto from "./modal/ModalFullPhoto";
-import { useAddProductToCartMutation, useDeleteProductFromCartMutation, useGetProductFromCardQuery } from "../../store/features/Cart/cartQuery";
+
+import {
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useGetProductFromCardQuery,
+} from "../../store/features/Cart/cartQuery";
 import { ICart } from "../../types/cartPageTypes/orderFormTypes";
 
 interface IColors {
@@ -67,10 +72,10 @@ const ProductPage: FC = () => {
   // getProductCart
   const [added, setAdd] = useState<boolean>(false);
   const { data: cartProducts = {} } = useGetProductFromCardQuery();
-  const allProductsCart: ICart = cartProducts?.result;
+  // const allProductsCart: ICart = cartProducts?.result;
   // getProductCart
   // addProductCart
-  const [addProductToCart, { data: cart = [], isSuccess }] = useAddProductToCartMutation();
+  const [addProductToCart] = useAddProductToCartMutation();
   //addProductCart
   // deleteProductCart
   const [deleteProductFromCart] = useDeleteProductFromCartMutation();
@@ -93,11 +98,11 @@ const ProductPage: FC = () => {
 
   const handleAddCart = async () => {
     await addProductToCart(productCurrent);
-  }
+  };
 
   const handleDeleteCart = async () => {
     await deleteProductFromCart(productCurrent.id);
-  }
+  };
 
   useEffect(() => {
     if (countFavorites.length !== 0) {
@@ -107,11 +112,11 @@ const ProductPage: FC = () => {
     }
   }, [productCurrent, countFavorites]);
 
-  useEffect(() => {
-    if (allProductsCart.products.length !== 0)
-      ""
-    // setAdd(allProductsCart.products.some((prod) => prod.id === productCurrent.id));
-  }, [cartProducts]);
+  // useEffect(() => {
+  //   if (allProductsCart.products.length !== 0)
+  //     ""
+  //   // setAdd(allProductsCart.products.some((prod) => prod.id === productCurrent.id));
+  // }, [cartProducts]);
 
   return (
     <div className={styles.background_container}>
@@ -186,12 +191,18 @@ const ProductPage: FC = () => {
                 <p className={styles.description}>
                   {productCurrent.description}
                 </p>
-                {
-                  added ?
-                    <button className={styles.btn} onClick={handleAddCart}>Перейти в корзину</button>
-                    :
-                    <button className={`${styles.btn} ${styles.btn__delete}`} onClick={handleDeleteCart}>Удалить из корзины</button>
-                }
+                {added ? (
+                  <button className={styles.btn} onClick={handleAddCart}>
+                    Перейти в корзину
+                  </button>
+                ) : (
+                  <button
+                    className={`${styles.btn} ${styles.btn__delete}`}
+                    onClick={handleDeleteCart}
+                  >
+                    Удалить из корзины
+                  </button>
+                )}
               </div>
             </div>
           </Grid>

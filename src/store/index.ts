@@ -15,6 +15,8 @@ import { meApi } from "./features/User/userMe/meQuery";
 import { apiAuth } from "./authorization/Authorization";
 import { cartApi } from "./features/Cart/cartQuery";
 import { collectionApi } from "./features/Collection/collectionQuery";
+import { countryApi } from "./features/Country/CountryQuery";
+import { cityApi } from "./features/City/CityQuery";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,
@@ -29,6 +31,8 @@ const rootReducer = combineReducers({
   [meApi.reducerPath]: meApi.reducer,
   [apiAuth.reducerPath]: apiAuth.reducer,
   [cartApi.reducerPath]: cartApi.reducer,
+  [countryApi.reducerPath]: countryApi.reducer,
+  [cityApi.reducerPath]: cityApi.reducer,
 });
 
 export const store = configureStore({
@@ -46,7 +50,9 @@ export const store = configureStore({
       getAllApi.middleware,
       meApi.middleware,
       apiAuth.middleware,
-      cartApi.middleware
+      cartApi.middleware,
+      countryApi.middleware,
+      cityApi.middleware
     ),
 });
 

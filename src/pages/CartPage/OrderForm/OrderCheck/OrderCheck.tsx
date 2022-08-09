@@ -19,7 +19,7 @@ const OrderCheck: FC<OrderCheckProps> = ({ orderFormValues, setSaved }) => {
       <h3 className={classes.orderCheckTitle}>Адрес Доставки</h3>
       <address className={classes.orderCheckInfo}>
         <span>
-          {orderFormValues?.name} {orderFormValues?.surname} &nbsp;
+          {orderFormValues?.firstName} {orderFormValues?.lastName} &nbsp;
           {orderFormValues?.phoneNumber}
         </span>
         <br />

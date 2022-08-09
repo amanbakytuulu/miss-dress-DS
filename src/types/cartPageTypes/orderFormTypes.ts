@@ -1,9 +1,9 @@
 export interface IOrderFormValues {
-  name: string;
+  firstName: string;
   phoneNumber: string;
-  city: string;
-  surname: string;
-  country: string;
+  cityId: string;
+  lastName: string;
+  countryId: string;
 }
 
 interface Products {
@@ -23,8 +23,8 @@ interface Products {
     amount: number;
     article: string;
     rate: number;
-    discount: null
-  }
+    discount: null;
+  };
 }
 
 export interface ICart {
@@ -32,7 +32,7 @@ export interface ICart {
   status: number;
   createDate: string;
   updateDate: string;
-  amount: number,
+  amount: number;
   price: number;
   proceedStatus: number;
   products: Products[];

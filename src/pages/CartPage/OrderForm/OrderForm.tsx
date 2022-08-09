@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button, InputField } from "../../../components/common";
@@ -7,9 +7,23 @@ import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 
 import classes from "./OrderForm.module.scss";
 import OrderCheck from "./OrderCheck/OrderCheck";
+import { useGetCountryQuery } from "../../../store/features/Country/CountryQuery";
+import { useFetchUserMeQuery } from "../../../store/features/User/userMe/meQuery";
+import { useGetCityQuery } from "../../../store/features/City/CityQuery";
+import { useAddContactInfoMutation } from "../../../store/features/Contact/ContactInfoQuery";
 
 const OrderForm = () => {
+  const { data: me = {} } = useFetchUserMeQuery("");
+  const { data: getCountry = [] } = useGetCountryQuery("");
+  const { data: getCity = [] } = useGetCityQuery("");
+  const [addContactInfo] = useAddContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
   const [orderFormValues, setInputFormValues] =
     useState<IOrderFormValues | null>(null);
   const {
@@ -18,10 +32,20 @@ const OrderForm = () => {
     handleSubmit,
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
 
-  const onSubmit = (data: IOrderFormValues) => {
-    setSaved(true);
-    setInputFormValues(data);
+  const onSubmit = async (data: IOrderFormValues) => {
+    // await addContactInfo(data);
+    console.log(data);
+    // setSaved(true);
+    // setInputFormValues(data);
   };
+
+  useEffect(() => {
+    setFirstName(me.result?.firstName);
+    setLastName(me.result?.lastName);
+    setPhoneNumber(me.result?.phoneNumber);
+    setCity(getCity[0]?.title);
+    setCountry(getCountry[0]?.title);
+  }, [])
 
   return (
     <div className={classes.orderFormWrapper}>
@@ -34,7 +58,7 @@ const OrderForm = () => {
             <div className={classes.orderFormLeft}>
               <InputField
                 inputConfig={{
-                  ...register("name", {
+                  ...register("firstName", {
                     required: "Укажите Имя",
                     minLength: {
                       value: 3,
@@ -45,6 +69,8 @@ const OrderForm = () => {
                 color={colors.secondary}
                 placeholder={"Ваше имя"}
                 type={"text"}
+                onChange={setFirstName}
+                value={firstName}
               />
               <InputField
                 inputConfig={{
@@ -52,7 +78,7 @@ const OrderForm = () => {
                     required: "Поле обязательно к заполнению",
                     pattern: {
                       value: new RegExp("^\\+[0-9]{1}[0-9]{3,14}$"),
-                      message: "Некорекктный номер телефона",
+                      message: "Некорректный номер телефона",
                     },
                     minLength: {
                       value: 13,
@@ -63,47 +89,55 @@ const OrderForm = () => {
                 color={colors.secondary}
                 placeholder={"Номер телефона"}
                 type={"tel"}
+                value={phoneNumber}
+                onChange={setPhoneNumber}
               />
               <InputField
                 inputConfig={{
-                  ...register("city", {
+                  ...register("cityId", {
                     required: "Укажите Город",
                   }),
                 }}
                 color={colors.secondary}
                 placeholder={"Город"}
                 type={"text"}
+                value={city}
+                onChange={setCity}
               />
             </div>
             <div className={classes.orderFormRight}>
               <InputField
                 inputConfig={{
-                  ...register("surname", {
+                  ...register("lastName", {
                     required: "Укажите Фамилию",
                   }),
                 }}
                 color={colors.secondary}
                 placeholder={"Ваша фамилия"}
                 type={"text"}
+                value={lastName}
+                onChange={setLastName}
               />
               <InputField
                 inputConfig={{
-                  ...register("country", {
+                  ...register("countryId", {
                     required: "Укажите Страну",
                   }),
                 }}
                 color={colors.secondary}
                 placeholder={"Страна"}
                 type={"text"}
+                value={country}
+                onChange={setCountry}
               />
-              <Button>Сохранить</Button>
+              <Button type="submit">Сохранить</Button>
             </div>
           </div>
           {!isValid && (
             <div className={classes.orderFormError}>
               <span>
                 {(errors.phoneNumber?.message &&
-                  "Некорекктный номер телефона") ||
+                  "Некорректный номер телефона") ||
                   (isDirty && "Заполните все поля!")}
               </span>
             </div>
