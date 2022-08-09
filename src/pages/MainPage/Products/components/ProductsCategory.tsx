@@ -1,30 +1,32 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
 
-import jeans from "../../../../assets/mainPage/categories/second.png";
-import dresses from "../../../../assets/mainPage/categories/first.png";
-import skirts from "../../../../assets/mainPage/categories/third.png";
-
 import classes from "../style.module.scss";
-import ImagesCard from "../../../../components/ProductCard/components/ImagesCard";
 import { categoryMainApi } from "../../../../store/features/Category/categoryMain/categoryMainQuery";
+import CategoryImagesCard from './CategoryImagesCard';
+import { useFetchProductByCollectionTypeQuery } from "../../../../store/features/Product/productCategory/productCategoryQuery";
 
-interface ICategoryItems {
-  img: string;
-  category: string;
+export interface ICategoryItems {
+  createDate: string;
+  id: number;
+  status: number;
+  title: string;
+  updateDate: string;
 }
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-
+  const type = "winter";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-  const categories = data?.data?.result.slice(0, 3);
-  console.log(data);
+  const categories: ICategoryItems[] = data?.data?.result.slice(0, 3);
+  const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
+  const categoryItem = category.result || [];
+
   return (
     <Grid container spacing={2}>
-      {categories?.map((item: any, index: any) => (
+      {categories?.map((item, index) => (
         <Grid key={index} className={classes.categoryDiv} item xs={6} md={4}>
           <div className={classes.btnDiv}>
-            <ImagesCard btnTitle={btnTitle} item={item} />
+            <CategoryImagesCard btnTitle={btnTitle} item={categoryItem[0]} title={item.title} type={type} />
             <h4>{item.title}</h4>
           </div>
         </Grid>
