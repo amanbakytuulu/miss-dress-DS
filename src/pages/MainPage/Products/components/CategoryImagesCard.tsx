@@ -24,7 +24,6 @@ function CategoryImagesCard({
   title,
 }: CategoryImagesCardProps) {
   const [changeColor] = useState(false);
-  console.log(title);
 
   return (
     <Grid className={classes.btnDiv}>
