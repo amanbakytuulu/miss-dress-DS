@@ -5,26 +5,26 @@ import { Button, InputField } from "../../../components/common";
 import { colors } from "../../../types/modalTypes/inputTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 
-import { useGetCountryQuery } from "../../../store/features/Country/CountryQuery";
-import { useFetchUserMeQuery } from "../../../store/features/User/userMe/meQuery";
-import { useGetCityQuery } from "../../../store/features/City/CityQuery";
 import { useAddContactInfoMutation } from "../../../store/features/Contact/ContactInfoQuery";
+
+import { city, country, user } from "../../ProfilePage/types/types";
 
 import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
 
 const OrderForm = () => {
-  const { data: me = {} } = useFetchUserMeQuery("");
-  const { data: getCountry = [], isSuccess: countrySuccess } =
-    useGetCountryQuery("");
-  const { data: getCity = [], isSuccess: citySuccess } = useGetCityQuery("");
+  const user: user = JSON.parse(localStorage.getItem("user") || "{}");
+  const cities: city[] = JSON.parse(localStorage.getItem("city") || "[]");
+  const countries: country[] = JSON.parse(
+    localStorage.getItem("country") || "[]"
+  );
   const [addContactInfo] = useAddContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
+  const [city, setCity] = useState(cities[0].title);
+  const [country, setCountry] = useState(countries[0].title);
 
   const [orderFormValues, setInputFormValues] =
     useState<IOrderFormValues | null>(null);
@@ -34,33 +34,17 @@ const OrderForm = () => {
     handleSubmit,
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: IOrderFormValues) => {
     await addContactInfo({
       firstName,
       lastName,
       phoneNumber,
-      cityId: getCity.result[0].id,
-      countryId: getCountry.result[0].id,
+      cityId: cities[0].id,
+      countryId: countries[0].id,
     });
     setSaved(true);
-    setInputFormValues({
-      firstName,
-      lastName,
-      phoneNumber,
-      cityId: city,
-      countryId: country,
-    });
+    setInputFormValues(data);
   };
-
-  useEffect(() => {
-    if (countrySuccess && citySuccess) {
-      setFirstName(me.result?.firstName || "");
-      setLastName(me.result?.lastName || "");
-      setPhoneNumber(me.result?.phoneNumber || "");
-      setCity(getCity.result[0]?.title || "");
-      setCountry(getCountry.result[0]?.title || "");
-    }
-  }, [countrySuccess, citySuccess]);
 
   return (
     <div className={classes.orderFormWrapper}>

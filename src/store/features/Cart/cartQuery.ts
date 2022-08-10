@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { ICart } from "../../../types/cartPageTypes/orderFormTypes";
+import { ICart, Product } from "../../../types/cartPageTypes/orderFormTypes";
 
 import { API } from "../../../hooks/api";
-import { IItemCard } from "../../../components/ProductCard/types";
 
 export const cartApi = createApi({
   reducerPath: "cartApi",
@@ -21,7 +20,7 @@ export const cartApi = createApi({
       }),
       providesTags: ["Cart"],
     }),
-    addProductToCart: build.mutation<ICart, IItemCard>({
+    addProductToCart: build.mutation<ICart, any>({
       query: (product) => ({
         url: "/cart/add",
         headers: {
@@ -50,10 +49,24 @@ export const cartApi = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+    reduceProductFromCart: build.mutation<ICart, number>({
+      query: (productId) => ({
+        url: "/cart/reduce",
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
+        },
+        body: { productId },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 export const {
   useGetProductFromCardQuery,
   useAddProductToCartMutation,
   useDeleteProductFromCartMutation,
+  useReduceProductFromCartMutation,
 } = cartApi;

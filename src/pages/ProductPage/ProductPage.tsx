@@ -64,6 +64,8 @@ const ProductPage: FC = () => {
   const productCurrent: IItemCard = product?.result || {};
   const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
   const similarDresses = data?.result?.data;
+  console.log(productCurrent);
+
   //cart
   // getProductCart
   const [added, setAdd] = useState<boolean>(false);
@@ -110,7 +112,9 @@ const ProductPage: FC = () => {
 
   useEffect(() => {
     if (allProductsCart.length !== 0) {
-      setAdd(allProductsCart.some((prod) => prod.product.id === productCurrent.id));
+      setAdd(
+        allProductsCart.some((prod) => prod.product.id === productCurrent.id)
+      );
     }
   }, [allProductsCart]);
 
@@ -195,9 +199,7 @@ const ProductPage: FC = () => {
                     Удалить из корзины
                   </button>
                 ) : (
-
-                  <button className={styles.btn}
-                    onClick={handleAddCart}>
+                  <button className={styles.btn} onClick={handleAddCart}>
                     Перейти в корзину
                   </button>
                 )}

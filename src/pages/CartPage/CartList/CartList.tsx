@@ -13,7 +13,7 @@ const CartList: FC<CartListProps> = ({ cartList }) => {
       {cartList.map((item) => {
         return (
           <div className={classes.cartItem} key={item.id}>
-            <CartItem product={item.product} />
+            <CartItem product={item.product} countProduct={item.amount} />
           </div>
         );
       })}

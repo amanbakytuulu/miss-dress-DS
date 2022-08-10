@@ -6,6 +6,19 @@ export interface IOrderFormValues {
   countryId: string;
 }
 
+export interface Product {
+  id: number;
+  createDate: string;
+  updateDate: string;
+  title: string;
+  description: string;
+  price: number;
+  amount: number;
+  article: string;
+  rate: number;
+  discount: null;
+}
+
 export interface Products {
   id: number;
   status: number;
@@ -13,18 +26,7 @@ export interface Products {
   updateDate: string;
   totalCount: number;
   amount: number;
-  product: {
-    id: number;
-    createDate: string;
-    updateDate: string;
-    title: string;
-    description: string;
-    price: number;
-    amount: number;
-    article: string;
-    rate: number;
-    discount: null;
-  };
+  product: Product;
 }
 
 export interface ICart {
@@ -37,5 +39,5 @@ export interface ICart {
     price: number;
     proceedStatus: number;
     products: Products[];
-  }
+  };
 }

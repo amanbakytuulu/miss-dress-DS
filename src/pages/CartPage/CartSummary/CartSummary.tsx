@@ -11,7 +11,10 @@ interface CartSummaryProps {
 }
 
 const CartSummary: FC<CartSummaryProps> = ({ products, openModal }) => {
-  const totalPrice = products.reduce((sum, item) => sum + item.product.price, 0);
+  const totalPrice = products.reduce(
+    (sum, item) => sum + item.product.price,
+    0
+  );
   const discount = 0;
   return (
     <div className={classes.cartSummary}>

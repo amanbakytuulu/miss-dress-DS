@@ -4,9 +4,6 @@ import { useForm } from "react-hook-form";
 import { InputField } from "../../../components/common";
 
 import { Button } from "../../../components/common/Button/Button";
-import { useGetCityQuery } from "../../../store/features/City/CityQuery";
-import { useGetCountryQuery } from "../../../store/features/Country/CountryQuery";
-import { useFetchUserMeQuery } from "../../../store/features/User/userMe/meQuery";
 import { city, country, user } from "../types/types";
 
 import classes from "./style.module.scss";
@@ -24,18 +21,16 @@ interface formPropsType {
 
 const FormComponent: FC<formPropsType> = ({ openModal }) => {
   const [isContinue, setContinue] = useState<boolean>(false);
-  const { data: me = {} } = useFetchUserMeQuery("");
-  const { data: getCountry = [] } = useGetCountryQuery("");
-  const { data: getCity = [] } = useGetCityQuery("");
-  const user: user = me.result;
-  const country: country[] = getCountry.result || [];
-  const city: city[] = getCity.result || [];
+  const city: city[] = JSON.parse(localStorage.getItem("city") || "[]");
+  const country: country[] = JSON.parse(
+    localStorage.getItem("country") || "[]"
+  );
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   const {
     register,
     formState: { errors, isValid, touchedFields },
     handleSubmit,
   } = useForm<inputValues>({ mode: "onBlur", reValidateMode: "onChange" });
-
   const onSubmit = (data: any) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setContinue(true);

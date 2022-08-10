@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -15,6 +15,7 @@ const ProfilePage = () => {
   const [isModalOpen, setOpenModal] = useState(false);
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
+
   return (
     <div className={classes.mainDiv}>
       <Container className={classes.mainContainer} sx={{ flexGrow: 1 }}>

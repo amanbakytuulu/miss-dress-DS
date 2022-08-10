@@ -3,38 +3,42 @@ import React, { useState } from "react";
 import item from "../../assets/mainPage/categories/first.png";
 import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg";
 
+import {
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useGetProductFromCardQuery,
+  useReduceProductFromCartMutation,
+} from "../../store/features/Cart/cartQuery";
+
+import { Product } from "../../types/cartPageTypes/orderFormTypes";
+
 import classes from "./CartItem.module.scss";
-import { useDeleteProductFromCartMutation } from "../../store/features/Cart/cartQuery";
 
 interface CartItemProps {
-  product: {
-    id: number;
-    createDate: string;
-    updateDate: string;
-    title: string;
-    description: string;
-    price: number;
-    amount: number;
-    article: string;
-    rate: number;
-    discount: null;
-  };
+  product: Product;
+  countProduct: number;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ product }) => {
-  const [counter, setCounter] = useState(1);
+const CartItem: React.FC<CartItemProps> = ({ product, countProduct }) => {
+  const { data = {} } = useGetProductFromCardQuery();
+  const [counter, setCounter] = useState(countProduct);
+  const [addProductToCart] = useAddProductToCartMutation();
+  const [reduceProductFromCart] = useReduceProductFromCartMutation();
   const [deleteProductFromCart] = useDeleteProductFromCartMutation();
 
   const handleDeleteCart = async () => {
     await deleteProductFromCart(product.id);
   };
 
-  const increment = () => {
+  const increment = async () => {
+    await addProductToCart(product);
     setCounter((prev) => prev + 1);
   };
-  const decrement = () => {
+  const decrement = async () => {
+    await reduceProductFromCart(product.id);
     setCounter((prev) => prev - 1);
   };
+
   return (
     <div className={classes.cartItem}>
       <div className={classes.cartItemContent}>
@@ -55,13 +59,11 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
                 <span>Цвет:</span> <strong>Черный</strong>
               </p>
               <p className={classes.cartItemQuantity}>
-                <span>Кличество товара в линейке:</span> <strong>{product.amount}</strong>
+                <span>Кличество товара в линейке:</span>{" "}
+                <strong>{product.amount}</strong>
               </p>
             </div>
-            <span
-              className={classes.cartItemCross}
-              onClick={handleDeleteCart}
-            >
+            <span className={classes.cartItemCross} onClick={handleDeleteCart}>
               <CrossIcon />
             </span>
           </div>
@@ -79,7 +81,9 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
               </button>
             </div>
             <div className={classes.cartItemPrice}>
-              <span className={classes.cartItemCurrentPrice}>{product.price}</span>
+              <span className={classes.cartItemCurrentPrice}>
+                {product.price}
+              </span>
               <br />
               <s className={classes.cartItemOldPrice}>{product.discount}</s>
             </div>
