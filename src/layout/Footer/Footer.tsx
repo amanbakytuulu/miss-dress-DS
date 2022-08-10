@@ -29,7 +29,7 @@ const Footer = () => {
 
   return (
     <div className={classes.mainDiv}>
-      <Container>
+      <div className={classes.container}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={12}>
             <IconsFooter />
@@ -57,7 +57,7 @@ const Footer = () => {
             ))}
           </Grid>
         </Grid>
-      </Container>
+      </div>
     </div>
   );
 };

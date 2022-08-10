@@ -1,14 +1,19 @@
+@import "../../styles/vars.scss";
+@import "../../styles/mixins.scss";
+
 .contactsWrapper {
   padding-top: 70px;
   display: flex;
   align-items: center;
-// margin: 88px 286px 446px ;
-margin: 20px 350px;
+  background-color: $beige-background;
+  width: 100%;
+  // margin: 88px 286px 446px ;
+padding: 20px 350px 150px;
   gap: 273px;
   .contactsTitle {
     font-size: 2em;
+    padding:90px 0px 40px;
   }
-  .email,
   .workingHours {
     margin: 25px 0;
     font-size: 1.2em;
@@ -21,7 +26,6 @@ flex-direction: column;
 }
 .phoneNumber {
     font-size: 1.2em;
-    margin: 25px 0 0;
 }
 
 @media screen and (max-width:1024px) {

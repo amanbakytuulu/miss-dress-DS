@@ -5,5 +5,5 @@ export interface IFooterIcons {
 
 export interface IFooterItems {
   title: string;
-  path: string;
+  path?: string;
 }
