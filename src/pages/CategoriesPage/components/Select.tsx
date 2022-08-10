@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import vector from "../../../assets/categoriesPage/Vector.svg";
@@ -6,25 +6,33 @@ import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";
 
 import classes from "../CategoryPage.module.scss";
 
-const Select = (props: any) => {
+interface IProps {
+  setSort: (value: string) => void;
+}
+
+const Select: FC<IProps> = ({ setSort }) => {
   const [openDd, setOpenDd] = useState(false);
 
   const sort = [
     {
       title: "По обновлению",
       path: "/#",
+      value: "updateDate",
     },
     {
       title: "По цене",
       path: "/#",
+      value: "price",
     },
     {
       title: "По алфавиту",
       path: "/#",
+      value: "title",
     },
     {
       title: "По умолчанию",
       path: "/#",
+      value: "createDate",
     },
   ];
 
@@ -47,7 +55,14 @@ const Select = (props: any) => {
         <ul>
           {sort?.map((item: any) => {
             return (
-              <li key={Math.random()} className={classes.filterListItem}>
+              <li
+                key={Math.random()}
+                className={classes.filterListItem}
+                onClick={() => {
+                  setSort(item.value);
+                  setOpenDd(!openDd);
+                }}
+              >
                 {item.title}
               </li>
             );

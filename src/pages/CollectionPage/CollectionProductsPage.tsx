@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Select from "../CategoriesPage/components/Select";
@@ -19,21 +19,35 @@ import { IItemCard } from "../../components/ProductCard/types";
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
   const { category, type } = useParams<string>();
-  const { data = [] } = useFetchProductByCategoryQuery({
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
+  const [productsData, setProductsData] = useState({
     categoryId: category,
-    collectionsType: type,
+    collectionType: type,
+    take: 6,
+    page: 1,
+    sort: "createDate",
   });
+  const { data = [] } = useFetchProductByCategoryQuery(productsData);
   const collectionItems: IItemCard[] = data.result?.data || [];
   const dressType = collectionItems[0]?.category?.title;
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const totalCount = collectionItems.length;
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const dresses: any = [];
+  const totalCount = data?.result?.count;
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      page,
+    });
+  }, [page]);
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      sort,
+    });
+  }, [sort]);
+
   return (
     <div className={classes.mainDiv}>
       <Container sx={{ flexGrow: 1 }}>
@@ -48,7 +62,7 @@ const CollectionProductsPage = () => {
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>{dressType}</h2>
-              <Select />
+              <Select setSort={setSort} />
             </div>
           </Grid>
 
@@ -64,13 +78,7 @@ const CollectionProductsPage = () => {
             )}
           </Grid>
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination totalCount={totalCount} setPage={setPage} />
           </Grid>
         </Grid>
       </Container>

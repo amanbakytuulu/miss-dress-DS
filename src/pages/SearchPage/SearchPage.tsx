@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -25,116 +25,55 @@ import SearchHeader from "./components/SearchHeader/SearchHeader";
 import classes from "./SearchPage.module.scss";
 import OthersProducts from "./components/OthersProducts/OthersProducts";
 
-const bestsellerArray = [
-  {
-    img: fifthImg,
-    oldPrice: "7500",
-    newPrice: "5990",
-    title: "Envy Look All Season Skirt",
-    colors: {
-      img: fillIcon,
-      count: "5",
-    },
-    size: `Размер 29-49`,
-    stars: [start, start, start, start, start],
-    heart: heart,
-  },
-  {
-    img: sixImg,
-    oldPrice: "7500",
-    newPrice: "5990",
-    title: "Choper Shoulder Frill Vent Dress",
-    colors: {
-      img: fillIcon,
-      count: "5",
-    },
-    size: `Размер 29-49`,
-    stars: [start, start, start, start, start],
-    heart: heart,
-  },
-  {
-    img: firstImg,
-    oldPrice: "7500",
-    newPrice: "5990",
-    title: "Envy Look Button Eco Dress",
-    colors: {
-      img: fillIcon,
-      count: "5",
-    },
-    size: `Размер 29-49`,
-    stars: [start, start, start, start, start],
-    heart: heart,
-  },
-  {
-    img: thirdImg,
-    oldPrice: "7500",
-    newPrice: "5990",
-    title: "Benito Kate Wrap Dress",
-    colors: {
-      img: fillIcon,
-      count: "5",
-    },
-    size: `Размер 29-49`,
-    stars: [start, start, start, start, start],
-    heart: heart,
-  },
-  {
-    img: forthImg,
-    oldPrice: "7500",
-    newPrice: "5990",
-    title: "Envy Look The Elle Linen Dress",
-    colors: {
-      img: fillIcon,
-      count: "5",
-    },
-    size: `Размер 29-49`,
-    stars: [start, start, start, start, start],
-    heart: heart,
-  },
-  {
-    img: secondImg,
-    oldPrice: "7500",
-    newPrice: "5990",
-    title: "JUSTONE Shy Embo Can Skirt",
-    colors: {
-      img: fillIcon,
-      count: "5",
-    },
-    size: `Размер 29-49`,
-    stars: [start, start, start, start, start],
-    heart: heart,
-  },
-];
 const SearchPage = () => {
   const { title } = useParams<string>();
-  const { data: otherData = [] } = useFetchProductGetAllQuery(6);
-  const { data = [] } = useFetchProductBytitleQuery(title);
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
+  const [productsData, setProductsData] = useState({
+    name: title,
+    page: 1,
+    sort: "createDate",
+  });
+  const { data: otherData = [] } = useFetchProductGetAllQuery({
+    take: 6,
+    sort: "createDate",
+  });
+  const { data = [] } = useFetchProductBytitleQuery(productsData);
   const items = data.result?.data || [];
   const otherItems = otherData.result?.data || [];
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 3;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = bestsellerArray.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = data.result?.count;
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const totalCount = data?.result?.count;
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      name: title,
+    });
+  }, [title]);
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      page,
+    });
+  }, [page]);
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      sort,
+    });
+  }, [sort]);
 
   return (
     <div className={classes.searchPageWrapper}>
       <div className={`${classes.container} ${classes.searchPageContainer}`}>
-        <SearchHeader quantity={totalCount} />
+        <SearchHeader quantity={totalCount} setSort={setSort} />
 
         {items.length > 0 ? (
           <SearchList
             searchList={items}
             totalCount={totalCount}
-            postsPerPage={postsPerPage}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            pageNumbers={pageNumbers}
+            setPage={setPage}
           />
         ) : (
           <OthersProducts slides={otherItems} />

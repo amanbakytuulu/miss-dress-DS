@@ -10,8 +10,12 @@ import { productGetAllApi } from "../../../../store/features/Product/productGetA
 const Bestseller = () => {
   const btnTitle = "Открыть";
 
-  const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
+  const { data = [] } = productGetAllApi.useFetchProductGetAllQuery({
+    take: 6,
+    sort: "rate",
+  });
   const products = data.result?.data || [];
+  console.log(products);
   return (
     <div className={classes.mainBestseller}>
       <Grid container spacing={4}>
