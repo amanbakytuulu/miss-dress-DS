@@ -10,45 +10,42 @@ const FooterList = () => {
   const liElements1: IFooterItems[] = [
     {
       title: "Покупателям",
-      path: "/buy",
     },
     {
       title: "Как сделать заказ",
-      path: "/buy",
+      path: "/make_order",
     },
     {
       title: "Способы оплаты",
-      path: "/buy",
+      path: "/payment",
     },
     {
       title: "Доставка",
-      path: "/buy",
+      path: "/delivery",
     },
   ];
 
   const liElements2: IFooterItems[] = [
     {
       title: "Покупателям",
-      path: "/buy",
     },
     {
       title: "Возврат товара",
-      path: "/buy",
+      path: "/backProduct",
     },
     {
       title: "Вопросы и ответы",
-      path: "/buy",
+      path: "/questions",
     },
     {
       title: "Публичная оферта",
-      path: "/buy",
+      path: "/offert",
     },
   ];
 
   const liElements3: IFooterItems[] = [
     {
       title: "Компания",
-      path: "/buy",
     },
     {
       title: "О нас",
@@ -56,7 +53,7 @@ const FooterList = () => {
     },
     {
       title: "Реквизиты",
-      path: "/buy",
+      path: "/requisite",
     },
     {
       title: "Контакты",
@@ -67,19 +64,18 @@ const FooterList = () => {
   const liElements4: IFooterItems[] = [
     {
       title: "Контакты",
-      path: CONTACTS_PAGE,
     },
     {
-      title: "Номер телефона",
-      path: "tel:+996712345678",
+      title: "( +996 ) 707 89-20-10",
+      path: "tel:+996707892010",
     },
     {
-      title: "Email",
+      title: "missdress@gmail.com",
       path: `https://mailto:missdress@gmail.com`,
     },
     {
-      title: "Адрес",
-      path: "https://2gis.kg/bishkek/firm/70000001036409659?m=74.592154%2C42.874231%2F16",
+      title: "Насирдина Исанова, 79",
+      path: "https://2gis.kg/bishkek/firm/70000001036409659?floor=1&m=74.592154%2C42.874231%2F17.7",
     },
   ];
   return (
@@ -87,36 +83,70 @@ const FooterList = () => {
       <div>
         {liElements1.map((item, index) => (
           <ul key={index}>
-            <Link className={classes.listElem} to={item.path}>
-              {item.title}
-            </Link>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}
+              >
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
       <div>
         {liElements2.map((item, index) => (
           <ul key={index}>
-            <Link className={classes.listElem} to={item.path}>
-              {item.title}
-            </Link>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}
+              >
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
       <div>
         {liElements3.map((item, index) => (
           <ul key={index}>
-            <Link className={classes.listElem} to={item.path}>
-              {item.title}
-            </Link>
+            {item.path ? (
+              <Link
+                className={classes.listElem}
+                title={item.title}
+                to={item.path}
+              >
+                {item.title}
+              </Link>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
       <div>
         {liElements4.map((item, index) => (
           <ul key={index}>
-            <a className={classes.listElem} href={item.path}>
-              {item.title}
-            </a>
+            {item.path ? (
+              <a
+                className={classes.listElem}
+                title={item.title}
+                href={item.path}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {item.title}
+              </a>
+            ) : (
+              <h3 className={classes.listHeader}>{item.title}</h3>
+            )}
           </ul>
         ))}
       </div>
