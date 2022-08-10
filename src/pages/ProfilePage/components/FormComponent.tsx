@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { InputField } from "../../../components/common";
 
 import { Button } from "../../../components/common/Button/Button";
+import { useGetCityQuery } from "../../../store/features/City/CityQuery";
+import { useGetCountryQuery } from "../../../store/features/Country/CountryQuery";
 import { useFetchUserMeQuery } from "../../../store/features/User/userMe/meQuery";
+import { city, country, user } from "../types/types";
 
 import classes from "./style.module.scss";
 
@@ -18,21 +21,15 @@ interface inputValues {
 interface formPropsType {
   openModal: () => void;
 }
-interface user {
-  createDate: string;
-  firstName: string;
-  id: number;
-  lastName: string;
-  phoneNumber: string;
-  role: string;
-  status: number;
-  updateDate: string;
-}
 
 const FormComponent: FC<formPropsType> = ({ openModal }) => {
   const [isContinue, setContinue] = useState<boolean>(false);
-  const { data = null } = useFetchUserMeQuery("");
-  const user: user = data?.result;
+  const { data: me = {} } = useFetchUserMeQuery("");
+  const { data: getCountry = [] } = useGetCountryQuery("");
+  const { data: getCity = [] } = useGetCityQuery("");
+  const user: user = me.result;
+  const country: country[] = getCountry.result || [];
+  const city: city[] = getCity.result || [];
   const {
     register,
     formState: { errors, isValid, touchedFields },
@@ -128,7 +125,7 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
                 },
               }),
             }}
-            value="Kyrgyzstan"
+            value={country[0]?.title}
             placeholder="Страна"
             type="text"
             disable={true}
@@ -148,7 +145,7 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
                 },
               }),
             }}
-            value="Bishkek"
+            value={city[0]?.title}
             placeholder="Город"
             type="text"
             disable={true}

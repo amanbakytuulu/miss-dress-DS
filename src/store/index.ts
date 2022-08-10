@@ -13,8 +13,11 @@ import { productGetAllApi } from "./features/Product/productGetAll/ProductGetAll
 import { getAllApi } from "./features/User/getAll/getAllQuery";
 import { meApi } from "./features/User/userMe/meQuery";
 import { apiAuth } from "./authorization/Authorization";
-// import { cartApi } from "./features/Cart/cartQuery";
+import { cartApi } from "./features/Cart/cartQuery";
 import { collectionApi } from "./features/Collection/collectionQuery";
+import { countryApi } from "./features/Country/CountryQuery";
+import { cityApi } from "./features/City/CityQuery";
+import { contactInfoApi } from "./features/Contact/ContactInfoQuery";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,
@@ -28,7 +31,10 @@ const rootReducer = combineReducers({
   [getAllApi.reducerPath]: getAllApi.reducer,
   [meApi.reducerPath]: meApi.reducer,
   [apiAuth.reducerPath]: apiAuth.reducer,
-  // [cartApi.reducerPath]: cartApi.reducer,
+  [cartApi.reducerPath]: cartApi.reducer,
+  [countryApi.reducerPath]: countryApi.reducer,
+  [cityApi.reducerPath]: cityApi.reducer,
+  [contactInfoApi.reducerPath]: contactInfoApi.reducer,
 });
 
 export const store = configureStore({
@@ -45,8 +51,11 @@ export const store = configureStore({
       productCategoryApi.middleware,
       getAllApi.middleware,
       meApi.middleware,
-      apiAuth.middleware
-      // cartApi.middleware
+      apiAuth.middleware,
+      cartApi.middleware,
+      countryApi.middleware,
+      cityApi.middleware,
+      contactInfoApi.middleware
     ),
 });
 

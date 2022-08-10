@@ -67,11 +67,15 @@ const CollectionProductsPage = () => {
           </Grid>
 
           <Grid container spacing={4}>
-            {collectionItems.map((item, index) => (
-              <Grid key={index} item xs={6} md={4}>
-                <ProductCard btnTitle={btnTitle} item={item} />
-              </Grid>
-            ))}
+            {collectionItems.length > 0 ? (
+              collectionItems.map((item, index) => (
+                <Grid key={index} item xs={6} md={4}>
+                  <ProductCard btnTitle={btnTitle} item={item} />
+                </Grid>
+              ))
+            ) : (
+              <div style={{ margin: "0 auto" }}>В категории пусто!</div>
+            )}
           </Grid>
           <Grid item xs={12} md={12}>
             <CategoryPagination totalCount={totalCount} setPage={setPage} />

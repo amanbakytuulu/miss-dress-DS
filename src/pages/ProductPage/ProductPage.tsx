@@ -25,8 +25,11 @@ import {
   useAddProductFavoritesMutation,
   useFetchProductFavoritesQuery,
 } from "../../store/features/Product/productFavorites/productFavoritesQuery";
-
-import { dress_description } from "./productDb";
+import {
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useGetProductFromCardQuery,
+} from "../../store/features/Cart/cartQuery";
 
 import styles from "./ProductPage.module.scss";
 
@@ -61,7 +64,19 @@ const ProductPage: FC = () => {
   const productCurrent: IItemCard = product?.result || {};
   const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
   const similarDresses = data?.result?.data;
-
+  //cart
+  // getProductCart
+  const [added, setAdd] = useState<boolean>(false);
+  const { data: cartProducts = {} } = useGetProductFromCardQuery();
+  // const allProductsCart: ICart = cartProducts?.result;
+  // getProductCart
+  // addProductCart
+  const [addProductToCart] = useAddProductToCartMutation();
+  //addProductCart
+  // deleteProductCart
+  const [deleteProductFromCart] = useDeleteProductFromCartMutation();
+  // deleteProductCart
+  //cart
   const [color, setColors] = useState<IColors[]>([
     { id: 0, color: "#000000" },
     { id: 1, color: "#B89981" },
@@ -77,6 +92,14 @@ const ProductPage: FC = () => {
     setChangeColor(!changeColor);
   };
 
+  const handleAddCart = async () => {
+    await addProductToCart(productCurrent);
+  };
+
+  const handleDeleteCart = async () => {
+    await deleteProductFromCart(productCurrent.id);
+  };
+
   useEffect(() => {
     if (countFavorites.length !== 0) {
       setChangeColor(
@@ -84,6 +107,13 @@ const ProductPage: FC = () => {
       );
     }
   }, [productCurrent, countFavorites]);
+
+  // useEffect(() => {
+  //   if (allProductsCart.products.length !== 0)
+  //     ""
+  //   // setAdd(allProductsCart.products.some((prod) => prod.id === productCurrent.id));
+  // }, [cartProducts]);
+
   return (
     <div className={styles.background_container}>
       <div className={styles.product_container}>
@@ -157,9 +187,18 @@ const ProductPage: FC = () => {
                 <p className={styles.description}>
                   {productCurrent.description}
                 </p>
-                <Link to="/cart">
-                  <button className={styles.btn}>Перейти в корзину</button>
-                </Link>
+                {added ? (
+                  <button className={styles.btn} onClick={handleAddCart}>
+                    Перейти в корзину
+                  </button>
+                ) : (
+                  <button
+                    className={`${styles.btn} ${styles.btn__delete}`}
+                    onClick={handleDeleteCart}
+                  >
+                    Удалить из корзины
+                  </button>
+                )}
               </div>
             </div>
           </Grid>
