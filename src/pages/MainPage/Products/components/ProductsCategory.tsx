@@ -19,9 +19,14 @@ const ProductsCategory = () => {
   const btnTitle = "Смотреть";
   const type = "summer";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-  const categories: ICategoryItems[] = data?.data?.result.slice(0, 3);
   const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
-  const categoryItem = category.result || [];
+  const categoryItem = category.result || [{ category_id: 1, category_title: "юбка" }];
+
+  const allCategories = data?.data?.result;
+  const categories: ICategoryItems[] = allCategories
+    ?.filter((item: any) => item.children.length === 0)
+    .slice(0, 4);
+
   return (
     <Grid container spacing={2}>
       {categories?.map((item, index) => (

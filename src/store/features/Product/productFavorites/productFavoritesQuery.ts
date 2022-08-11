@@ -10,9 +10,13 @@ export const productFavoritesApi = createApi({
   tagTypes: ["ProductFavorites"],
   endpoints: (build) => ({
     fetchProductFavorites: build.query({
-      query: () => ({
-        url: "/product/list/favorites",
-        method: "GET",
+      query: ({ take, page, sort }) => ({
+        url: `/product/list/favorites`,
+        params: {
+          take,
+          page,
+          sort,
+        },
         headers: {
           Authorization: `Bearer ${JSON.parse(
             localStorage.getItem("accessToken") || ""
