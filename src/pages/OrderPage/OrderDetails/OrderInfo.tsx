@@ -5,45 +5,52 @@ import { Grid } from "@mui/material";
 import styles from "./OrderInfo.module.scss";
 
 import { myOrder, IMyOrder, IOrders, orderInfo } from "./OrderInfoDB";
+import { useGetOrderQuery } from "../../../store/features/Order/orderQuery";
 
 const OrderDetails: FC = () => {
+
+  const { data } = useGetOrderQuery("");
+  const orderData = data?.result[0];
+  const products = data?.result[0].cart.products;
+  console.log(data?.result[0].cart.products);
+  console.log("orderData", orderData);
+
   return (
     <div className={styles.main_container}>
-      {myOrder.map((el: IMyOrder) => (
         <div className={styles.container}>
           <h3>Мои заказы</h3>
           <p>
-            <span className={styles.orderId}>Заказ {el.orderId}</span>
-            <span className={styles.status}>{el.status}</span>
+            <span className={styles.orderId}>Заказ №{orderData?.id}</span>
+            <span className={styles.status}>{orderData?.status === 1 && "Отправлено"}</span>
           </p>
 
           <article>
-            {el.orders.map((el: IOrders) => (
+            {products?.map((el: any) => (
               <Grid container spacing={2} className={styles.grid}>
                 <Grid md={12} xs={12}>
                   <hr className={styles.lineThrough}></hr>
                 </Grid>
                 <Grid md={2} xs={2}>
-                  <img src={el.img} alt="dress" className={styles.img} />
+                  <img src={el?.product.images[0].url} alt="dress" className={styles.img} />
                 </Grid>
                 <Grid md={9} xs={9} className={styles.description}>
                   <p className={styles.title}>{el.title}</p>
                   <p>
-                    Артикул: <span>{el.article}</span>
+                    Артикул: <span>{el.product.article}</span>
                   </p>
                   <p>
-                    Размер: <span>{el.size}</span>
+                    Размер: <span>29-49</span>
                   </p>
                   <p>
-                    Цвет: <span>{el.color}</span>
+                    Цвет: <span>Бежевый</span>
                   </p>
                   <p>
-                    Количество товара в линейке: <span>{el.count}</span>
+                    Количество товара в линейке: <span>{el.product.amount}</span>
                   </p>
                 </Grid>
                 <Grid md={1} xs={1}>
-                  <p className={styles.newPrice}>{el.newPrice}</p>
-                  <p className={styles.oldPrice}>{el.oldPrice}</p>
+                  <p className={styles.newPrice}>{el.product.price}</p>
+                  <p className={styles.oldPrice}>{el.product.price + 500}</p>
                 </Grid>
               </Grid>
             ))}
@@ -57,14 +64,13 @@ const OrderDetails: FC = () => {
               <p>Итого к оплате: </p>
             </Grid>
             <Grid item md={9} xs={6} className={styles.answers}>
-              <p>{orderInfo.to}</p>
-              <p>{orderInfo.number}</p>
-              <p>{orderInfo.address}</p>
-              <p>{orderInfo.total}</p>
+              <p>{orderData?.contactInfo?.firstName + " " + orderData?.contactInfo?.lastName}</p>
+              <p>{orderData?.contactInfo?.phoneNumber}</p>
+              <p>{orderData?.contactInfo?.address.country.title + ", " + orderData?.contactInfo?.address.city.title}</p>
+              <p>{orderData?.cart?.price} c.</p>
             </Grid>
           </Grid>
         </div>
-      ))}
     </div>
   );
 };
