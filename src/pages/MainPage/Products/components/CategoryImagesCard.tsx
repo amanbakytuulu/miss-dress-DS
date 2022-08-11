@@ -8,7 +8,6 @@ import same3 from "../../../../assets/ProductPage/same3.png";
 import { CategoryItem } from "../../../CollectionPage/types/types";
 
 import classes from "./CategoryImagesCard.module.scss";
-import { ICategoryItems } from "./ProductsCategory";
 
 interface CategoryImagesCardProps {
   item: {

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 const ResponsiveStar = (props) => (
   <svg
@@ -13,6 +13,6 @@ const ResponsiveStar = (props) => (
       fill="#372E24"
     />
   </svg>
-)
+);
 
 export default ResponsiveStar;

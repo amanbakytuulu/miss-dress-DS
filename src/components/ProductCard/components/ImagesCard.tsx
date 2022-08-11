@@ -18,7 +18,7 @@ const ImagesCard: React.FC<ImagesCardProps> = ({ item, btnTitle }) => {
     <Grid className={classes.btnDiv}>
       <img
         className={classes.categoryImg}
-        src={item.images && item.images.length > 0 ? item.images[1].url : same3}
+        src={item.images && item.images.length > 0 ? item.images[0].url : same3}
         alt="image"
       />
 

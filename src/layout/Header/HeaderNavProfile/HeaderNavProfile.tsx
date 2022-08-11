@@ -23,6 +23,9 @@ const HeaderNavProfile = ({ setUserEnter }: any) => {
   const handleRemoveToken = () => {
     if (localStorage.getItem("accessToken")) {
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
+      localStorage.removeItem("city");
+      localStorage.removeItem("country");
       setUserEnter(false);
     }
   };

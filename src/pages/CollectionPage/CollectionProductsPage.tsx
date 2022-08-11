@@ -18,7 +18,7 @@ import { IItemCard } from "../../components/ProductCard/types";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
-  const { category, type } = useParams<string>();
+  const { category = "", type } = useParams<string>();
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
