@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+
 import { Button, InputField } from "../../../components/common";
 import { colors } from "../../../types/modalTypes/inputTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
@@ -11,7 +13,6 @@ import { city, country, user } from "../../ProfilePage/types/types";
 
 import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 const OrderForm = () => {
   const user: user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -34,28 +35,31 @@ const OrderForm = () => {
     handleSubmit,
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
 
-  const handleChangeCity = (event: SelectChangeEvent<string>) => {
+  const handleChangeCity = (event: ChangeEvent<HTMLSelectElement>) => {
     const index: any = event.target.value;
     setCity(cities[index]);
-  }
+  };
 
-  const handleChangeCountry = (event: SelectChangeEvent<string>) => {
+  const handleChangeCountry = (event: ChangeEvent<HTMLSelectElement>) => {
     const index: any = event.target.value;
     setCountry(countries[index]);
-  }
+  };
 
   const onSubmit = async (data: IOrderFormValues) => {
     await addContactInfo({
       firstName,
       lastName,
       phoneNumber,
-      cityId: cities[0].id,
-      countryId: countries[0].id,
+      cityId: city.id,
+      countryId: country.id,
     });
     setSaved(true);
-    setInputFormValues(data);
+    setInputFormValues({
+      ...data,
+      cityId: city.title,
+      countryId: country.title,
+    });
   };
-
   return (
     <div className={classes.orderFormWrapper}>
       <div className={classes.orderFormHeader}>
@@ -101,7 +105,7 @@ const OrderForm = () => {
                 value={phoneNumber}
                 onChange={setPhoneNumber}
               />
-              <Select
+              {/* <Select
                 className={classes.select}
                 defaultValue={city.title}
                 onChange={handleChangeCity}
@@ -109,15 +113,23 @@ const OrderForm = () => {
                 {cities.map((item, index) => {
                   return <MenuItem key={item.id} value={index}> {item.title}</MenuItem>
                 })}
-              </Select>
-              {/* <select
+              </Select> */}
+              <select
                 defaultValue={city.title}
+                {...register("cityId", {
+                  required: "Укажите Город",
+                })}
                 onChange={handleChangeCity}
               >
                 {cities.map((item, index) => {
-                  return <option key={item.id} value={index}> {item.title}</option>
+                  return (
+                    <option key={item.id} value={index}>
+                      {" "}
+                      {item.title}
+                    </option>
+                  );
                 })}
-              </select> */}
+              </select>
               {/* <InputField
                 inputConfig={{
                   ...register("cityId", {
@@ -144,7 +156,7 @@ const OrderForm = () => {
                 value={lastName}
                 onChange={setLastName}
               />
-              <Select
+              {/* <Select
                 className={classes.select}
                 defaultValue={country.title}
                 onChange={handleChangeCountry}
@@ -152,15 +164,23 @@ const OrderForm = () => {
                 {countries.map((item, index) => {
                   return <MenuItem key={item.id} value={index}> {item.title}</MenuItem>
                 })}
-              </Select>
-              {/* <select
+              </Select> */}
+              <select
                 defaultValue={country.title}
+                {...register("countryId", {
+                  required: "Укажите Страну",
+                })}
                 onChange={handleChangeCountry}
               >
                 {countries.map((item, index) => {
-                  return <option key={item.id} value={index}> {item.title}</option>
+                  return (
+                    <option key={item.id} value={index}>
+                      {" "}
+                      {item.title}
+                    </option>
+                  );
                 })}
-              </select> */}
+              </select>
               {/* <InputField
                 inputConfig={{
                   ...register("countryId", {
@@ -188,9 +208,8 @@ const OrderForm = () => {
         </form>
       ) : (
         <OrderCheck orderFormValues={orderFormValues} setSaved={setSaved} />
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
 
