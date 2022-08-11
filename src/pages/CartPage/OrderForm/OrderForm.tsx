@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button, InputField } from "../../../components/common";
@@ -11,6 +11,7 @@ import { city, country, user } from "../../ProfilePage/types/types";
 
 import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 const OrderForm = () => {
   const user: user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -23,11 +24,8 @@ const OrderForm = () => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
-  const [city, setCity] = useState((cities[0] && cities[0].title) || "");
-  const [country, setCountry] = useState(
-    (countries[0] && countries[0].title) || ""
-  );
-
+  const [city, setCity] = useState<city>(cities[0]);
+  const [country, setCountry] = useState<country>(countries[0]);
   const [orderFormValues, setInputFormValues] =
     useState<IOrderFormValues | null>(null);
   const {
@@ -35,6 +33,16 @@ const OrderForm = () => {
     formState: { errors, isValid, isDirty },
     handleSubmit,
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
+
+  const handleChangeCity = (event: SelectChangeEvent<string>) => {
+    const index: any = event.target.value;
+    setCity(cities[index]);
+  }
+
+  const handleChangeCountry = (event: SelectChangeEvent<string>) => {
+    const index: any = event.target.value;
+    setCountry(countries[index]);
+  }
 
   const onSubmit = async (data: IOrderFormValues) => {
     await addContactInfo({
@@ -93,7 +101,24 @@ const OrderForm = () => {
                 value={phoneNumber}
                 onChange={setPhoneNumber}
               />
-              <InputField
+              <Select
+                className={classes.select}
+                defaultValue={city.title}
+                onChange={handleChangeCity}
+              >
+                {cities.map((item, index) => {
+                  return <MenuItem key={item.id} value={index}> {item.title}</MenuItem>
+                })}
+              </Select>
+              {/* <select
+                defaultValue={city.title}
+                onChange={handleChangeCity}
+              >
+                {cities.map((item, index) => {
+                  return <option key={item.id} value={index}> {item.title}</option>
+                })}
+              </select> */}
+              {/* <InputField
                 inputConfig={{
                   ...register("cityId", {
                     required: "Укажите Город",
@@ -104,7 +129,7 @@ const OrderForm = () => {
                 type={"text"}
                 value={city}
                 onChange={setCity}
-              />
+              /> */}
             </div>
             <div className={classes.orderFormRight}>
               <InputField
@@ -119,7 +144,24 @@ const OrderForm = () => {
                 value={lastName}
                 onChange={setLastName}
               />
-              <InputField
+              <Select
+                className={classes.select}
+                defaultValue={country.title}
+                onChange={handleChangeCountry}
+              >
+                {countries.map((item, index) => {
+                  return <MenuItem key={item.id} value={index}> {item.title}</MenuItem>
+                })}
+              </Select>
+              {/* <select
+                defaultValue={country.title}
+                onChange={handleChangeCountry}
+              >
+                {countries.map((item, index) => {
+                  return <option key={item.id} value={index}> {item.title}</option>
+                })}
+              </select> */}
+              {/* <InputField
                 inputConfig={{
                   ...register("countryId", {
                     required: "Укажите Страну",
@@ -130,7 +172,7 @@ const OrderForm = () => {
                 type={"text"}
                 value={country}
                 onChange={setCountry}
-              />
+              /> */}
               <Button type="submit">Сохранить</Button>
             </div>
           </div>
@@ -146,8 +188,9 @@ const OrderForm = () => {
         </form>
       ) : (
         <OrderCheck orderFormValues={orderFormValues} setSaved={setSaved} />
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

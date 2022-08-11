@@ -10,6 +10,10 @@ import Select from "../CategoriesPage/components/Select";
 
 import { useFetchProductByCollectionTypeQuery } from "../../store/features/Product/productCategory/productCategoryQuery";
 
+import { Error } from "../../utils/Error/Error";
+
+import { Loader } from "../../utils/Loader/Loader";
+
 import { CategoryItem } from "./types/types";
 import CollectionImagesCard from "./components/CollectionImagesCard";
 
@@ -21,7 +25,11 @@ const CollectionPage = () => {
     category: category,
     page: 1,
   });
-  const { data = [] } = useFetchProductByCollectionTypeQuery(productsData);
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useFetchProductByCollectionTypeQuery(productsData);
   const categories: CategoryItem[] = data?.result || [];
   const [currentPage, setCurrentPage] = useState(1);
   const totalCount = categories?.length;
@@ -31,6 +39,14 @@ const CollectionPage = () => {
       page,
     });
   }, [page]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
 
   return (
     <div className={classes.mainDiv} style={{ marginTop: "20px" }}>

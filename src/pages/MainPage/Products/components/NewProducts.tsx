@@ -5,17 +5,27 @@ import classes from "../style.module.scss";
 
 import ProductCard from "../../../../components/ProductCard/ProductCard";
 import { productGetAllApi } from "../../../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { Loader } from "../../../../utils/Loader/Loader";
+import { Error } from "../../../../utils/Error/Error";
 
 const NewProducts = () => {
   const btnTitle = "Открыть";
-  const { data = [], isLoading } = productGetAllApi.useFetchProductGetAllQuery({
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = productGetAllApi.useFetchProductGetAllQuery({
     take: 6,
     sort: "updateDate",
   });
   const newProductItems = data.result?.data || [];
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
   }
 
   return (

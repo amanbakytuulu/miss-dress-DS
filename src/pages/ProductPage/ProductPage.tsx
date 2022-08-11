@@ -30,6 +30,8 @@ import {
   useDeleteProductFromCartMutation,
   useGetProductFromCardQuery,
 } from "../../store/features/Cart/cartQuery";
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
 
 import styles from "./ProductPage.module.scss";
 
@@ -60,7 +62,7 @@ const ProductPage: FC = () => {
   const [addProductFavorites] = useAddProductFavoritesMutation();
   const { data: favoriteProducts = [] } = useFetchProductFavoritesQuery("");
   const countFavorites = favoriteProducts.result?.data || [];
-  const { data: product } = useGetProductByIdQuery(id);
+  const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
   const productCurrent: IItemCard = product?.result || {};
   const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
   const similarDresses = data?.result?.data;
@@ -115,6 +117,15 @@ const ProductPage: FC = () => {
       );
     }
   }, [productCurrent, allProductsCart]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
   return (
     <div className={styles.background_container}>
       <div className={styles.product_container}>
@@ -174,15 +185,6 @@ const ProductPage: FC = () => {
                 {productCurrent.price}
                 <span>{productCurrent.discount}</span>
               </h3>
-              {/* <div className={styles.description_flex}>
-                <p>Размер: {dress_description.size}</p>
-                <p>Ткань: {dress_description.cloth}</p>
-              </div>
-              <div className={styles.description_flex}>
-                <p>Длина: {dress_description.length}</p>
-                <p>Фасон: {dress_description.style}</p>
-              </div> */}
-
               <div className={styles.description_change}>
                 <h4>О товаре:</h4>
                 <p className={styles.description}>

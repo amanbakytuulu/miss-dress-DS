@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { ICartList } from "../../types/headerTypes/headerTypes";
 
 import { Modal } from "../../components";
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
 
 import SuccessOrder from "../../components/Modal/SuccessOrder/SuccessOrder";
 
@@ -25,12 +27,24 @@ const arr: ICartList[] = [
 
 const CartPage = () => {
   const [isModalOpen, setOpenModal] = useState<boolean>(false);
-
-  const { data: productsCart = {} } = useGetProductFromCardQuery();
+  const {
+    data: productsCart = {},
+    isLoading,
+    isError,
+  } = useGetProductFromCardQuery();
   const allProductsCart = productsCart?.result?.products || [];
   const totalPrice = productsCart?.result?.price || 0;
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
   return (
     <>
       <div className={classes.cartPage}>

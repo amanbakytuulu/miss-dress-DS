@@ -53,17 +53,19 @@
         width: 100%;
       }
 
-      & input {
+      & .select {
+        position: relative;
         font-size: 1em;
         width: 100%;
         font-family: inherit;
         height: inherit;
         outline: none;
-        padding: 20px;
         border: none;
+        // padding: 20px;
         border-radius: 50px;
         background-color: $secondary-beige;
         color: $input-text;
+
         @include sm {
           font-size: 0.9em;
         }

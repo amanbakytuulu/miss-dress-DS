@@ -46,7 +46,6 @@ const CategoryPage = () => {
     useFetchProductsByCategoryQuery(category);
   const items = data?.result.data;
   const totalCount: number = productsByCategory?.result.count;
-  console.log(productsData);
 
   useEffect(() => {
     setProductsData({ ...productsData, category: category });

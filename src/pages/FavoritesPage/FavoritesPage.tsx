@@ -13,6 +13,8 @@ import Select from "../CategoriesPage/components/Select";
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import { useFetchProductFavoritesQuery } from "../../store/features/Product/productFavorites/productFavoritesQuery";
 import { IItemCard } from "../../components/ProductCard/types";
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
@@ -24,7 +26,11 @@ const FavoritesPage = () => {
     sort: "createDate",
   });
 
-  const { data = [] } = useFetchProductFavoritesQuery(productsData);
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useFetchProductFavoritesQuery(productsData);
   const items: IItemCard[] = data.result?.data || [];
   const totalCount: number = data?.result?.count;
 
@@ -41,6 +47,14 @@ const FavoritesPage = () => {
       sort: sort,
     });
   }, [sort]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
 
   return (
     <div className={classes.mainDiv} style={{ marginTop: "22px" }}>

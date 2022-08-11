@@ -6,15 +6,30 @@ import classes from "../style.module.scss";
 import ProductCard from "../../../../components/ProductCard/ProductCard";
 
 import { productGetAllApi } from "../../../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { Loader } from "../../../../utils/Loader/Loader";
+import { Error } from "../../../../utils/Error/Error";
 
 const Bestseller = () => {
   const btnTitle = "Открыть";
 
-  const { data = [] } = productGetAllApi.useFetchProductGetAllQuery({
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = productGetAllApi.useFetchProductGetAllQuery({
     take: 6,
     sort: "rate",
   });
   const products = data.result?.data || [];
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
   return (
     <div className={classes.mainBestseller}>
       <Grid container spacing={4}>
