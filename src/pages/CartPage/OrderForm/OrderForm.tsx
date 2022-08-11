@@ -5,7 +5,10 @@ import { Button, InputField } from "../../../components/common";
 import { colors } from "../../../types/modalTypes/inputTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 
-import { useAddContactInfoMutation } from "../../../store/features/Contact/ContactInfoQuery";
+import {
+  contactInfoApi,
+  useAddContactInfoMutation,
+} from "../../../store/features/Contact/ContactInfoQuery";
 
 import { city, country, user } from "../../ProfilePage/types/types";
 
@@ -18,7 +21,7 @@ const OrderForm = () => {
   const countries: country[] = JSON.parse(
     localStorage.getItem("country") || "[]"
   );
-  const [addContactInfo] = useAddContactInfoMutation();
+  const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -41,12 +44,16 @@ const OrderForm = () => {
       firstName,
       lastName,
       phoneNumber,
-      cityId: cities[0].id,
-      countryId: countries[0].id,
+      cityId: cities && cities[0].id,
+      countryId: countries && countries[0].id,
     });
     setSaved(true);
     setInputFormValues(data);
   };
+
+  useEffect(() => {
+    localStorage.setItem("contactInfoId", data?.result?.id);
+  }, [isSuccess]);
 
   return (
     <div className={classes.orderFormWrapper}>

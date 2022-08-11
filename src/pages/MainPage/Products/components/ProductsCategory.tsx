@@ -6,12 +6,12 @@ import { categoryMainApi } from "../../../../store/features/Category/categoryMai
 
 import { useFetchProductByCollectionTypeQuery } from "../../../../store/features/Product/productCategory/productCategoryQuery";
 
-import CategoryImagesCard from "./CategoryImagesCard";
-
 import Bryuki from "../../../../assets/mainPage/categories/Bryuki.png";
 import Jeans from "../../../../assets/mainPage/categories/Jeans.png";
 import Platye from "../../../../assets/mainPage/categories/Platye.png";
 import Ubki from "../../../../assets/mainPage/categories/Ubki.png";
+
+import CategoryImagesCard from "./CategoryImagesCard";
 
 export interface ICategoryItems {
   createDate: string;
@@ -25,23 +25,20 @@ const ProductsCategory = () => {
   const btnTitle = "Смотреть";
   const type = "summer";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-  const categories: ICategoryItems[] = data?.data?.result.filter((item: any) => item.children.length === 0).slice(0, 4);
-  const images = [
-    Platye,
-    Ubki,
-    Jeans,
-    Bryuki
-  ]
+  const categories: ICategoryItems[] = data?.data?.result
+    .filter((item: any) => item.children.length === 0)
+    .slice(0, 4);
+  const images = [Platye, Ubki, Jeans, Bryuki];
 
-  let newData = categories?.map((item) => 
-    Object.assign({}, item, {selected:false})
-  )
+  const newData = categories?.map((item) =>
+    Object.assign({}, item, { selected: false })
+  );
   if (newData) {
     for (let i = 0; i < newData.length; i++) {
       newData[i].image = images[i];
     }
   }
-  
+
   return (
     <Grid container spacing={2}>
       {newData?.map((item, index) => (
