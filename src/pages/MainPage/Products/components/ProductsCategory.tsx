@@ -17,10 +17,11 @@ export interface ICategoryItems {
 }
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-  const type = "winter";
+  const type = "summer";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
   const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
-  const categoryItem = category.result || [];
+  const categoryItem = category.result || [{ category_id: 1, category_title: "юбка" }];
+
   const allCategories = data?.data?.result;
   const categories: ICategoryItems[] = allCategories
     ?.filter((item: any) => item.children.length === 0)
@@ -33,7 +34,7 @@ const ProductsCategory = () => {
           <div className={classes.btnDiv}>
             <CategoryImagesCard
               btnTitle={btnTitle}
-              item={categoryItem[0]}
+              item={categoryItem[0] && categoryItem[0]}
               title={item.title}
               type={type}
             />

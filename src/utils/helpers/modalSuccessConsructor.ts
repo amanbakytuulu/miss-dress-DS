@@ -11,17 +11,16 @@ export const changePhoneSuccess: IModalSuccess = {
 };
 
 export const userSignUpSuccess: IModalSuccess = {
-  title: "fdsf",
-  firstRow: "",
+  title: "Поздравляем!",
+  firstRow: "Регистрация прощла успешно!",
 };
 
 export const orderSuccess: IModalSuccess = {
-  title: "fdsf",
-  firstRow: "",
-  secondRow: "",
+  title: "Поздравляем!",
+  firstRow: "Ваш заказ успешно оформлен.",
+  secondRow: "В ближайшее время мы обязательно свяжемся с Вами!",
 };
 export const userLoginInSuccess: IModalSuccess = {
-  title: "",
-  firstRow: "",
-  secondRow: "",
+  title: "Поздравляем!",
+  firstRow: "Регистрация прощла успешно!",
 };

@@ -12,18 +12,21 @@ import styles from "./News.module.scss";
 const NewsList: FC = () => {
   const liElements: INewsItems[] = [
     {
+      id: 1,
       title: "Более 20 новых коллекций",
       date: "05.05.2022",
       image: firstImage,
       path: "#",
     },
     {
+      id: 2,
       title: "Самые удачные покупки за Зиму",
       date: "02.03.2022",
       image: secondImage,
       path: "#",
     },
     {
+      id: 3,
       title: "Она создала свой бренд в 20",
       date: "20.01.2022",
       image: thirdImage,
@@ -35,8 +38,9 @@ const NewsList: FC = () => {
     <div className={styles.container}>
       <div className={styles.wrapper__news}>
         <h1>Новости</h1>
-        {liElements.map((item: any) => (
+        {liElements.map((item) => (
           <div
+            key={item.id}
             style={{
               backgroundImage: `url(${item.image})`,
               backgroundRepeat: "no-repeat",
