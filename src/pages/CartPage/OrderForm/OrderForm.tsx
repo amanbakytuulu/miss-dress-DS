@@ -35,13 +35,13 @@ const OrderForm = () => {
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
 
   const onSubmit = async () => {
-    // await addContactInfo({
-    //   firstName,
-    //   lastName,
-    //   phoneNumber,
-    //   cityId: getCity.result[0].id,
-    //   countryId: getCountry.result[0].id,
-    // });
+    await addContactInfo({
+      firstName,
+      lastName,
+      phoneNumber,
+      cityId: getCity.result[0].id,
+      countryId: getCountry.result[0].id,
+    });
     setSaved(true);
     setInputFormValues({
       firstName,

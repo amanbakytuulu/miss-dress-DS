@@ -11,7 +11,11 @@ import classes from "./CategoryImagesCard.module.scss";
 import { ICategoryItems } from "./ProductsCategory";
 
 interface CategoryImagesCardProps {
-  item: CategoryItem;
+  item: {
+    id: number;
+    title: string;
+    image: string;
+  };
   btnTitle: string;
   type: string;
   title: string;
@@ -27,16 +31,16 @@ function CategoryImagesCard({
 
   return (
     <Grid className={classes.btnDiv}>
-      <img className={classes.categoryImg} src={same3} alt="image" />
+      <img className={classes.categoryImg} src={item.image} alt="image" />
       <Link
         style={{
           color: changeColor ? "#372E24" : "#F1DAC5",
           textDecoration: "none",
         }}
         to={
-          title === item.category_title
-            ? `/dresses/category=${item.category_id}/collectionType=${type}`
-            : `/dresses/category=${item.category_id}/collectionType=summer`
+          title === item?.title
+            ? `/dresses/category=${item?.id}/collectionType=${type}`
+            : `/dresses/category=${item?.id}/collectionType=summer`
         }
       >
         <button

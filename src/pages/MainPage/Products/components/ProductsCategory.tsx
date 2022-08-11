@@ -8,36 +8,48 @@ import { useFetchProductByCollectionTypeQuery } from "../../../../store/features
 
 import CategoryImagesCard from "./CategoryImagesCard";
 
+import Bryuki from "../../../../assets/mainPage/categories/Bryuki.png";
+import Jeans from "../../../../assets/mainPage/categories/Jeans.png";
+import Platye from "../../../../assets/mainPage/categories/Platye.png";
+import Ubki from "../../../../assets/mainPage/categories/Ubki.png";
+
 export interface ICategoryItems {
   createDate: string;
   id: number;
   status: number;
   title: string;
   updateDate: string;
+  image: any;
 }
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-  const type = "winter";
+  const type = "summer";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-<<<<<<< HEAD
-  const allCategories = data?.data?.result;
-  const categories = allCategories
-    ?.filter((item: any) => item.children.length === 0)
-    .slice(0, 4);
-=======
-  const categories: ICategoryItems[] = data?.data?.result.slice(0, 3);
-  const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
-  const categoryItem = category.result || [];
->>>>>>> b38c904b855692b475eef14fb68c5779e0e08498
+  const categories: ICategoryItems[] = data?.data?.result.filter((item: any) => item.children.length === 0).slice(0, 4);
+  const images = [
+    Platye,
+    Ubki,
+    Jeans,
+    Bryuki
+  ]
 
+  let newData = categories?.map((item) => 
+    Object.assign({}, item, {selected:false})
+  )
+  if (newData) {
+    for (let i = 0; i < newData.length; i++) {
+      newData[i].image = images[i];
+    }
+  }
+  
   return (
     <Grid container spacing={2}>
-      {categories?.map((item, index) => (
+      {newData?.map((item, index) => (
         <Grid key={index} className={classes.categoryDiv} item xs={6} md={4}>
           <div className={classes.btnDiv}>
             <CategoryImagesCard
               btnTitle={btnTitle}
-              item={categoryItem[0]}
+              item={item}
               title={item.title}
               type={type}
             />
