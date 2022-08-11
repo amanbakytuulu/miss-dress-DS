@@ -66,11 +66,9 @@ const CollectionPage = () => {
   const currentPosts = collectionItems.slice(indexOfFirstPost, indexOfLastPost);
   const totalCount = collectionItems.length;
   const pageNumbers = [];
-
   for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
   return (
     <div className={classes.mainDiv} style={{ marginTop: "20px" }}>
       <Container sx={{ flexGrow: 1 }}>
@@ -93,7 +91,14 @@ const CollectionPage = () => {
           </div>
           {categories.length !== 0 ? (
             categories.map((item, index) => (
-              <Grid item xs={6} sm={4} md={4} sx={{ mb: "30px" }}>
+              <Grid
+                key={item.category_id}
+                item
+                xs={6}
+                sm={4}
+                md={4}
+                sx={{ mb: "30px" }}
+              >
                 <CollectionImagesCard
                   btnTitle={btnTitle}
                   item={item}

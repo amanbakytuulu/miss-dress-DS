@@ -7,14 +7,10 @@ import classes from "./CartSummary.module.scss";
 
 interface CartSummaryProps {
   openModal: () => void;
-  products: Products[];
+  totalPrice: number;
 }
 
-const CartSummary: FC<CartSummaryProps> = ({ products, openModal }) => {
-  const totalPrice = products.reduce(
-    (sum, item) => sum + item.product.price,
-    0
-  );
+const CartSummary: FC<CartSummaryProps> = ({ totalPrice, openModal }) => {
   const discount = 0;
   return (
     <div className={classes.cartSummary}>
@@ -27,7 +23,7 @@ const CartSummary: FC<CartSummaryProps> = ({ products, openModal }) => {
           <span>Скидка</span> <strong>{discount} с.</strong>
         </p>
         <p>
-          <span>Итог</span> <strong>{totalPrice} с.</strong>
+          <span>Итог</span> <strong>{totalPrice - discount} с.</strong>
         </p>
       </div>
       <div className={classes.cartSummaryBtn}>

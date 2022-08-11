@@ -28,10 +28,9 @@ const CartPage = () => {
 
   const { data: productsCart = {} } = useGetProductFromCardQuery();
   const allProductsCart = productsCart?.result?.products || [];
-
+  const totalPrice = productsCart?.result?.price || 0;
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
-
   return (
     <>
       <div className={classes.cartPage}>
@@ -44,7 +43,7 @@ const CartPage = () => {
             <CartList cartList={allProductsCart} />
           </div>
           <div className={classes.cartPageSum}>
-            <CartSummary products={allProductsCart} openModal={openModal} />
+            <CartSummary totalPrice={totalPrice} openModal={openModal} />
           </div>
         </div>
       </div>

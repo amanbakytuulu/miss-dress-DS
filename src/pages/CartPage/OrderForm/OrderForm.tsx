@@ -23,8 +23,10 @@ const OrderForm = () => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
-  const [city, setCity] = useState(cities[0].title);
-  const [country, setCountry] = useState(countries[0].title);
+  const [city, setCity] = useState((cities[0] && cities[0].title) || "");
+  const [country, setCountry] = useState(
+    (countries[0] && countries[0].title) || ""
+  );
 
   const [orderFormValues, setInputFormValues] =
     useState<IOrderFormValues | null>(null);

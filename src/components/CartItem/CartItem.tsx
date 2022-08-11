@@ -6,7 +6,6 @@ import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg";
 import {
   useAddProductToCartMutation,
   useDeleteProductFromCartMutation,
-  useGetProductFromCardQuery,
   useReduceProductFromCartMutation,
 } from "../../store/features/Cart/cartQuery";
 
@@ -20,7 +19,6 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ product, countProduct }) => {
-  const { data = {} } = useGetProductFromCardQuery();
   const [counter, setCounter] = useState(countProduct);
   const [addProductToCart] = useAddProductToCartMutation();
   const [reduceProductFromCart] = useReduceProductFromCartMutation();
@@ -82,7 +80,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, countProduct }) => {
             </div>
             <div className={classes.cartItemPrice}>
               <span className={classes.cartItemCurrentPrice}>
-                {product.price}
+                {product.price * countProduct} с.
               </span>
               <br />
               <s className={classes.cartItemOldPrice}>{product.discount}</s>

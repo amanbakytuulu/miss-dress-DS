@@ -17,12 +17,11 @@ export interface ICategoryItems {
 }
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-  const type = "winter";
+  const type = "summer";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
   const categories: ICategoryItems[] = data?.data?.result.slice(0, 3);
   const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
   const categoryItem = category.result || [];
-
   return (
     <Grid container spacing={2}>
       {categories?.map((item, index) => (
@@ -30,7 +29,7 @@ const ProductsCategory = () => {
           <div className={classes.btnDiv}>
             <CategoryImagesCard
               btnTitle={btnTitle}
-              item={categoryItem[0]}
+              item={categoryItem[0] && categoryItem[0]}
               title={item.title}
               type={type}
             />

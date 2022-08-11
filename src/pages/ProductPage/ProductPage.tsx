@@ -49,7 +49,7 @@ SwiperCore.use([Navigation]);
 const ProductPage: FC = () => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
-  const [url, setUrl] = useState<number>(2);
+  const [url, setUrl] = useState<number>(0);
   // modalFullPhoto
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -64,8 +64,6 @@ const ProductPage: FC = () => {
   const productCurrent: IItemCard = product?.result || {};
   const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
   const similarDresses = data?.result?.data;
-  console.log(productCurrent);
-
   //cart
   // getProductCart
   const [added, setAdd] = useState<boolean>(false);
@@ -111,13 +109,12 @@ const ProductPage: FC = () => {
   }, [productCurrent, countFavorites]);
 
   useEffect(() => {
-    if (allProductsCart.length !== 0) {
+    if (allProductsCart.length >= 0) {
       setAdd(
         allProductsCart.some((prod) => prod.product.id === productCurrent.id)
       );
     }
-  }, [allProductsCart]);
-
+  }, [productCurrent, allProductsCart]);
   return (
     <div className={styles.background_container}>
       <div className={styles.product_container}>
@@ -200,7 +197,7 @@ const ProductPage: FC = () => {
                   </button>
                 ) : (
                   <button className={styles.btn} onClick={handleAddCart}>
-                    Перейти в корзину
+                    Добавить в корзину
                   </button>
                 )}
               </div>
