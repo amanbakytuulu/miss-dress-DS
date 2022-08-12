@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../../../assets/icons/logoIcon.svg";
 import { ReactComponent as DashBoardIcon } from "../../../../assets/adminPage/sideBarIcons/dashboardIcon.svg";
@@ -66,6 +66,7 @@ const sidebarList: ISideBarListTypes[] = [
 
 const SideBar = () => {
   const { pathname } = useLocation();
+  const navigation = useNavigate();
   return (
     <div className={classes.sideBarWrapper}>
       <div className={classes.sideBar}>
@@ -78,7 +79,10 @@ const SideBar = () => {
           <SidebarList sideBarList={sidebarList} pathname={pathname} />
         </div>
         <div className={classes.bottom}>
-          <button className={classes.exitButton}>
+          <button
+            className={classes.exitButton}
+            onClick={() => navigation("/")}
+          >
             <i>
               <ExitIcon />
             </i>

@@ -5,13 +5,15 @@ import { PRIVATE_ROUTES, PUBLIC_ROUTES } from "../../routes/routes";
 import { ERROR_PAGE } from "../../utils/path";
 
 const AppRouter: FC = () => {
-  const isAuth = true;
+  const isAdmin = JSON.parse(localStorage.getItem("user") || "{}").role;
+
   return (
     <Routes>
-      {isAuth &&
-        PRIVATE_ROUTES.map(({ path, Component }) => (
-          <Route path={path} element={Component} key={path} />
-        ))}
+      {isAdmin == "ADMIN" ||
+        (isAdmin == "SUPER_ADMIN" &&
+          PRIVATE_ROUTES.map(({ path, Component }) => (
+            <Route path={path} element={Component} key={path} />
+          )))}
       {PUBLIC_ROUTES.map(({ path, Component }) => (
         <Route path={path} element={Component} key={path} />
       ))}

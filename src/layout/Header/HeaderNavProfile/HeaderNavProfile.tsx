@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { ORDERS_PAGE, PROFILE_PAGE } from "../../../utils/path";
+import {
+  ADMIN_PAGE_DASHBOARD,
+  ORDERS_PAGE,
+  PROFILE_PAGE,
+} from "../../../utils/path";
 
 import classes from "./HeaderNavProfile.module.scss";
 
