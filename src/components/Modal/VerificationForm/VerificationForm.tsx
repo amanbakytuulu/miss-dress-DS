@@ -1,9 +1,11 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { ModalContext } from "../Modal";
+
+import { IModalSuccess } from "../../../utils/helpers/modalSuccessConsructor";
 
 import SuccessModal from "../SuccessModal/SuccessModal";
 import { useTimer } from "../../../hooks/useTimer";
@@ -11,20 +13,25 @@ import { ERROR_PAGE } from "../../../utils/path";
 import { IModal } from "../../../types/modalTypes/modalType";
 import { InputField, Button } from "../../common";
 
-import classes from "./VerificationForm.module.scss";
+import { useSendActivateCodeMutation } from "../../../store/authorization/Authorization";
 
-interface VerificationFormProps {
-  title?: string;
-  setUserEnter: (value: boolean) => void;
-}
+import classes from "./VerificationForm.module.scss";
 
 type ValidationValues = {
   verificationCode: string;
 };
+interface VerificationFormProps {
+  title?: string;
+  setUserEnter: (value: boolean) => void;
+  modalSuccessBody: IModalSuccess;
+  setContinue?: (value: boolean) => void;
+}
 
 const VerificationForm: FC<VerificationFormProps> = ({
   title,
   setUserEnter,
+  modalSuccessBody,
+  setContinue,
 }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { closeModal } = useContext(ModalContext) as IModal;
@@ -39,19 +46,34 @@ const VerificationForm: FC<VerificationFormProps> = ({
   const [{ minutes, seconds }, restart] = useTimer(60);
   const isDisabledButton = Number(seconds) !== 0 || Number(minutes) !== 0;
 
+  const [sendActivate, { data: activate }] = useSendActivateCodeMutation();
+
+  const smsData = JSON.parse(sessionStorage.getItem("data") || "{}");
+  console.log(smsData && smsData.code);
   const handleRestartTimer = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     restart(60);
   };
+
   const handleAccept = () => {
+    sendActivate({
+      userId: smsData.user_id,
+      code: smsData.code,
+    });
     setUserEnter(true);
-    if (title?.toLowerCase() === "вход") return closeModal();
-    setIsSuccess(true);
   };
 
-  // const handleChange = (name: string) => (value: string) => {
-  //   setVerificationCode(value);
-  // };
+  useEffect(() => {
+    if (activate) {
+      localStorage.setItem(
+        "accessToken",
+        JSON.stringify(activate.result.token.accessToken)
+      );
+      localStorage.setItem("user", JSON.stringify(activate.result.userData));
+      if (title?.toLowerCase() === "вход") return closeModal();
+      setIsSuccess(true);
+    }
+  }, [activate]);
 
   return (
     <>
@@ -67,6 +89,10 @@ const VerificationForm: FC<VerificationFormProps> = ({
                 inputConfig={{
                   ...register("verificationCode", {
                     required: "Поле обязательно к заполнению",
+                    validate: (match) => {
+                      const code = smsData.code;
+                      return match === code || "Код не совпадает!";
+                    },
                   }),
                 }}
                 placeholder={"Введите код подтверждения"}
@@ -93,12 +119,12 @@ const VerificationForm: FC<VerificationFormProps> = ({
           </div>
           <div className={classes.modalError}>
             {errors.verificationCode && (
-              <span>{errors.verificationCode.message}</span>
+              <span>{errors.verificationCode?.message}</span>
             )}
           </div>
         </form>
       ) : (
-        <SuccessModal />
+        <SuccessModal setContinue={setContinue} modalBody={modalSuccessBody} />
       )}
     </>
   );

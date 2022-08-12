@@ -8,10 +8,10 @@ export const notificationApi = createApi({
   tagTypes: ["Notification"],
   endpoints: (build) => ({
     fetchNotification: build.query({
-      query: () => ({
-        url: "/notification",
-      }),
+      query: () => "/notification",
       providesTags: ["Notification"],
     }),
   }),
 });
+
+export const { useFetchNotificationQuery } = notificationApi;

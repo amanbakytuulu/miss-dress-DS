@@ -1,9 +1,17 @@
-import React, { FC, useState } from "react";
-import { useForm, Resolver } from "react-hook-form";
+import React, { FC, useEffect, useState } from "react";
+
+import { useForm } from "react-hook-form";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
 
+import { userLoginInSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+
 import { InputField, Button } from "../../common";
+
+import {
+  useLazyGetSmsCodeQuery,
+  useUserLoginMutation,
+} from "../../../store/authorization/Authorization";
 
 import classes from "./LoginInForm.module.scss";
 
@@ -19,19 +27,40 @@ type FormValues = {
 const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+
+  const [login, { data: loginData = null, isSuccess }] = useUserLoginMutation();
+  const [getSms, { data: sms = null, isSuccess: isSmsSuccess }] =
+    useLazyGetSmsCodeQuery();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<FormValues>({ mode: "onBlur" });
 
-  const handleChange = (name: string) => (value: string) => {
+  const handleChange = (value: string) => {
     setPhoneNumber(value);
   };
 
   const onSubmit = (data: any) => {
-    setContinue(true);
+    login({
+      phoneNumber: phoneNumber,
+    });
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      const id = loginData.result?.id;
+      getSms(id);
+    }
+  }, [isSuccess, loginData]);
+
+  useEffect(() => {
+    if (isSmsSuccess) {
+      sessionStorage.setItem("data", JSON.stringify(sms.result));
+      setContinue(true);
+    }
+  }, [sms]);
 
   return (
     <>
@@ -56,7 +85,7 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
                 }}
                 placeholder={"Введите номер телефона"}
                 type={"tel"}
-                onChange={handleChange("phoneNumber")}
+                onChange={handleChange}
                 alignPlaceholder={true}
               />
             </div>
@@ -75,7 +104,11 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
           </div>
         </form>
       ) : (
-        <VerificationForm title="Вход" setUserEnter={setUserEnter} />
+        <VerificationForm
+          title="Вход"
+          setUserEnter={setUserEnter}
+          modalSuccessBody={userLoginInSuccess}
+        />
       )}
     </>
   );

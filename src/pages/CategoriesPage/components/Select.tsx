@@ -1,44 +1,73 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { FC, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 import vector from "../../../assets/categoriesPage/Vector.svg";
+import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";
 
 import classes from "../CategoryPage.module.scss";
 
-const Select = (props: any) => {
-  const [show, setShow] = useState(false);
+interface IProps {
+  setSort: (value: string) => void;
+}
+
+const Select: FC<IProps> = ({ setSort }) => {
+  const [openDd, setOpenDd] = useState(false);
 
   const sort = [
     {
       title: "По обновлению",
       path: "/#",
+      value: "updateDate",
     },
     {
       title: "По цене",
       path: "/#",
+      value: "price",
     },
     {
       title: "По алфавиту",
       path: "/#",
+      value: "title",
     },
     {
       title: "По умолчанию",
       path: "/#",
+      value: "createDate",
     },
   ];
 
   return (
-    <div className={classes.sideBarSortDiv}>
-      <div onClick={() => setShow(!show)} className={classes.vectorSort}>
-        <h4>Сортировать по</h4>
-        <img src={vector} alt="" />
+    <div className={classes.filterDropDown}>
+      <div
+        className={classes.filterDropDownBtn}
+        onClick={() => setOpenDd(!openDd)}
+      >
+        <h2 className={classes.filterDropdownTitle}>Сортировать по</h2>
+        <img src={openDd ? vectorfull : vector} />
       </div>
-      <div className={show ? classes.showDiv : classes.mdDiv}>
-        {sort.map((item) => (
-          <ul>
-            <Link to={item.path}>{item.title}</Link>
-          </ul>
-        ))}
+      <div
+        className={
+          openDd
+            ? classes.filterDropDownContentOn
+            : classes.filterDropdownContent
+        }
+      >
+        <ul>
+          {sort?.map((item: any) => {
+            return (
+              <li
+                key={Math.random()}
+                className={classes.filterListItem}
+                onClick={() => {
+                  setSort(item.value);
+                  setOpenDd(!openDd);
+                }}
+              >
+                {item.title}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

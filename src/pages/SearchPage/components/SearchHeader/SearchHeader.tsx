@@ -1,12 +1,14 @@
 import React, { FC } from "react";
 
 import classes from "./SearchHeader.module.scss";
+import Select from "./../../../CategoriesPage/components/Select";
 
 interface SearchHeaderProps {
   quantity: number;
+  setSort: (value: string) => void;
 }
 
-const SearchHeader: FC<SearchHeaderProps> = ({ quantity }) => {
+const SearchHeader: FC<SearchHeaderProps> = ({ quantity, setSort }) => {
   return (
     <div className={classes.searchPageHeader}>
       <div className={classes.searchPageHeaderLeft}>
@@ -15,9 +17,7 @@ const SearchHeader: FC<SearchHeaderProps> = ({ quantity }) => {
           Найдено {quantity} моделей
         </span>
       </div>
-      <select>
-        <option value="123">123</option>
-      </select>
+      {quantity > 0 ? <Select setSort={setSort} /> : null}
     </div>
   );
 };

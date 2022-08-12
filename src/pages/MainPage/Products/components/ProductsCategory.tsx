@@ -1,37 +1,62 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
 
-import jeans from "../../../../assets/mainPage/categories/second.png";
-import dresses from "../../../../assets/mainPage/categories/first.png";
-import skirts from "../../../../assets/mainPage/categories/third.png";
-
 import classes from "../style.module.scss";
-import ImagesCard from "../../../../components/ProductCard/components/ImagesCard";
+import { categoryMainApi } from "../../../../store/features/Category/categoryMain/categoryMainQuery";
 
+import { useFetchProductByCollectionTypeQuery } from "../../../../store/features/Product/productCategory/productCategoryQuery";
+
+import Bryuki from "../../../../assets/mainPage/categories/Bryuki.png";
+import Jeans from "../../../../assets/mainPage/categories/Jeans.png";
+import Platye from "../../../../assets/mainPage/categories/Platye.png";
+import Ubki from "../../../../assets/mainPage/categories/Ubki.png";
+
+import CategoryImagesCard from "./CategoryImagesCard";
+
+export interface ICategoryItems {
+  createDate: string;
+  id: number;
+  status: number;
+  title: string;
+  updateDate: string;
+  image: any;
+}
 const ProductsCategory = () => {
   const btnTitle = "Смотреть";
-  const categoryItems = [
-    {
-      img: jeans,
-      category: "Джинсы",
-    },
-    {
-      img: dresses,
-      category: "Платья",
-    },
-    {
-      img: skirts,
-      category: "Юбки",
-    },
+  const type = "summer";
+  const data = categoryMainApi.useFetchCategoryMainQuery(6);
+  const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
+  const categoryItem = category.result || [
+    { category_id: 1, category_title: "юбка" },
   ];
+
+  const allCategories = data?.data?.result;
+  const categories: ICategoryItems[] = allCategories
+    ?.filter((item: any) => item.children.length === 0)
+    .slice(0, 4);
+  const images = [Platye, Ubki, Jeans, Bryuki];
+
+  const newData = categories?.map((item) =>
+    Object.assign({}, item, { selected: false })
+  );
+  if (newData) {
+    for (let i = 0; i < newData.length; i++) {
+      newData[i].image = images[i];
+    }
+  }
 
   return (
     <Grid container spacing={2}>
-      {categoryItems.map((item, index) => (
+      {newData?.map((item, index) => (
         <Grid key={index} className={classes.categoryDiv} item xs={6} md={4}>
           <div className={classes.btnDiv}>
-            <ImagesCard btnTitle={btnTitle} item={item} />
-            <h4>{item.category}</h4>
+            <CategoryImagesCard
+              btnTitle={btnTitle}
+              item={item}
+              title={item.title}
+              type={type}
+            />
+            <h4>{item.title}</h4>
           </div>
         </Grid>
       ))}

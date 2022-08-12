@@ -3,17 +3,40 @@ import React, { useState } from "react";
 import item from "../../assets/mainPage/categories/first.png";
 import { ReactComponent as CrossIcon } from "../../assets/icons/cross.svg";
 
+import {
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useReduceProductFromCartMutation,
+} from "../../store/features/Cart/cartQuery";
+
+import { Product } from "../../types/cartPageTypes/orderFormTypes";
+
 import classes from "./CartItem.module.scss";
 
-const CartItem = () => {
-  const [counter, setCounter] = useState(0);
+interface CartItemProps {
+  product: Product;
+  countProduct: number;
+}
 
-  const increment = () => {
+const CartItem: React.FC<CartItemProps> = ({ product, countProduct }) => {
+  const [counter, setCounter] = useState(countProduct);
+  const [addProductToCart] = useAddProductToCartMutation();
+  const [reduceProductFromCart] = useReduceProductFromCartMutation();
+  const [deleteProductFromCart] = useDeleteProductFromCartMutation();
+
+  const handleDeleteCart = async () => {
+    await deleteProductFromCart(product.id);
+  };
+
+  const increment = async () => {
+    await addProductToCart(product);
     setCounter((prev) => prev + 1);
   };
-  const decrement = () => {
+  const decrement = async () => {
+    await reduceProductFromCart(product.id);
     setCounter((prev) => prev - 1);
   };
+
   return (
     <div className={classes.cartItem}>
       <div className={classes.cartItemContent}>
@@ -23,18 +46,22 @@ const CartItem = () => {
         <div className={classes.cartItemInfo}>
           <div className={classes.cartItemHeader}>
             <div className={classes.cartItemHeaderText}>
-              <h4 className={classes.cartItemTitle}>Benito Kate Wrap Dress</h4>
-              <p className={classes.cartItemTextInfo}>
-                <span>Артикул:</span> <strong>Платья</strong>
+              <h4 className={classes.cartItemTitle}>{product.title}</h4>
+              <p className={classes.cartItemSeries}>
+                <span>Артикул:</span> <strong>{product.article}</strong>
               </p>
-              <p className={classes.cartItemTextInfo}>
+              <p className={classes.cartItemSize}>
                 <span>Размер:</span> <strong>14-29</strong>
               </p>
-              <p className={classes.cartItemTextInfo}>
+              <p className={classes.cartItemColor}>
                 <span>Цвет:</span> <strong>Черный</strong>
               </p>
+              <p className={classes.cartItemQuantity}>
+                <span>Кличество товара в линейке:</span>{" "}
+                <strong>{product.amount}</strong>
+              </p>
             </div>
-            <span className={classes.cartItemCross}>
+            <span className={classes.cartItemCross} onClick={handleDeleteCart}>
               <CrossIcon />
             </span>
           </div>
@@ -51,8 +78,13 @@ const CartItem = () => {
                 +
               </button>
             </div>
-
-            <span>5990</span>
+            <div className={classes.cartItemPrice}>
+              <span className={classes.cartItemCurrentPrice}>
+                {product.price * countProduct} с.
+              </span>
+              <br />
+              <s className={classes.cartItemOldPrice}>{product.discount}</s>
+            </div>
           </div>
         </div>
       </div>

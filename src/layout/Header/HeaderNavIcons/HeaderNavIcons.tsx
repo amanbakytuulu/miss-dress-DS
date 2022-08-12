@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import React, { FC, useEffect, useMemo, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import { FAVORITES_PAGE } from "../../../utils/path";
+import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
 
 import { ReactComponent as SearchIcon } from "../../../assets/header/searchIcon.svg";
 import { ReactComponent as FavIcon } from "../../../assets/header/favIcon.svg";
@@ -23,7 +23,10 @@ import {
   SEARCH,
 } from "../../../utils/helpers/modalHelper";
 
-import CartList from "../components/CartList/CartList";
+// import CartList from "../components/CartList/CartList";
+import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
+
+import { useGetProductFromCardQuery } from "../../../store/features/Cart/cartQuery";
 
 import classes from "./HeaderNavIcons.module.scss";
 
@@ -31,6 +34,7 @@ interface HeaderNavIconsProps {
   isUserEnter: boolean;
   currentOpen: string | null;
   toggleCurrent: (value: string) => () => void;
+  setUserEnter: any;
 }
 
 const arr: ICartList[] = [
@@ -46,7 +50,18 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   isUserEnter,
   toggleCurrent,
   currentOpen,
+  setUserEnter,
 }) => {
+  const { data = [], refetch } = useFetchProductFavoritesQuery("");
+  const { data: productsCart = {} } = useGetProductFromCardQuery();
+  const countFavorites = data.result?.count || 0;
+  const countProductsCart = productsCart?.result?.products.length || 0;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentOpen == null) refetch();
+  }, [currentOpen]);
+
   return (
     <div className={classes.headerNavIcons}>
       <div className={classes.headerSearch}>
@@ -60,25 +75,20 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
         <Link to={FAVORITES_PAGE}>
           <i className={classes.icon}>
             <FavIcon />
-            <span className={classes.counter}>{arr.length - 1}</span>
+            {isUserEnter && countFavorites > 0 && (
+              <span className={classes.counter}>{countFavorites}</span>
+            )}
           </i>
         </Link>
       </div>
 
       <div className={classes.headerCart}>
-        <i className={classes.icon} onClick={toggleCurrent(CART_LIST)}>
+        <i className={classes.icon} onClick={() => navigate(CART_PAGE)}>
           <CartIcon />
-          <span className={classes.counter}>{arr.length}</span>
+          {isUserEnter && countProductsCart > 0 && (
+            <span className={classes.counter}>{countProductsCart}</span>
+          )}
         </i>
-        {currentOpen === CART_LIST && (
-          <div>
-            {arr.length ? (
-              <CartList cartList={arr} />
-            ) : (
-              <EmptyCart closeCart={toggleCurrent(CART_LIST)} />
-            )}
-          </div>
-        )}
       </div>
 
       {!isUserEnter ? (
@@ -92,7 +102,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
           <i className={classes.icon} onClick={toggleCurrent(PROFILE_NAV)}>
             <AccIcon />
           </i>
-          {currentOpen === PROFILE_NAV && <HeaderNavProfile />}
+          {currentOpen === PROFILE_NAV && (
+            <HeaderNavProfile setUserEnter={setUserEnter} />
+          )}
         </div>
       )}
     </div>

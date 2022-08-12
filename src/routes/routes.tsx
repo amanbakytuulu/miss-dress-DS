@@ -14,6 +14,12 @@ import {
   ORDERS_PAGE,
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
+  REQUISITE_PAGE,
+  RETURN_PRODUCT,
+  QUESTION_PAGE,
+  MAKEORDER_PAGE,
+  OFFERT_PAGE,
+  PAYMENT_PAGE,
 } from "../utils/path";
 
 import {
@@ -33,6 +39,12 @@ import {
   SearchPage,
   OrderPage,
   OrderDetails,
+  RequisitePage,
+  ReturnProduct,
+  QuestionPage,
+  MakeOrderPage,
+  OffertPage,
+  PaymentPage,
 } from "../pages";
 
 export const PUBLIC_ROUTES = [
@@ -64,18 +76,18 @@ export const PUBLIC_ROUTES = [
     path: CATEGORIES_PAGE,
     Component: <CategoriesPage />,
   },
+  // {
+  //   path: PRODUCT_PAGE + "/:id",
+  //   Component: <ProductInfo />,
+  // },
   {
     path: PRODUCT_PAGE + "/:id",
-    Component: <ProductInfo />,
-  },
-  {
-    path: PRODUCT_PAGE,
     Component: <ProductPage />,
   },
-  {
-    path: PRODUCT_PAGE + "/:id",
-    Component: <ProductInfo />,
-  },
+  // {
+  //   path: PRODUCT_PAGE + "/:id",
+  //   Component: <ProductInfo />,
+  // },
   {
     path: ORDERS_PAGE,
     Component: <OrderPage />,
@@ -85,7 +97,7 @@ export const PUBLIC_ROUTES = [
     Component: <OrderDetails />,
   },
   {
-    path: SEARCH_PAGE,
+    path: SEARCH_PAGE + "/title=:title",
     Component: <SearchPage />,
   },
   {
@@ -97,12 +109,36 @@ export const PUBLIC_ROUTES = [
     Component: <FavoritesPage />,
   },
   {
-    path: COLLECTION_PAGE,
+    path: COLLECTION_PAGE + "/:category",
     Component: <CollectionPage />,
   },
   {
-    path: COLLECTION_PRODUCTS_PAGE,
+    path: COLLECTION_PRODUCTS_PAGE + "/category=:category/collectionType=:type",
     Component: <CollectionProductsPage />,
+  },
+  {
+    path: REQUISITE_PAGE,
+    Component: <RequisitePage />,
+  },
+  {
+    path: RETURN_PRODUCT,
+    Component: <ReturnProduct />,
+  },
+  {
+    path: QUESTION_PAGE,
+    Component: <QuestionPage />,
+  },
+  {
+    path: MAKEORDER_PAGE,
+    Component: <MakeOrderPage />,
+  },
+  {
+    path: OFFERT_PAGE,
+    Component: <OffertPage />,
+  },
+  {
+    path: PAYMENT_PAGE,
+    Component: <PaymentPage />,
   },
 ];
 
