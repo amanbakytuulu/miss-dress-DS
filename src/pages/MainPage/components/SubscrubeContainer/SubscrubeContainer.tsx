@@ -5,7 +5,7 @@ import classes from "../SubscrubeContainer/SubscrubeContainer.module.scss";
 
 import { InputField } from "../../../../components/common";
 
-import { colors } from "../../../../types/modalTypes/inputTypes";
+import { colors } from "../../../../types/colorTypes/colorTypes";
 
 import ButtonImage from "../Button/Button";
 

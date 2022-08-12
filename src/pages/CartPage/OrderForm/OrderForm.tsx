@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button, InputField } from "../../../components/common";
-import { colors } from "../../../types/modalTypes/inputTypes";
+import { colors } from "../../../types/colorTypes/colorTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 
 import {

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import { ModalContext } from "../Modal";
 
-import { IModalSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+import { IModalSuccess } from "../../../utils/modalSuccessConstructor";
 
 import SuccessModal from "../SuccessModal/SuccessModal";
 import { useTimer } from "../../../hooks/useTimer";

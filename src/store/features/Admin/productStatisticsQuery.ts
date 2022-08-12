@@ -1,0 +1,37 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+
+import { API } from "../../../hooks/api";
+import { token } from "../../../utils/token";
+
+export const productsStatApi = createApi({
+  reducerPath: "productsStatApi",
+  baseQuery: fetchBaseQuery({ baseUrl: API }),
+  tagTypes: ["ProductsStat"],
+  endpoints: (build) => ({
+    fetchProductsStat: build.query({
+      query: ({ collection, page, take }) => ({
+        url: `/product-statistic/get-product-by-collection/${collection}`,
+        params: {
+          page,
+          take,
+        },
+        headers: {
+          Authorization: token,
+        },
+      }),
+      providesTags: ["ProductsStat"],
+    }),
+    fetchPopularProducts: build.query({
+      query: () => ({
+        url: "/order/popular-product/price",
+        headers: {
+          Authorization: token,
+        },
+      }),
+      providesTags: ["ProductsStat"],
+    }),
+  }),
+});
+
+export const { useFetchProductsStatQuery, useFetchPopularProductsQuery } =
+  productsStatApi;

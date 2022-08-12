@@ -1,19 +1,21 @@
 import React, { FC, useEffect } from "react";
 
-import { colors } from "../../../types/modalTypes/inputTypes";
+import { colors } from "../../../types/colorTypes/colorTypes";
 
 import classes from "./InputField.module.scss";
 
 interface InputFieldProps {
   value?: string;
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   onChange?: (value: string) => void;
   type: string;
   alignPlaceholder?: boolean;
   inputConfig?: object;
   color?: colors;
   error?: string;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  autofocus?: boolean;
   disable?: boolean;
 }
 
@@ -26,6 +28,8 @@ export const InputField: FC<InputFieldProps> = ({
   inputConfig,
   color,
   error,
+  onKeyDown,
+  autofocus,
   disable,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +44,8 @@ export const InputField: FC<InputFieldProps> = ({
           style={{ backgroundColor: `${color && color}` }}
           {...inputConfig}
           className={`${alignPlaceholder ? classes.input : ""}`}
+          onKeyDown={onKeyDown}
+          autoFocus={autofocus}
           type={type}
           value={value}
           placeholder={placeholder}

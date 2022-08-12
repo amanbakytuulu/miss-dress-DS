@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import VerificationForm from "../VerificationForm/VerificationForm";
 
-import { userLoginInSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+import { userLoginInSuccess } from "../../../utils/modalSuccessConstructor";
 
 import { InputField, Button } from "../../common";
 

@@ -1,7 +1,6 @@
 const MAIN_PAGE = "/";
 const ERROR_PAGE = "/error";
 const PROFILE_PAGE = "/profile";
-const ADMIN_PAGE = "/admin";
 const LOGIN_PAGE = "/login";
 const CATEGORIES_PAGE = "/categories";
 const DELIVERY_PAGE = "/delivery";
@@ -22,6 +21,15 @@ const MAKEORDER_PAGE = "/make_order";
 const OFFERT_PAGE = "/offert";
 const PAYMENT_PAGE = "/payment";
 
+const ADMIN_PAGE = "/admin";
+const ADMIN_PAGE_DASHBOARD = "/admin/dashboard";
+const ADMIN_PAGE_USERS = "/admin/users";
+const ADMIN_PAGE_PRODUCTS = "/admin/products";
+const ADMIN_PAGE_COLLECTIONS = "/admin/collections";
+const ADMIN_PAGE_SALES = "/admin/sales";
+const ADMIN_PAGE_CART = "/admin/cart";
+const ADMIN_PAGE_AD = "/admin/advertisement";
+const ADMIN_PAGE_CHAT = "/admin/chat";
 export {
   MAIN_PAGE,
   ERROR_PAGE,
@@ -40,6 +48,14 @@ export {
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
   SEARCH_PAGE,
+  ADMIN_PAGE_DASHBOARD,
+  ADMIN_PAGE_CHAT,
+  ADMIN_PAGE_CART,
+  ADMIN_PAGE_AD,
+  ADMIN_PAGE_PRODUCTS,
+  ADMIN_PAGE_SALES,
+  ADMIN_PAGE_USERS,
+  ADMIN_PAGE_COLLECTIONS,
   REQUISITE_PAGE,
   RETURN_PRODUCT,
   QUESTION_PAGE,
