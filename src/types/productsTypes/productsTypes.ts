@@ -29,3 +29,15 @@ export interface IPopularProduct {
   amount: string;
   totalCount: string;
 }
+
+export interface Image {
+  id: number;
+  status: number;
+  createDate: Date;
+  updateDate: Date;
+  name: string;
+  fileKey: string;
+  contentSize: number;
+  contentType: string;
+  url: string;
+}

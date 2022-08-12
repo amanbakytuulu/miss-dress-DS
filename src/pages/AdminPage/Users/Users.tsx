@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import SideBar from "../components/SideBar/SideBar";
 import Profile from "../components/Profile/Profile";
 import Widget from "../components/Widget/Widget";
 import TableStats from "../components/TableStats/TableStats";
 import List from "../components/List/List";
+
+import { Pagination } from "../../../components";
 
 import { ADMIN_PAGE_USERS } from "../../../utils/path";
 
@@ -37,8 +39,13 @@ const listOfUsers = [
 ];
 
 const Users = () => {
-  const { data, isSuccess: isUsersSuccess } = useFetchUsersStatsQuery("");
-  const users = isUsersSuccess && data.result;
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
+
+  const { data: users, isSuccess: isUsersSuccess } = useFetchUsersStatsQuery({
+    page,
+    sort,
+  });
   const { data: popularUsers, isSuccess: isPopularUsersSuccess } =
     useFetchPopularProductsQuery("");
   const { data: stats = {}, isSuccess: isStatsSuccess } =
@@ -46,6 +53,7 @@ const Users = () => {
   const popularUserList = separateList(
     isPopularUsersSuccess && popularUsers.result
   );
+  const totalCount = users?.result.count;
   return (
     <div className={classes.users}>
       <SideBar />
@@ -77,11 +85,13 @@ const Users = () => {
           <div className={classes.left}>
             <div className={classes.tableContainer}>
               <TableStats
+                setSort={setSort}
                 navigateToPage={ADMIN_PAGE_USERS}
                 type={TableTypes.USERS}
-                rows={users || []}
+                rows={users?.result.data || []}
               />
             </div>
+            <Pagination totalCount={totalCount} setPage={setPage} />
           </div>
         </div>
       </div>

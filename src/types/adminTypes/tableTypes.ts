@@ -2,6 +2,7 @@ export enum TableTypes {
   USERS = 0,
   POPULAR_PRODUCTS = 1,
   ALL_PRODUCTS = 2,
+  CART = 3,
 }
 // export enum Status {
 //   PENDING = "Pending",

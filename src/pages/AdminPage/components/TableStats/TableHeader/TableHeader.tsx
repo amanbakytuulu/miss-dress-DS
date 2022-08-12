@@ -1,18 +1,21 @@
-import React, { FC } from "react";
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import React, { FC, useState } from "react";
+import { MenuItem, SelectChangeEvent } from "@mui/material";
 
 import { colors } from "../../../../../types/colorTypes/colorTypes";
 
 import { InputField } from "../../../../../components/common";
+
+import Select from "../../../../CategoriesPage/components/Select";
 
 import classes from "./TableHeader.module.scss";
 
 interface TableHeaderProps {
   title: string;
   subTitle?: string | null;
+  setSort: (value: string) => void;
 }
 
-const TableHeader: FC<TableHeaderProps> = ({ title, subTitle }) => {
+const TableHeader: FC<TableHeaderProps> = ({ title, subTitle, setSort }) => {
   const [age, setAge] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -29,23 +32,17 @@ const TableHeader: FC<TableHeaderProps> = ({ title, subTitle }) => {
         <div className={classes.inputBlock}>
           <InputField
             color={colors.secondary}
-            placeholder={"Поиск пользователей"}
+            placeholder={
+              title.toLowerCase() == "все пользователи"
+                ? "Поиск пользователей"
+                : "Поиск товаров"
+            }
             type={"text"}
           />
         </div>
 
         <div className={classes.sort}>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <Select setSort={setSort} />
         </div>
       </div>
     </div>

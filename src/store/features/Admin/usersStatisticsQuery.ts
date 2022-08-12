@@ -6,7 +6,7 @@ import { token } from "../../../utils/token";
 export const usersStatsApi = createApi({
   reducerPath: "usersStatsApi",
   baseQuery: fetchBaseQuery({ baseUrl: API }),
-  tagTypes: ["UserStat"],
+  tagTypes: ["UsersList", "PopularUsers"],
   endpoints: (build) => ({
     fetchUsersStats: build.query({
       query: ({ take, page, sort }) => ({
@@ -20,20 +20,34 @@ export const usersStatsApi = createApi({
           Authorization: token,
         },
       }),
-      providesTags: ["UserStat"],
+      providesTags: ["UsersList"],
     }),
 
-    fetchPopularProducts: build.query({
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `/user/admin/deletes/user/${id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: token,
+        },
+      }),
+      invalidatesTags: ["UsersList"],
+    }),
+
+    fetchPopularUsers: build.query({
       query: () => ({
         url: "/order/popular-users/price",
         headers: {
           Authorization: token,
         },
       }),
-      providesTags: ["UserStat"],
+      providesTags: ["PopularUsers"],
     }),
   }),
 });
 
-export const { useFetchUsersStatsQuery, useFetchPopularProductsQuery } =
-  usersStatsApi;
+export const {
+  useFetchUsersStatsQuery,
+  useFetchPopularUsersQuery,
+  useDeleteUserMutation,
+} = usersStatsApi;

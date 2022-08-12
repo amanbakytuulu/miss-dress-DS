@@ -7,3 +7,13 @@ export interface IUser {
   price: string;
   amount: string;
 }
+export interface IUserMe {
+  id: number;
+  status: number;
+  createDate: Date;
+  updateDate: Date;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  role: string;
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -28,32 +28,21 @@ import { ADMIN_PAGE_USERS } from "../../../../utils/path";
 
 import { Button } from "../../../../components/common";
 
+import { useDeleteUserMutation } from "../../../../store/features/Admin/usersStatisticsQuery";
+
 import TableHeader from "./TableHeader/TableHeader";
+import UsersTableBody from "./UsersTableBody/UsersTableBody";
+import ProductsTableBody from "./ProductsTableBody/ProductsTableBody";
+import OrdersTableBody from "./OrdersTableBody/OrdersTableBody";
 
 import classes from "./TableStats.module.scss";
-
-// function createData(
-//   name: string,
-//   sales: string,
-//   income: string,
-//   status: string
-// ) {
-//   return { name, sales, income, status };
-// }
-//
-// const rows = [
-//   createData("Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
-//   createData("Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
-//   createData("Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
-//   createData("Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
-//   createData("Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
-// ];
 
 interface TableStatsProps {
   type: TableTypes;
   subTitle?: string;
   rows: any[];
   navigateToPage: string;
+  setSort: (value: string) => void;
 }
 
 const TableStats: FC<TableStatsProps> = ({
@@ -61,12 +50,16 @@ const TableStats: FC<TableStatsProps> = ({
   rows,
   subTitle,
   navigateToPage,
+  setSort,
 }) => {
-  const navigate = useNavigate();
   let data;
+  const navigate = useNavigate();
+
   const navigateTo = (id: number) => {
     return () => navigate(navigateToPage + `/${id}`);
   };
+
+  // useEffect(() => {}, [deletedUser]);
 
   const allStatus: IAllStatus = {
     [Status.ACTIVE]: "Active",
@@ -85,6 +78,7 @@ const TableStats: FC<TableStatsProps> = ({
           { name: "Продажи" },
           { name: "Доход" },
         ],
+        component: <UsersTableBody users={rows} allStatus={allStatus} />,
       };
       break;
     case TableTypes.ALL_PRODUCTS:
@@ -98,6 +92,19 @@ const TableStats: FC<TableStatsProps> = ({
           { name: "Продажи" },
           { name: "Доход" },
         ],
+        component: <ProductsTableBody products={rows} allStatus={allStatus} />,
+      };
+      break;
+    case TableTypes.CART:
+      data = {
+        title: "Товары корзины",
+        subTitle: subTitle || null,
+        tableCellHeader: [
+          { name: "ID ордера" },
+          { name: "Продажи" },
+          { name: "Доход" },
+        ],
+        component: <OrdersTableBody orders={rows} allStatus={allStatus} />,
       };
       break;
 
@@ -115,7 +122,11 @@ const TableStats: FC<TableStatsProps> = ({
 
   return (
     <>
-      <TableHeader title={data.title} subTitle={data?.subTitle} />
+      <TableHeader
+        title={data.title}
+        subTitle={data?.subTitle}
+        setSort={setSort}
+      />
       <TableContainer component={Paper} className={classes.table}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -132,107 +143,7 @@ const TableStats: FC<TableStatsProps> = ({
               </TableCell>
             </TableRow>
           </TableHead>
-          {rows[0]?.product ? (
-            <TableBody>
-              {rows.map((row: IProductsStat) => (
-                <TableRow
-                  key={row.id}
-                  className={classes.tableRow}
-                  onClick={navigateTo(row.productId)}
-                  // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    className={`${classes.tableCell} ${classes.tableCellName}`}
-                  >
-                    {row.product.title}
-                  </TableCell>
-                  <TableCell className={classes.tableCell}>
-                    {row.product.article}
-                  </TableCell>
-                  {row.productId && (
-                    <TableCell className={classes.tableCell}>
-                      {row.productId}
-                    </TableCell>
-                  )}
-
-                  <TableCell className={classes.tableCell}>
-                    {row.allTotalCount} продаж
-                  </TableCell>
-                  <TableCell className={classes.tableCell}>
-                    {row.allAmount} доход
-                  </TableCell>
-                  <TableCell align="center" className={classes.tableCell}>
-                    <span
-                      className={`${classes.status} ${
-                        classes[allStatus[`${row.status}`]]
-                      }`}
-                    >
-                      {allStatus[`${row.status}`]}
-                    </span>
-                  </TableCell>
-                  <TableCell align="center" className={classes.tableCell}>
-                    <Button
-                      onClick={(e) => e.stopPropagation()}
-                      style={{
-                        padding: "5px",
-                        backgroundColor: colors.deleteBtn,
-                        color: colors.blackText,
-                      }}
-                    >
-                      Удалить
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          ) : (
-            <TableBody>
-              {rows.map((row: IUser) => (
-                <TableRow
-                  key={row.user_id}
-                  className={classes.tableRow}
-                  onClick={navigateTo(row.user_id)}
-                >
-                  <TableCell
-                    className={`${classes.tableCell} ${classes.tableCellName}`}
-                  >
-                    {`${row.user_first_name} ${row.user_last_name}`}
-                  </TableCell>
-                  <TableCell className={classes.tableCell}>
-                    {row.user_phone_number}
-                  </TableCell>
-
-                  <TableCell className={classes.tableCell}>
-                    {row.price || 0} продаж
-                  </TableCell>
-                  <TableCell className={classes.tableCell}>
-                    {row.amount || 0} доход
-                  </TableCell>
-                  <TableCell align="center" className={classes.tableCell}>
-                    <span
-                      className={`${classes.status} ${
-                        classes[allStatus[`${row.user_status}`]]
-                      }`}
-                    >
-                      {allStatus[`${row.user_status}`]}
-                    </span>
-                  </TableCell>
-                  <TableCell align="center" className={classes.tableCell}>
-                    <Button
-                      onClick={(e) => e.stopPropagation()}
-                      style={{
-                        padding: "5px",
-                        backgroundColor: colors.deleteBtn,
-                        color: colors.blackText,
-                      }}
-                    >
-                      Удалить
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          )}
+          <TableBody>{data.component}</TableBody>
         </Table>
       </TableContainer>
     </>

@@ -6,7 +6,7 @@ import { token } from "../../../utils/token";
 export const allStatApi = createApi({
   reducerPath: "allStatApi",
   baseQuery: fetchBaseQuery({ baseUrl: API }),
-  tagTypes: ["WidgetStat"],
+  tagTypes: ["WidgetStat", "GraphStat"],
   endpoints: (build) => ({
     fetchAllStat: build.query({
       query: () => ({
@@ -17,7 +17,16 @@ export const allStatApi = createApi({
       }),
       providesTags: ["WidgetStat"],
     }),
+    fetchGraphStat: build.query({
+      query: () => ({
+        url: "/order/grafik",
+        headers: {
+          Authorization: token,
+        },
+      }),
+      providesTags: ["GraphStat"],
+    }),
   }),
 });
 
-export const { useFetchAllStatQuery } = allStatApi;
+export const { useFetchAllStatQuery, useFetchGraphStatQuery } = allStatApi;

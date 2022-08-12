@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 import { ADMIN_PAGE_USERS } from "../../../utils/path";
 
@@ -6,9 +7,16 @@ import BackButton from "../components/BackButton/BackButton";
 import SideBar from "../components/SideBar/SideBar";
 import Profile from "../components/Profile/Profile";
 
+import { useFetchUserByIdQuery } from "../../../store/features/User/getUserByIdQuery";
+
+import { IUserMe } from "../../../types/usersTypes/usersTypes";
+
 import classes from "./UserDetails.module.scss";
 
 const UserDetails = () => {
+  const { id } = useParams();
+  const { data: user } = useFetchUserByIdQuery(id);
+  console.log(user?.result);
   return (
     <div className={classes.userDetails}>
       <SideBar />
@@ -28,15 +36,17 @@ const UserDetails = () => {
             <ul className={classes.listOfInfo}>
               <li>
                 <strong>Пользователь</strong>
-                <span>Ророноа Зоро</span>
+                <span>
+                  {user?.result.firstName} {user?.result.lastName}
+                </span>
               </li>
-              <li>
-                <strong>Адрес почты</strong>
-                <span>zoro@gmail.com</span>
-              </li>
+              {/*<li>*/}
+              {/*  <strong>Адрес почты</strong>*/}
+              {/*  <span>{user?.result.phoneNumber}</span>*/}
+              {/*</li>*/}
               <li>
                 <strong>Номер телефона</strong>
-                <span>+996712345678</span>
+                <span>{user?.result.phoneNumber}</span>
               </li>
               <li>
                 <strong>Адрес</strong>

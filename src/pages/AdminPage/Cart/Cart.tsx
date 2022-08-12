@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import SideBar from "../components/SideBar/SideBar";
 import Widget from "../components/Widget/Widget";
@@ -10,27 +10,13 @@ import { ADMIN_PAGE_USERS } from "../../../utils/path";
 
 import { Status, TableTypes } from "../../../types/adminTypes/tableTypes";
 
+import { orderHelper } from "../../../utils/orderHelper";
+
 import classes from "../Users/Users.module.scss";
 
-function createData(
-  id: number,
-  name: string,
-  sales: string,
-  income: string,
-  status: number
-) {
-  return { id, name, sales, income, status };
-}
-
-const rows = [
-  createData(1, "Ророноа Зороt", "104 продаж", "500k+ доход", Status.ACTIVE),
-  createData(2, "Портгас Д. Эйс", "104 продаж", "500k+ доход", Status.PENDING),
-  createData(3, "Винсмок Санджи", "104 продаж", "500k+ доход", Status.BANNED),
-  createData(4, "Нико Робин", "104 продаж", "500k+ доход", Status.DELETED),
-  createData(5, "Тони Чоппер", "104 продаж", "500k+ доход", Status.ACTIVE),
-];
-
 const Cart = () => {
+  const [sort, setSort] = useState("createDate");
+
   return (
     <div className={classes.users}>
       <SideBar />
@@ -44,9 +30,10 @@ const Cart = () => {
           <div className={classes.left}>
             <div className={classes.tableContainer}>
               <TableStats
+                setSort={setSort}
                 navigateToPage={ADMIN_PAGE_USERS}
-                type={TableTypes.USERS}
-                rows={rows || []}
+                type={TableTypes.CART}
+                rows={orderHelper.result || []}
               />
             </div>
           </div>
