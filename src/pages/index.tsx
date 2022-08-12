@@ -14,7 +14,7 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import SearchPage from "./SearchPage/SearchPage";
 import OrderPage from "./OrderPage/Order";
 import OrderDetails from "./OrderPage/OrderDetails/OrderInfo";
-
+import NewsPage from "./NewsPage/NewsPage";
 export {
   ProductPage,
   CartPage,
@@ -32,4 +32,5 @@ export {
   SearchPage,
   OrderPage,
   OrderDetails,
+  NewsPage,
 };
