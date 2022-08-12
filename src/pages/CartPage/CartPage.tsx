@@ -51,7 +51,7 @@ const CartPage = () => {
         <div className={`${classes.cartPageWrapper} ${classes.container}`}>
           <div className={classes.cartPageMain}>
             <div className={classes.cartPageOrder}>
-              <OrderForm />
+              <OrderForm totalPrice={totalPrice} />
             </div>
             <h3 className={classes.cartPageListTitle}>Состав заказа</h3>
             <CartList cartList={allProductsCart} />

@@ -14,7 +14,11 @@ import { city, country, user } from "../../ProfilePage/types/types";
 import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
 
-const OrderForm = () => {
+interface OrderFormProps {
+  totalPrice: number;
+}
+
+const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
   const user: user = JSON.parse(localStorage.getItem("user") || "{}");
   const cities: city[] = JSON.parse(localStorage.getItem("city") || "[]");
   const countries: country[] = JSON.parse(
@@ -193,7 +197,9 @@ const OrderForm = () => {
                 value={country}
                 onChange={setCountry}
               /> */}
-              <Button type="submit">Сохранить</Button>
+              <Button type="submit" disabled={totalPrice === 0 ? true : false}>
+                Сохранить
+              </Button>
             </div>
           </div>
           {!isValid && (
