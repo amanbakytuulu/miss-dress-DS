@@ -34,7 +34,7 @@ const OrderForm = () => {
             <div className={classes.orderFormLeft}>
               <InputField
                 inputConfig={{
-                  ...register("name", {
+                  ...register("firstName", {
                     required: "Укажите Имя",
                     minLength: {
                       value: 3,
@@ -66,7 +66,7 @@ const OrderForm = () => {
               />
               <InputField
                 inputConfig={{
-                  ...register("city", {
+                  ...register("cityId", {
                     required: "Укажите Город",
                   }),
                 }}
@@ -78,7 +78,7 @@ const OrderForm = () => {
             <div className={classes.orderFormRight}>
               <InputField
                 inputConfig={{
-                  ...register("surname", {
+                  ...register("lastName", {
                     required: "Укажите Фамилию",
                   }),
                 }}
@@ -88,7 +88,7 @@ const OrderForm = () => {
               />
               <InputField
                 inputConfig={{
-                  ...register("country", {
+                  ...register("countryId", {
                     required: "Укажите Страну",
                   }),
                 }}
