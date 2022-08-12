@@ -7,7 +7,11 @@ import { Button, InputField } from "../../../components/common";
 import { colors } from "../../../types/modalTypes/inputTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 
-import { useAddContactInfoMutation } from "../../../store/features/Contact/ContactInfoQuery";
+import {
+  contactInfoApi,
+  useAddContactInfoMutation,
+  useUpdateContactInfoMutation,
+} from "../../../store/features/Contact/ContactInfoQuery";
 
 import { city, country, user } from "../../ProfilePage/types/types";
 
@@ -24,7 +28,8 @@ const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
   const countries: country[] = JSON.parse(
     localStorage.getItem("country") || "[]"
   );
-  const [addContactInfo] = useAddContactInfoMutation();
+  const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
+  const [updateContactInfo] = useUpdateContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -50,20 +55,45 @@ const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
   };
 
   const onSubmit = async (data: IOrderFormValues) => {
-    await addContactInfo({
-      firstName,
-      lastName,
-      phoneNumber,
-      cityId: city.id,
-      countryId: country.id,
-    });
-    setSaved(true);
-    setInputFormValues({
-      ...data,
-      cityId: city.title,
-      countryId: country.title,
-    });
+    if (localStorage.getItem("contactInfoId") === "undefined") {
+      await addContactInfo({
+        firstName,
+        lastName,
+        phoneNumber,
+        cityId: city.id,
+        countryId: country.id,
+      });
+      setSaved(true);
+      setInputFormValues({
+        ...data,
+        cityId: city.title,
+        countryId: country.title,
+      });
+    } else {
+      const id = JSON.parse(localStorage.getItem("contactInfoId") || "");
+      await updateContactInfo({
+        data: {
+          firstName,
+          lastName,
+          phoneNumber,
+          cityId: city.id,
+          countryId: country.id,
+        },
+        id,
+      });
+      setSaved(true);
+      setInputFormValues({
+        ...data,
+        cityId: city.title,
+        countryId: country.title,
+      });
+    }
   };
+
+  useEffect(() => {
+    localStorage.setItem("contactInfoId", data?.result?.id);
+  }, [isSuccess]);
+
   return (
     <div className={classes.orderFormWrapper}>
       <div className={classes.orderFormHeader}>

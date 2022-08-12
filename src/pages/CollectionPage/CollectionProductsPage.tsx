@@ -15,6 +15,8 @@ import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import { IItemCard } from "../../components/ProductCard/types";
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
@@ -28,7 +30,11 @@ const CollectionProductsPage = () => {
     page: 1,
     sort: "createDate",
   });
-  const { data = [] } = useFetchProductByCategoryQuery(productsData);
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useFetchProductByCategoryQuery(productsData);
   const collectionItems: IItemCard[] = data.result?.data || [];
   const dressType = collectionItems[0]?.category?.title;
   const dresses: any = [];
@@ -47,6 +53,26 @@ const CollectionProductsPage = () => {
       sort,
     });
   }, [sort]);
+
+  if (isLoading) {
+    return (
+      <div
+        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
+      >
+        <Loader />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div
+        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
+      >
+        <Error />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.mainDiv}>

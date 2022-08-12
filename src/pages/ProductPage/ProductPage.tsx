@@ -119,11 +119,23 @@ const ProductPage: FC = () => {
   }, [productCurrent, allProductsCart]);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div
+        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
+      >
+        <Loader />
+      </div>
+    );
   }
 
   if (isError) {
-    return <Error />;
+    return (
+      <div
+        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
+      >
+        <Error />
+      </div>
+    );
   }
 
   return (

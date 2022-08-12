@@ -24,6 +24,10 @@ import {
   useFetchProductsByCategoryQuery,
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
+import { Loader } from "../../utils/Loader/Loader";
+
+import { Error } from "../../utils/Error/Error";
+
 import CategoriesDropdown from "./components/CategoriesDropdown";
 
 import Select from "./components/Select";
@@ -37,11 +41,12 @@ const CategoryPage = () => {
   const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
     take: 6,
-    category: 1,
+    category: 5,
     page: 1,
     sort: "createDate",
   });
-  const { data } = productGetAllApi.useFetchProductsGetAllQuery(productsData);
+  const { data, isLoading, isError } =
+    productGetAllApi.useFetchProductsGetAllQuery(productsData);
   const { data: productsByCategory } =
     useFetchProductsByCategoryQuery(category);
   const items = data?.result.data;
@@ -58,6 +63,10 @@ const CategoryPage = () => {
   useEffect(() => {
     setProductsData({ ...productsData, sort: sort });
   }, [sort]);
+
+  if (isError) {
+    return <Error />;
+  }
 
   return (
     <div className={classes.mainDiv}>
@@ -89,16 +98,22 @@ const CategoryPage = () => {
           >
             <SideBar setCategory={setCategory} />
           </Grid>
-          <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
-            {items?.map((item: any) => (
-              <div className={classes.prod}>
-                <ProductCard btnTitle={btnTitle} item={item} />
-              </div>
-            ))}
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <CategoryPagination totalCount={totalCount} setPage={setPage} />
-          </Grid>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
+                {items?.map((item: any) => (
+                  <div className={classes.prod}>
+                    <ProductCard btnTitle={btnTitle} item={item} />
+                  </div>
+                ))}
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <CategoryPagination totalCount={totalCount} setPage={setPage} />
+              </Grid>
+            </>
+          )}
         </Grid>
       </Container>
     </div>

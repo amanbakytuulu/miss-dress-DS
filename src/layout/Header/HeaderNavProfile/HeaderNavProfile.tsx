@@ -26,6 +26,7 @@ const HeaderNavProfile = ({ setUserEnter }: any) => {
       localStorage.removeItem("user");
       localStorage.removeItem("city");
       localStorage.removeItem("country");
+      localStorage.removeItem("contactInfoId");
       setUserEnter(false);
     }
   };
