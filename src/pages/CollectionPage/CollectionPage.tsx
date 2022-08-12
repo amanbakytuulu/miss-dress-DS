@@ -23,8 +23,8 @@ const CollectionPage = () => {
   });
   const { data = [] } = useFetchProductByCollectionTypeQuery(productsData);
   const categories: CategoryItem[] = data?.result || [];
+  const [currentPage, setCurrentPage] = useState(1);
   const totalCount = categories?.length;
-
   useEffect(() => {
     setProductsData({
       ...productsData,
@@ -54,7 +54,14 @@ const CollectionPage = () => {
           </div>
           {categories.length !== 0 ? (
             categories.map((item, index) => (
-              <Grid item xs={6} sm={4} md={4} sx={{ mb: "30px" }}>
+              <Grid
+                key={item.category_id}
+                item
+                xs={6}
+                sm={4}
+                md={4}
+                sx={{ mb: "30px" }}
+              >
                 <CollectionImagesCard
                   btnTitle={btnTitle}
                   item={item}

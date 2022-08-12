@@ -69,6 +69,7 @@ const VerificationForm: FC<VerificationFormProps> = ({
         "accessToken",
         JSON.stringify(activate.result.token.accessToken)
       );
+      localStorage.setItem("user", JSON.stringify(activate.result.userData));
       if (title?.toLowerCase() === "вход") return closeModal();
       setIsSuccess(true);
     }

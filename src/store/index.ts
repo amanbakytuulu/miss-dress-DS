@@ -13,13 +13,17 @@ import { productGetAllApi } from "./features/Product/productGetAll/ProductGetAll
 import { getAllApi } from "./features/User/getAll/getAllQuery";
 import { meApi } from "./features/User/userMe/meQuery";
 import { apiAuth } from "./authorization/Authorization";
-// import { cartApi } from "./features/Cart/cartQuery";
+import { cartApi } from "./features/Cart/cartQuery";
 import { collectionApi } from "./features/Collection/collectionQuery";
 import { productsStatApi } from "./features/Admin/productStatisticsQuery";
 import { usersStatsApi } from "./features/Admin/usersStatisticsQuery";
 import { allStatApi } from "./features/Admin/allStatQuery";
 import { getUserById } from "./features/User/getUserByIdQuery";
 import { adQueryApi } from "./features/Admin/adQuery";
+import { countryApi } from "./features/Country/CountryQuery";
+import { cityApi } from "./features/City/CityQuery";
+import { contactInfoApi } from "./features/Contact/ContactInfoQuery";
+import { orderApi } from "./features/Order/orderQuery";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,
@@ -39,6 +43,11 @@ const rootReducer = combineReducers({
   [getUserById.reducerPath]: getUserById.reducer,
   [adQueryApi.reducerPath]: adQueryApi.reducer,
   // [cartApi.reducerPath]: cartApi.reducer,
+  [cartApi.reducerPath]: cartApi.reducer,
+  [countryApi.reducerPath]: countryApi.reducer,
+  [cityApi.reducerPath]: cityApi.reducer,
+  [contactInfoApi.reducerPath]: contactInfoApi.reducer,
+  [orderApi.reducerPath]: orderApi.reducer,
 });
 
 export const store = configureStore({
@@ -60,9 +69,14 @@ export const store = configureStore({
       allStatApi.middleware,
       apiAuth.middleware,
       getUserById.middleware,
-      adQueryApi.middleware
+      adQueryApi.middleware,
 
       // cartApi.middleware
+      apiAuth.middleware,
+      cartApi.middleware,
+      countryApi.middleware,
+      cityApi.middleware,
+      contactInfoApi.middleware
     ),
 });
 

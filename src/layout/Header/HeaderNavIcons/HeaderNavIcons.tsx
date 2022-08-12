@@ -23,8 +23,10 @@ import {
   SEARCH,
 } from "../../../utils/modalHelper";
 
-import CartList from "../components/CartList/CartList";
+// import CartList from "../components/CartList/CartList";
 import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
+
+import { useGetProductFromCardQuery } from "../../../store/features/Cart/cartQuery";
 
 import classes from "./HeaderNavIcons.module.scss";
 
@@ -51,7 +53,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   setUserEnter,
 }) => {
   const { data = [], refetch } = useFetchProductFavoritesQuery("");
+  const { data: productsCart = {} } = useGetProductFromCardQuery();
   const countFavorites = data.result?.count || 0;
+  const countProductsCart = productsCart?.result?.products.length || 0;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -81,7 +85,9 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
       <div className={classes.headerCart}>
         <i className={classes.icon} onClick={() => navigate(CART_PAGE)}>
           <CartIcon />
-          {isUserEnter && <span className={classes.counter}>{arr.length}</span>}
+          {isUserEnter && countProductsCart > 0 && (
+            <span className={classes.counter}>{countProductsCart}</span>
+          )}
         </i>
       </div>
 

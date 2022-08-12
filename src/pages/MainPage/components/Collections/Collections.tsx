@@ -31,7 +31,7 @@ function Collections() {
         <div className={classes.collections__items}>
           {seasons.map((season) => {
             return (
-              <Link to={`/collection/${season.path}`}>
+              <Link key={season.id} to={`/collection/${season.path}`}>
                 <Card className={classes.collections__item}>
                   <CardMedia
                     component="img"

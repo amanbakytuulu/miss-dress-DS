@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { useGetCityQuery } from "../../store/features/City/CityQuery";
+import { useGetCountryQuery } from "../../store/features/Country/CountryQuery";
+
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
 import { ReactComponent as BurgerIcon } from "../../assets/header/burgerIcon.svg";
 import {
@@ -51,7 +54,11 @@ const navItems: IHeaderNav[] = [
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  // localStorage
+  const { data: getCountry = [], isSuccess: countrySuccess } =
+    useGetCountryQuery("");
+  const { data: getCity = [], isSuccess: citySuccess } = useGetCityQuery("");
+  // localStorage
   const [isSignIn, setSignIn] = useState<boolean>(false);
   const [isUserEnter, setUserEnter] = useState<boolean>(
     localStorage.getItem("accessToken") ? true : false
@@ -67,6 +74,15 @@ const Header = () => {
       setCurrentOpen(current);
     };
   };
+
+  useEffect(() => {
+    if (isUserEnter) {
+      if (citySuccess && countrySuccess) {
+        localStorage.setItem("city", JSON.stringify(getCity.result));
+        localStorage.setItem("country", JSON.stringify(getCountry.result));
+      }
+    }
+  }, [countrySuccess, citySuccess, isUserEnter]);
 
   useEffect(() => {
     return () => closeCurrent();

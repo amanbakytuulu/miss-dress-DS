@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 import { colors } from "../../../types/colorTypes/colorTypes";
 
@@ -36,6 +36,7 @@ export const InputField: FC<InputFieldProps> = ({
     const { value } = e.target;
     onChange && onChange(value);
   };
+
   return (
     <>
       <div className={classes.formGroup}>

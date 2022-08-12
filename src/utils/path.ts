@@ -14,6 +14,12 @@ const FAVORITES_PAGE = "/favorites";
 const COLLECTION_PAGE = "/collection";
 const COLLECTION_PRODUCTS_PAGE = "/dresses";
 const SEARCH_PAGE = "/search";
+const REQUISITE_PAGE = "/requisite";
+const RETURN_PRODUCT = "/backProduct";
+const QUESTION_PAGE = "/questions";
+const MAKEORDER_PAGE = "/make_order";
+const OFFERT_PAGE = "/offert";
+const PAYMENT_PAGE = "/payment";
 
 const ADMIN_PAGE = "/admin";
 const ADMIN_PAGE_DASHBOARD = "/admin/dashboard";
@@ -50,4 +56,10 @@ export {
   ADMIN_PAGE_SALES,
   ADMIN_PAGE_USERS,
   ADMIN_PAGE_COLLECTIONS,
+  REQUISITE_PAGE,
+  RETURN_PRODUCT,
+  QUESTION_PAGE,
+  MAKEORDER_PAGE,
+  OFFERT_PAGE,
+  PAYMENT_PAGE,
 };

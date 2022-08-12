@@ -15,7 +15,6 @@ const Bestseller = () => {
     sort: "rate",
   });
   const products = data.result?.data || [];
-  console.log(products);
   return (
     <div className={classes.mainBestseller}>
       <Grid container spacing={4}>

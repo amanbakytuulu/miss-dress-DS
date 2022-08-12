@@ -1,30 +1,56 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+
+import { useSelector } from "react-redux";
 
 import { Button } from "../../../components/common";
+import { Products } from "../../../types/cartPageTypes/orderFormTypes";
+
+import { useSaveOrderMutation } from "../../../store/features/Order/orderQuery";
 
 import classes from "./CartSummary.module.scss";
 
 interface CartSummaryProps {
   openModal: () => void;
+  totalPrice: number;
+  thisCart: any;
 }
 
-const CartSummary: FC<CartSummaryProps> = ({ openModal }) => {
+const CartSummary: FC<CartSummaryProps> = ({
+  totalPrice,
+  openModal,
+  thisCart,
+}) => {
+  const discount = 0;
+  const [saveOrder, { data }] = useSaveOrderMutation();
+  const contactInfoId = localStorage.getItem("contactInfoId");
+
+  const handleSaveOrder = () => {
+    const contactId = localStorage.getItem("contactInfoId");
+    const body = {
+      cartId: thisCart.id,
+      contactInfoId: Number(contactId),
+    };
+    console.log("body", body);
+    openModal();
+    saveOrder(body);
+  };
+
   return (
     <div className={classes.cartSummary}>
       <h3 className={classes.cartSummaryTitle}>Итого</h3>
       <div className={classes.cartSummaryInfo}>
         <p>
-          <span>Общая сумма</span> <strong>22500 с.</strong>
+          <span>Общая сумма</span> <strong>{totalPrice} c.</strong>
         </p>
         <p>
-          <span>Скидка</span> <strong>4530 с.</strong>
+          <span>Скидка</span> <strong>{discount} с.</strong>
         </p>
         <p>
-          <span>Итог</span> <strong>17970 с.</strong>
+          <span>Итог</span> <strong>{totalPrice - discount} с.</strong>
         </p>
       </div>
       <div className={classes.cartSummaryBtn}>
-        <Button onClick={openModal}>Оформить заказ</Button>
+        <Button onClick={handleSaveOrder}>Оформить заказ</Button>
       </div>
     </div>
   );
