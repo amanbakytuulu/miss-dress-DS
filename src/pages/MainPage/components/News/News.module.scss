@@ -4,6 +4,8 @@
 .wrapper__news{
     text-align: center;
     margin: 0 auto;
+    padding-bottom: 3%;
+    background-color: $secondary-beige;
     h1{
         font-size: 25px;
     }
@@ -28,6 +30,10 @@
     object-fit: cover;
     background-size: cover;
     background-position: center center;
+
+    &:last-child{
+        margin:3% 3% 0% 3%;
+    }
 }
 
 .date__news{

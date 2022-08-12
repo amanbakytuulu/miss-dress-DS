@@ -8,6 +8,19 @@
   max-height: 2000px;
   display: flex;
 }
+.logoGrid {
+  position: relative;
+  margin-top: 25px !important;
+  & .logoIcon {
+    position: absolute;
+    top: -80px;
+    right: 140px;
+
+    @include lg{
+      right:110px;
+    }
+  }
+}
 .selectDiv {
   width: 35%;
   display: flex;

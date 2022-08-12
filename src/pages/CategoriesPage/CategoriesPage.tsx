@@ -23,6 +23,7 @@ import {
   productGetAllApi,
   useFetchProductsByCategoryQuery,
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 import { Loader } from "../../utils/Loader/Loader";
 
@@ -67,18 +68,15 @@ const CategoryPage = () => {
   if (isError) {
     return <Error />;
   }
-
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Товары", path: "/categories" },
+  ];
   return (
     <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
         <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Товары</Link>
-            </div>
-          </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>

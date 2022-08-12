@@ -1,3 +1,5 @@
+@import "../../styles/vars.scss";
+
 .vector {
   margin-left: 50px;
   cursor: pointer;
@@ -84,7 +86,7 @@
 
 .mainDiv {
   width: 100%;
-  background-color: #fff2e3;
+  background-color: $background-color;
   font-weight: lighter;
   min-height: 80vh !important;
 }

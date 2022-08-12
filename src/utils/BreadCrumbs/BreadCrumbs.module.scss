@@ -1,0 +1,41 @@
+@import "../../styles/mixins.scss";
+
+.breadCrumbs {
+    padding-top: 100px !important;
+    width: 73% !important;
+    margin: 0 auto !important;
+
+    @include x-lg {
+        width: 90% !important;
+    }
+
+    @include xsm-2 {
+        width: 85% !important;
+    }
+
+    & .link,
+    & .text {
+        font-family: "Montserrat";
+        color: black;
+        font-weight: 300;
+        font-size: 1.1rem;
+
+        @include sm {
+            font-size: 0.94rem;
+        }
+        &::after {
+            display: block;
+            content: attr(title);
+            font-weight: bold;
+            overflow: hidden;
+            visibility: hidden;
+            height: 0;
+        }
+    }
+    & .text{
+        font-style:oblique;
+    }
+    & .link:hover {
+        font-weight: 500;
+    }
+}

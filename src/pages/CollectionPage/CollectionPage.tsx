@@ -9,6 +9,7 @@ import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import Select from "../CategoriesPage/components/Select";
 
 import { useFetchProductByCollectionTypeQuery } from "../../store/features/Product/productCategory/productCategoryQuery";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 import { Error } from "../../utils/Error/Error";
 
@@ -31,7 +32,6 @@ const CollectionPage = () => {
     isError,
   } = useFetchProductByCollectionTypeQuery(productsData);
   const categories: CategoryItem[] = data?.result || [];
-  const [currentPage, setCurrentPage] = useState(1);
   const totalCount = categories?.length;
   useEffect(() => {
     setProductsData({
@@ -59,18 +59,17 @@ const CollectionPage = () => {
       </div>
     );
   }
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Товары", path: "/categories" },
+    { title: "Коллекция", path: `${window.location.pathname}` },
+  ];
 
   return (
-    <div className={classes.mainDiv} style={{ marginTop: "20px" }}>
+    <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Коллекция</Link>
-            </div>
-          </Grid>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Коллекция</h2>

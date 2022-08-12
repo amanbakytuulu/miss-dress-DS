@@ -15,6 +15,7 @@ import { useFetchProductFavoritesQuery } from "../../store/features/Product/prod
 import { IItemCard } from "../../components/ProductCard/types";
 import { Loader } from "../../utils/Loader/Loader";
 import { Error } from "../../utils/Error/Error";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
@@ -67,18 +68,16 @@ const FavoritesPage = () => {
       </div>
     );
   }
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Избранное", path: "/favorites" },
+  ];
 
   return (
-    <div className={classes.mainDiv} style={{ marginTop: "22px" }}>
+    <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
         <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Избранное</Link>
-            </div>
-          </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div
               className={classes.selectBlock}

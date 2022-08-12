@@ -1,15 +1,16 @@
 @import "../../../../styles/vars.scss";
 
 .image {
+  background-color: $secondary-beige;
   &__flex {
     background: url(../../../../assets/Main/Subscrube/sub.jpg);
-
     background-repeat: no-repeat;
     background-size: contain;
     display: flex;
     justify-content: flex-end;
     max-width: 1150px;
-    margin: 30px auto;
+    padding-top: 30px;
+    margin: 0px auto;
     height: 750px;
   }
   // &__item {

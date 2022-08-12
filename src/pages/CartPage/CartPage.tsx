@@ -5,6 +5,7 @@ import { ICartList } from "../../types/headerTypes/headerTypes";
 import { Modal } from "../../components";
 import { Loader } from "../../utils/Loader/Loader";
 import { Error } from "../../utils/Error/Error";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 import SuccessOrder from "../../components/Modal/SuccessOrder/SuccessOrder";
 
@@ -39,16 +40,35 @@ const CartPage = () => {
   const closeModal = () => setOpenModal(false);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div
+        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
+      >
+        <Loader />
+      </div>
+    );
   }
 
   if (isError) {
-    return <Error />;
+    return (
+      <div
+        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
+      >
+        <Error />
+      </div>
+    );
   }
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Товары", path: "/categories" },
+    { title: "Корзина", path: "/cart" },
+    { title: "Оформление заказа" },
+  ];
 
   return (
     <>
       <div className={classes.cartPage}>
+        <BreadCrumbs links={links} />
         <div className={`${classes.cartPageWrapper} ${classes.container}`}>
           <div className={classes.cartPageMain}>
             <div className={classes.cartPageOrder}>

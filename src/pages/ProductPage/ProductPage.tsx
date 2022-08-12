@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
@@ -32,6 +32,7 @@ import {
 } from "../../store/features/Cart/cartQuery";
 import { Loader } from "../../utils/Loader/Loader";
 import { Error } from "../../utils/Error/Error";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 import styles from "./ProductPage.module.scss";
 
@@ -59,7 +60,8 @@ const ProductPage: FC = () => {
   // modalFullPhoto
   const { id } = useParams();
   const [changeColor, setChangeColor] = useState(false);
-  const [addProductFavorites] = useAddProductFavoritesMutation();
+  const [addProductFavorites, { isLoading: addFav }] =
+    useAddProductFavoritesMutation();
   const { data: favoriteProducts = [] } = useFetchProductFavoritesQuery("");
   const countFavorites = favoriteProducts.result?.data || [];
   const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
@@ -73,10 +75,12 @@ const ProductPage: FC = () => {
   const allProductsCart = cartProducts?.result?.products || [];
   // getProductCart
   // addProductCart
-  const [addProductToCart] = useAddProductToCartMutation();
+  const [addProductToCart, { isLoading: addLoading }] =
+    useAddProductToCartMutation();
   //addProductCart
   // deleteProductCart
-  const [deleteProductFromCart] = useDeleteProductFromCartMutation();
+  const [deleteProductFromCart, { isLoading: deleteLoading }] =
+    useDeleteProductFromCartMutation();
   // deleteProductCart
   //cart
   const [color, setColors] = useState<IColors[]>([
@@ -118,6 +122,10 @@ const ProductPage: FC = () => {
     }
   }, [productCurrent, allProductsCart]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
   if (isLoading) {
     return (
       <div
@@ -137,11 +145,17 @@ const ProductPage: FC = () => {
       </div>
     );
   }
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Товары", path: "/categories" },
+    { title: productCurrent.title },
+  ];
 
   return (
     <div className={styles.background_container}>
+      <BreadCrumbs links={links} />
       <div className={styles.product_container}>
-        <Grid container spacing={2}>
+        <Grid container>
           <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
             <SwiperVertical
               setUrl={setUrl}
@@ -152,7 +166,6 @@ const ProductPage: FC = () => {
               }
             />
           </Grid>
-
           <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
             <img
               onClick={handleOpen}
@@ -172,12 +185,16 @@ const ProductPage: FC = () => {
               <h3 className={styles.title}>{productCurrent.title}</h3>
               <div className={styles.like_flex}>
                 <p>Артикул: {productCurrent.article}</p>
-                <img
-                  onClick={handleAddFavorite}
-                  src={changeColor ? heartFull : heart}
-                  alt="like"
-                  className={styles.likeIcon}
-                />
+                {addFav ? (
+                  <CircularProgress sx={{ color: "black" }} size="1.7rem" />
+                ) : (
+                  <img
+                    onClick={handleAddFavorite}
+                    src={changeColor ? heartFull : heart}
+                    alt="like"
+                    className={styles.likeIcon}
+                  />
+                )}
               </div>
 
               <p>Количество в линейке: {productCurrent.amount}</p>
@@ -207,11 +224,19 @@ const ProductPage: FC = () => {
                     className={`${styles.btn} ${styles.btn__delete}`}
                     onClick={handleDeleteCart}
                   >
-                    Удалить из корзины
+                    {deleteLoading ? (
+                      <CircularProgress sx={{ color: "white" }} />
+                    ) : (
+                      "Удалить из корзины"
+                    )}
                   </button>
                 ) : (
                   <button className={styles.btn} onClick={handleAddCart}>
-                    Добавить в корзину
+                    {addLoading ? (
+                      <CircularProgress sx={{ color: "white" }} />
+                    ) : (
+                      "Добавить в корзину"
+                    )}
                   </button>
                 )}
               </div>

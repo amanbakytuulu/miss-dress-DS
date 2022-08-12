@@ -17,6 +17,7 @@ import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import { IItemCard } from "../../components/ProductCard/types";
 import { Loader } from "../../utils/Loader/Loader";
 import { Error } from "../../utils/Error/Error";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
@@ -36,7 +37,7 @@ const CollectionProductsPage = () => {
     isError,
   } = useFetchProductByCategoryQuery(productsData);
   const collectionItems: IItemCard[] = data.result?.data || [];
-  const dressType = collectionItems[0]?.category?.title;
+  const dressType = collectionItems[0]?.category?.title || "";
   const dresses: any = [];
   const totalCount = data?.result?.count;
 
@@ -73,11 +74,18 @@ const CollectionProductsPage = () => {
       </div>
     );
   }
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Товары", path: "/categories" },
+    { title: "Коллекция", path: `/collection/${type}` },
+    { title: dressType },
+  ];
 
   return (
     <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
+        <Grid className={classes.mainGrid} container>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
               <Link to="/#">Главная</Link>

@@ -1,12 +1,20 @@
 import { FC } from "react";
 
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+
 import classes from "../DeliveryPage/DeliveryPage.module.scss";
 
 import DeliveryComponents from "./DeliveryComponents/DeliveryComponents";
 
 const DeliveryPage = () => {
+  const links = [
+    { title: "Главная", path: "/" },
+    { title: "Доставка", path: "/delivery" },
+  ];
+
   return (
-    <>
+    <div className={classes.container}>
+      <BreadCrumbs links={links} />
       <div className={classes.deliv}>
         <DeliveryComponents />
         <div className={classes.flex}>
@@ -21,7 +29,7 @@ const DeliveryPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
