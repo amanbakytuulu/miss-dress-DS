@@ -18,11 +18,7 @@ import { city, country, user } from "../../ProfilePage/types/types";
 import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
 
-interface OrderFormProps {
-  totalPrice: number;
-}
-
-const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
+const OrderForm = () => {
   const user: user = JSON.parse(localStorage.getItem("user") || "{}");
   const cities: city[] = JSON.parse(localStorage.getItem("city") || "[]");
   const countries: country[] = JSON.parse(
@@ -149,7 +145,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
                 })}
               </Select> */}
               <select
-                defaultValue={city.title}
+                // defaultValue={city.title}
                 {...register("cityId", {
                   required: "Укажите Город",
                 })}
@@ -164,18 +160,6 @@ const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
                   );
                 })}
               </select>
-              {/* <InputField
-                inputConfig={{
-                  ...register("cityId", {
-                    required: "Укажите Город",
-                  }),
-                }}
-                color={colors.secondary}
-                placeholder={"Город"}
-                type={"text"}
-                value={city}
-                onChange={setCity}
-              /> */}
             </div>
             <div className={classes.orderFormRight}>
               <InputField
@@ -200,7 +184,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
                 })}
               </Select> */}
               <select
-                defaultValue={country.title}
+                // defaultValue={country.title}
                 {...register("countryId", {
                   required: "Укажите Страну",
                 })}
@@ -215,21 +199,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ totalPrice }) => {
                   );
                 })}
               </select>
-              {/* <InputField
-                inputConfig={{
-                  ...register("countryId", {
-                    required: "Укажите Страну",
-                  }),
-                }}
-                color={colors.secondary}
-                placeholder={"Страна"}
-                type={"text"}
-                value={country}
-                onChange={setCountry}
-              /> */}
-              <Button type="submit" disabled={totalPrice === 0 ? true : false}>
-                Сохранить
-              </Button>
+              <Button type="submit">Сохранить</Button>
             </div>
           </div>
           {!isValid && (

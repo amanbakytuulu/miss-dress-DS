@@ -12,18 +12,16 @@ import classes from "./CartSummary.module.scss";
 interface CartSummaryProps {
   openModal: () => void;
   totalPrice: number;
-  thisCart:
-    | {
-        id: number;
-        status: number;
-        createDate: string;
-        updateDate: string;
-        amount: number;
-        price: number;
-        proceedStatus: number;
-        products: Products[];
-      }
-    | undefined;
+  thisCart: {
+    id: number;
+    status: number;
+    createDate: string;
+    updateDate: string;
+    amount: number;
+    price: number;
+    proceedStatus: number;
+    products: Products[];
+  } | null;
 }
 
 const CartSummary: FC<CartSummaryProps> = ({
@@ -41,7 +39,6 @@ const CartSummary: FC<CartSummaryProps> = ({
       cartId: thisCart!.id,
       contactInfoId: Number(contactId),
     };
-    console.log("body", body);
     openModal();
     saveOrder(body);
   };

@@ -1,8 +1,8 @@
+@import "../../styles/vars.scss";
 @import "src/index";
 
 .cartPage {
-  background-color: $background-color;
-
+  background-color: $beige-background;
   .cartPageOrder {
     width: 100%;
     margin-bottom: 30px;
@@ -16,7 +16,6 @@
     font-size: 1.3em;
   }
 }
-
 
 .cartPageMain {
   width: 100%;

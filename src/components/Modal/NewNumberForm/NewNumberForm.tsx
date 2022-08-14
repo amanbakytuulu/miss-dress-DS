@@ -23,8 +23,7 @@ const NewNumberForm: FC = () => {
   const [isContinue, setContinue] = useState<boolean>(false);
   const [isetUser, setUserEnter] = useState<boolean>(true);
   const [addPhone, { data: phoneData = [], isSuccess }] = useAddPhoneMutation();
-  const [updatePhone, { data: updatePhoneData = [] }] =
-    useUpdatePhoneMutation();
+  const [updatePhone] = useUpdatePhoneMutation();
   const [getSms, { data: sms = null, isSuccess: smsSuccess }] =
     useLazyGetSmsCodeQuery();
   const {

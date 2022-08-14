@@ -2,12 +2,12 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 
-export function Error() {
+import classes from "./Error.module.scss";
+
+export function Error({ center }: { center?: string }) {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", margin: "10px 0px" }}>
-      <Typography sx={{ color: "#372e24", fontSize: "1.7rem" }}>
-        Проблема со сервером!
-      </Typography>
+    <Box className={`${classes.error} ${center ? classes.center : ""}`}>
+      <Typography className={classes.text}>Проблема со сервером!</Typography>
     </Box>
   );
 }

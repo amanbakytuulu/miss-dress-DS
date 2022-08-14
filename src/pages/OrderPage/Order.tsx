@@ -14,7 +14,7 @@ import { Error } from "../../utils/Error/Error";
 import styles from "./Order.module.scss";
 
 const OrderPage: FC = () => {
-  const { data, isLoading, isError } = useGetOrderQuery("");
+  const { data, isLoading } = useGetOrderQuery("");
   const products = data?.result[0].cart.products || [];
   const orders = data?.result || [];
 

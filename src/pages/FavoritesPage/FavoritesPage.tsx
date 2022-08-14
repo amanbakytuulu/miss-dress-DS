@@ -50,29 +50,13 @@ const FavoritesPage = () => {
   }, [sort]);
 
   if (isLoading) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Loader />
-      </div>
-    );
+    return <Loader center="center" />;
   }
 
-  if (isError) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Error />
-      </div>
-    );
-  }
   const links = [
     { title: "Главная", path: "/" },
     { title: "Избранное", path: "/favorites" },
   ];
-
   return (
     <div className={classes.mainDiv}>
       <BreadCrumbs links={links} />

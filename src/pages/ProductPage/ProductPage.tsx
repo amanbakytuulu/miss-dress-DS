@@ -94,11 +94,17 @@ const ProductPage: FC = () => {
   ]);
 
   const handleAddFavorite = async () => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
     await addProductFavorites(productCurrent);
     setChangeColor(!changeColor);
   };
 
   const handleAddCart = async () => {
+    if (!localStorage.getItem("accessToken")) {
+      return;
+    }
     await addProductToCart(productCurrent);
   };
 
@@ -127,23 +133,11 @@ const ProductPage: FC = () => {
   }, [id]);
 
   if (isLoading) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Loader />
-      </div>
-    );
+    return <Loader center="center" />;
   }
 
   if (isError) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Error />
-      </div>
-    );
+    return <Error center="center" />;
   }
   const links = [
     { title: "Главная", path: "/" },
@@ -185,16 +179,12 @@ const ProductPage: FC = () => {
               <h3 className={styles.title}>{productCurrent.title}</h3>
               <div className={styles.like_flex}>
                 <p>Артикул: {productCurrent.article}</p>
-                {addFav ? (
-                  <CircularProgress sx={{ color: "black" }} size="1.7rem" />
-                ) : (
-                  <img
-                    onClick={handleAddFavorite}
-                    src={changeColor ? heartFull : heart}
-                    alt="like"
-                    className={styles.likeIcon}
-                  />
-                )}
+                <img
+                  onClick={handleAddFavorite}
+                  src={changeColor ? heartFull : heart}
+                  alt="like"
+                  className={styles.likeIcon}
+                />
               </div>
 
               <p>Количество в линейке: {productCurrent.amount}</p>

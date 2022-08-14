@@ -33,46 +33,36 @@ const CartPage = () => {
     isLoading,
     isError,
   } = useGetProductFromCardQuery();
-  const thisCart = productsCart?.result;
+  const thisCart = productsCart?.result || null;
   const allProductsCart = productsCart?.result?.products || [];
   const totalPrice = productsCart?.result?.price || 0;
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
 
   if (isLoading) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Loader />
-      </div>
-    );
+    return <Loader center="center" />;
   }
+  // if (isError) {
+  //   return <Error center="center" />;
+  // }
 
-  if (isError) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Error />
-      </div>
-    );
-  }
   const links = [
     { title: "Главная", path: "/" },
     { title: "Товары", path: "/categories" },
     { title: "Корзина", path: "/cart" },
     { title: "Оформление заказа" },
   ];
-
   return (
     <>
-      <div className={classes.cartPage}>
+      <div
+        className={classes.cartPage}
+        style={totalPrice === 0 ? { paddingBottom: "120px" } : {}}
+      >
         <BreadCrumbs links={links} />
         <div className={`${classes.cartPageWrapper} ${classes.container}`}>
           <div className={classes.cartPageMain}>
             <div className={classes.cartPageOrder}>
-              <OrderForm totalPrice={totalPrice} />
+              <OrderForm />
             </div>
             <h3 className={classes.cartPageListTitle}>Состав заказа</h3>
             <CartList cartList={allProductsCart} />

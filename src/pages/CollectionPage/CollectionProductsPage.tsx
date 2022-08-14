@@ -56,23 +56,11 @@ const CollectionProductsPage = () => {
   }, [sort]);
 
   if (isLoading) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Loader />
-      </div>
-    );
+    return <Loader center="center" />;
   }
 
   if (isError) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Error />
-      </div>
-    );
+    return <Error center="center" />;
   }
   const links = [
     { title: "Главная", path: "/" },
@@ -86,20 +74,12 @@ const CollectionProductsPage = () => {
       <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
         <Grid className={classes.mainGrid} container>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Товары</Link>
-            </div>
-          </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>{dressType}</h2>
               <Select setSort={setSort} />
             </div>
           </Grid>
-
           <Grid container spacing={4}>
             {collectionItems.length > 0 ? (
               collectionItems.map((item, index) => (

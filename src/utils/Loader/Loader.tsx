@@ -2,9 +2,11 @@ import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-export function Loader() {
+import classes from "./Loader.module.scss";
+
+export function Loader({ center }: { center?: string }) {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", margin: "10px 0px" }}>
+    <Box className={`${classes.loader} ${center ? classes.center : ""}`}>
       <CircularProgress sx={{ color: "#372e24" }} />
     </Box>
   );

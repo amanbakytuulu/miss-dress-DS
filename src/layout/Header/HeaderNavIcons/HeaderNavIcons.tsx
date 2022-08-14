@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
@@ -13,8 +13,6 @@ import HeaderNavProfile from "../HeaderNavProfile/HeaderNavProfile";
 
 import SearchInput from "../../../components/SearchInput/SearchInput";
 
-import EmptyCart from "../components/EmptyCart/EmptyCart";
-
 import { ICartList } from "../../../types/headerTypes/headerTypes";
 import {
   CART_LIST,
@@ -23,7 +21,6 @@ import {
   SEARCH,
 } from "../../../utils/helpers/modalHelper";
 
-// import CartList from "../components/CartList/CartList";
 import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
 
 import { useGetProductFromCardQuery } from "../../../store/features/Cart/cartQuery";

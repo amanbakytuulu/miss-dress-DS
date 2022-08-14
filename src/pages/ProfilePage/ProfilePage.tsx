@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ReactComponent as LogoIcon } from "../../assets/icons/logoIcon.svg";
 import mainImage from "../../assets/profilePage/image.png";
@@ -13,9 +13,17 @@ import classes from "./style.module.scss";
 import FormComponent from "./components/FormComponent";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const [isModalOpen, setOpenModal] = useState(false);
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/");
+    }
+  }, []);
+
   const links = [
     { title: "Главная", path: "/" },
     { title: "Профиль", path: "/profile" },

@@ -41,23 +41,11 @@ const CollectionPage = () => {
   }, [page]);
 
   if (isLoading) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Loader />
-      </div>
-    );
+    return <Loader center="center" />;
   }
 
   if (isError) {
-    return (
-      <div
-        style={{ paddingTop: "20%", minHeight: "70vh", background: "#fff2e3" }}
-      >
-        <Error />
-      </div>
-    );
+    return <Error center="center" />;
   }
   const links = [
     { title: "Главная", path: "/" },

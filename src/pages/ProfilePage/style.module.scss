@@ -1,12 +1,15 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/vars.scss";
+
 .mainDiv {
-  background-color: #fff2e3;
+  background-color: $beige-background;
   width: 100%;
 }
 .mainContainer {
   width: 100%;
   max-height: 2000px;
   display: flex;
+  padding-bottom: 100px;
 }
 .logoGrid {
   position: relative;
@@ -16,8 +19,8 @@
     top: -80px;
     right: 140px;
 
-    @include lg{
-      right:110px;
+    @include lg {
+      right: 110px;
     }
   }
 }

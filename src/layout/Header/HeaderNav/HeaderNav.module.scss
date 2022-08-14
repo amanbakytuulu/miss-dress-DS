@@ -24,6 +24,24 @@
 
   li a {
     color: $black-text;
+
+    &.link_active {
+      color: black;
+      font-weight: 600;
+    }
+
+    &::after {
+      display: block;
+      content: attr(title);
+      font-weight: 600;
+      overflow: hidden;
+      visibility: hidden;
+      height: 0;
+    }
+    &:hover {
+      color: black;
+      font-weight: 600;
+    }
   }
 
   @include md {
