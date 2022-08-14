@@ -76,7 +76,7 @@ const CategoryPage = () => {
     <div className={classes.mainDiv}>
       <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>
@@ -97,7 +97,9 @@ const CategoryPage = () => {
             <SideBar setCategory={setCategory} />
           </Grid>
           {isLoading ? (
-            <Loader />
+            <div style={{ margin: "0 auto" }}>
+              <Loader />
+            </div>
           ) : (
             <>
               <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>

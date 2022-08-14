@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+
 import ProductsPage from "./Products/ProductsPage";
 
 import { MainSwiper } from "./swiper/Swiper";
@@ -9,6 +11,9 @@ import Collections from "./components/Collections/Collections";
 import SubscrubeContainer from "./components/SubscrubeContainer/SubscrubeContainer";
 
 const MainPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={styles.container}>
       <MainSwiper />

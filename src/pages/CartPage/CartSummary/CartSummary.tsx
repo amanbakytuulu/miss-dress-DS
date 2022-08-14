@@ -58,7 +58,12 @@ const CartSummary: FC<CartSummaryProps> = ({
         </p>
       </div>
       <div className={classes.cartSummaryBtn}>
-        <Button onClick={handleSaveOrder}>Оформить заказ</Button>
+        <Button
+          onClick={handleSaveOrder}
+          disabled={totalPrice === 0 ? true : false}
+        >
+          Оформить заказ
+        </Button>
       </div>
     </div>
   );

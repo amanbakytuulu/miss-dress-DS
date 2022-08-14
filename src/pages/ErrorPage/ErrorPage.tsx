@@ -6,10 +6,7 @@ import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 import classes from "./style.module.scss";
 
 const ErrorPage = () => {
-  const links = [
-    { title: "Главная", path: "/" },
-    { title: "Профиль", path: "/profile" },
-  ];
+  const links = [{ title: "Главная", path: "/" }, { title: "Страница ошибки" }];
 
   return (
     <div className={classes.mainDiv}>

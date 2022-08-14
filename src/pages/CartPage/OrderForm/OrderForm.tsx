@@ -1,8 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
-
 import { Button, InputField } from "../../../components/common";
 import { colors } from "../../../types/modalTypes/inputTypes";
 import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
@@ -23,6 +21,9 @@ const OrderForm = () => {
   const cities: city[] = JSON.parse(localStorage.getItem("city") || "[]");
   const countries: country[] = JSON.parse(
     localStorage.getItem("country") || "[]"
+  );
+  const [disable] = useState<boolean>(
+    localStorage.getItem("accessToken") ? false : true
   );
   const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
   const [updateContactInfo] = useUpdateContactInfoMutation();
@@ -150,6 +151,7 @@ const OrderForm = () => {
                   required: "Укажите Город",
                 })}
                 onChange={handleChangeCity}
+                disabled={disable}
               >
                 {cities.map((item, index) => {
                   return (
@@ -189,6 +191,7 @@ const OrderForm = () => {
                   required: "Укажите Страну",
                 })}
                 onChange={handleChangeCountry}
+                disabled={disable}
               >
                 {countries.map((item, index) => {
                   return (
@@ -199,7 +202,9 @@ const OrderForm = () => {
                   );
                 })}
               </select>
-              <Button type="submit">Сохранить</Button>
+              <Button disabled={disable} type="submit">
+                Сохранить
+              </Button>
             </div>
           </div>
           {!isValid && (

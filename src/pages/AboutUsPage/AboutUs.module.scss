@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import "src/index";
+
 .main_container {
-  background-color: #fff2e3;
+  background: $beige-background;
   width: 100vw;
   height: 100%;
   .container {

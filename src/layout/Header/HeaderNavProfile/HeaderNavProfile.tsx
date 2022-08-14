@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { ORDERS_PAGE, PROFILE_PAGE } from "../../../utils/path";
+import { ADMIN_PAGE, ORDERS_PAGE, PROFILE_PAGE } from "../../../utils/path";
 
 import classes from "./HeaderNavProfile.module.scss";
 
@@ -15,11 +15,23 @@ const navs = [
     path: ORDERS_PAGE,
   },
   {
+    title: "Админ",
+    path: ADMIN_PAGE,
+    role: "SUPER_ADMIN",
+  },
+  {
     title: "Выйти",
   },
 ];
 
-const HeaderNavProfile = ({ setUserEnter }: any) => {
+interface HeaderNavProfileProps {
+  setUserEnter: (user: boolean) => void;
+}
+
+const HeaderNavProfile: React.FC<HeaderNavProfileProps> = ({
+  setUserEnter,
+}) => {
+  const user = JSON.parse(localStorage.getItem("user") || "");
   const handleRemoveToken = () => {
     if (localStorage.getItem("accessToken")) {
       localStorage.removeItem("accessToken");
@@ -30,14 +42,15 @@ const HeaderNavProfile = ({ setUserEnter }: any) => {
       setUserEnter(false);
     }
   };
-
   return (
     <div className={classes.headerProfileNav}>
       <ul>
         {navs.map((nav) => {
           return (
             <li key={nav.title}>
-              {nav?.path ? (
+              {nav.role && nav.role === user.role ? (
+                <Link to={nav.path}>{nav.title}</Link>
+              ) : nav.path ? (
                 <Link to={nav.path}>{nav.title}</Link>
               ) : (
                 <button onClick={handleRemoveToken}>{nav.title}</button>
