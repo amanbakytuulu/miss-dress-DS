@@ -59,8 +59,8 @@ const FavoritesPage = () => {
     <div className={classes.mainDiv}>
       <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container>
-          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
+        <Grid className={classes.mainGrid} container spacing={5}>
+          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12} sx={{marginTop: "35px"}}>
             <div
               className={classes.selectBlock}
               style={{ display: "flex", justifyContent: "space-between" }}
