@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
 
-import classes from "../CategoriesPage/CategoryPage.module.scss";
-
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { FAVORITES_PAGE, MAIN_PAGE } from "../../utils/path";
@@ -14,6 +12,8 @@ import { useFetchProductFavoritesQuery } from "../../store/features/Product/prod
 import { IItemCard } from "../../components/ProductCard/types";
 import { Loader } from "../../utils/Loader/Loader";
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+
+import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";

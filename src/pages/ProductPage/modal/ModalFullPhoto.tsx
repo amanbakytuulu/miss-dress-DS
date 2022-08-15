@@ -4,7 +4,17 @@ import { CardMedia } from "@mui/material";
 
 import classes from "./ModalFullPhoto.module.scss";
 
-export default function ModalFullPhoto({ handleClose, open, photo }: any) {
+interface ModalFullPhotoProps {
+  handleClose: (close: boolean) => void;
+  open: boolean;
+  photo: string;
+}
+
+export default function ModalFullPhoto({
+  handleClose,
+  open,
+  photo,
+}: ModalFullPhotoProps) {
   return (
     <div>
       <Modal

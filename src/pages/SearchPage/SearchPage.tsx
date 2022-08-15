@@ -1,18 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+
 import { useParams } from "react-router-dom";
-
-import fifthImg from "../../assets/mainPage/news/forth.png";
-import fillIcon from "../../assets/mainPage/icons/fill.svg";
-import start from "../../assets/mainPage/icons/Vector.svg";
-import heart from "../../assets/mainPage/icons/heart.svg";
-import sixImg from "../../assets/mainPage/news/fifth.png";
-import firstImg from "../../assets/mainPage/news/first.png";
-import thirdImg from "../../assets/mainPage/news/third.png";
-import forthImg from "../../assets/mainPage/news/six.png";
-import secondImg from "../../assets/mainPage/news/second.png";
-
-import { Pagination } from "../../components";
 
 import {
   useFetchProductBytitleQuery,
@@ -21,9 +9,9 @@ import {
 
 import SearchList from "./components/SearchList/SearchList";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
+import OthersProducts from "./components/OthersProducts/OthersProducts";
 
 import classes from "./SearchPage.module.scss";
-import OthersProducts from "./components/OthersProducts/OthersProducts";
 
 const SearchPage = () => {
   const { title } = useParams<string>();

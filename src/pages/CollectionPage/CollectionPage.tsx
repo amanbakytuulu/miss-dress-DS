@@ -6,14 +6,12 @@ import { useParams } from "react-router-dom";
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-import Select from "../CategoriesPage/components/Select";
 
 import { useFetchProductByCollectionTypeQuery } from "../../store/features/Product/productCategory/productCategoryQuery";
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import { Error } from "../../utils/Error/Error";
-
 import { Loader } from "../../utils/Loader/Loader";
 
 import { CategoryItem } from "./types/types";

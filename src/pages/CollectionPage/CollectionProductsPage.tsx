@@ -39,8 +39,11 @@ const CollectionProductsPage = () => {
   } = useFetchProductByCategoryQuery(productsData);
   const collectionItems: IItemCard[] = data.result?.data || [];
   const dressType = collectionItems[0]?.category?.title || "";
-  const dresses: any = [];
   const totalCount = data?.result?.count;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     setProductsData({

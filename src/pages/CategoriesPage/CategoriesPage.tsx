@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 
@@ -16,7 +15,6 @@ import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import { Loader } from "../../utils/Loader/Loader";
-
 import { Error } from "../../utils/Error/Error";
 
 import CategoriesDropdown from "./components/CategoriesDropdown";

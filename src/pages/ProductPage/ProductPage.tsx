@@ -4,17 +4,20 @@ import { CircularProgress, Grid } from "@mui/material";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
-
+import "swiper/css";
+import "swiper/css/navigation";
+import Icon from "react-icons-kit";
+import { Link, useParams } from "react-router-dom";
 import { caretLeft } from "react-icons-kit/fa/caretLeft";
 import { caretRight } from "react-icons-kit/fa/caretRight";
-import Icon from "react-icons-kit";
-import { useParams } from "react-router-dom";
-
-import { Link } from "react-router-dom";
 
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import heart from "../../assets/mainPage/icons/heart.svg";
 import mainDress from "../../assets/ProductPage/mainDress.png";
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
+
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 
@@ -30,17 +33,11 @@ import {
   useDeleteProductFromCartMutation,
   useGetProductFromCardQuery,
 } from "../../store/features/Cart/cartQuery";
-import { Loader } from "../../utils/Loader/Loader";
-import { Error } from "../../utils/Error/Error";
-import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
-import styles from "./ProductPage.module.scss";
-
+import ModalFullPhoto from "./modal/ModalFullPhoto";
 import SwiperVertical from "./SwiperVertical";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import ModalFullPhoto from "./modal/ModalFullPhoto";
+import styles from "./ProductPage.module.scss";
 
 interface IColors {
   id: number;
@@ -60,10 +57,9 @@ const ProductPage: FC = () => {
   // modalFullPhoto
   const { id } = useParams();
   const [changeColor, setChangeColor] = useState(false);
-  const [addProductFavorites, { isLoading: addFav }] =
-    useAddProductFavoritesMutation();
+  const [addProductFavorites] = useAddProductFavoritesMutation();
   const { data: favoriteProducts = [] } = useFetchProductFavoritesQuery("");
-  const countFavorites = favoriteProducts.result?.data || [];
+  const countFavorites: IItemCard[] = favoriteProducts.result?.data || [];
   const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
   const productCurrent: IItemCard = product?.result || {};
   const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
@@ -71,7 +67,7 @@ const ProductPage: FC = () => {
   //cart
   // getProductCart
   const [added, setAdd] = useState<boolean>(false);
-  const { data: cartProducts = {}, isSuccess } = useGetProductFromCardQuery();
+  const { data: cartProducts = {} } = useGetProductFromCardQuery();
   const allProductsCart = cartProducts?.result?.products || [];
   // getProductCart
   // addProductCart
@@ -83,7 +79,7 @@ const ProductPage: FC = () => {
     useDeleteProductFromCartMutation();
   // deleteProductCart
   //cart
-  const [color, setColors] = useState<IColors[]>([
+  const [color] = useState<IColors[]>([
     { id: 0, color: "#000000" },
     { id: 1, color: "#B89981" },
     { id: 2, color: "#25B133" },
@@ -114,9 +110,7 @@ const ProductPage: FC = () => {
 
   useEffect(() => {
     if (countFavorites.length !== 0) {
-      setChangeColor(
-        countFavorites.some((el: any) => el.id === productCurrent.id)
-      );
+      setChangeColor(countFavorites.some((el) => el.id === productCurrent.id));
     }
   }, [productCurrent, countFavorites]);
 
@@ -144,7 +138,6 @@ const ProductPage: FC = () => {
     { title: "Товары", path: "/categories" },
     { title: productCurrent.title },
   ];
-
   return (
     <div className={styles.background_container}>
       <BreadCrumbs links={links} />

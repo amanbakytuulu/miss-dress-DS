@@ -38,9 +38,15 @@
     }
 }
 
+@media screen and (max-width: 1800px) {
+    .breadCrumbs {
+        width: 74% !important;
+    }
+}
+
 @media screen and (max-width: 1590px) {
     .breadCrumbs {
-        width: 79% !important;
+        width: 83.5% !important;
     }
 }
 

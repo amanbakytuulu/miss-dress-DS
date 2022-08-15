@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -12,7 +12,6 @@ import { caretLeft } from "react-icons-kit/fa/caretLeft";
 import { caretRight } from "react-icons-kit/fa/caretRight";
 
 import { Images } from "../../components/ProductCard/types";
-import mainDress from "../../assets/ProductPage/mainDress.png";
 
 import styles from "./ProductPage.module.scss";
 import { dressDatabase } from "./productDb";

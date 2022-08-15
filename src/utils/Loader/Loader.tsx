@@ -4,10 +4,21 @@ import Box from "@mui/material/Box";
 
 import classes from "./Loader.module.scss";
 
-export function Loader({ center }: { center?: string }) {
+interface LoaderProps {
+  center?: string;
+  color?: string;
+  size?: string;
+}
+
+export function Loader({ center, color, size }: LoaderProps) {
   return (
     <Box className={`${classes.loader} ${center ? classes.center : ""}`}>
-      <CircularProgress sx={{ color: "#372e24" }} />
+      <CircularProgress
+        size={size ? size : "40px"}
+        sx={{
+          color: color ? color : "#372e24",
+        }}
+      />
     </Box>
   );
 }
