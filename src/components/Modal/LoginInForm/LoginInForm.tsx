@@ -7,6 +7,7 @@ import VerificationForm from "../VerificationForm/VerificationForm";
 import { userLoginInSuccess } from "../../../utils/modalSuccessConstructor";
 
 import { InputField, Button } from "../../common";
+import { Loader } from "../../../utils/Loader/Loader";
 
 import {
   useLazyGetSmsCodeQuery,
@@ -28,7 +29,8 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
   const [isContinue, setContinue] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
 
-  const [login, { data: loginData = null, isSuccess }] = useUserLoginMutation();
+  const [login, { data: loginData = null, isSuccess, isLoading, error }] =
+    useUserLoginMutation();
   const [getSms, { data: sms = null, isSuccess: isSmsSuccess }] =
     useLazyGetSmsCodeQuery();
 
@@ -42,12 +44,11 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
     setPhoneNumber(value);
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     login({
       phoneNumber: phoneNumber,
     });
   };
-
   useEffect(() => {
     if (isSuccess) {
       const id = loginData.result?.id;
@@ -61,7 +62,6 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
       setContinue(true);
     }
   }, [sms]);
-
   return (
     <>
       {!isContinue ? (
@@ -90,7 +90,10 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
               />
             </div>
             <div className={classes.modalButtonBlock}>
-              <Button type={"submit"}>Войти</Button>
+              <Button type={"submit"}>
+                {isLoading ? <Loader color="#fff" size="20px" /> : "Войти"}
+              </Button>
+              ``
             </div>
             <button
               className={classes.modalButtonSignIn}
@@ -101,6 +104,9 @@ const LoginInForm: FC<LoginInFormProps> = ({ setSignIn, setUserEnter }) => {
           </div>
           <div className={classes.modalError}>
             {errors.phoneNumber && <span>{errors?.phoneNumber?.message}</span>}
+            {!errors.phoneNumber && error ? (
+              <span style={{ color: "red" }}>Неверный номер!</span>
+            ) : null}
           </div>
         </form>
       ) : (

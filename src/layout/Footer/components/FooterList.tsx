@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { IFooterItems } from "../../../types/FooterTypes/FooterTypes";
-import { ABOUT_PAGE, CONTACTS_PAGE } from "../../../utils/path";
+import {
+  ABOUT_PAGE,
+  CONTACTS_PAGE,
+  DELIVERY_PAGE,
+  MAKEORDER_PAGE,
+  OFFERT_PAGE,
+  PAYMENT_PAGE,
+  QUESTION_PAGE,
+  REQUISITE_PAGE,
+  RETURN_PRODUCT,
+} from "../../../utils/path";
 
 import classes from "../style.module.scss";
 
@@ -13,15 +23,15 @@ const FooterList = () => {
     },
     {
       title: "Как сделать заказ",
-      path: "/make_order",
+      path: MAKEORDER_PAGE,
     },
     {
       title: "Способы оплаты",
-      path: "/payment",
+      path: PAYMENT_PAGE,
     },
     {
       title: "Доставка",
-      path: "/delivery",
+      path: DELIVERY_PAGE,
     },
   ];
 
@@ -31,15 +41,15 @@ const FooterList = () => {
     },
     {
       title: "Возврат товара",
-      path: "/backProduct",
+      path: RETURN_PRODUCT,
     },
     {
       title: "Вопросы и ответы",
-      path: "/questions",
+      path: QUESTION_PAGE,
     },
     {
       title: "Публичная оферта",
-      path: "/offert",
+      path: OFFERT_PAGE,
     },
   ];
 
@@ -53,7 +63,7 @@ const FooterList = () => {
     },
     {
       title: "Реквизиты",
-      path: "/requisite",
+      path: REQUISITE_PAGE,
     },
     {
       title: "Контакты",

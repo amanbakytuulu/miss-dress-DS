@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button, InputField } from "../../../components/common";
@@ -8,6 +8,7 @@ import { IOrderFormValues } from "../../../types/cartPageTypes/orderFormTypes";
 import {
   contactInfoApi,
   useAddContactInfoMutation,
+  useUpdateContactInfoMutation,
 } from "../../../store/features/Contact/ContactInfoQuery";
 
 import { city, country, user } from "../../ProfilePage/types/types";
@@ -16,21 +17,22 @@ import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
 
 const OrderForm = () => {
+  const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
+  const [updateContactInfo] = useUpdateContactInfoMutation();
   const user: user = JSON.parse(localStorage.getItem("user") || "{}");
   const cities: city[] = JSON.parse(localStorage.getItem("city") || "[]");
   const countries: country[] = JSON.parse(
     localStorage.getItem("country") || "[]"
   );
-  const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
+  const [disable] = useState<boolean>(
+    localStorage.getItem("accessToken") ? false : true
+  );
   const [isSaved, setSaved] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
-  const [city, setCity] = useState((cities[0] && cities[0].title) || "");
-  const [country, setCountry] = useState(
-    (countries[0] && countries[0].title) || ""
-  );
-
+  const [city, setCity] = useState<city>(cities[0]);
+  const [country, setCountry] = useState<country>(countries[0]);
   const [orderFormValues, setInputFormValues] =
     useState<IOrderFormValues | null>(null);
   const {
@@ -39,16 +41,50 @@ const OrderForm = () => {
     handleSubmit,
   } = useForm<IOrderFormValues>({ mode: "onBlur" });
 
+  const handleChangeCity = (event: ChangeEvent<HTMLSelectElement>) => {
+    const index: any = event.target.value;
+    setCity(cities[index]);
+  };
+
+  const handleChangeCountry = (event: ChangeEvent<HTMLSelectElement>) => {
+    const index: any = event.target.value;
+    setCountry(countries[index]);
+  };
+
   const onSubmit = async (data: IOrderFormValues) => {
-    await addContactInfo({
-      firstName,
-      lastName,
-      phoneNumber,
-      cityId: cities && cities[0].id,
-      countryId: countries && countries[0].id,
-    });
-    setSaved(true);
-    setInputFormValues(data);
+    if (localStorage.getItem("contactInfoId") === "undefined") {
+      await addContactInfo({
+        firstName,
+        lastName,
+        phoneNumber,
+        cityId: city.id,
+        countryId: country.id,
+      });
+      setSaved(true);
+      setInputFormValues({
+        ...data,
+        cityId: city.title,
+        countryId: country.title,
+      });
+    } else {
+      const id = JSON.parse(localStorage.getItem("contactInfoId") || "");
+      await updateContactInfo({
+        data: {
+          firstName,
+          lastName,
+          phoneNumber,
+          cityId: city.id,
+          countryId: country.id,
+        },
+        id,
+      });
+      setSaved(true);
+      setInputFormValues({
+        ...data,
+        cityId: city.title,
+        countryId: country.title,
+      });
+    }
   };
 
   useEffect(() => {
@@ -100,18 +136,32 @@ const OrderForm = () => {
                 value={phoneNumber}
                 onChange={setPhoneNumber}
               />
-              <InputField
-                inputConfig={{
-                  ...register("cityId", {
-                    required: "Укажите Город",
-                  }),
-                }}
-                color={colors.secondary}
-                placeholder={"Город"}
-                type={"text"}
-                value={city}
-                onChange={setCity}
-              />
+              {/* <Select
+                className={classes.select}
+                defaultValue={city.title}
+                onChange={handleChangeCity}
+              >
+                {cities.map((item, index) => {
+                  return <MenuItem key={item.id} value={index}> {item.title}</MenuItem>
+                })}
+              </Select> */}
+              <select
+                // defaultValue={city.title}
+                {...register("cityId", {
+                  required: "Укажите Город",
+                })}
+                onChange={handleChangeCity}
+                disabled={disable}
+              >
+                {cities.map((item, index) => {
+                  return (
+                    <option key={item.id} value={index}>
+                      {" "}
+                      {item.title}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
             <div className={classes.orderFormRight}>
               <InputField
@@ -126,19 +176,35 @@ const OrderForm = () => {
                 value={lastName}
                 onChange={setLastName}
               />
-              <InputField
-                inputConfig={{
-                  ...register("countryId", {
-                    required: "Укажите Страну",
-                  }),
-                }}
-                color={colors.secondary}
-                placeholder={"Страна"}
-                type={"text"}
-                value={country}
-                onChange={setCountry}
-              />
-              <Button type="submit">Сохранить</Button>
+              {/* <Select
+                className={classes.select}
+                defaultValue={country.title}
+                onChange={handleChangeCountry}
+              >
+                {countries.map((item, index) => {
+                  return <MenuItem key={item.id} value={index}> {item.title}</MenuItem>
+                })}
+              </Select> */}
+              <select
+                // defaultValue={country.title}
+                {...register("countryId", {
+                  required: "Укажите Страну",
+                })}
+                onChange={handleChangeCountry}
+                disabled={disable}
+              >
+                {countries.map((item, index) => {
+                  return (
+                    <option key={item.id} value={index}>
+                      {" "}
+                      {item.title}
+                    </option>
+                  );
+                })}
+              </select>
+              <Button disabled={disable} type="submit">
+                Сохранить
+              </Button>
             </div>
           </div>
           {!isValid && (

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { CART_PAGE, FAVORITES_PAGE } from "../../../utils/path";
@@ -13,9 +13,6 @@ import HeaderNavProfile from "../HeaderNavProfile/HeaderNavProfile";
 
 import SearchInput from "../../../components/SearchInput/SearchInput";
 
-import EmptyCart from "../components/EmptyCart/EmptyCart";
-
-import { ICartList } from "../../../types/headerTypes/headerTypes";
 import {
   CART_LIST,
   MODAL,
@@ -23,7 +20,6 @@ import {
   SEARCH,
 } from "../../../utils/modalHelper";
 
-// import CartList from "../components/CartList/CartList";
 import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
 
 import { useGetProductFromCardQuery } from "../../../store/features/Cart/cartQuery";
@@ -36,15 +32,6 @@ interface HeaderNavIconsProps {
   toggleCurrent: (value: string) => () => void;
   setUserEnter: any;
 }
-
-const arr: ICartList[] = [
-  {
-    title: "name",
-  },
-  {
-    title: "name",
-  },
-];
 
 const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   isUserEnter,

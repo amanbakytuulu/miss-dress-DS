@@ -10,11 +10,15 @@ import {
   productGetAllApi,
   useFetchProductByCategoryQuery,
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import { IItemCard } from "../../components/ProductCard/types";
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 const CollectionProductsPage = () => {
   const btnTitle = "Открыть";
@@ -28,11 +32,20 @@ const CollectionProductsPage = () => {
     page: 1,
     sort: "createDate",
   });
-  const { data = [] } = useFetchProductByCategoryQuery(productsData);
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useFetchProductByCategoryQuery(productsData);
   const collectionItems: IItemCard[] = data.result?.data || [];
-  const dressType = collectionItems[0]?.category?.title;
-  const dresses: any = [];
+  const dressType = collectionItems[0]?.category?.title || "";
   const totalCount = data?.result?.count;
+
+  useEffect(() => {
+    if (!isLoading) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     setProductsData({
@@ -48,24 +61,31 @@ const CollectionProductsPage = () => {
     });
   }, [sort]);
 
+  if (isLoading) {
+    return <Loader center="center" />;
+  }
+
+  if (isError) {
+    return <Error center="center" />;
+  }
+  const links = [
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
+    { title: "Коллекция", path: `/collection/${type}` },
+    { title: dressType },
+  ];
+
   return (
     <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Товары</Link>
-            </div>
-          </Grid>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>{dressType}</h2>
               <Select setSort={setSort} />
             </div>
           </Grid>
-
           <Grid container spacing={4}>
             {collectionItems.length > 0 ? (
               collectionItems.map((item, index) => (

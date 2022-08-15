@@ -10,7 +10,6 @@
     object-fit: contain !important;
     border: none;
     outline: none;
-
     @include xsm-2 {
         width: 100% !important;
         max-height: 600px;

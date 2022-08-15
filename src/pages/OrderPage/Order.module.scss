@@ -4,8 +4,8 @@
 .container {
   padding: 10% 5%;
   width: 100%;
-  background-color: $background-color;
-
+  background-color: $beige-background;
+  min-height: 70vh !important;
   hr {
     width: 72%;
   }

@@ -25,10 +25,6 @@ const ProductsCategory = () => {
   const btnTitle = "Смотреть";
   const type = "summer";
   const data = categoryMainApi.useFetchCategoryMainQuery(6);
-  const { data: category = [] } = useFetchProductByCollectionTypeQuery(type);
-  const categoryItem = category.result || [
-    { category_id: 1, category_title: "юбка" },
-  ];
 
   const allCategories = data?.data?.result;
   const categories: ICategoryItems[] = allCategories

@@ -1,9 +1,10 @@
+@import "../../../../styles/vars.scss";
 @import "src/index";
 
 .main {
   width: 100%;
-  background-color: #f1dac5;
-  padding: 2% 0;
+  background-color: #f3d7bc;
+  padding-top: 2%;
 }
 .main_header {
   text-align: center;
@@ -62,27 +63,27 @@ p {
     justify-content: center;
   }
 
-    .list{
-        display: flex;
-        flex-wrap: wrap;
-        //width: 70%;
-        justify-content: center;
-    }
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    //width: 70%;
+    justify-content: center;
+  }
 
-    .main_header{
-        text-align: center;
-        font-size: 25px;
-    }
-    h3{
-        font-size: 1.2rem;
-    }
-    p{
-        font-size: 1rem;
-    }
+  .main_header {
+    text-align: center;
+    font-size: 25px;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
 
-    .block{
-        padding: 3%;
-    }
+  .block {
+    padding: 3%;
+  }
 }
 /* 
 @media all and (max-width: 1024px){

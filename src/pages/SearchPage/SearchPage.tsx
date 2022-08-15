@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 
 import {
@@ -8,9 +9,9 @@ import {
 
 import SearchList from "./components/SearchList/SearchList";
 import SearchHeader from "./components/SearchHeader/SearchHeader";
+import OthersProducts from "./components/OthersProducts/OthersProducts";
 
 import classes from "./SearchPage.module.scss";
-import OthersProducts from "./components/OthersProducts/OthersProducts";
 
 const SearchPage = () => {
   const { title } = useParams<string>();

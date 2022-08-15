@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
+
 import { Link } from "react-router-dom";
-// import secondImg from "../../assets/mainPage/news/second.png";
-// import thirdImg from "../../assets/mainPage/news/third.png";
-// import forthImg from "../../assets/mainPage/news/six.png";
-// import fifthImg from "../../assets/mainPage/news/forth.png";
-// import sixImg from "../../assets/mainPage/news/fifth.png";
-// import fillIcon from "../../assets/mainPage/icons/fill.svg";
-// import start from "../../assets/mainPage/icons/Vector.svg";
-// import heart from "../../assets/mainPage/icons/heart.svg";
 
 import ProductCard from "../../components/ProductCard/ProductCard";
 
@@ -21,6 +14,11 @@ import {
   productGetAllApi,
   useFetchProductsByCategoryQuery,
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
+
+import { Loader } from "../../utils/Loader/Loader";
+import { Error } from "../../utils/Error/Error";
 
 import CategoriesDropdown from "./components/CategoriesDropdown";
 
@@ -35,16 +33,16 @@ const CategoryPage = () => {
   const [sort, setSort] = useState("createDate");
   const [productsData, setProductsData] = useState({
     take: 6,
-    category: 1,
+    category: 5,
     page: 1,
     sort: "createDate",
   });
-  const { data } = productGetAllApi.useFetchProductsGetAllQuery(productsData);
+  const { data, isLoading, isError } =
+    productGetAllApi.useFetchProductsGetAllQuery(productsData);
   const { data: productsByCategory } =
     useFetchProductsByCategoryQuery(category);
   const items = data?.result.data;
   const totalCount: number = productsByCategory?.result.count;
-  console.log(productsData);
 
   useEffect(() => {
     setProductsData({ ...productsData, category: category });
@@ -58,17 +56,18 @@ const CategoryPage = () => {
     setProductsData({ ...productsData, sort: sort });
   }, [sort]);
 
+  if (isError) {
+    return <Error />;
+  }
+  const links = [
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
+  ];
   return (
     <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Товары</Link>
-            </div>
-          </Grid>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>
@@ -88,16 +87,24 @@ const CategoryPage = () => {
           >
             <SideBar setCategory={setCategory} />
           </Grid>
-          <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
-            {items?.map((item: any) => (
-              <div className={classes.prod}>
-                <ProductCard btnTitle={btnTitle} item={item} />
-              </div>
-            ))}
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <CategoryPagination totalCount={totalCount} setPage={setPage} />
-          </Grid>
+          {isLoading ? (
+            <div style={{ margin: "0 auto" }}>
+              <Loader />
+            </div>
+          ) : (
+            <>
+              <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
+                {items?.map((item: any) => (
+                  <div className={classes.prod}>
+                    <ProductCard btnTitle={btnTitle} item={item} />
+                  </div>
+                ))}
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <CategoryPagination totalCount={totalCount} setPage={setPage} />
+              </Grid>
+            </>
+          )}
         </Grid>
       </Container>
     </div>

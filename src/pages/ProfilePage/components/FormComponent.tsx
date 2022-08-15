@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { InputField } from "../../../components/common";
 
 import { Button } from "../../../components/common/Button/Button";
-import { city, country, user } from "../types/types";
+import { city, country } from "../types/types";
 
 import classes from "./style.module.scss";
 
@@ -28,10 +28,10 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const {
     register,
-    formState: { errors, isValid, touchedFields },
+    formState: { errors },
     handleSubmit,
   } = useForm<inputValues>({ mode: "onBlur", reValidateMode: "onChange" });
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setContinue(true);
   };
