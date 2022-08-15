@@ -12,7 +12,9 @@ export const adQueryApi = createApi({
       query: () => ({
         url: "/ad/get-all",
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["AD"],
