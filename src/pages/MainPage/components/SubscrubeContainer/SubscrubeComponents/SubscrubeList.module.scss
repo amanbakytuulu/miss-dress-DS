@@ -1,5 +1,5 @@
 .image__input {
-  width: 320px;
+  width: 430px;
   height: 56px;
   border: none;
   background: rgba(241, 218, 197, 0.8);
@@ -8,9 +8,9 @@
   font-size: 20.8px;
   line-height: 39px;
   color: #5f4932;
-  margin: 30px 0;
   display: flex;
-  padding: 0 27px;
+  margin: 25px 0;
+  padding: 0 25px;
   align-items: center;
   cursor: pointer;
 }
@@ -22,18 +22,19 @@
   font-weight: 300;
   font-size: 20.8px;
   line-height: 39px;
-
+  margin: 0px;
   padding: 10px 30px;
 
   &__in {
-    width: 320px;
+    width: 430px;
     height: 248px;
-
-    z-index: 111;
+    z-index: 10;
     background: rgba(241, 218, 197, 0.8);
     border-radius: 45px;
-    position: absolute;
     margin: 0;
+    padding: 0;
+  position: relative;
+
   }
 }
 @media screen and (max-width: 1440px) {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { getPadTime } from "../utils/helpers/getPadTime";
+import { getPadTime } from "../utils/getPadTime";
 
 export const useTimer = (time: number) => {
   const [timeLeft, setTimeLeft] = useState(time);

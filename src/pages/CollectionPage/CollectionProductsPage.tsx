@@ -42,8 +42,10 @@ const CollectionProductsPage = () => {
   const totalCount = data?.result?.count;
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+    if (!isLoading) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     setProductsData({

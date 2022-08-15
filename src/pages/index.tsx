@@ -1,5 +1,4 @@
 import ProfilePage from "./ProfilePage/ProfilePage";
-import ProductInfo from "./AdminPage/components/ProductInformation/ProductInfo";
 import ProductPage from "./ProductPage/ProductPage";
 import CategoriesPage from "./CategoriesPage/CategoriesPage";
 import DeliveryPage from "./DeliveryPage/DeliveryPage";
@@ -12,8 +11,10 @@ import CollectionPage from "./CollectionPage/CollectionPage";
 import CollectionProductsPage from "./CollectionPage/CollectionProductsPage";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import SearchPage from "./SearchPage/SearchPage";
+import DashBoard from "./AdminPage/DashBoard/DashBoard";
 import OrderPage from "./OrderPage/Order";
 import OrderDetails from "./OrderPage/OrderDetails/OrderInfo";
+import NewsPage from "./NewsPage/NewsPage";
 import RequisitePage from "./RequisitePage/RequisitePage";
 import ReturnProduct from "./ReturnProduct/ReturnProduct";
 import QuestionPage from "./QuestionPage/QuestionPage";
@@ -28,7 +29,6 @@ export {
   AboutUs,
   DeliveryPage,
   CategoriesPage,
-  ProductInfo,
   MainPage,
   ProfilePage,
   FavoritesPage,
@@ -36,8 +36,10 @@ export {
   CollectionProductsPage,
   ErrorPage,
   SearchPage,
+  DashBoard,
   OrderPage,
   OrderDetails,
+  NewsPage,
   RequisitePage,
   ReturnProduct,
   QuestionPage,

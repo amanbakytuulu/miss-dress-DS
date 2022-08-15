@@ -2,6 +2,8 @@ import React, { FC } from "react";
 
 import { Link } from "react-router-dom";
 
+import { NEWS_PAGE } from "../../../../utils/path";
+
 import { INewsItems } from "../../../../types/NewsTypes/NewsTypes";
 import firstImage from "../../../../assets/News/firstImage.png";
 import secondImage from "../../../../assets/News/secondImage.png";
@@ -16,21 +18,21 @@ const NewsList: FC = () => {
       title: "Более 20 новых коллекций",
       date: "05.05.2022",
       image: firstImage,
-      path: "#",
+      path: NEWS_PAGE,
     },
     {
       id: 2,
       title: "Самые удачные покупки за Зиму",
       date: "02.03.2022",
       image: secondImage,
-      path: "#",
+      path: NEWS_PAGE,
     },
     {
       id: 3,
       title: "Она создала свой бренд в 20",
       date: "20.01.2022",
       image: thirdImage,
-      path: "#",
+      path: NEWS_PAGE,
     },
   ];
 

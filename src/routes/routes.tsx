@@ -1,7 +1,6 @@
 import {
   MAIN_PAGE,
   PROFILE_PAGE,
-  ADMIN_PAGE,
   CART_PAGE,
   CONTACTS_PAGE,
   ABOUT_PAGE,
@@ -10,7 +9,16 @@ import {
   FAVORITES_PAGE,
   PRODUCT_PAGE,
   SEARCH_PAGE,
+  NEWS_PAGE,
   ERROR_PAGE,
+  ADMIN_PAGE_DASHBOARD,
+  ADMIN_PAGE_USERS,
+  ADMIN_PAGE_PRODUCTS,
+  ADMIN_PAGE_SALES,
+  ADMIN_PAGE_CART,
+  ADMIN_PAGE_AD,
+  ADMIN_PAGE_CHAT,
+  ADMIN_PAGE_COLLECTIONS,
   ORDERS_PAGE,
   COLLECTION_PAGE,
   COLLECTION_PRODUCTS_PAGE,
@@ -24,7 +32,7 @@ import {
 
 import {
   ProfilePage,
-  ProductInfo,
+  NewsPage,
   ProductPage,
   CategoriesPage,
   DeliveryPage,
@@ -46,6 +54,17 @@ import {
   OffertPage,
   PaymentPage,
 } from "../pages";
+import {
+  DashBoard,
+  Users,
+  UserDetails,
+  Products,
+  CollectionInfo,
+  Sales,
+  ProductDetails,
+  Cart,
+  Advertising,
+} from "../pages/AdminPage";
 
 export const PUBLIC_ROUTES = [
   {
@@ -79,6 +98,10 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductPage />,
+  },
+  {
+    path: NEWS_PAGE,
+    Component: <NewsPage />,
   },
   {
     path: ORDERS_PAGE,
@@ -136,7 +159,43 @@ export const PUBLIC_ROUTES = [
 
 export const PRIVATE_ROUTES = [
   {
-    path: ADMIN_PAGE,
-    Component: <ProfilePage />,
+    path: ADMIN_PAGE_DASHBOARD,
+    Component: <DashBoard />,
+  },
+  {
+    path: ADMIN_PAGE_USERS,
+    Component: <Users />,
+  },
+  {
+    path: ADMIN_PAGE_USERS + "/:id",
+    Component: <UserDetails />,
+  },
+  {
+    path: ADMIN_PAGE_PRODUCTS,
+    Component: <Products />,
+  },
+  {
+    path: ADMIN_PAGE_PRODUCTS + "/:productId",
+    Component: <ProductDetails />,
+  },
+  {
+    path: ADMIN_PAGE_COLLECTIONS + "/:id",
+    Component: <CollectionInfo />,
+  },
+  {
+    path: ADMIN_PAGE_SALES,
+    Component: <Sales />,
+  },
+  {
+    path: ADMIN_PAGE_CART,
+    Component: <Cart />,
+  },
+  {
+    path: ADMIN_PAGE_AD,
+    Component: <Advertising />,
+  },
+  {
+    path: ADMIN_PAGE_CHAT,
+    Component: <DashBoard />,
   },
 ];

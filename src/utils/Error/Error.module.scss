@@ -27,10 +27,7 @@
     & .text {
         color: #f2200d;
         font-size: 1.4rem;
-        
-        @include lg {
-            font-size: 1.4rem;
-        }
+
         @include sm {
             font-size: 1.1rem;
         }

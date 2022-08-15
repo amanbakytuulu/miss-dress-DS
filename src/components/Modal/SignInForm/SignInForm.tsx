@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { userSignUpSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+import { userSignUpSuccess } from "../../../utils/modalSuccessConstructor";
 
 import { InputField, Button } from "../../common";
 

@@ -18,7 +18,7 @@ import {
   MODAL,
   PROFILE_NAV,
   SEARCH,
-} from "../../../utils/helpers/modalHelper";
+} from "../../../utils/modalHelper";
 
 import { useFetchProductFavoritesQuery } from "../../../store/features/Product/productFavorites/productFavoritesQuery";
 

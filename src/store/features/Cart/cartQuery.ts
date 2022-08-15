@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { ICart, Product } from "../../../types/cartPageTypes/orderFormTypes";
+import { ICart } from "../../../types/cartPageTypes/orderFormTypes";
 
 import { API } from "../../../hooks/api";
 

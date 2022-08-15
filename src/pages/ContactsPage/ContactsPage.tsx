@@ -6,7 +6,7 @@ import { ReactComponent as InstagramIcon } from "../../assets/icons/contactIcons
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 import { CONTACTS_PAGE, MAIN_PAGE } from "../../utils/path";
 
-import { ISocialTypes } from "../../types/SocialTypes/SocialTypes";
+import { ISocialTypes } from "../../types/socialTypes/socialTypes";
 
 import SocialList from "./SocialList/SocialList";
 

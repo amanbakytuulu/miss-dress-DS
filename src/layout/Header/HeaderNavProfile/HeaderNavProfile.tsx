@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { ADMIN_PAGE, ORDERS_PAGE, PROFILE_PAGE } from "../../../utils/path";
+import {
+  ADMIN_PAGE_DASHBOARD,
+  ORDERS_PAGE,
+  PROFILE_PAGE,
+} from "../../../utils/path";
 
 import classes from "./HeaderNavProfile.module.scss";
 
@@ -53,7 +57,7 @@ const HeaderNavProfile: React.FC<HeaderNavProfileProps> = ({
         })}
         {user.role !== "USER" && (
           <li>
-            <Link to={ADMIN_PAGE}>Админ</Link>
+            <Link to={ADMIN_PAGE_DASHBOARD}>Админ</Link>
           </li>
         )}
       </ul>

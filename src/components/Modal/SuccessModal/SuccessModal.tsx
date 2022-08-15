@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 
-import { IModalSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+import { IModalSuccess } from "../../../utils/modalSuccessConstructor";
 
 import { Button } from "../../common";
 import { ModalContext } from "../Modal";

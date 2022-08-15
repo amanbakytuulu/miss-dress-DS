@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { IHeaderNav } from "../../../types/headerTypes/headerTypes";
 
-import { BURGER } from "../../../utils/helpers/modalHelper";
+import { BURGER } from "../../../utils/modalHelper";
 
 import classes from "./HeaderNav.module.scss";
 

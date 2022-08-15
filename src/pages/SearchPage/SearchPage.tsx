@@ -51,7 +51,6 @@ const SearchPage = () => {
       sort,
     });
   }, [sort]);
-
   return (
     <div className={classes.searchPageWrapper}>
       <div className={`${classes.container} ${classes.searchPageContainer}`}>

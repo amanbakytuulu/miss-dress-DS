@@ -7,7 +7,7 @@ import {
   useUpdatePhoneMutation,
 } from "../../../store/features/User/userMe/meQuery";
 
-import { changePhoneSuccess } from "../../../utils/helpers/modalSuccessConsructor";
+import { changePhoneSuccess } from "../../../utils/modalSuccessConstructor";
 
 import { Button, InputField } from "../../common";
 import VerificationForm from "../VerificationForm/VerificationForm";
