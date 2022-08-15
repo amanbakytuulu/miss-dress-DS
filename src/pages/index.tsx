@@ -14,6 +14,7 @@ import SearchPage from "./SearchPage/SearchPage";
 import DashBoard from "./AdminPage/DashBoard/DashBoard";
 import OrderPage from "./OrderPage/Order";
 import OrderDetails from "./OrderPage/OrderDetails/OrderInfo";
+import NewsPage from "./NewsPage/NewsPage";
 import RequisitePage from "./RequisitePage/RequisitePage";
 import ReturnProduct from "./ReturnProduct/ReturnProduct";
 import QuestionPage from "./QuestionPage/QuestionPage";
@@ -38,6 +39,7 @@ export {
   DashBoard,
   OrderPage,
   OrderDetails,
+  NewsPage,
   RequisitePage,
   ReturnProduct,
   QuestionPage,
