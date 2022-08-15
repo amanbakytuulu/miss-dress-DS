@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import classes from "../SubscrubeContainer/SubscrubeContainer.module.scss";
@@ -12,6 +12,7 @@ import ButtonImage from "../Button/Button";
 // import SubscrubeComponents from "./SubscrubeComponents/SubscrubeComponents";
 import SubscrubeList from "./SubscrubeComponents/SubscrubeList";
 
+import { newsDb } from "./newsDb";
 type SubscribeFormTypes = {
   fullName: string;
   phoneNumber: string;
@@ -19,17 +20,25 @@ type SubscribeFormTypes = {
 };
 
 const SubscrubeContainer = () => {
+  const [value, setValue] = useState<string>("Выбрать категорию");
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<SubscribeFormTypes>({
     mode: "onChange",
     reValidateMode: "onChange",
   });
 
   const onSubmit = (data: SubscribeFormTypes) => {
-    console.log(data);
+    newsDb.push({ ...data, category: value });
+    console.log(newsDb);
+    reset({ fullName: "", phoneNumber: "" });
+    setValue("Выбрать категорию");
+  };
+  const getValue = (value: string) => {
+    setValue(value);
   };
 
   return (
@@ -38,8 +47,8 @@ const SubscrubeContainer = () => {
         <div className={classes.image__flex}>
           <div className={classes.image__item}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <h3 className={classes.image__h3}>
-                Оформить подписку
+              <div className={classes.block}>
+                <h3 className={classes.image__h3}>Оформить подписку</h3>
                 <div className={classes.inputBlock}>
                   <InputField
                     color={colors.subscribeInput}
@@ -64,15 +73,26 @@ const SubscrubeContainer = () => {
                     type={"text"}
                   />
                 </div>
-                <SubscrubeList />
+                <SubscrubeList
+                  value={value}
+                  setValue={setValue}
+                  // onChange={getValue}
+                  inputConfig={{
+                    ...register("category"),
+                  }}
+                  type={"text"}
+                />
                 <div className={classes.error}>
                   <span>
-                    {(errors.fullName?.message && "Заполните ФИО") ||
-                      (errors.phoneNumber?.message && "Заполните поле номер")}
+                    {(errors.fullName?.message && "Заполните Ф.И.О") ||
+                      (errors.phoneNumber?.message &&
+                        "Заполните номер телефона")}
                   </span>
                 </div>
-                <ButtonImage>Продолжить</ButtonImage>
-              </h3>
+                <div className={classes.btn__fix}>
+                  <ButtonImage type={"submit"}>Продолжить</ButtonImage>
+                </div>
+              </div>
             </form>
           </div>
         </div>

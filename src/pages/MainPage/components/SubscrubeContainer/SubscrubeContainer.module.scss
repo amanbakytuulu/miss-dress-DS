@@ -27,7 +27,6 @@
     margin-bottom: 20px;
   }
   .error {
-
     span {
       color: $error-text;
     }
@@ -38,10 +37,20 @@
     line-height: 44px;
     color: #f1dac5;
     text-align: center;
-    
-    margin: 200px 50px;
   }
 }
+.block{
+  position: relative;
+  margin: 200px 50px;
+  height: 368px;
+  z-index: 3;
+}
+.btn__fix {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+
 
 @media screen and(max-width:1440px) {
   // .image__flex {
@@ -64,8 +73,9 @@
   @media screen and (max-width: 768px) {
     .image__flex {
       justify-content: center;
+
     }
-    .image__h3 {
+    .block   {
       margin: 0;
     }
   }
@@ -74,11 +84,12 @@
       padding: 0;
       display: flex;
     }
-    .image__h3 {
+    .block {
       font-weight: 600;
       font-size: 15.8px;
       line-height: 44px;
       color: #f1dac5;
+      height: 230px;
     }
     .error {
     height: 30px;
@@ -91,8 +102,8 @@
       }
     }
   }
-  @media screen and (max-width: 375px) {
-    .inputBlock {
-      margin-bottom: 20px;
-    }
+  @media screen and (max-width: 320px) {
+.block {
+
+}
   }

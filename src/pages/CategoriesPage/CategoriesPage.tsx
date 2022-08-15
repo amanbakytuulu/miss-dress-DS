@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-
-// import firstImg from "../../assets/mainPage/news/first.png";
 // import secondImg from "../../assets/mainPage/news/second.png";
 // import thirdImg from "../../assets/mainPage/news/third.png";
 // import forthImg from "../../assets/mainPage/news/six.png";
@@ -18,7 +16,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-// import { dataArray } from "../MainPage/Products/Data/db";
+
 import {
   productGetAllApi,
   useFetchProductsByCategoryQuery,

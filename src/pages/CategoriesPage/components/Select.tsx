@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 
 import vector from "../../../assets/categoriesPage/Vector.svg";
 import vectorfull from "../../../assets/categoriesPage/Vectorfull.svg";

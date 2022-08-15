@@ -1,5 +1,4 @@
 import React from "react";
-import { Typography } from "@mui/material";
 
 import classes from "./RequisitePage.module.scss";
 

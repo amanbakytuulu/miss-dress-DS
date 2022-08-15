@@ -1,14 +1,22 @@
-import React, { FC, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 
 import classes from "./SubscrubeList.module.scss";
 
-// interface SubscrubeListProps {
-//   placeholder: string;
-// }
+interface SubscrubeListProps {
+  inputConfig?: object;
+  type: string;
+  onChange?: (value: string) => void;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+}
 
-const SubscrubeList: FC = () => {
+const SubscrubeList: FC<SubscrubeListProps> = ({
+  type,
+  onChange,
+  value,
+  setValue,
+}) => {
   const [state, setState] = useState<boolean>(true);
-  const [value, setValue] = useState<string>("Выбрать категорию");
 
   const changecategory = () => {
     setState(!state);
@@ -17,6 +25,7 @@ const SubscrubeList: FC = () => {
     setValue(name);
     setState(!state);
   };
+
   const subscribe = ["Платья", "Юбки", "Джинсы", "Брюки"];
   return state ? (
     <div onClick={changecategory} className={classes.image__input}>
