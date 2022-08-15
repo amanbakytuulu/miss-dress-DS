@@ -99,6 +99,7 @@ const CategoryPage = () => {
                     <ProductCard btnTitle={btnTitle} item={item} />
                   </div>
                 ))}
+                {items?.length === 0 && <h2>Нет товаров в данной категории!</h2>}
               </Grid>
               <Grid item xs={12} md={12}>
                 <CategoryPagination totalCount={totalCount} setPage={setPage} />

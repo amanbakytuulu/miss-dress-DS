@@ -26,8 +26,8 @@ const ProductsPage = () => {
         <NewProducts />
         <Link to="/categories">
           <button className={classes.btnAll}>Смотреть все новинки</button>
-        </Link>     
-        </Container>
+        </Link>
+      </Container>
     </div>
   );
 };
