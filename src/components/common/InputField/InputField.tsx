@@ -5,6 +5,7 @@ import { colors } from "../../../types/colorTypes/colorTypes";
 import classes from "./InputField.module.scss";
 
 interface InputFieldProps {
+  ref?: null;
   value?: string;
   label?: string;
   placeholder?: string;
@@ -41,6 +42,7 @@ export const InputField: FC<InputFieldProps> = ({
     <>
       <div className={classes.formGroup}>
         <input
+          autoComplete="off"
           style={{ backgroundColor: `${color && color}` }}
           {...inputConfig}
           className={`${alignPlaceholder ? classes.input : ""}`}

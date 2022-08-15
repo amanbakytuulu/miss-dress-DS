@@ -9,6 +9,7 @@ import {
   FAVORITES_PAGE,
   PRODUCT_PAGE,
   SEARCH_PAGE,
+  NEWS_PAGE,
   ERROR_PAGE,
   ADMIN_PAGE_DASHBOARD,
   ADMIN_PAGE_USERS,
@@ -31,6 +32,7 @@ import {
 
 import {
   ProfilePage,
+  NewsPage,
   ProductPage,
   CategoriesPage,
   DeliveryPage,
@@ -100,6 +102,10 @@ export const PUBLIC_ROUTES = [
   {
     path: PRODUCT_PAGE + "/:id",
     Component: <ProductPage />,
+  },
+  {
+    path: NEWS_PAGE,
+    Component: <NewsPage />,
   },
   // {
   //   path: PRODUCT_PAGE,
