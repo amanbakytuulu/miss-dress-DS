@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 
@@ -10,6 +10,7 @@ import Select from "../CategoriesPage/components/Select";
 
 import { useFetchProductByCollectionTypeQuery } from "../../store/features/Product/productCategory/productCategoryQuery";
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import { Error } from "../../utils/Error/Error";
 
@@ -48,8 +49,8 @@ const CollectionPage = () => {
     return <Error center="center" />;
   }
   const links = [
-    { title: "Главная", path: "/" },
-    { title: "Товары", path: "/categories" },
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
     { title: "Коллекция", path: `${window.location.pathname}` },
   ];
 

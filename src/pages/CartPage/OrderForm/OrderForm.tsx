@@ -17,6 +17,8 @@ import OrderCheck from "./OrderCheck/OrderCheck";
 import classes from "./OrderForm.module.scss";
 
 const OrderForm = () => {
+  const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
+  const [updateContactInfo] = useUpdateContactInfoMutation();
   const user: user = JSON.parse(localStorage.getItem("user") || "{}");
   const cities: city[] = JSON.parse(localStorage.getItem("city") || "[]");
   const countries: country[] = JSON.parse(
@@ -25,8 +27,6 @@ const OrderForm = () => {
   const [disable] = useState<boolean>(
     localStorage.getItem("accessToken") ? false : true
   );
-  const [addContactInfo, { data, isSuccess }] = useAddContactInfoMutation();
-  const [updateContactInfo] = useUpdateContactInfoMutation();
   const [isSaved, setSaved] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);

@@ -10,6 +10,7 @@ import {
   productGetAllApi,
   useFetchProductByCategoryQuery,
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 
@@ -63,8 +64,8 @@ const CollectionProductsPage = () => {
     return <Error center="center" />;
   }
   const links = [
-    { title: "Главная", path: "/" },
-    { title: "Товары", path: "/categories" },
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
     { title: "Коллекция", path: `/collection/${type}` },
     { title: dressType },
   ];

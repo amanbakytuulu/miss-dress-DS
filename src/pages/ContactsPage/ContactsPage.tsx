@@ -4,6 +4,7 @@ import { ReactComponent as WhatsAppIcon } from "../../assets/icons/contactIcons/
 import { ReactComponent as TelegramIcon } from "../../assets/icons/contactIcons/telegramIcon.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/icons/contactIcons/instagramIcon.svg";
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { CONTACTS_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import { ISocialTypes } from "../../types/SocialTypes/SocialTypes";
 
@@ -29,8 +30,8 @@ const socials: ISocialTypes[] = [
 
 const ContactsPage = () => {
   const links = [
-    { title: "Главная", path: "/" },
-    { title: "Контакты", path: "/contacts" },
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Контакты", path: CONTACTS_PAGE },
   ];
 
   return (

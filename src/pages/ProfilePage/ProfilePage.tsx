@@ -22,7 +22,7 @@ const ProfilePage = () => {
     if (!localStorage.getItem("accessToken")) {
       navigate("/");
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const links = [

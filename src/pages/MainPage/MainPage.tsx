@@ -12,7 +12,7 @@ import SubscrubeContainer from "./components/SubscrubeContainer/SubscrubeContain
 
 const MainPage = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
     <div className={styles.container}>

@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { FAVORITES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import Select from "../CategoriesPage/components/Select";
 
-import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import { useFetchProductFavoritesQuery } from "../../store/features/Product/productFavorites/productFavoritesQuery";
 import { IItemCard } from "../../components/ProductCard/types";
 import { Loader } from "../../utils/Loader/Loader";
-import { Error } from "../../utils/Error/Error";
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
 
 const FavoritesPage = () => {
@@ -54,14 +52,14 @@ const FavoritesPage = () => {
   }
 
   const links = [
-    { title: "Главная", path: "/" },
-    { title: "Избранное", path: "/favorites" },
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Избранное", path: FAVORITES_PAGE },
   ];
   return (
     <div className={classes.mainDiv}>
       <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div
               className={classes.selectBlock}

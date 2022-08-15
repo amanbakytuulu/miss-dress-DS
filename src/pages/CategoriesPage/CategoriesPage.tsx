@@ -3,27 +3,17 @@ import React, { useEffect, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
-// import firstImg from "../../assets/mainPage/news/first.png";
-// import secondImg from "../../assets/mainPage/news/second.png";
-// import thirdImg from "../../assets/mainPage/news/third.png";
-// import forthImg from "../../assets/mainPage/news/six.png";
-// import fifthImg from "../../assets/mainPage/news/forth.png";
-// import sixImg from "../../assets/mainPage/news/fifth.png";
-// import fillIcon from "../../assets/mainPage/icons/fill.svg";
-// import start from "../../assets/mainPage/icons/Vector.svg";
-// import heart from "../../assets/mainPage/icons/heart.svg";
-
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-// import { dataArray } from "../MainPage/Products/Data/db";
 import {
   productGetAllApi,
   useFetchProductsByCategoryQuery,
 } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import { Loader } from "../../utils/Loader/Loader";
 
@@ -69,8 +59,8 @@ const CategoryPage = () => {
     return <Error />;
   }
   const links = [
-    { title: "Главная", path: "/" },
-    { title: "Товары", path: "/categories" },
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
   ];
   return (
     <div className={classes.mainDiv}>

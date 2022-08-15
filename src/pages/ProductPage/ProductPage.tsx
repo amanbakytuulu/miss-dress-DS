@@ -129,7 +129,7 @@ const ProductPage: FC = () => {
   }, [productCurrent, allProductsCart]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
   if (isLoading) {

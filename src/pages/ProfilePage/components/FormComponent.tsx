@@ -28,7 +28,7 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const {
     register,
-    formState: { errors, isValid, touchedFields },
+    formState: { errors },
     handleSubmit,
   } = useForm<inputValues>({ mode: "onBlur", reValidateMode: "onChange" });
   const onSubmit = (data: any) => {

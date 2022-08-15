@@ -31,8 +31,6 @@ const CartSummary: FC<CartSummaryProps> = ({
 }) => {
   const discount = 0;
   const [saveOrder, { data }] = useSaveOrderMutation();
-  const contactInfoId = localStorage.getItem("contactInfoId");
-
   const handleSaveOrder = () => {
     const contactId = localStorage.getItem("contactInfoId");
     const body = {

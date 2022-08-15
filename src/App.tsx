@@ -6,7 +6,7 @@ import { Footer, Header } from "./layout";
 
 function App() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (

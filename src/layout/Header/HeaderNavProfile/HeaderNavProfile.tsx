@@ -15,11 +15,6 @@ const navs = [
     path: ORDERS_PAGE,
   },
   {
-    title: "Админ",
-    path: ADMIN_PAGE,
-    role: "SUPER_ADMIN",
-  },
-  {
     title: "Выйти",
   },
 ];
@@ -31,7 +26,7 @@ interface HeaderNavProfileProps {
 const HeaderNavProfile: React.FC<HeaderNavProfileProps> = ({
   setUserEnter,
 }) => {
-  const user = JSON.parse(localStorage.getItem("user") || "");
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   const handleRemoveToken = () => {
     if (localStorage.getItem("accessToken")) {
       localStorage.removeItem("accessToken");
@@ -48,9 +43,7 @@ const HeaderNavProfile: React.FC<HeaderNavProfileProps> = ({
         {navs.map((nav) => {
           return (
             <li key={nav.title}>
-              {nav.role && nav.role === user.role ? (
-                <Link to={nav.path}>{nav.title}</Link>
-              ) : nav.path ? (
+              {nav.path ? (
                 <Link to={nav.path}>{nav.title}</Link>
               ) : (
                 <button onClick={handleRemoveToken}>{nav.title}</button>
@@ -58,6 +51,11 @@ const HeaderNavProfile: React.FC<HeaderNavProfileProps> = ({
             </li>
           );
         })}
+        {user.role !== "USER" && (
+          <li>
+            <Link to={ADMIN_PAGE}>Админ</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

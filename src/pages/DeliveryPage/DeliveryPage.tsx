@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { DELIVERY_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import classes from "../DeliveryPage/DeliveryPage.module.scss";
 
@@ -8,8 +9,8 @@ import DeliveryComponents from "./DeliveryComponents/DeliveryComponents";
 
 const DeliveryPage = () => {
   const links = [
-    { title: "Главная", path: "/" },
-    { title: "Доставка", path: "/delivery" },
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Доставка", path: DELIVERY_PAGE },
   ];
 
   return (

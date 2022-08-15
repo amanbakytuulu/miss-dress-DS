@@ -13,7 +13,6 @@ import HeaderNavProfile from "../HeaderNavProfile/HeaderNavProfile";
 
 import SearchInput from "../../../components/SearchInput/SearchInput";
 
-import { ICartList } from "../../../types/headerTypes/headerTypes";
 import {
   CART_LIST,
   MODAL,
@@ -33,15 +32,6 @@ interface HeaderNavIconsProps {
   toggleCurrent: (value: string) => () => void;
   setUserEnter: any;
 }
-
-const arr: ICartList[] = [
-  {
-    title: "name",
-  },
-  {
-    title: "name",
-  },
-];
 
 const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   isUserEnter,
