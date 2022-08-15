@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-
-// import firstImg from "../../assets/mainPage/news/first.png";
 // import secondImg from "../../assets/mainPage/news/second.png";
 // import thirdImg from "../../assets/mainPage/news/third.png";
 // import forthImg from "../../assets/mainPage/news/six.png";
@@ -18,8 +16,11 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import SideBar from "../CategoriesPage/components/SideBar";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-// import { dataArray } from "../MainPage/Products/Data/db";
-import { productGetAllApi } from "../../store/features/Product/productGetAll/ProductGetAllQuery";
+
+import {
+  productGetAllApi,
+  useFetchProductsByCategoryQuery,
+} from "../../store/features/Product/productGetAll/ProductGetAllQuery";
 
 import CategoriesDropdown from "./components/CategoriesDropdown";
 
@@ -29,19 +30,33 @@ import classes from "./CategoryPage.module.scss";
 
 const CategoryPage = () => {
   const btnTitle = "Открыть";
-  const { data } = productGetAllApi.useFetchProductGetAllQuery(6);
+  const [page, setPage] = useState(1);
+  const [category, setCategory] = useState(1);
+  const [sort, setSort] = useState("createDate");
+  const [productsData, setProductsData] = useState({
+    take: 6,
+    category: 1,
+    page: 1,
+    sort: "createDate",
+  });
+  const { data } = productGetAllApi.useFetchProductsGetAllQuery(productsData);
+  const { data: productsByCategory } =
+    useFetchProductsByCategoryQuery(category);
   const items = data?.result.data;
+  const totalCount: number = productsByCategory?.result.count;
+  console.log(productsData);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = items?.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items?.length;
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  useEffect(() => {
+    setProductsData({ ...productsData, category: category });
+  }, [category]);
+
+  useEffect(() => {
+    setProductsData({ ...productsData, page: page });
+  }, [page]);
+
+  useEffect(() => {
+    setProductsData({ ...productsData, sort: sort });
+  }, [sort]);
 
   return (
     <div className={classes.mainDiv}>
@@ -58,7 +73,7 @@ const CategoryPage = () => {
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Все товары</h2>
               <CategoriesDropdown />
-              <Select />
+              <Select setSort={setSort} />
             </div>
           </Grid>
           <div className={classes.responsiveH}>
@@ -71,7 +86,7 @@ const CategoryPage = () => {
             sm={4}
             md={4}
           >
-            <SideBar />
+            <SideBar setCategory={setCategory} />
           </Grid>
           <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
             {items?.map((item: any) => (
@@ -81,13 +96,7 @@ const CategoryPage = () => {
             ))}
           </Grid>
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination totalCount={totalCount} setPage={setPage} />
           </Grid>
         </Grid>
       </Container>

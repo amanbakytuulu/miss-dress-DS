@@ -1,20 +1,19 @@
 import React, { FC } from "react";
 
 import CartItem from "../../../components/CartItem/CartItem";
+import { Products } from "../../../types/cartPageTypes/orderFormTypes";
 
 import classes from "./CartList.module.scss";
-
 interface CartListProps {
-  cartList: any;
+  cartList: Products[];
 }
-
 const CartList: FC<CartListProps> = ({ cartList }) => {
   return (
     <div className={classes.cartPageList}>
-      {cartList.map((item: any) => {
+      {cartList.map((item) => {
         return (
-          <div className={classes.cartItem} key={item.title}>
-            <CartItem />
+          <div className={classes.cartItem} key={item.id}>
+            <CartItem product={item.product} countProduct={item.amount} />
           </div>
         );
       })}

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { ISocialTypes } from "../../../types/SocialTypes/SocialTypes";
+import { ISocialTypes } from "../../../types/socialTypes/socialTypes";
 
 import classes from "./SocialList.module.scss";
 

@@ -1,11 +1,13 @@
 import React, { FC } from "react";
 
+import { IItemCard } from "../../../../components/ProductCard/types";
+
 import SearchSlider from "../SearchSlider/SearchSlider";
 
 import classes from "./OthersProducts.module.scss";
 
 interface SearchOthersProps {
-  slides: any;
+  slides: IItemCard[];
 }
 
 const OthersProducts: FC<SearchOthersProps> = ({ slides }) => {

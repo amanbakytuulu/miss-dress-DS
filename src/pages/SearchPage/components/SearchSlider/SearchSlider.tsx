@@ -1,13 +1,16 @@
 import React, { FC } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Controller, Navigation, Pagination } from "swiper";
+
+import { IItemCard } from "../../../../components/ProductCard/types";
 
 import { ProductCard } from "../../../../components";
 
 import classes from "./SearchSlider.module.scss";
 
 interface SearchSliderProps {
-  slides: any;
+  slides: IItemCard[];
 }
 
 const SearchSlider: FC<SearchSliderProps> = ({ slides }) => {
@@ -30,7 +33,7 @@ const SearchSlider: FC<SearchSliderProps> = ({ slides }) => {
         freeMode={true}
         modules={[Pagination, Navigation, Controller]}
       >
-        {slides?.map((slide: any, index: number) => {
+        {slides?.map((slide, index: number) => {
           return (
             <SwiperSlide className={classes.slide} key={index}>
               <ProductCard btnTitle={"Открыть"} item={slide} />

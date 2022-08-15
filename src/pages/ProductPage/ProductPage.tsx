@@ -10,6 +10,8 @@ import { caretRight } from "react-icons-kit/fa/caretRight";
 import Icon from "react-icons-kit";
 import { useParams } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import heart from "../../assets/mainPage/icons/heart.svg";
 import mainDress from "../../assets/ProductPage/mainDress.png";
@@ -23,8 +25,11 @@ import {
   useAddProductFavoritesMutation,
   useFetchProductFavoritesQuery,
 } from "../../store/features/Product/productFavorites/productFavoritesQuery";
-
-import { dress_description } from "./productDb";
+import {
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useGetProductFromCardQuery,
+} from "../../store/features/Cart/cartQuery";
 
 import styles from "./ProductPage.module.scss";
 
@@ -32,6 +37,7 @@ import SwiperVertical from "./SwiperVertical";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import ModalFullPhoto from "./modal/ModalFullPhoto";
 
 interface IColors {
   id: number;
@@ -43,6 +49,12 @@ SwiperCore.use([Navigation]);
 const ProductPage: FC = () => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+  const [url, setUrl] = useState<number>(0);
+  // modalFullPhoto
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  // modalFullPhoto
   const { id } = useParams();
   const [changeColor, setChangeColor] = useState(false);
   const [addProductFavorites] = useAddProductFavoritesMutation();
@@ -52,7 +64,19 @@ const ProductPage: FC = () => {
   const productCurrent: IItemCard = product?.result || {};
   const { data = [] } = productGetAllApi.useFetchProductGetAllQuery(6);
   const similarDresses = data?.result?.data;
-
+  //cart
+  // getProductCart
+  const [added, setAdd] = useState<boolean>(false);
+  const { data: cartProducts = {}, isSuccess } = useGetProductFromCardQuery();
+  const allProductsCart = cartProducts?.result?.products || [];
+  // getProductCart
+  // addProductCart
+  const [addProductToCart] = useAddProductToCartMutation();
+  //addProductCart
+  // deleteProductCart
+  const [deleteProductFromCart] = useDeleteProductFromCartMutation();
+  // deleteProductCart
+  //cart
   const [color, setColors] = useState<IColors[]>([
     { id: 0, color: "#000000" },
     { id: 1, color: "#B89981" },
@@ -63,9 +87,17 @@ const ProductPage: FC = () => {
     { id: 6, color: "#F45656" },
   ]);
 
-  const handleAddFavorite = () => {
-    addProductFavorites(productCurrent);
+  const handleAddFavorite = async () => {
+    await addProductFavorites(productCurrent);
     setChangeColor(!changeColor);
+  };
+
+  const handleAddCart = async () => {
+    await addProductToCart(productCurrent);
+  };
+
+  const handleDeleteCart = async () => {
+    await deleteProductFromCart(productCurrent.id);
   };
 
   useEffect(() => {
@@ -74,19 +106,38 @@ const ProductPage: FC = () => {
         countFavorites.some((el: any) => el.id === productCurrent.id)
       );
     }
-  }, [countFavorites]);
+  }, [productCurrent, countFavorites]);
 
+  useEffect(() => {
+    if (allProductsCart.length >= 0) {
+      setAdd(
+        allProductsCart.some((prod) => prod.product.id === productCurrent.id)
+      );
+    }
+  }, [productCurrent, allProductsCart]);
   return (
     <div className={styles.background_container}>
       <div className={styles.product_container}>
         <Grid container spacing={2}>
           <Grid item xs={11} md={3} order={{ xs: 3, md: 1 }}>
-            <SwiperVertical />
+            <SwiperVertical
+              setUrl={setUrl}
+              images={
+                productCurrent.images && productCurrent.images.length > 0
+                  ? productCurrent.images
+                  : []
+              }
+            />
           </Grid>
 
           <Grid item xs={6} md={4} order={{ xs: 1, md: 2 }}>
             <img
-              src={mainDress}
+              onClick={handleOpen}
+              src={
+                productCurrent.images && productCurrent.images.length > 0
+                  ? productCurrent.images[url].url
+                  : mainDress
+              }
               alt="main dress"
               width="87%"
               className={styles.main_dress}
@@ -137,7 +188,18 @@ const ProductPage: FC = () => {
                 <p className={styles.description}>
                   {productCurrent.description}
                 </p>
-                <button className={styles.btn}>Перейти в корзину</button>
+                {added ? (
+                  <button
+                    className={`${styles.btn} ${styles.btn__delete}`}
+                    onClick={handleDeleteCart}
+                  >
+                    Удалить из корзины
+                  </button>
+                ) : (
+                  <button className={styles.btn} onClick={handleAddCart}>
+                    Добавить в корзину
+                  </button>
+                )}
               </div>
             </div>
           </Grid>
@@ -145,7 +207,9 @@ const ProductPage: FC = () => {
         <div className={styles.description_change_mobile}>
           <h4>О товаре:</h4>
           <p className={styles.description}>{productCurrent.description}</p>
-          <button className={styles.btn}>Перейти в корзину</button>
+          <Link to="/cart">
+            <button className={styles.btn}>Перейти в корзину</button>
+          </Link>
         </div>
 
         <div className={styles.similar_container}>
@@ -196,9 +260,20 @@ const ProductPage: FC = () => {
           <button>Millana</button>
         </div>
         <div className={styles.btnMobileDiv}>
-          <button className={styles.btnMobile}>Смотреть все товары</button>
+          <Link to="/">
+            <button className={styles.btnMobile}>Смотреть все товары</button>
+          </Link>
         </div>
       </div>
+      <ModalFullPhoto
+        handleClose={handleClose}
+        open={open}
+        photo={
+          productCurrent.images && productCurrent.images.length > 0
+            ? productCurrent.images[url].url
+            : mainDress
+        }
+      />
     </div>
   );
 };

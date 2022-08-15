@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -16,20 +16,31 @@ import { IItemCard } from "../../components/ProductCard/types";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("createDate");
+  const [productsData, setProductsData] = useState({
+    take: 6,
+    page: 1,
+    sort: "createDate",
+  });
 
-  const { data = [] } = useFetchProductFavoritesQuery("");
+  const { data = [] } = useFetchProductFavoritesQuery(productsData);
   const items: IItemCard[] = data.result?.data || [];
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = items.slice(indexOfFirstPost, indexOfLastPost);
-  const totalCount = items.length;
-  const pageNumbers = [];
+  const totalCount: number = data?.result?.count;
 
-  for (let i = 1; i <= Math.ceil(totalCount / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      page: page,
+    });
+  }, [page]);
+
+  useEffect(() => {
+    setProductsData({
+      ...productsData,
+      sort: sort,
+    });
+  }, [sort]);
 
   return (
     <div className={classes.mainDiv} style={{ marginTop: "22px" }}>
@@ -37,9 +48,9 @@ const FavoritesPage = () => {
         <Grid className={classes.mainGrid} container spacing={2}>
           <Grid item xs={12} md={12}>
             <div className={classes.selectDiv}>
-              <Link to="/#">Главная</Link>
+              <Link to="/">Главная</Link>
               <span>/</span>
-              <Link to="/#">Товары</Link>
+              <Link to="/#">Избранное</Link>
             </div>
           </Grid>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
@@ -50,14 +61,14 @@ const FavoritesPage = () => {
               <h2 className={classes.mediumH} style={{ fontSize: "28px" }}>
                 Избранное
               </h2>
-              <Select />
+              <Select setSort={setSort} />
             </div>
             <div className={classes.responsiveH}>
               <h2>Избранное</h2>
             </div>
           </Grid>
-          {currentPosts.length !== 0 ? (
-            currentPosts.map((item, index: number) => (
+          {items?.length !== 0 ? (
+            items?.map((item, index: number) => (
               <Grid key={index} item xs={6} md={4}>
                 <ProductCard btnTitle={btnTitle} item={item} />
               </Grid>
@@ -66,13 +77,7 @@ const FavoritesPage = () => {
             <div className={classes.empty}>Избранные пусто!</div>
           )}
           <Grid item xs={12} md={12}>
-            <CategoryPagination
-              totalCount={totalCount}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageNumbers={pageNumbers}
-            />
+            <CategoryPagination totalCount={totalCount} setPage={setPage} />
           </Grid>
         </Grid>
       </Container>

@@ -17,11 +17,11 @@ const CartList: FC<CartListProps> = ({ cartList }) => {
   return (
     <div className={classes.headerCartList}>
       {cartList.map((item: ICartList) => {
-        return <CartItem />;
+        return "";
       })}
       <div className={classes.headerCartListBtn}>
         <Link to={CART_PAGE}>
-          <Button>Смотереть еще</Button>
+          <Button>Смотреть еще</Button>
         </Link>
       </div>
     </div>

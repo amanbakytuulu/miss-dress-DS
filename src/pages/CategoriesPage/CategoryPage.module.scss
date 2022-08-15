@@ -43,7 +43,7 @@
 }
 .filterDropdownTitle {
   font-weight: 300 !important;
-  font-size: 22px;
+  font-size: 1em;
   margin: 0 20px;
 }
 .filterDropdownContent {
@@ -62,7 +62,7 @@
   justify-content: center;
   align-items: center;
   height: 50px;
-  padding: 0px 20px 0px 100px !important;
+  padding: 0px 20px 0px 0px !important;
 }
 .filterDropDownBtn img {
   width: 18px;
@@ -99,6 +99,7 @@
 }
 .prod {
   width: 45%;
+  margin-bottom: 20px;
 }
 .productDiv {
   display: flex;
@@ -246,7 +247,7 @@
   }
   .filterDropdownTitle {
     font-weight: 300 !important;
-    font-size: 20px;
+    font-size: 1em;
     margin: 0 20px;
   }
   .filterDropDownBtn img {
@@ -260,7 +261,7 @@
 @media (max-width: 880px) {
   .filterDropdownTitle {
     font-weight: 300 !important;
-    font-size: 16px;
+    font-size: 1em;
     margin: 0 20px;
   }
   .filterDropDownBtn img {

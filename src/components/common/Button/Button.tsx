@@ -7,6 +7,8 @@ interface ButtonProps {
   type?: any;
   disabled?: boolean;
   children: React.ReactNode;
+  style?: React.CSSProperties;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -14,14 +16,18 @@ export const Button: FC<ButtonProps> = ({
   type,
   disabled,
   children,
+  style,
+  onKeyDown,
 }) => {
   const isDisabled = disabled ? classes.btnDisable : classes.btnEnable;
   return (
     <button
+      style={style}
       className={`${classes.formButton} ${isDisabled}`}
       onClick={onClick}
       type={type}
       disabled={disabled}
+      onKeyDown={onKeyDown}
     >
       {children}
     </button>

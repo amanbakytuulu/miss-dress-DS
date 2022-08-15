@@ -5,9 +5,10 @@ import Select from "./../../../CategoriesPage/components/Select";
 
 interface SearchHeaderProps {
   quantity: number;
+  setSort: (value: string) => void;
 }
 
-const SearchHeader: FC<SearchHeaderProps> = ({ quantity }) => {
+const SearchHeader: FC<SearchHeaderProps> = ({ quantity, setSort }) => {
   return (
     <div className={classes.searchPageHeader}>
       <div className={classes.searchPageHeaderLeft}>
@@ -16,7 +17,7 @@ const SearchHeader: FC<SearchHeaderProps> = ({ quantity }) => {
           Найдено {quantity} моделей
         </span>
       </div>
-      {quantity > 0 ? <Select /> : null}
+      {quantity > 0 ? <Select setSort={setSort} /> : null}
     </div>
   );
 };

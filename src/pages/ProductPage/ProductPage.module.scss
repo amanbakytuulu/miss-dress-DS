@@ -101,6 +101,10 @@
         font-family: "Montserrat";
         font-size: 1rem;
         cursor: pointer;
+
+        &__delete{
+          background-color: $error-text !important;
+        }
       }
 
       .description {

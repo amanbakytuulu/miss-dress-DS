@@ -6,6 +6,8 @@ import { Modal } from "../../components";
 
 import SuccessOrder from "../../components/Modal/SuccessOrder/SuccessOrder";
 
+import { useGetProductFromCardQuery } from "../../store/features/Cart/cartQuery";
+
 import OrderForm from "./OrderForm/OrderForm";
 import CartSummary from "./CartSummary/CartSummary";
 import CartList from "./CartList/CartList";
@@ -24,6 +26,10 @@ const arr: ICartList[] = [
 const CartPage = () => {
   const [isModalOpen, setOpenModal] = useState<boolean>(false);
 
+  const { data: productsCart = {} } = useGetProductFromCardQuery();
+  const thisCart = productsCart?.result;
+  const allProductsCart = productsCart?.result?.products || [];
+  const totalPrice = productsCart?.result?.price || 0;
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
 
@@ -36,10 +42,14 @@ const CartPage = () => {
               <OrderForm />
             </div>
             <h3 className={classes.cartPageListTitle}>Состав заказа</h3>
-            <CartList cartList={arr} />
+            <CartList cartList={allProductsCart} />
           </div>
           <div className={classes.cartPageSum}>
-            <CartSummary openModal={openModal} />
+            <CartSummary
+              thisCart={thisCart}
+              totalPrice={totalPrice}
+              openModal={openModal}
+            />
           </div>
         </div>
       </div>
