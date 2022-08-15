@@ -1,18 +1,21 @@
+@import "../../../styles/vars.scss";
+
 .categoryDiv {
   display: flex !important;
   justify-content: center;
   text-align: center;
 }
-.categoryDiv:last-child{
+.categoryDiv:last-child {
   display: none !important;
 }
 .categoryDiv div h4 {
   color: #372e24;
 }
 .mainDiv {
-  background: #f1dac5;
+  background: $beige-background;
   width: 100%;
   height: auto;
+  padding-top: 40px;
 }
 .mainDiv h2 {
   text-align: center;
@@ -119,10 +122,10 @@
 }
 
 @media (max-width: 899px) {
-  .categoryDiv:last-child{
+  .categoryDiv:last-child {
     display: block !important;
   }
-  .titleP{
+  .titleP {
     height: 40px;
   }
 }

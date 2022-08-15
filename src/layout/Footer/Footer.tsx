@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 import FooterList from "./components/FooterList";
 import IconsFooter from "./components/IconsFooter";
@@ -51,7 +50,6 @@ const Footer = () => {
           >
             {liElements.map((item, index) => (
               <ul key={index}>
-                {/* <Link to={item.path}>{item.title}</Link> */}
                 <a href={item.path}>{item.title}</a>
               </ul>
             ))}

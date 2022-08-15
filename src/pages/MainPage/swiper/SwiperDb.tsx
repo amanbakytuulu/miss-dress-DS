@@ -1,5 +1,5 @@
-import photo2 from "../../../assets/mainSwiper/photo2.png";
-import photo7 from "../../../assets/mainSwiper/photo7.png";
+import photo2 from "../../../assets/mainSwiper/dress1.png";
+import photo7 from "../../../assets/mainSwiper/dress2.png";
 
 export const swiperArr = [
   { id: 0, photo: photo2 },

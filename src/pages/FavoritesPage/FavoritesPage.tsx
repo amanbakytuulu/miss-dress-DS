@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
-
-import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { FAVORITES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import Select from "../CategoriesPage/components/Select";
 
-import heartFull from "../../assets/mainPage/icons/heartfull.svg";
 import { useFetchProductFavoritesQuery } from "../../store/features/Product/productFavorites/productFavoritesQuery";
 import { IItemCard } from "../../components/ProductCard/types";
+import { Loader } from "../../utils/Loader/Loader";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+
+import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 const FavoritesPage = () => {
   const btnTitle = "Открыть";
@@ -24,7 +25,11 @@ const FavoritesPage = () => {
     sort: "createDate",
   });
 
-  const { data = [] } = useFetchProductFavoritesQuery(productsData);
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useFetchProductFavoritesQuery(productsData);
   const items: IItemCard[] = data.result?.data || [];
   const totalCount: number = data?.result?.count;
 
@@ -42,17 +47,19 @@ const FavoritesPage = () => {
     });
   }, [sort]);
 
+  if (isLoading) {
+    return <Loader center="center" />;
+  }
+
+  const links = [
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Избранное", path: FAVORITES_PAGE },
+  ];
   return (
-    <div className={classes.mainDiv} style={{ marginTop: "22px" }}>
+    <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Избранное</Link>
-            </div>
-          </Grid>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div
               className={classes.selectBlock}

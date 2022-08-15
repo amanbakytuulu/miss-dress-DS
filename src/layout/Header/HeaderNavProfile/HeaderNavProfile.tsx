@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   ADMIN_PAGE_DASHBOARD,
@@ -23,24 +23,31 @@ const navs = [
   },
 ];
 
-const HeaderNavProfile = ({ setUserEnter }: any) => {
+interface HeaderNavProfileProps {
+  setUserEnter: (user: boolean) => void;
+}
+
+const HeaderNavProfile: React.FC<HeaderNavProfileProps> = ({
+  setUserEnter,
+}) => {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   const handleRemoveToken = () => {
     if (localStorage.getItem("accessToken")) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
       localStorage.removeItem("city");
       localStorage.removeItem("country");
+      localStorage.removeItem("contactInfoId");
       setUserEnter(false);
     }
   };
-
   return (
     <div className={classes.headerProfileNav}>
       <ul>
         {navs.map((nav) => {
           return (
             <li key={nav.title}>
-              {nav?.path ? (
+              {nav.path ? (
                 <Link to={nav.path}>{nav.title}</Link>
               ) : (
                 <button onClick={handleRemoveToken}>{nav.title}</button>
@@ -48,6 +55,11 @@ const HeaderNavProfile = ({ setUserEnter }: any) => {
             </li>
           );
         })}
+        {user.role !== "USER" && (
+          <li>
+            <Link to={ADMIN_PAGE_DASHBOARD}>Админ</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

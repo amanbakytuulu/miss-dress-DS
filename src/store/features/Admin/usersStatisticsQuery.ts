@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 import { API } from "../../../hooks/api";
-import { token } from "../../../utils/token";
 
 export const usersStatsApi = createApi({
   reducerPath: "usersStatsApi",
@@ -17,7 +16,9 @@ export const usersStatsApi = createApi({
           sort,
         },
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["UsersList"],
@@ -28,7 +29,9 @@ export const usersStatsApi = createApi({
         url: `/user/admin/deletes/user/${id}`,
         method: "DELETE",
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       invalidatesTags: ["UsersList"],
@@ -38,10 +41,22 @@ export const usersStatsApi = createApi({
       query: () => ({
         url: "/order/popular-users/price",
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["PopularUsers"],
+    }),
+    fetchUserInfo: build.query({
+      query: () => ({
+        url: "/user/me",
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
+        },
+      }),
     }),
   }),
 });
@@ -49,5 +64,6 @@ export const usersStatsApi = createApi({
 export const {
   useFetchUsersStatsQuery,
   useFetchPopularUsersQuery,
+  useFetchUserInfoQuery,
   useDeleteUserMutation,
 } = usersStatsApi;

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import { Container, Grid } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import classes from "../CategoriesPage/CategoryPage.module.scss";
 
 import CategoryPagination from "../../components/Pagination/CategoryPagination";
-import Select from "../CategoriesPage/components/Select";
 
 import { useFetchProductByCollectionTypeQuery } from "../../store/features/Product/productCategory/productCategoryQuery";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
+
+import { Error } from "../../utils/Error/Error";
+import { Loader } from "../../utils/Loader/Loader";
 
 import { CategoryItem } from "./types/types";
 import CollectionImagesCard from "./components/CollectionImagesCard";
@@ -21,9 +25,12 @@ const CollectionPage = () => {
     category: category,
     page: 1,
   });
-  const { data = [] } = useFetchProductByCollectionTypeQuery(productsData);
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useFetchProductByCollectionTypeQuery(productsData);
   const categories: CategoryItem[] = data?.result || [];
-  const [currentPage, setCurrentPage] = useState(1);
   const totalCount = categories?.length;
   useEffect(() => {
     setProductsData({
@@ -32,17 +39,24 @@ const CollectionPage = () => {
     });
   }, [page]);
 
+  if (isLoading) {
+    return <Loader center="center" />;
+  }
+
+  if (isError) {
+    return <Error center="center" />;
+  }
+  const links = [
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
+    { title: "Коллекция", path: `${window.location.pathname}` },
+  ];
+
   return (
-    <div className={classes.mainDiv} style={{ marginTop: "20px" }}>
+    <div className={classes.mainDiv}>
+      <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
-        <Grid className={classes.mainGrid} container spacing={2}>
-          <Grid item xs={12} md={12}>
-            <div className={classes.selectDiv}>
-              <Link to="/">Главная</Link>
-              <span>/</span>
-              <Link to="/#">Коллекция</Link>
-            </div>
-          </Grid>
+        <Grid className={classes.mainGrid} container>
           <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12}>
             <div className={classes.selectBlock}>
               <h2 className={classes.mediumH}>Коллекция</h2>

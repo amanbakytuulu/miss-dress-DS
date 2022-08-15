@@ -21,15 +21,15 @@ export const contactInfoApi = createApi({
       invalidatesTags: ["ContactInfo"],
     }),
     updateContactInfo: build.mutation({
-      query: (user) => ({
-        url: `/contact-info/${user.id}`,
+      query: ({ data, id }) => ({
+        url: `/contact-info/${id}`,
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${JSON.parse(
             localStorage.getItem("accessToken") || ""
           )}`,
         },
-        body: user,
+        body: data,
       }),
       invalidatesTags: ["ContactInfo"],
     }),

@@ -16,7 +16,9 @@ export const productsStatApi = createApi({
           take,
         },
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["ProductsStat"],
@@ -25,7 +27,9 @@ export const productsStatApi = createApi({
       query: () => ({
         url: "/order/popular-product/price",
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["ProductsStat"],

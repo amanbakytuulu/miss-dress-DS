@@ -102,6 +102,11 @@
             outline: none;
             border: none;
             cursor: pointer;
+
+            &.disable {
+              opacity: 0.5;
+              cursor: auto;
+            }
           }
           .counter {
             background-color: #372e24;

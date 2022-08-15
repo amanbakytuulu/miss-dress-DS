@@ -12,7 +12,16 @@ import classes from "./CartSummary.module.scss";
 interface CartSummaryProps {
   openModal: () => void;
   totalPrice: number;
-  thisCart: any;
+  thisCart: {
+    id: number;
+    status: number;
+    createDate: string;
+    updateDate: string;
+    amount: number;
+    price: number;
+    proceedStatus: number;
+    products: Products[];
+  } | null;
 }
 
 const CartSummary: FC<CartSummaryProps> = ({
@@ -22,15 +31,12 @@ const CartSummary: FC<CartSummaryProps> = ({
 }) => {
   const discount = 0;
   const [saveOrder, { data }] = useSaveOrderMutation();
-  const contactInfoId = localStorage.getItem("contactInfoId");
-
   const handleSaveOrder = () => {
     const contactId = localStorage.getItem("contactInfoId");
     const body = {
-      cartId: thisCart.id,
+      cartId: thisCart!.id,
       contactInfoId: Number(contactId),
     };
-    console.log("body", body);
     openModal();
     saveOrder(body);
   };
@@ -50,7 +56,12 @@ const CartSummary: FC<CartSummaryProps> = ({
         </p>
       </div>
       <div className={classes.cartSummaryBtn}>
-        <Button onClick={handleSaveOrder}>Оформить заказ</Button>
+        <Button
+          onClick={handleSaveOrder}
+          disabled={totalPrice === 0 ? true : false}
+        >
+          Оформить заказ
+        </Button>
       </div>
     </div>
   );

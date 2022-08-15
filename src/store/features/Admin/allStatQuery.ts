@@ -12,7 +12,9 @@ export const allStatApi = createApi({
       query: () => ({
         url: "/order/lastDate-order-report",
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["WidgetStat"],
@@ -21,7 +23,9 @@ export const allStatApi = createApi({
       query: () => ({
         url: "/order/grafik",
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("accessToken") || ""
+          )}`,
         },
       }),
       providesTags: ["GraphStat"],

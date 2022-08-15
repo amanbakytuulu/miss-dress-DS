@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import { ICartList } from "../../types/headerTypes/headerTypes";
-
 import { Modal } from "../../components";
+import { Loader } from "../../utils/Loader/Loader";
+import { BreadCrumbs } from "../../utils/BreadCrumbs/BreadCrumbs";
+import { CART_PAGE, CATEGORIES_PAGE, MAIN_PAGE } from "../../utils/path";
 
 import SuccessOrder from "../../components/Modal/SuccessOrder/SuccessOrder";
 
@@ -14,28 +15,32 @@ import CartList from "./CartList/CartList";
 
 import classes from "./CartPage.module.scss";
 
-const arr: ICartList[] = [
-  {
-    title: "name",
-  },
-  {
-    title: "name2",
-  },
-];
-
 const CartPage = () => {
   const [isModalOpen, setOpenModal] = useState<boolean>(false);
-
-  const { data: productsCart = {} } = useGetProductFromCardQuery();
-  const thisCart = productsCart?.result;
+  const { data: productsCart = {}, isLoading } = useGetProductFromCardQuery();
+  const thisCart = productsCart?.result || null;
   const allProductsCart = productsCart?.result?.products || [];
   const totalPrice = productsCart?.result?.price || 0;
   const openModal = () => setOpenModal(true);
   const closeModal = () => setOpenModal(false);
 
+  if (isLoading) {
+    return <Loader center="center" />;
+  }
+
+  const links = [
+    { title: "Главная", path: MAIN_PAGE },
+    { title: "Товары", path: CATEGORIES_PAGE },
+    { title: "Корзина", path: CART_PAGE },
+    { title: "Оформление заказа" },
+  ];
   return (
     <>
-      <div className={classes.cartPage}>
+      <div
+        className={classes.cartPage}
+        style={totalPrice === 0 ? { paddingBottom: "120px" } : {}}
+      >
+        <BreadCrumbs links={links} />
         <div className={`${classes.cartPageWrapper} ${classes.container}`}>
           <div className={classes.cartPageMain}>
             <div className={classes.cartPageOrder}>

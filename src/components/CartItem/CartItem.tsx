@@ -68,7 +68,13 @@ const CartItem: React.FC<CartItemProps> = ({ product, countProduct }) => {
 
           <div className={classes.cartItemFooter}>
             <div className={classes.cartItemButtons}>
-              <button onClick={decrement} className={classes.decreaseBtn}>
+              <button
+                onClick={decrement}
+                className={`${classes.decreaseBtn} ${
+                  counter == 1 && classes.disable
+                }`}
+                disabled={counter == 1 ? true : false}
+              >
                 -
               </button>
               <div className={classes.counter}>
