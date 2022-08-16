@@ -46,7 +46,7 @@ const HeaderNavIcons: FC<HeaderNavIconsProps> = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentOpen == null) refetch();
+    if (currentOpen == null && localStorage.getItem("accessToken")) refetch();
   }, [currentOpen]);
 
   return (

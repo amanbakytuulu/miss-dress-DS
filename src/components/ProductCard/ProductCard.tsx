@@ -30,8 +30,8 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
   const [changeColor, setChangeColor] = useState(false);
   const [newRate, setNewRate] = useState({});
 
-  const handleAddFavorite = () => {
-    addProductFavorites(item);
+  const handleAddFavorite = async () => {
+    await addProductFavorites(item);
     setChangeColor(!changeColor);
   };
   const rate = item.rate;
@@ -43,20 +43,17 @@ const ProductCard = ({ item, btnTitle }: IProductCard) => {
       color: "#ff3d47",
     },
   });
-
   const screenWidth = window.screen.width;
 
   const handleAddRate = (body: { rate: number | null; productId: number }) => {
     setNewRate(body);
     addProductRate(body);
   };
-
   useEffect(() => {
     if (items.length !== 0) {
       setChangeColor(items.some((el) => el.id === item.id));
     }
-  }, [items, newRate]);
-
+  }, [item.id]);
   return (
     <Grid className={classes.bestsellerCard}>
       <ImagesCard btnTitle={btnTitle} item={item} />

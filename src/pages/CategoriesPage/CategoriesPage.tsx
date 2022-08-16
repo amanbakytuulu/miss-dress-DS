@@ -56,6 +56,12 @@ const CategoryPage = () => {
     setProductsData({ ...productsData, sort: sort });
   }, [sort]);
 
+  useEffect(() => {
+    if (!isLoading) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [isLoading]);
+
   if (isError) {
     return <Error />;
   }
@@ -95,7 +101,7 @@ const CategoryPage = () => {
             <>
               <Grid className={classes.productDiv} item xs={10} sm={8} md={8}>
                 {items?.map((item: any) => (
-                  <div className={classes.prod}>
+                  <div key={item.id} className={classes.prod}>
                     <ProductCard btnTitle={btnTitle} item={item} />
                   </div>
                 ))}

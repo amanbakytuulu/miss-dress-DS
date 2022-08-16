@@ -123,8 +123,10 @@ const ProductPage: FC = () => {
   }, [productCurrent, allProductsCart]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [id]);
+    if (!isLoading) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [id, isLoading]);
 
   if (isLoading) {
     return <Loader center="center" />;
@@ -270,7 +272,7 @@ const ProductPage: FC = () => {
           >
             {similarDresses?.map((el: any, index: any) => (
               <SwiperSlide key={index}>
-                <ProductCard item={el} btnTitle="Открыть" />
+                {/* <ProductCard item={el} btnTitle="Открыть" /> */}
               </SwiperSlide>
             ))}
           </Swiper>

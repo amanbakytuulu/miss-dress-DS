@@ -11,14 +11,20 @@ import classes from "./SuccessModal.module.scss";
 interface SuccessModalProps {
   modalBody: IModalSuccess;
   setContinue?: (value: boolean) => void;
+  setIsSuccess?: (success: boolean) => void;
 }
 
-const SuccessModal: FC<SuccessModalProps> = ({ modalBody, setContinue }) => {
+const SuccessModal: FC<SuccessModalProps> = ({
+  modalBody,
+  setContinue,
+  setIsSuccess,
+}) => {
   const { closeModal } = useContext(ModalContext) as IModal;
 
   const continueHandler = () => {
     closeModal();
     setContinue && setContinue(false);
+    setIsSuccess && setIsSuccess(false);
   };
 
   return (

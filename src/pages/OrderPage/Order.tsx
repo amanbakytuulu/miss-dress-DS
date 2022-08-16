@@ -14,7 +14,8 @@ import styles from "./Order.module.scss";
 
 const OrderPage: FC = () => {
   const { data, isLoading } = useGetOrderQuery("");
-  const products = data?.result[0].cart.products || [];
+  const products =
+    (data?.result.length > 0 && data?.result[0].cart.products) || [];
   const orders = data?.result || [];
 
   const navigate = useNavigate();

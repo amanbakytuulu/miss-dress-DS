@@ -150,7 +150,9 @@ const FormComponent: FC<formPropsType> = ({ openModal }) => {
           {errors.town && <span>{errors.town?.message}</span>}
         </div>
         <div>
-          <Button type="submit">Сохранить</Button>
+          <Button type="submit" disabled>
+            Сохранить
+          </Button>
         </div>
       </form>
     </div>

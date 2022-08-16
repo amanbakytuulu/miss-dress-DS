@@ -124,7 +124,7 @@ const Header = () => {
         </Modal>
       ) : (
         <Modal isModalOpen={MODAL === currentOpen} closeModal={closeCurrent}>
-          <SignInForm setUserEnter={setUserEnter} />
+          <SignInForm setUserEnter={setUserEnter} setSignIn={setSignIn} />
         </Modal>
       )}
     </>

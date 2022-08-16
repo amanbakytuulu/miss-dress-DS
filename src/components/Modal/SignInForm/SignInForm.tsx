@@ -16,6 +16,7 @@ import classes from "./SignInForm.module.scss";
 
 interface SignInFormProps {
   setUserEnter: (value: boolean) => void;
+  setSignIn: (value: boolean) => void;
 }
 
 type SignInFormType = {
@@ -25,7 +26,7 @@ type SignInFormType = {
   acceptTerms: boolean | string;
 };
 
-const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
+const SignInForm: FC<SignInFormProps> = ({ setUserEnter, setSignIn }) => {
   const [isContinue, setContinue] = useState(false);
   const {
     register,
@@ -52,12 +53,16 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
     }
   }, [sms]);
 
-  const onSubmit = (user: SignInFormType) => {
-    signUp({
+  const onSubmit = async (user: SignInFormType) => {
+    await signUp({
       firstName: user.name,
       lastName: user.surName,
       phoneNumber: user.phoneNumber,
     });
+    user.acceptTerms = false;
+    user.name = "";
+    user.phoneNumber = "";
+    user.surName = "";
   };
 
   return (
@@ -140,6 +145,12 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
             </div>
             <div className={classes.modalButton}>
               <Button>Продолжить</Button>
+              <button
+                className={classes.modalButtonSignIn}
+                onClick={() => setSignIn(false)}
+              >
+                Войти
+              </button>
             </div>
           </div>
           <div className={classes.modalError}>
@@ -150,6 +161,7 @@ const SignInForm: FC<SignInFormProps> = ({ setUserEnter }) => {
         <VerificationForm
           title="Регистрация"
           setUserEnter={setUserEnter}
+          setContinue={setContinue}
           modalSuccessBody={userSignUpSuccess}
         />
       )}

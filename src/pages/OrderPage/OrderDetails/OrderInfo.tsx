@@ -6,14 +6,10 @@ import { useGetOrderQuery } from "../../../store/features/Order/orderQuery";
 
 import styles from "./OrderInfo.module.scss";
 
-import { myOrder, IMyOrder, IOrders, orderInfo } from "./OrderInfoDB";
-
 const OrderDetails: FC = () => {
   const { data } = useGetOrderQuery("");
   const orderData = data?.result[0];
   const products = data?.result[0].cart.products;
-  console.log(data?.result[0].cart.products);
-  console.log("orderData", orderData);
 
   return (
     <div className={styles.main_container}>

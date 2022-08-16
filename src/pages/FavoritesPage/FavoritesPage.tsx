@@ -47,6 +47,10 @@ const FavoritesPage = () => {
     });
   }, [sort]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   if (isLoading) {
     return <Loader center="center" />;
   }
@@ -60,7 +64,14 @@ const FavoritesPage = () => {
       <BreadCrumbs links={links} />
       <Container sx={{ flexGrow: 1 }}>
         <Grid className={classes.mainGrid} container spacing={5}>
-          <Grid className={classes.allProdBlock} item xs={12} sm={12} md={12} sx={{marginTop: "35px"}}>
+          <Grid
+            className={classes.allProdBlock}
+            item
+            xs={12}
+            sm={12}
+            md={12}
+            sx={{ marginTop: "35px" }}
+          >
             <div
               className={classes.selectBlock}
               style={{ display: "flex", justifyContent: "space-between" }}
@@ -83,9 +94,11 @@ const FavoritesPage = () => {
           ) : (
             <div className={classes.empty}>Избранные пусто!</div>
           )}
-          <Grid item xs={12} md={12}>
-            <CategoryPagination totalCount={totalCount} setPage={setPage} />
-          </Grid>
+          {totalCount > 0 && (
+            <Grid item xs={12} md={12}>
+              <CategoryPagination totalCount={totalCount} setPage={setPage} />
+            </Grid>
+          )}
         </Grid>
       </Container>
     </div>

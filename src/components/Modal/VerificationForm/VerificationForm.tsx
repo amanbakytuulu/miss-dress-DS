@@ -124,7 +124,11 @@ const VerificationForm: FC<VerificationFormProps> = ({
           </div>
         </form>
       ) : (
-        <SuccessModal setContinue={setContinue} modalBody={modalSuccessBody} />
+        <SuccessModal
+          setContinue={setContinue}
+          modalBody={modalSuccessBody}
+          setIsSuccess={setIsSuccess}
+        />
       )}
     </>
   );
